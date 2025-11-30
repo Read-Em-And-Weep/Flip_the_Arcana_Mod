@@ -3,7 +3,7 @@ schemaVersion = "0.0.1"
 
 
 [package]
-namespace = "Read-Em-And-Weep"
+namespace = "ReadEmAndWeep"
 name = "Flip_the_Arcana_Mod"
 versionNumber = "1.0.0"
 description = "Adds a new set of arcana cards that you can use and upgrade."
