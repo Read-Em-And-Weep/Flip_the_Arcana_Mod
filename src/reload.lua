@@ -1238,3 +1238,4 @@ modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, we
 	end
 	return originalCritChance
 end)
+
