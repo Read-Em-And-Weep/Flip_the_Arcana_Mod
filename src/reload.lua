@@ -30,7 +30,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             row = MetaUpgradeCardData[metaUpgradeName].Row
             column = MetaUpgradeCardData[metaUpgradeName].Column
             buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-            ReverseCard(screen, buttonToFlip, false, cardArgs)
+            mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
         end
     end
     HasRun = true
@@ -59,11 +59,11 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
         if GameState.MetaUpgradeState[metaUpgradeName].Visible == nil then
             if MetaUpgradeCardData[metaUpgradeName].Flipped then
                 GameState.MetaUpgradeState[metaUpgradeName].Visible = false
-                GameState.MetaUpgradeState[GetFlippedCardName(metaUpgradeName)].Visible = true
+                GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)].Visible = true
             else
                 GameState.MetaUpgradeState[metaUpgradeName].Visible = true
-                if GameState.MetaUpgradeState[GetFlippedCardName(metaUpgradeName)] then
-                    GameState.MetaUpgradeState[GetFlippedCardName(metaUpgradeName)].Visible = false
+                if GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)] then
+                    GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)].Visible = false
                 end
             end
         end
@@ -114,7 +114,7 @@ modutil.mod.Path.Wrap("GetCurrentMetaUpgradeCost", function(base)
 end)
 
 
-function ReverseCard(screen, selectedButton, doZoom, cardArgs)
+function mod.ReverseCard(screen, selectedButton, doZoom, cardArgs)
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
 		return
 	end
@@ -131,9 +131,9 @@ function ReverseCard(screen, selectedButton, doZoom, cardArgs)
     end
 
     MouseOffMetaUpgrade(selectedButton)
-    RemoveOldCard(selectedButton)
-    GameState.MetaUpgradeState[GetFlippedCardName(metaUpgradeName)].Visible = true
-    local newCard = CreateMetaUpgradeCard(screen, selectedButton.Row, selectedButton.Column,GetFlippedCardName(metaUpgradeName) , cardArgs)
+    mod.RemoveOldCard(selectedButton)
+    GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)].Visible = true
+    local newCard = CreateMetaUpgradeCard(screen, selectedButton.Row, selectedButton.Column,mod.GetFlippedCardName(metaUpgradeName) , cardArgs)
     GameState.MetaUpgradeCardLayout[selectedButton.Row][selectedButton.Column] = newCard.CardName
     if wasEquipped and newCard.CardState == "UNLOCKED"then
         EquipMetaUpgradeButton( screen, newCard )
@@ -164,7 +164,7 @@ modutil.mod.Path.Wrap("MetaUpgradeCardScreenPinItem", function(base, screen, but
 	end
     
 
-    ReverseCard(screen, selectedButton, true,{})
+    mod.ReverseCard(screen, selectedButton, true,{})
     GetCurrentMetaUpgradeCost()
 
 
@@ -192,7 +192,7 @@ modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenPinItem", function(base, scre
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
 		return
 	end
-    ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
+    mod.ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
 end)
 
 modutil.mod.Path.Override("UpgradeMetaUpgradeCardAction", function( screen, button )
@@ -549,9 +549,9 @@ modutil.mod.Path.Wrap("LoadCurrentMetaUpgradeSet", function(base,screen,button)
             end]]
             for row, rowData in pairs(GameState.MetaUpgradeCardLayout) do
                 for column, cardName in pairs(rowData) do
-                    if GetFlippedCardName(GameState.MetaUpgradeCardLayout[row][column]) == metaUpgradeName then
+                    if mod.GetFlippedCardName(GameState.MetaUpgradeCardLayout[row][column]) == metaUpgradeName then
                         buttonToFlip = screen.Components[GetMetaUpgradeKey(row,column)]
-                        ReverseCard(screen, buttonToFlip, false, {})
+                        mod.ReverseCard(screen, buttonToFlip, false, {})
                     end
                 end
              end
@@ -613,7 +613,7 @@ modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
 end)
 
 
-function GetColumn(screen, button)
+function mod.GetColumn(screen, button)
     local scale = 5 / screen.ZoomLevel
     local offsetX = screen.DefaultStartX 
     local xSpacer = screen.DefaultTalentXSpacer
@@ -621,7 +621,7 @@ function GetColumn(screen, button)
     return column
 end
 
-function GetRow(screen, button)
+function mod.GetRow(screen, button)
     local scale = 5 / screen.ZoomLevel
 	local scaleLerp = 1 - (screen.ZoomLevel - 3) / 2
     local offsetY = screen.DefaultStartY + screen.ScaledStartY * ( scaleLerp )
@@ -630,7 +630,7 @@ function GetRow(screen, button)
     return row
 end
 
-function GetFlippedCardName(cardName)
+function mod.GetFlippedCardName(cardName)
     local MetaUpgradeReversePairs = 
     {
         { "ChanneledCast", "ReversedChanneledCast" }, { "HealthRegen", "ReversedHealthRegen" }, { "LowManaDamageBonus", "ReversedLowManaDamageBonus" }, { "CastCount", "ReversedCastCount" }, { "SorceryRegenUpgrade", "ReversedSorceryRegenUpgrade" },
@@ -650,7 +650,7 @@ function GetFlippedCardName(cardName)
 end
 
 
-function RemoveOldCard(button)
+function mod.RemoveOldCard(button)
     local ids = {}
     table.insert(ids, button.CardArtId)
     table.insert(ids, button.CardCornersId)
@@ -941,19 +941,19 @@ modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
 		if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
 			local upgradeBoonsTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
 			if upgradeBoonsTrait.Uses > 0 then
-				UpgradeAllTraits()
+				mod.UpgradeAllTraits()
 				upgradeBoonsTrait.Uses = upgradeBoonsTrait.Uses - 1
 			end
 		end
 		if HeroHasTrait("ReversedBonusRarityMetaUpgrade") then
 			local addFamiliarsTrait = GetHeroTrait("ReversedBonusRarityMetaUpgrade")
-			AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
+			mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
 		end
 	end
     base(victim, triggerArgs)
 end)
 
-function UpgradeAllTraits()
+function mod.UpgradeAllTraits()
 	local sourceTraitData = nil
 	local traitDictionary = {}
 	local upgradableTraits = {}
@@ -1026,7 +1026,7 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	end
 	if HeroHasTrait("ReversedLastStandMetaUpgrade") then
 		local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
-		thread(NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
+		thread(mod.NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
 	end
 end)
 
@@ -1047,12 +1047,12 @@ end)
 modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
 	local newTrait = DeepCopyTable( traitData )
 	if newTrait.Name == "ReversedEpicRarityBoostMetaUpgrade" then
-		AddEncouragementElements(newTrait.ElementsGranted)
+		mod.AddEncouragementElements(newTrait.ElementsGranted)
 	end
 	return base(unit, traitData, args)
 end)
 
-function AddEncouragementElements(elementsToAdd)
+function mod.AddEncouragementElements(elementsToAdd)
 	local elementsAdded = 0 
 	while elementsAdded < elementsToAdd do
 		AddTraitToHero({TraitName = "ElementalEssence"})
@@ -1060,7 +1060,7 @@ function AddEncouragementElements(elementsToAdd)
 	end
 end
 
-function NoLastStandRegeneration( unit, args )
+function mod.NoLastStandRegeneration( unit, args )
 	while CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead do
 		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth then
 			Heal( CurrentRun.Hero, { HealAmount = 1, SourceName = "NoLastStandRegeneration", Silent = true })
@@ -1071,7 +1071,7 @@ function NoLastStandRegeneration( unit, args )
 	end
 end
 
-function AwardExtraPassiveFamiliarTrait(rank)
+function mod.AwardExtraPassiveFamiliarTrait(rank)
 	local traitTable = { "CompanionshipHealthFamiliar", "CompanionshipCritFamiliar", "CompanionshipDigFamiliar",
 		"CompanionshipDodgeFamiliar", "CompanionshipLastStandFamiliar" }
 	if HeroHasTrait("HealthFamiliar") or HeroHasTrait("CompanionshipHealthFamiliar") then
@@ -1138,14 +1138,14 @@ modutil.mod.Path.Wrap("DoZeusSpawnDamage", function(base, enemy, traitArgs, dama
 if traitArgs.Vfx == "DemeterBossIceShatter" then
 	wait(0.1, RoomThreadName )
 	CreateAnimation({ Name = traitArgs.Vfx, DestinationId = enemy.ObjectId, Group = "FX_Standing_Top" })
-	thread( FamineSpawnKillPresentation, enemy )
+	thread( mod.FamineSpawnKillPresentation, enemy )
 	thread( Damage, enemy, { AttackerId = CurrentRun.Hero.ObjectId, AttackerTable = CurrentRun.Hero, SourceProjectile = "ZeusOnSpawn", DamageAmount = damageAmount, Silent = false, PureDamage = true, IgnoreHealthBuffer = true } )
 else
 	base(enemy,traitArgs,damageAmount)
 end
 end)
 
-function FamineSpawnKillPresentation(unit)
+function mod.FamineSpawnKillPresentation(unit)
 	PlaySound({ Name = "/Leftovers/SFX/PlayerKilledNEW", Id = unit.ObjectId })
 	if CheckCooldown( "SpawnKillPresentationCooldown", 1.0 ) then
 		thread( InCombatText, CurrentRun.Hero.ObjectId, "Hint_FamineSpawnKill", 0.75, { PreDelay = 0.25 } )
@@ -1184,14 +1184,14 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 		wait( 0.75 )
 		local newLoot = CreateLoot({ Name = name, SpawnPoint = spawnTarget })
 		newLoot.StrifeDuplicated = true
-		thread( StrifeDoubleRewardPresentation, newLoot.ObjectId )
+		thread( mod.StrifeDoubleRewardPresentation, newLoot.ObjectId )
 		Destroy({ Id = spawnTarget })
 	end
 	base(screen,button,args)
 end)
 
 
-function StrifeDoubleRewardPresentation( objectId )
+function mod.StrifeDoubleRewardPresentation( objectId )
 	CreateAnimation({ Name = "ErisCurseFx", DestinationId = objectId })
 	ApplyUpwardForce({ Id = objectId, Speed = RandomFloat( 500, 700 ) })
 	ApplyForce({ Id = objectId, Speed = RandomFloat( 75, 260 ), Angle = RandomFloat( 0, 360 ) })
