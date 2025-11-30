@@ -1239,3 +1239,92 @@ modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, we
 	return originalCritChance
 end)
 
+modutil.mod.Path.Override("AddRandomMetaUpgrades", function(numCards, args)
+args = args or {}
+	numCards = numCards or 3
+	local delay = args.Delay or 3
+	local unequippedUnlockedMetaupgrades = {}
+	local skippedLowPriorityMetaupgrade = {}
+	local equippedMetaUpgrades = {}
+	local combinedMetaUpgradeDefaultCardLayout = {
+        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+    }
+	for cardName, cardData in pairs(GameState.MetaUpgradeState) do
+		if cardData.Equipped then		
+			equippedMetaUpgrades[cardName] = true
+		end
+	end
+
+	for row, rowData in pairs( combinedMetaUpgradeDefaultCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped then
+				local fateConflict = false
+				if GameState.FatedStatus == "Fated" and FatedDisableMetaUpgrades[cardName] then
+					fateConflict = true
+				end
+				if GameState.FatedStatus ~= "Fated" and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
+					fateConflict = true
+				end
+				if not fateConflict then
+					if MetaUpgradeCardData[cardName].RandomDrawChance then
+						if RandomChance(MetaUpgradeCardData[cardName].RandomDrawChance) then
+							table.insert(unequippedUnlockedMetaupgrades, cardName)
+						else
+							table.insert(skippedLowPriorityMetaupgrade, cardName)
+						end
+					else
+						table.insert(unequippedUnlockedMetaupgrades, cardName)
+					end
+				end
+			end
+		end
+	end
+
+	local addedMetaUpgrades = {}
+	while (not IsEmpty( unequippedUnlockedMetaupgrades ) or not IsEmpty( skippedLowPriorityMetaupgrade )) and numCards > 0 do
+		numCards = numCards - 1
+		local metaUpgradeName = nil
+		if not IsEmpty( unequippedUnlockedMetaupgrades ) then
+			metaUpgradeName = RemoveRandomValue(unequippedUnlockedMetaupgrades)
+		else
+			metaUpgradeName = RemoveRandomValue(skippedLowPriorityMetaupgrade)
+		end
+		if MetaUpgradeCardData[metaUpgradeName].RequiredCardNames and not ContainsAnyKey( equippedMetaUpgrades, MetaUpgradeCardData[metaUpgradeName].RequiredCardNames ) and not IsEmpty(unequippedUnlockedMetaupgrades) then
+			table.insert( skippedLowPriorityMetaupgrade, metaUpgradeName )
+			metaUpgradeName = RemoveRandomValue( unequippedUnlockedMetaupgrades )
+		end
+		CurrentRun.TemporaryMetaUpgrades[metaUpgradeName] = true
+		GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+		equippedMetaUpgrades[metaUpgradeName] = true
+
+		table.insert( addedMetaUpgrades, metaUpgradeName )
+		if MetaUpgradeCardData[ metaUpgradeName ].TraitName then
+			local rarityLevel = GetMetaUpgradeLevel( metaUpgradeName )
+			if args.RarityLevel then
+				rarityLevel = args.RarityLevel
+			end
+			AddTraitToHero({ 
+				SkipNewTraitHighlight = true, 
+				TraitName = MetaUpgradeCardData[ metaUpgradeName ].TraitName, 
+				Rarity = TraitRarityData.RarityUpgradeOrder[ rarityLevel ],
+				CustomMultiplier = 1,
+				SourceName = metaUpgradeName,
+				})
+		end
+		if MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName then
+			thread( CallFunctionName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName, MetaUpgradeCardData[ metaUpgradeName ].TraitName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionArgs, args )
+		end
+	end
+
+	thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
+end)
