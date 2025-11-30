@@ -3,11 +3,11 @@ schemaVersion = "0.0.1"
 
 
 [package]
-namespace = "AuthorName"
-name = "ModName"
-versionNumber = "0.0.0"
+namespace = "Read-Em-And-Weep"
+name = "Flip_the_Arcana_Mod"
+versionNumber = "1.0.0"
 description = "Allows to do some super duper thing."
-websiteUrl = "https://github.com/AuthorName/ModName"
+websiteUrl = "https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod"
 containsNsfwContent = false
 
 [package.dependencies]
