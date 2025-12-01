@@ -17,12 +17,13 @@ NewMetaUpgradeCardData =
 
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 1,
+			MetaCardPointsCommon = 15,
+			PlantFNightshade = 3,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 1 },
-			{ CardUpgradePoints = 3, MixerHBoss = 1 },
+			{ CardUpgradePoints = 2, PlantFNightshade = 4},
+			{ CardUpgradePoints = 5, PlantFNightshade = 8, MixerQBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -66,13 +67,14 @@ NewMetaUpgradeCardData =
 
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 3,
+			MetaCardPointsCommon = 20,
+			MixerShadow = 1,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 3, MixerFBoss = 1, },
+			{ CardUpgradePoints = 2, MixerShadow = 1},
+			{ CardUpgradePoints = 1, MixerShadow = 2, MixerFBoss = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -114,13 +116,14 @@ NewMetaUpgradeCardData =
 		Cost = 2,
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 15,
+			MetaCardPointsCommon = 30,
+			OreNBronze = 5,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 3, MixerNBoss = 2, },
+			{ CardUpgradePoints = 3, OreNBronze = 6, GiftPoints = 3 },
+			{ CardUpgradePoints = 6, OreNBronze = 10, MixerPBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -161,12 +164,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 25,
+			MetaCardPointsCommon = 30,
+			PlantQFang = 3
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 3, MixerHBoss = 2 },
+			{ CardUpgradePoints = 4, PlantQFang = 5 },
+			{ CardUpgradePoints = 6, PlantQFang = 6, MixerGBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -196,7 +200,7 @@ NewMetaUpgradeCardData =
 			}
 		},
 	},
-	ReversedSorceryRegenUpgrade = -- Harvest, Demeter
+	ReversedSorceryRegenUpgrade = -- The Loyal Protector, Cerberus
 	{
 		InheritFrom = { "BaseMetaUpgrade" },
 		Flipped = true,
@@ -207,13 +211,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 30,
+			MetaCardPointsCommon = 35,
 			MixerGBoss = 1,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 },
-			{ CardUpgradePoints = 6, MixerGBoss = 2, },
+			{ CardUpgradePoints = 3, MixerGBoss = 2 },
+			{ CardUpgradePoints = 6, OreHGlassrock = 8, MixerGBoss = 2, },
 		},
 
 		CustomTextWithShrineUpgrade = 
@@ -271,13 +275,14 @@ NewMetaUpgradeCardData =
 
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 3,
+			MetaCardPointsCommon = 35,
+			OreGLime = 5,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 3, MixerFBoss = 1, },
+			{ CardUpgradePoints = 3, OreGLime = 6, GiftPointsRare = 3 },
+			{ CardUpgradePoints = 5, OreGLime = 9, MixerHBoss = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -317,12 +322,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 10,
+			MetaCardPointsCommon = 35,
+			PlantODriftwood = 5
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 4, MixerPBoss = 1 },
+			{ CardUpgradePoints = 3, PlantODriftwood = 7, MixerFBoss = 1 },
+			{ CardUpgradePoints = 6, PlantODriftwood = 9, MixerFBoss = 2 },
 		},
 		TraitName = "ReversedBonusHealthMetaUpgrade",
 		CustomTrayText = "HealthManaBonusMetaUpgrade_Tray",
@@ -364,12 +370,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 20,
+			OrePAdamant = 3,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 1 },
-			{ CardUpgradePoints = 3, MixerPBoss = 1, },
+			{ CardUpgradePoints = 3, OrePAdamant = 6},
+			{ CardUpgradePoints = 6, OrePAdamant = 8, MixerGBoss = 2, },
 		},
 		--[[
 		AutoEquipRequirements = 
@@ -420,12 +427,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 30,
+			MetaCardPointsCommon = 50,
+			PlantGLotus = 5,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5 },
-			{ CardUpgradePoints = 10, MixerHBoss = 2, },
+			{ CardUpgradePoints = 5, PlantGLotus = 8 },
+			{ CardUpgradePoints = 10, PlantGLotus = 10, MixerGBoss = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -470,11 +478,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
+			PlantQSnakereed = 2
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2, },
-			{ CardUpgradePoints = 4, Mixer6Common = 1 },
+			{ CardUpgradePoints = 3,PlantQSnakereed = 4 },
+			{ CardUpgradePoints = 6, PlantQSnakereed = 4, MixerOBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -516,14 +525,15 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 15,
+			MetaCardPointsCommon = 20,
+			MixerNBoss = 1
 		},
 		TraitName = "ReversedSprintShieldMetaUpgrade",
 		ActiveWhileDead = true,
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 1, },
-			{ CardUpgradePoints = 3, MixerFBoss = 1 },
+			{ CardUpgradePoints = 1,PlantNMoss = 5, MixerNBoss = 1},
+			{ CardUpgradePoints = 3, PlantNMoss = 7, MixerNBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -564,12 +574,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 25,
+			MetaCardPointsCommon = 40,
+			PlantIPoppy = 3,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 6 },
-			{ CardUpgradePoints = 12, Mixer5Common = 1 },
+			{ CardUpgradePoints = 6 , PlantIPoppy = 6, MixerIBoss = 1 },
+			{ CardUpgradePoints = 12, PlantIPoppy = 8, MixerIBoss = 2 },
 		},
 		TraitName = "ReversedLastStandMetaUpgrade",
 		--OnGrantedFunctionName = "GrantMetaUpgradeLastStands",
@@ -614,13 +625,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 30,
-			MixerFBoss = 1,
+			GiftPointsEpic = 2,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, },
-			{ CardUpgradePoints = 6, MixerOBoss = 1 },
+			{ CardUpgradePoints = 3, PlantFMoly = 5, MixerFBoss = 2},
+			{ CardUpgradePoints = 6, PlantPOlive = 6, MixerNBoss = 2 },
 		},
 
 		AutoEquipRequirements = 
@@ -671,13 +682,14 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 35,
+			MetaCardPointsCommon = 45,
+			PlantPOlive = 3,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5 },
-			{ CardUpgradePoints = 10, MixerShadow = 1, },
+			{ CardUpgradePoints = 5, PlantPOlive = 5 },
+			{ CardUpgradePoints = 10, PlantPOlive = 7, MixerQBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -719,11 +731,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
+			GiftPoints = 3
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 },
-			{ CardUpgradePoints = 5, MixerHBoss = 2 },
+			{ CardUpgradePoints = 4, GiftPoints = 6 },
+			{ CardUpgradePoints = 6, SuperGiftPoints = 6, MixerOBoss = 2 },
 		},
 		UnlockedCardVoiceLines =
 		{
@@ -764,13 +777,14 @@ NewMetaUpgradeCardData =
 
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 25,
+			MetaCardPointsCommon = 40,
+			TrashPoints = 15
 		},
 		TraitName = "ReversedDoorRerollMetaUpgrade",
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 },
-			{ CardUpgradePoints = 5, MixerGBoss = 2 },
+			{ CardUpgradePoints = 3 , TrashPoints = 30},
+			{ CardUpgradePoints = 6, MixerShadow = 3, MixerOBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -810,7 +824,8 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 30,
+			MetaCardPointsCommon = 50,
+			MetaFabric = 4,
 		},
 		TraitName = "ReversedStartingGoldMetaUpgrade",
 		OnGrantedFunctionName = "GrantMetaUpgradeCurrency",
@@ -818,8 +833,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5 },
-			{ CardUpgradePoints = 10, CharonPoints = 1 },
+			{ CardUpgradePoints = 5, MetaFabric = 6, PlantFMoly = 5 },
+			{ CardUpgradePoints = 10, MetaFabric = 10, MixerFBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -861,11 +876,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
+			OreHGlassrock = 4,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 },
-			{ CardUpgradePoints = 5, MixerNBoss = 2 },
+			{ CardUpgradePoints = 3 , OreHGlassrock = 3, PlantGLotus = 6},
+			{ CardUpgradePoints = 5, MixerHBoss = 3 },
 		},
 
 
@@ -896,7 +912,7 @@ NewMetaUpgradeCardData =
 			}
 		},
 	},
-	ReversedRarityBoost = -- The Loyal Protector, Cerberus
+	ReversedRarityBoost = -- Famine, Demeter
 	{
 		InheritFrom = { "BaseMetaUpgrade" },
 		Flipped = true,
@@ -907,13 +923,14 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 40,
+			MetaCardPointsCommon = 50,
+			PlantHWheat = 5,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 4 },
-			{ CardUpgradePoints = 6, MixerNBoss = 2 },
+			{ CardUpgradePoints = 4,PlantHWheat = 8, MixerIBoss = 2 },
+			{ CardUpgradePoints = 10, PlantHWheat = 12, WeaponPointsRare = 2 },
 		},
 
 		TraitName = "ReversedRarityBoostMetaUpgrade",
@@ -956,12 +973,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
-			MixerHBoss = 1,
+			FamiliarPoints = 5,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2 },
-			{ CardUpgradePoints = 4, MixerGBoss = 2, },
+			{ CardUpgradePoints = 3, FamiliarPoints = 6 },
+			{ CardUpgradePoints = 5, Mixer5Common = 3, MixerHBoss = 2, },
 		},
 		AutoEquipRequirements = 
 		{
@@ -1009,13 +1026,13 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 30,
-			MixerNBoss = 1,
+			MetaCardPointsCommon = 45,
+			WeaponPointsRare = 1,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 },
-			{ CardUpgradePoints = 6, MixerNBoss = 2, },
+			{ CardUpgradePoints = 5, Mixer5Common = 2, MetaFabric = 10},
+			{ CardUpgradePoints = 10, MixerIBoss = 2, MixerQBoss = 2 },
 		},
 		TraitName = "ReversedTradeOffMetaUpgrade",
 
@@ -1063,14 +1080,15 @@ NewMetaUpgradeCardData =
 		Image = "CardArt_25",
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 35,
+			MetaCardPointsCommon = 40,
+			SuperGiftPoints = 3,
 		},
 		TraitName = "ReversedScreenRerollMetaUpgrade",
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5 },
-			{ CardUpgradePoints = 10, MixerOBoss = 2, },
+			{ CardUpgradePoints = 5, SuperGiftPoints = 3, GiftPoints = 5},
+			{ CardUpgradePoints = 10, MixerPBoss = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -1112,12 +1130,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
+			OreQScales = 4,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 6 },
-			{ CardUpgradePoints = 12, MixerPBoss = 2 },
+			{ CardUpgradePoints = 6, OreQScales = 6, OreOIron = 6},
+			{ CardUpgradePoints = 12,OreOIron = 5, MixerGBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -1159,7 +1178,7 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
-			MixerOBoss = 1,
+			PlantIShaderot = 8,
 		},
 		TraitName = "ReversedEpicRarityBoostMetaUpgrade",
 		
@@ -1173,8 +1192,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5 },
-			{ CardUpgradePoints = 10, MixerPBoss = 2, },
+			{ CardUpgradePoints = 5, OreChaosProtoplasm = 3, MemPointsCommon = 40 },
+			{ CardUpgradePoints = 10, Mixer5Common = 4, OreChaosProtoplasm = 6},
 		},
 
 		UnlockedCardVoiceLines =
@@ -1215,8 +1234,8 @@ NewMetaUpgradeCardData =
         Cost = 0,
 		ResourceCost = 
 		{
-			MetaCardPointsCommon = 50,
-			MixerPBoss = 1,
+			MetaCardPointsCommon = 60,
+			MixerShadow = 5,
 		},
 		TraitName = "ReversedCardDrawMetaUpgrade",
 		
@@ -1229,8 +1248,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 10, },
-			{ CardUpgradePoints = 20, MetaFabric = 20 },
+			{ CardUpgradePoints = 10, MixerQBoss = 2, WeaponPointsRare = 2 },
+			{ CardUpgradePoints = 20, MixerQBoss = 3, WeaponPointsRare = 3 },
 		},
 
 		UnlockedCardVoiceLines =
