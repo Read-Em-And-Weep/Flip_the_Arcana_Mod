@@ -57,7 +57,7 @@ local function on_reload()
 	-- what to do when we are ready, but also again on every reload.
 	-- only do things that are safe to run over and over.
 	
-	import 'reload.lua'
+	import("reload.lua")
 end
 
 -- this allows us to limit certain functions to not be reloaded.
