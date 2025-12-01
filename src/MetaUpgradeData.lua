@@ -31,21 +31,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_0781", Text = "The Sorceress." },
+				{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_0781", Text = "The Sorceress." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -93,21 +82,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2983", Text = "The Wayward Son." },
+				{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2983", Text = "The Wayward Son." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -151,21 +129,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1147", Text = "The Huntress." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1147", Text = "The Huntress." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -209,23 +176,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_0997", Text = "Eternity." },
-			{ Cue = "/VO/Melinoe_0785", Text = "Eternity." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_0997", Text = "Eternity." },
-				{ Cue = "/VO/Melinoe_0785", Text = "Eternity." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -275,22 +229,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2791", Text = "The Moon." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1145", Text = "The Moon." },
-				{ Cue = "/VO/Melinoe_2791", Text = "The Moon." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -345,21 +287,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2984", Text = "The Furies." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2984", Text = "The Furies." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -402,21 +333,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_4022", Text = "Persistence." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_4022", Text = "Persistence." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -458,7 +378,6 @@ NewMetaUpgradeCardData =
 		},
 		]]
 		TraitName = "ReversedBonusDodgeMetaUpgrade",
-		CustomTrayText = "DodgeBonusMetaUpgrade_Tray",
 
 		UnlockedCardVoiceLines =
 		{
@@ -467,21 +386,11 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_0998", Text = "The Messenger." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
+
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_0998", Text = "The Messenger." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -526,21 +435,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2985", Text = "The Unseen." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2985", Text = "The Unseen." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -586,21 +484,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2987", Text = "Night." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2987", Text = "Night." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -646,23 +533,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_0996", Text = "The Swift Runner." },
-			{ Cue = "/VO/Melinoe_0784", Text = "The Swift Runner." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_0996", Text = "The Swift Runner." },
-				{ Cue = "/VO/Melinoe_0784", Text = "The Swift Runner." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -708,21 +582,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1455", Text = "Death." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1455", Text = "Death." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -776,21 +639,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2986", Text = "The Centaur." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2986", Text = "The Centaur." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -834,21 +686,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2789", Text = "Origination." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2789", Text = "Origination." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -890,21 +731,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1459", Text = "The Lovers." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1459", Text = "The Lovers." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -949,21 +779,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_4067", Text = "The Enchantress." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_4067", Text = "The Enchantress." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1009,21 +828,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2792", Text = "The Boatman." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2792", Text = "The Boatman." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1068,21 +876,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2989", Text = "The Artificer." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2989", Text = "The Artificer." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1127,21 +924,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1460", Text = "Excellence." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1460", Text = "Excellence." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1190,21 +976,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2790", Text = "The Queen." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2790", Text = "The Queen." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1250,21 +1025,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1456", Text = "The Fates." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1456", Text = "The Fates." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1315,21 +1079,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_1457", Text = "The Champions." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_1457", Text = "The Champions." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1374,21 +1127,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2988", Text = "Strength." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2988", Text = "Strength." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1442,21 +1184,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2990", Text = "Divinity." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2990", Text = "Divinity." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
@@ -1509,21 +1240,10 @@ NewMetaUpgradeCardData =
 			UsePlayerSource = true,
 			SkipAnim = true,
 
-			{ Cue = "/VO/Melinoe_2991", Text = "Judgment." },
+	{ Cue = "/VO/Melinoe_0545", Text = "Another Card..." },
 		},
 		EquipVoiceLines =
 		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
-
-				{ Cue = "/VO/Melinoe_2991", Text = "Judgment." },
-			},
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
 
