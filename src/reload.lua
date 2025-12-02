@@ -274,6 +274,7 @@ end) ]]
 
 
 
+
 modutil.mod.Path.Wrap("CheckAutoEquipRequirements", function(base, requirementData)
     local basevalue = base(requirementData)
 
@@ -1327,4 +1328,12 @@ args = args or {}
 	end
 
 	thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
+end)
+
+
+modutil.mod.Path.Wrap("SetupMap", function(base)
+	local packageName = _PLUGIN.guid .. "NewCardArt"
+	print("Loading package: "..packageName)
+	game.LoadPackages({ Name = packageName })
+	base()
 end)

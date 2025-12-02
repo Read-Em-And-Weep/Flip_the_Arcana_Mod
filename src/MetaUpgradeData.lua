@@ -60,7 +60,7 @@ NewMetaUpgradeCardData =
         Column = 2,
         Row = 1,
 		StartUnlocked = false,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_02",
 		TraitName = "ReversedHealthRegenMetaUpgrade",
 		Type = "Life",
 
@@ -207,7 +207,7 @@ NewMetaUpgradeCardData =
         Column = 5,
         Row = 1,
 		Cost = 0,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_05",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
@@ -678,7 +678,7 @@ NewMetaUpgradeCardData =
 
 		TraitName = "ReversedStatusVulnerabilityMetaUpgrade",
 		Cost = 5,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_14",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
@@ -726,7 +726,7 @@ NewMetaUpgradeCardData =
 
 		TraitName = "ReversedChanneledBlockMetaUpgrade",
 		Cost = 3,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_15",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
