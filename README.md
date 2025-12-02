@@ -9,7 +9,7 @@ Every card can now be flipped into a whole new card with new upgrades to unlock!
 After unlocking every familiar and gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
 
 # Compatibility
-No known compatibility issues. If you have Zagreus's Journey installed (Hades 1 run), the cards will require resources from that route in order to unlock and upgrade, giving you a real reason to take that route.
+No known compatibility issues. If you have Zagreus's Journey installed (Hades 1 run), the cards will require resources from that route in order to unlock and upgrade, giving you a real reason to take that route. In addition, if Extended Altar of Ashes is installed, you will get additional levels for these cards! 
 
 # Uninstallation
 With my testing, it seems pretty safe to uninstall, however I would recommend that you unequip and flip over all of your cards before playing vanilla just to be safe.
