@@ -39,6 +39,10 @@ Incantations = mods['BlueRaja-IncantationsAPI']
 ---@module 'game.import'
 import_as_fallback(rom.game)
 
+ExtendedAltar = mods['BlueRaja-ExtendedAltarOfAshesFixed']
+
+local ZagreusJourney = mods['NikkelM-Zagreus_Journey']
+
 local function on_ready()
 	-- what to do when we are ready, but not re-do on reload.
 	if config.enabled == false then return end
@@ -47,10 +51,17 @@ local function on_ready()
 	
 	import("WorldUpgradeData.lua")
 	import("TraitData_MetaUpgrade.lua")
-	import("MetaUpgradeData.lua")
 	import("TraitText.en.sjson.lua")
 	import("HelpText.en.sjson.lua")
 	import("ready.lua")
+	if ZagreusJourney then
+		import("ZagreusJourneyPatch.lua")
+	else
+		import("MetaUpgradeData.lua")
+	end
+	if ExtendedAltar then
+		import("ExtendedAltarPatch.lua")
+	end
 end
 
 local function on_reload()

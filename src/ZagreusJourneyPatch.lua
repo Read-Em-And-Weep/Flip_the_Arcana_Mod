@@ -18,12 +18,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 15,
-			PlantFNightshade = 3,
+			ModsNikkelMHadesBiomes_PlantTartarus = 3,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 2, PlantFNightshade = 4},
-			{ CardUpgradePoints = 5, PlantFNightshade = 8, MixerQBoss = 2 },
+			{ CardUpgradePoints = 2, ModsNikkelMHadesBiomes_PlantTartarus = 4},
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_PlantTartarus = 8, ModsNikkelMHadesBiomes_BossResourceStyx = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -62,6 +62,7 @@ NewMetaUpgradeCardData =
 		StartUnlocked = false,
 		Image = "CardArt_25",
 		TraitName = "ReversedHealthRegenMetaUpgrade",
+		CustomTrayText = "DodgeBonusMetaUpgrade_Tray",
 		Type = "Life",
 
 		ResourceCost = 
@@ -73,7 +74,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 2, MixerShadow = 1},
-			{ CardUpgradePoints = 1, MixerShadow = 2, MixerFBoss = 2, },
+			{ CardUpgradePoints = 1, MixerShadow = 2, ModsNikkelMHadesBiomes_BossResourceElysium = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -116,13 +117,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 30,
-			OreNBronze = 5,
+			ModsNikkelMHadesBiomes_PlantElysium = 5,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, OreNBronze = 6, GiftPoints = 3 },
-			{ CardUpgradePoints = 6, OreNBronze = 10, MixerPBoss = 2 },
+			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_PlantElysium = 6, GiftPoints = 3 },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_PlantElysium = 10, ModsNikkelMHadesBiomes_BossResourceAsphodel = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -164,12 +165,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 30,
-			PlantQFang = 3
+			ModsNikkelMHadesBiomes_PlantAsphodel = 3
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 4, PlantQFang = 5 },
-			{ CardUpgradePoints = 6, PlantQFang = 6, MixerGBoss = 2 },
+			{ CardUpgradePoints = 4, ModsNikkelMHadesBiomes_PlantAsphodel = 5 , ModsNikkelMHadesBiomes_BossResourceAsphodel = 1},
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_PlantAsphodel = 6, ModsNikkelMHadesBiomes_BossResourceAsphodel = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -216,7 +217,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 3, MixerGBoss = 2 },
-			{ CardUpgradePoints = 6, OreHGlassrock = 8, MixerGBoss = 2, },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_OreStyx = 8, MixerGBoss = 2, },
 		},
 
 		CustomTextWithShrineUpgrade = 
@@ -275,13 +276,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
-			OreGLime = 5,
+			ModsNikkelMHadesBiomes_OreAsphodel = 5,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, OreGLime = 6, GiftPointsRare = 3 },
-			{ CardUpgradePoints = 5, OreGLime = 9, MixerHBoss = 2, },
+			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_OreAsphodel = 6, GiftPointsRare = 3 },
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_OreAsphodel = 9, ModsNikkelMHadesBiomes_BossResourceTartarus = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -322,12 +323,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
-			PlantODriftwood = 5
+			ModsNikkelMHadesBiomes_CropAsphodel = 5
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, PlantODriftwood = 7, MixerFBoss = 1 },
-			{ CardUpgradePoints = 6, PlantODriftwood = 9, MixerFBoss = 2 },
+			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_CropAsphodel = 7, MixerFBoss = 1 },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_CropAsphodel = 9, MixerFBoss = 2 },
 		},
 		TraitName = "ReversedBonusHealthMetaUpgrade",
 		CustomTrayText = "HealthManaBonusMetaUpgrade_Tray",
@@ -374,8 +375,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, OrePAdamant = 6},
-			{ CardUpgradePoints = 6, OrePAdamant = 8, MixerGBoss = 2, },
+			{ CardUpgradePoints = 3, OrePAdamant = 6, ModsNikkelMHadesBiomes_PlantAsphodel = 8},
+			{ CardUpgradePoints = 6, OrePAdamant = 8, ModsNikkelMHadesBiomes_BossResourceAsphodel = 2, },
 		},
 		--[[
 		AutoEquipRequirements = 
@@ -414,7 +415,7 @@ NewMetaUpgradeCardData =
 			}
 		},
 	},
-	ReversedManaOverTime = -- Abundance, Poseidon
+	ReversedManaOverTime = -- Bounty, Poseidon
 	{
 		InheritFrom = { "BaseMetaUpgrade" },
 		Flipped = true,
@@ -427,12 +428,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 50,
-			PlantGLotus = 5,
+			ModsNikkelMHadesBiomes_OreElysium = 5,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5, PlantGLotus = 8 },
-			{ CardUpgradePoints = 10, PlantGLotus = 10, MixerGBoss = 2, },
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_OreElysium = 8 },
+			{ CardUpgradePoints = 10, ModsNikkelMHadesBiomes_OreElysium = 10, MixerGBoss = 2, },
 		},
 
 		UnlockedCardVoiceLines =
@@ -477,12 +478,12 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
-			PlantQSnakereed = 2
+			ModsNikkelMHadesBiomes_CropTartarus = 2
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3,PlantQSnakereed = 4 },
-			{ CardUpgradePoints = 6, PlantQSnakereed = 4, MixerOBoss = 2 },
+			{ CardUpgradePoints = 3,ModsNikkelMHadesBiomes_CropTartarus = 4 },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_CropTartarus = 4, ModsNikkelMHadesBiomes_BossResourceTartarus = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -531,8 +532,8 @@ NewMetaUpgradeCardData =
 		ActiveWhileDead = true,
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 1,PlantNMoss = 5, MixerNBoss = 1},
-			{ CardUpgradePoints = 3, PlantNMoss = 7, MixerNBoss = 2 },
+			{ CardUpgradePoints = 1,ModsNikkelMHadesBiomes_CropStyx = 5, MixerNBoss = 1},
+			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_CropStyx = 7, MixerNBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -578,7 +579,7 @@ NewMetaUpgradeCardData =
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 6 , PlantIPoppy = 6, MixerIBoss = 1 },
+			{ CardUpgradePoints = 6 , PlantIPoppy = 6, ModsNikkelMHadesBiomes_BossResourceElysium = 2 },
 			{ CardUpgradePoints = 12, PlantIPoppy = 8, MixerIBoss = 2 },
 		},
 		TraitName = "ReversedLastStandMetaUpgrade",
@@ -629,7 +630,7 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3, PlantFMoly = 5, MixerFBoss = 2},
+			{ CardUpgradePoints = 3, PlantFMoly = 5, ModsNikkelMHadesBiomes_BossResourceTartarus = 2},
 			{ CardUpgradePoints = 6, PlantPOlive = 6, MixerNBoss = 2 },
 		},
 
@@ -687,7 +688,7 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5, PlantPOlive = 5 },
+			{ CardUpgradePoints = 5, PlantPOlive = 5, ModsNikkelMHadesBiomes_BossResourceStyx = 2},
 			{ CardUpgradePoints = 10, PlantPOlive = 7, MixerQBoss = 2 },
 		},
 
@@ -730,11 +731,11 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
-			GiftPoints = 3
+			ModsNikkelMHadesBiomes_CropElysium = 4
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 4, GiftPoints = 6 },
+			{ CardUpgradePoints = 4, GiftPoints = 6, ModsNikkelMHadesBiomes_CropElysium = 12 },
 			{ CardUpgradePoints = 6, SuperGiftPoints = 6, MixerOBoss = 2 },
 		},
 		UnlockedCardVoiceLines =
@@ -782,8 +783,8 @@ NewMetaUpgradeCardData =
 		TraitName = "ReversedDoorRerollMetaUpgrade",
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 3 , TrashPoints = 30},
-			{ CardUpgradePoints = 6, MixerShadow = 3, MixerOBoss = 2 },
+			{ CardUpgradePoints = 3 , MixerShadow = 3, ModsNikkelMHadesBiomes_PlantStyx = 10},
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_BossResourceStyx = 3, MixerOBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -832,7 +833,7 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5, MetaFabric = 6, PlantFMoly = 5 },
+			{ CardUpgradePoints = 5, MetaFabric = 6, ModsNikkelMHadesBiomes_OreStyx = 5 },
 			{ CardUpgradePoints = 10, MetaFabric = 10, MixerFBoss = 2 },
 		},
 
@@ -880,7 +881,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 3 , OreHGlassrock = 3, PlantGLotus = 6},
-			{ CardUpgradePoints = 5, MixerHBoss = 3 },
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_CropElysium = 10, MixerHBoss = 3 },
 		},
 
 
@@ -928,8 +929,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 4,PlantHWheat = 8, MixerIBoss = 2 },
-			{ CardUpgradePoints = 10, PlantHWheat = 12, WeaponPointsRare = 2 },
+			{ CardUpgradePoints = 4,ModsNikkelMHadesBiomes_CropStyx = 8, MixerIBoss = 2 },
+			{ CardUpgradePoints = 10, ModsNikkelMHadesBiomes_PlantStyx = 12, WeaponPointsRare = 2 },
 		},
 
 		TraitName = "ReversedRarityBoostMetaUpgrade",
@@ -977,7 +978,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 3, FamiliarPoints = 6 },
-			{ CardUpgradePoints = 5, Mixer5Common = 3, MixerHBoss = 2, },
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_BossResourceElysium = 3, MixerHBoss = 2, },
 		},
 		AutoEquipRequirements = 
 		{
@@ -1026,11 +1027,11 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
-			WeaponPointsRare = 1,
+			WeaponPointsRare = 2,
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5, Mixer5Common = 2, MetaFabric = 10},
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_BossResourceStyx = 3, ModsNikkelMHadesBiomes_BossResourceElysium = 5},
 			{ CardUpgradePoints = 10, MixerIBoss = 2, MixerQBoss = 2 },
 		},
 		TraitName = "ReversedTradeOffMetaUpgrade",
@@ -1087,7 +1088,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 5, SuperGiftPoints = 3, GiftPoints = 5},
-			{ CardUpgradePoints = 10, MixerPBoss = 2, },
+			{ CardUpgradePoints = 10, MixerPBoss = 2, ModsNikkelMHadesBiomes_BossResourceElysium =2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -1129,13 +1130,13 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
-			OreQScales = 4,
+			ModsNikkelMHadesBiomes_OreTartarus = 4,
 		},
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 6, OreQScales = 6, OreOIron = 6},
-			{ CardUpgradePoints = 12,OreOIron = 5, MixerGBoss = 2 },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_OreTartarus = 6, OreOIron = 6},
+			{ CardUpgradePoints = 12,OreOIron = 5, ModsNikkelMHadesBiomes_BossResourceTartarus = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -1191,8 +1192,8 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 5, OreChaosProtoplasm = 3, MemPointsCommon = 40 },
-			{ CardUpgradePoints = 10, Mixer5Common = 4, OreChaosProtoplasm = 6},
+			{ CardUpgradePoints = 5, SuperGiftPoints = 4, ModsNikkelMHadesBiomes_OreTartarus = 7 },
+			{ CardUpgradePoints = 10, Mixer5Common = 4, ModsNikkelMHadesBiomes_BossResourceElysium = 2},
 		},
 
 		UnlockedCardVoiceLines =
@@ -1247,7 +1248,7 @@ NewMetaUpgradeCardData =
 
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 10, MixerQBoss = 2, WeaponPointsRare = 2 },
+			{ CardUpgradePoints = 10, ModsNikkelMHadesBiomes_BossResourceStyx = 3, WeaponPointsRare = 2 },
 			{ CardUpgradePoints = 20, MixerQBoss = 3, WeaponPointsRare = 3 },
 		},
 

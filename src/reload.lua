@@ -195,7 +195,7 @@ modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenPinItem", function(base, scre
     mod.ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
 end)
 
-modutil.mod.Path.Override("UpgradeMetaUpgradeCardAction", function( screen, button )
+--[[ modutil.mod.Path.Override("UpgradeMetaUpgradeCardAction", function( screen, button )
 	local selectedButton = button
 	
 	if screen.PickedUpButton then
@@ -270,7 +270,7 @@ modutil.mod.Path.Override("UpgradeMetaUpgradeCardAction", function( screen, butt
 		InvalidMetaUpgradeCardAction( screen, selectedButton )
 	end
 	UpdateUpgradeMetaUpgradeCardInteractionText( screen, selectedButton )
-end)
+end) ]]
 
 
 
