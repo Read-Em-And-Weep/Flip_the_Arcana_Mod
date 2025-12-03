@@ -296,7 +296,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedScreenReroll",
         DisplayName = "Revelry",
-        Description = "While at the {$Keywords.Random}, most {$Keywords.GodBoonPlural} have {#UpgradeFormat}+{$TooltipData.StatDisplay1}{$Keywords.PomLevel}{#Prev}"
+        Description = "While at the {$Keywords.Random}, whenever you claim a {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, a random boon will gain {#UpgradeFormat}+2{$Keywords.PomLevel}"
     },
     {
         Id = "ReversedScreenReroll_FlavorText01",
@@ -377,38 +377,13 @@ local newMetaUpgradeCardData = {
     },
     {
       Id = "ReversedCardDrawMetaUpgrade_Tray",
-      DisplayName = "Futility",
+      DisplayName = "Monstrosity",
       Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} more times this night.",
     },
     
 }
 
 
-
-
-local newMetaFlavourTextOrder = {
-    "DisplayName",
-    "Description",
-}
-
-local newMetaFlavourTextData = {
-    {
-        DisplayName = "ReversedChanneledCast_FlavorText01",
-        Description = "Bathed in his enemies blood, he guided mortals to great victories and losses."
-    }
-}
-
-local newMetaUpgradeTraitOrder = {
-    "Id",
-    "InheritFrom",
-}
-
-local newMetaUpgradeTraitData = {
-    {
-        Id = "ReversedChanneledCastMetaUpgrade",
-        InheritFrom = "ReversedChanneledCast"
-    }
-}
 
 local traitTextFile = rom.path.combine(rom.paths.Content(), 'Game/Text/en/TraitText.en.sjson')
 

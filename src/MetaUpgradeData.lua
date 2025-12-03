@@ -620,7 +620,7 @@ NewMetaUpgradeCardData =
         Row = 3,
 
 		Cost = 0,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_13",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 30,

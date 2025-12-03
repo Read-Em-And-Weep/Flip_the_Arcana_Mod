@@ -317,19 +317,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 3.0,
+				Multiplier = 1.0,
 			},
 			Rare =
 			{
-				Multiplier = 4.0,
+				Multiplier = 2.0,
 			},
 			Epic =
 			{
-				Multiplier = 5.0,
+				Multiplier = 3.0,
 			},
 			Heroic =
 			{
-				Multiplier = 6.0,
+				Multiplier = 4.0,
 			},
 		},
         DamageShave =
@@ -396,19 +396,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 4.0,
+				Multiplier = 2.5,
 			},
 			Rare =
 			{
-				Multiplier = 5.0,
+				Multiplier = 3.5,
 			},
 			Epic =
 			{
-				Multiplier = 6.0,
+				Multiplier = 4.5,
 			},
 			Heroic =
 			{
-				Multiplier = 7.0,
+				Multiplier = 5.5,
 			},
 		},
         AddOutgoingDamageModifiers =
@@ -1039,19 +1039,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 20,
+				Multiplier = 10,
 			},
 			Rare =
 			{
-				Multiplier = 25,
+				Multiplier = 15,
 			},
 			Epic =
 			{
-				Multiplier = 30,
+				Multiplier = 20,
 			},
 			Heroic =
 			{
-				Multiplier = 35,
+				Multiplier = 25,
 			},
 		},
         FatedCritcalChance = { BaseValue = 0.01,},
@@ -1087,12 +1087,13 @@ NewMetaUpgradeTraitData = {
 				Multiplier = 4.0,
 			},
 		},
-        FatedBoonLevelBonus = { BaseValue = 1,},
+		ModdedUpgradeChance = {BaseValue = .1},
         ExtractValues = 
 		{
 			{
-				Key = "FatedBoonLevelBonus",
-				ExtractAs = "Levels",
+				Key = "ModdedUpgradeChance",
+				ExtractAs = "Chance",
+				Format = "Percent"
 			},
 		},
     },

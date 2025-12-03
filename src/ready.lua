@@ -38,6 +38,16 @@ local newCardArtData = {
     FilePath = _PLUGIN.guid .. "NewCardArt\\5._The_Loyal_Protector_inactive",
 },
 {
+    Name = "FlippedCardArt_13",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\13._The_Wanderer"
+},
+{
+    Name = "FlippedCardArt_13_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\13._The_Wanderer_inactive",
+},
+{
     Name = "FlippedCardArt_14",
     InheritFrom = "CardArt_01",
     FilePath = _PLUGIN.guid .. "NewCardArt\\14._The_Strategist"
@@ -45,7 +55,7 @@ local newCardArtData = {
 {
     Name = "FlippedCardArt_14_Inactive",
     InheritFrom = "CardArt_01",
-    FilePath = _PLUGIN.guid .. "NewCardArt\\14._The_Strategist",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\14._The_Strategist_inactive",
 },
 }
 

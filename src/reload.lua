@@ -1174,6 +1174,12 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local spawnTarget = nil
 	local duplicateOnClose = false
 	local name = source.Name
+	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and source.GodLoot or name == "HermesUpgrade" then
+		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
+		if RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
+			thread(AddStackToTraits, { NumTraits = 1, NumStacks = 2})
+		end
+	end
 	if HeroHasTrait("ReversedDoorRerollMetaUpgrade") and IsFateValid() and not source.StrifeDuplicated and (source.GodLoot or source.CanDuplicate or name == "WeaponUpgrade" or name == "HermesUpgrade") then
 		local doubleRewardTrait = GetHeroTrait("ReversedDoorRerollMetaUpgrade")
 		if RandomChance(doubleRewardTrait.ModdedDoubleRewardChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then

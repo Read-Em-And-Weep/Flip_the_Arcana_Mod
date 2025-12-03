@@ -21,10 +21,15 @@ Some of the auto-equipping arcana may flip back to the original card when you op
 
 New cards also do not appear in the run history screen. I'm not sure if I know how to fix it :( but I'll be looking at it.
 
-Some of the cards do not have art yet, so enjoy Hades staring at you and judging you for installing mods.
+Some of the cards do not have art yet, so enjoy Hades staring at you and judging you for installing mods. I tried to make stick people, but geniunely it was so bad I could not include it in here
 
 Random Chaos Trials cannot pull from the new deck right now, but fingers crossed I'll make the breakthrough on how to do it without breaking the game!
 
 
 # Thanks to:
-@burn03 for their incredible art on the cards!! They look amazing!! <3 (Currently the Strategist, the Faithful Daughter, the Loyal Protector and Beauty).
+@burn03 for their incredible art on the cards!! They look amazing!! <3 (Currently the Strategist, the Faithful Daughter, the Loyal Protector, the Wanderer and Beauty).
+
+# IMPORTANT INFORMATION :)
+If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).
+
+If you are interested in making art for the cards, feel free to help out - @burn03 has made an awesome template on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes). It would be so awesome if you did so :)
