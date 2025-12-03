@@ -482,7 +482,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 3,ModsNikkelMHadesBiomes_CropTartarus = 4 },
-			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_CropTartarus = 4, ModsNikkelMHadesBiomes_BossResourceTartarus = 2 },
+			{ CardUpgradePoints = 6, ModsNikkelMHadesBiomes_CropTartarus = 6, ModsNikkelMHadesBiomes_BossResourceTartarus = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -531,8 +531,8 @@ NewMetaUpgradeCardData =
 		ActiveWhileDead = true,
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 1,ModsNikkelMHadesBiomes_CropStyx = 5, MixerNBoss = 1},
-			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_CropStyx = 7, MixerNBoss = 2 },
+			{ CardUpgradePoints = 1,ModsNikkelMHadesBiomes_CropStyx = 3, MixerNBoss = 1},
+			{ CardUpgradePoints = 3, ModsNikkelMHadesBiomes_CropStyx = 6, MixerNBoss = 2 },
 		},
 
 		UnlockedCardVoiceLines =
@@ -730,11 +730,11 @@ NewMetaUpgradeCardData =
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
-			ModsNikkelMHadesBiomes_CropElysium = 4
+			ModsNikkelMHadesBiomes_CropElysium = 3
 		},
 		UpgradeResourceCost = 
 		{
-			{ CardUpgradePoints = 4, GiftPoints = 6, ModsNikkelMHadesBiomes_CropElysium = 12 },
+			{ CardUpgradePoints = 4, GiftPoints = 6, ModsNikkelMHadesBiomes_CropElysium = 6 },
 			{ CardUpgradePoints = 6, SuperGiftPoints = 6, MixerOBoss = 2 },
 		},
 		UnlockedCardVoiceLines =
@@ -880,7 +880,7 @@ NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 3 , OreHGlassrock = 3, PlantGLotus = 6},
-			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_CropElysium = 10, MixerHBoss = 3 },
+			{ CardUpgradePoints = 5, ModsNikkelMHadesBiomes_CropElysium = 8, MixerHBoss = 3 },
 		},
 
 
