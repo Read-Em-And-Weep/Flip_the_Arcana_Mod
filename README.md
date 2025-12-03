@@ -32,4 +32,6 @@ Random Chaos Trials cannot pull from the new deck right now, but fingers crossed
 # IMPORTANT INFORMATION :)
 If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).
 
+Also, any feedback on balancing would be appreciated (at the same place as bugs) as I kind of guessed without an excess of testing. If certain things are too underpowered or too overpowered (I aim for it to be around as good as the other side of the card), or if upgrade costs are too expensive, let me know!
+
 If you are interested in making art for the cards, feel free to help out - @burn03 has made an awesome template on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes). It would be so awesome if you did so :)
