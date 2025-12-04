@@ -10,7 +10,7 @@ NewMetaUpgradeCardData =
 		Flipped = true,
         StartUnlocked = false,
 		Cost = 1,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_01",
 		--StartEquipped = true,
 		TraitName = "ReversedChanneledCastMetaUpgrade",
 		Type = "Time",
@@ -111,7 +111,7 @@ NewMetaUpgradeCardData =
         Column = 3,
         Row = 1,
 
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_03",
 		Cost = 2,
 		ResourceCost = 
 		{
@@ -160,7 +160,7 @@ NewMetaUpgradeCardData =
         Row = 1,
 		Cost = 3,
 		RandomDrawChance = 0.1,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_04",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 30,
@@ -267,7 +267,7 @@ NewMetaUpgradeCardData =
         Column = 1,
         Row = 2,
 		Cost = 2,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_06",
 		StartUnlocked = false,
 		TraitName = "ReversedCastBuffMetaUpgrade",
 		Type = "Death",
@@ -318,7 +318,7 @@ NewMetaUpgradeCardData =
 		Cost = 2,
         Column = 2,
         Row = 2,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_07",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
@@ -365,7 +365,7 @@ NewMetaUpgradeCardData =
         Column = 3,
         Row = 2,
 		Cost = 1,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_08",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 20,
@@ -423,7 +423,7 @@ NewMetaUpgradeCardData =
 		TraitName = "ReversedManaOverTimeMetaUpgrade",
 		Type = "Soul",
 		Cost = 5,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_09",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 50,
@@ -473,7 +473,7 @@ NewMetaUpgradeCardData =
 		Cost = 2,
 		
 
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_10",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
@@ -521,7 +521,7 @@ NewMetaUpgradeCardData =
         Row = 3,
 
 		Cost = 1,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_11",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 20,

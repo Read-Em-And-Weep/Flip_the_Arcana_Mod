@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 25-12-04
+
+### Changes made
+- Sleep (Hypnos) now is only active in guardian encounters and only while standing still. Time between heals has been shortened to compensate for this. If it is still too strong (not counting the legendary upgrade with Extended Altar of Ashes), please let me know.
+- Terrible MS Paint art has been added for cards up until The Cyclops (Polyphemus). If it looks bad, assume I did it. Otherwise, all credit goes to @burn03
+
+
 ## [1.1.0] - 2025-12-04
 
 ### Fixed

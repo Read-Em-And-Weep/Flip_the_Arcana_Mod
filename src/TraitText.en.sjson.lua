@@ -162,7 +162,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLastStand",
         DisplayName = "Sleep",
-        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev} while facing a {$Keywords.Boss}.",
+        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev} and are facing a {$Keywords.Boss}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s) {#Prev} while standing still.",
     },
     {
         Id = "ReversedLastStand_FlavorText01",

@@ -1027,7 +1027,7 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	end
 	if HeroHasTrait("ReversedLastStandMetaUpgrade") then
 		local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
-		thread(mod.NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
+		thread(NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
 	end
 end)
 
@@ -1061,14 +1061,14 @@ function mod.AddEncouragementElements(elementsToAdd)
 	end
 end
 
-function mod.NoLastStandRegeneration( unit, args )
+function NoLastStandRegeneration( unit, args )
 	while CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead do
+		game.wait(args.Interval, "NoLastStandRegeneration")
 		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss" then
 			Heal( CurrentRun.Hero, { HealAmount = 1, SourceName = "NoLastStandRegeneration", Silent = true })
 			FrameState.RequestUpdateHealthUI = true
 			CreateAnimation({ Name = "HealthSparkleShower", DestinationId = CurrentRun.Hero.ObjectId, Group = "Overlay" })
 		end
-		game.wait(args.Interval, RoomThreadName)
 	end
 end
 
@@ -1339,7 +1339,23 @@ end)
 
 modutil.mod.Path.Wrap("SetupMap", function(base)
 	local packageName = _PLUGIN.guid .. "NewCardArt"
-	print("Loading package: "..packageName)
 	game.LoadPackages({ Name = packageName })
 	base()
 end)
+
+OnPlayerMoveStarted{
+	function()
+		if HeroHasTrait("ReversedLastStandMetaUpgrade") then
+			killTaggedThreads("NoLastStandRegeneration")
+		end
+	end
+}
+
+OnPlayerMoveStopped{
+	function()
+		if HeroHasTrait("ReversedLastStandMetaUpgrade") then
+			local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
+			thread(NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
+		end
+	end
+}
