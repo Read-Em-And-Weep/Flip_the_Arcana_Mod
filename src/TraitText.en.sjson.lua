@@ -136,7 +136,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedMagicCrit",
         DisplayName = "Retribution",
-        Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage, however you take {#PenaltyFormat}+20% {#Prev} damage in return.",
+        Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage per {!Icons.ShrinePoint}, however you take {#PenaltyFormat}+20% {#Prev} damage in return.",
     },
     {
         Id = "ReversedMagicCrit_FlavorText01",
@@ -162,7 +162,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLastStand",
         DisplayName = "Sleep",
-        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev} and are facing a {$Keywords.Boss}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s) {#Prev} while standing still.",
+        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev} and are facing a {$Keywords.Boss}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev}.",
     },
     {
         Id = "ReversedLastStand_FlavorText01",
@@ -192,7 +192,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedStatusVulnerability",
         DisplayName = "The Strategist",
-        Description = "You deal {$TooltipData.StatDisplay1} damage to foes with no {$Keywords.StatusPluralAlt} from different Olympians.",
+        Description = "You deal {$TooltipData.StatDisplay1} damage to foes afflicted with no {$Keywords.StatusPluralAlt} from any Olympian. Deal half of this benefit to foes with one {$Keywords.StatusPluralAlt}, and no benefit if they have more.",
     },
     {
         Id = "ReversedStatusVulnerability_FlavorText01",

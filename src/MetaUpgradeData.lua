@@ -570,7 +570,7 @@ NewMetaUpgradeCardData =
         Row = 3,
 
 		Cost = 4,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_12",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
@@ -772,7 +772,7 @@ NewMetaUpgradeCardData =
         Row = 4,
 
 		Cost = 3,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_16",
 
 		ResourceCost = 
 		{
@@ -820,7 +820,7 @@ NewMetaUpgradeCardData =
         Row = 4,
 
 		Cost = 5,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_17",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 50,
@@ -871,7 +871,7 @@ NewMetaUpgradeCardData =
 
 		TraitName = "ReversedMetaToRunUpgradeMetaUpgrade",
 		Cost = 3,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_18",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 35,
@@ -919,7 +919,7 @@ NewMetaUpgradeCardData =
         Row = 4,
 
 		Cost = 5,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_19",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 50,
@@ -968,7 +968,7 @@ NewMetaUpgradeCardData =
         Row = 4,
 
 		Cost = 0,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_20",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
@@ -1022,7 +1022,7 @@ NewMetaUpgradeCardData =
         Row = 5,
 
 		Cost = 0,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_21",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
@@ -1076,7 +1076,7 @@ NewMetaUpgradeCardData =
         Row = 5,
 
 		Cost = 4,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_22",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
@@ -1125,7 +1125,7 @@ NewMetaUpgradeCardData =
 
 		TraitName = "ReversedLowHealthBonusMetaUpgrade",
 		Cost = 4,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_23",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 40,
@@ -1173,7 +1173,7 @@ NewMetaUpgradeCardData =
         Row = 5,
         
         Cost = 0,
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_24",
 		ResourceCost = 
 		{
 			MetaCardPointsCommon = 45,
@@ -1229,7 +1229,7 @@ NewMetaUpgradeCardData =
         Column = 5,
         Row = 5,
 
-		Image = "CardArt_25",
+		Image = "FlippedCardArt_25",
         Cost = 0,
 		ResourceCost = 
 		{

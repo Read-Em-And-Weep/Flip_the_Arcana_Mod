@@ -147,6 +147,116 @@ local newCardArtData = {
     InheritFrom = "CardArt_01",
     FilePath = _PLUGIN.guid .. "NewCardArt\\14._The_Strategist_inactive",
 },
+{
+    Name = "FlippedCardArt_12",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\12._Sleep"
+},
+{
+    Name = "FlippedCardArt_12_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\12._Sleep_inactive",
+},
+{
+    Name = "FlippedCardArt_16",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\16._Strife"
+},
+{
+    Name = "FlippedCardArt_16_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\16._Strife_inactive",
+},
+{
+    Name = "FlippedCardArt_17",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\17._The_Weaver"
+},
+{
+    Name = "FlippedCardArt_17_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\17._The_Weaver_inactive",
+},
+{
+    Name = "FlippedCardArt_18",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\18._Longing"
+},
+{
+    Name = "FlippedCardArt_18_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\18._Longing_inactive",
+},
+{
+    Name = "FlippedCardArt_19",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\19._Famine"
+},
+{
+    Name = "FlippedCardArt_19_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\19._Famine_inactive",
+},
+{
+    Name = "FlippedCardArt_20",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\20._Companionship"
+},
+{
+    Name = "FlippedCardArt_20_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\20._Companionship_inactive",
+},
+{
+    Name = "FlippedCardArt_21",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\21._Doom"
+},
+{
+    Name = "FlippedCardArt_21_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\21._Doom_inactive",
+},
+{
+    Name = "FlippedCardArt_22",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\22._Revelry"
+},
+{
+    Name = "FlippedCardArt_22_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\22._Revelry_inactive",
+},
+{
+    Name = "FlippedCardArt_23",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\23._Futility"
+},
+{
+    Name = "FlippedCardArt_23_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\23._Futility_inactive",
+},
+{
+    Name = "FlippedCardArt_24",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\24._Encouragement"
+},
+{
+    Name = "FlippedCardArt_24_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\24._Encouragement_inactive",
+},
+{
+    Name = "FlippedCardArt_25",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\25._Monstrosity"
+},
+{
+    Name = "FlippedCardArt_25_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\25._Monstrosity_inactive",
+},
 }
 
 sjson.hook(GUIFile, function(data)

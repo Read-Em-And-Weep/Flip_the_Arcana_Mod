@@ -75,7 +75,11 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, colum
 
     GameState.MetaUpgradeState[cardName].Visible = true
 
-    return base(screen, row, column, cardName, args)
+    local newObstacle =  base(screen, row, column, cardName, args)
+	if MetaUpgradeCardData[cardName].Flipped then
+		SetColor({Id = newObstacle.EquippedHighlightId, Color = Color.MediumPurple})
+	end
+	return newObstacle
 end)
 
 --[[function InitializeNewMetaUpgradeState()
@@ -1223,6 +1227,10 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 			originalDamageMultiplier = originalDamageMultiplier * (1+firstHitTrait.FirstHitMultiplier)
 		end
 	end
+	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedMagicCritMetaUpgrade") and victim and GameState.SpentShrinePointsCache then
+		local fearMultipliedTrait = GetHeroTrait("ReversedMagicCritMetaUpgrade")
+		originalDamageMultiplier = originalDamageMultiplier * (1+fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
+	end
 	if attacker.ActiveEffects["ImpactSlow"] and HeroHasTrait("ReversedCastBuffMetaUpgrade") then
 		local decreasedDamageInCastTrait = GetHeroTrait("ReversedCastBuffMetaUpgrade")
 		originalDamageMultiplier = originalDamageMultiplier * decreasedDamageInCastTrait.LessDamageDealt
@@ -1230,7 +1238,9 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedStatusVulnerabilityMetaUpgrade") and victim then
 		local noStatusDamageTrait = GetHeroTrait("ReversedStatusVulnerabilityMetaUpgrade")
 		if TableLength( victim.VulnerabilityEffects ) == nil or TableLength( victim.VulnerabilityEffects ) < 1 then
-		originalDamageMultiplier = originalDamageMultiplier * (1+noStatusDamageTrait.NoStatusBonusDamage)
+			originalDamageMultiplier = originalDamageMultiplier * (1+noStatusDamageTrait.NoStatusBonusDamage)
+		elseif TableLength( victim.VulnerabilityEffects ) == 1 then
+			originalDamageMultiplier = originalDamageMultiplier * (1+0.5*noStatusDamageTrait.NoStatusBonusDamage)
 		end
 	end
 end
@@ -1342,20 +1352,3 @@ modutil.mod.Path.Wrap("SetupMap", function(base)
 	game.LoadPackages({ Name = packageName })
 	base()
 end)
-
-OnPlayerMoveStarted{
-	function()
-		if HeroHasTrait("ReversedLastStandMetaUpgrade") then
-			killTaggedThreads("NoLastStandRegeneration")
-		end
-	end
-}
-
-OnPlayerMoveStopped{
-	function()
-		if HeroHasTrait("ReversedLastStandMetaUpgrade") then
-			local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
-			thread(NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
-		end
-	end
-}

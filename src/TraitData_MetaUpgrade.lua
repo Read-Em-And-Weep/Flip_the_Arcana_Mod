@@ -404,50 +404,42 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 2.5,
+				Multiplier = 0.5,
 			},
 			Rare =
 			{
-				Multiplier = 3.5,
+				Multiplier = 1.0,
 			},
 			Epic =
 			{
-				Multiplier = 4.5,
+				Multiplier = 1.5,
 			},
 			Heroic =
 			{
-				Multiplier = 5.5,
+				Multiplier = 1.0,
 			},
 		},
-        AddOutgoingDamageModifiers =
-		{
-            GameStateMultiplier =
+		FearMultipliedMultiplier =
 			{
-				BaseValue = 1.1,
+				BaseValue = 100,
 				SourceIsMultiplier = true,
-				IdenticalMultiplier =
-				{
-					Value = DuplicateMultiplier,
-				},
+				DecimalPlaces = 4,
 			},
-			ReportValues = 
-			{ 
-				ReportedTotalDamageChange = "GameStateMultiplier",
-			}
-		},
+		DisplayValue = {BaseValue = 0.01, DecimalPlaces = 3,},
         AddIncomingDamageModifiers = 
 		{
             HealthOnly = true,
-			ValidWeaponMultiplier = 1.2,
+			ValidWeaponMultiplier = 1.20,
             --does not update automatically in the traittext, make sure it matches
 			ReportValues = { DamageTakenMultiplier = "ValidWeaponMultiplier"},
 		},
 		ExtractValues =
 		{
 			{
-				Key = "ReportedTotalDamageChange",
-				ExtractAs = "OutgoingDamage",
-				Format = "PercentDelta"
+				Key = "DisplayValue",
+				ExtractAs = "Chance",
+				Format = "Percent",
+				DecimalPlaces = 4,
 			},
             {
 				Key = "DamageTakenMultiplier",
@@ -499,15 +491,15 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.2,
+				Multiplier = 1.8,
 			},
 			Rare =
 			{
-				Multiplier = 1.0,
+				Multiplier = 1.4,
 			},
 			Epic =
 			{
-				Multiplier = 0.8,
+				Multiplier = 1.0,
 			},
 			Heroic =
 			{
@@ -1080,19 +1072,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.0,
+				Multiplier = 2.0,
 			},
 			Rare =
 			{
-				Multiplier = 2.0,
+				Multiplier = 3.0,
 			},
 			Epic =
 			{
-				Multiplier = 3.0,
+				Multiplier = 4.0,
 			},
 			Heroic =
 			{
-				Multiplier = 4.0,
+				Multiplier = 5.0,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},
