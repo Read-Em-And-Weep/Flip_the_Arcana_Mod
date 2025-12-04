@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "ReadEmAndWeep"
 name = "Flip_the_Arcana_Mod"
-versionNumber = "1.1.0"
+versionNumber = "1.2.0"
 description = "Adds a new set of arcana cards that you can use and upgrade."
 websiteUrl = "https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod"
 containsNsfwContent = false
