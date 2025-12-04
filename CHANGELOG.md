@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.1] - 2025-12-04
+## [1.3.0] - 2025-12-05
+### Balance Changes made
+- Sleep (Hypnos) reverted to previous status of always being active in guardian encounters! Hypnos is always with you :)
+- The Strategist (Athena) has been improved, and now offers half of its benefit towards enemies with only a single status condition
+- Retribution has been changed to reflect
+- Revelry has been slightly buffed to activate more often
+- Doom has been slightly nerfed
+- New card glow colour for flipped cards! It's a more purple-blue to the original's green-blue. Subtle, but noticeable difference
+- Terrible MS Paint art added for all cards!! 
 
 ## [1.2.1] - 2025-12-04
 
