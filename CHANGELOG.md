@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Balance Changes
 
-- Blacksmith (Hepheastus) has been nerfed, and will now only activate for damage above 20. Maybe the Messager can finally be used over it and Hermes will stopping being mad
+- Blacksmith (Hepheastus) has been nerfed, and will now only activate for damage above 20. Maybe the Messager can finally be used over it and Hermes will stop being mad
 - Beauty (Aphrodite) has been nerfed to have 3/6/9/12% dodge chance instead of starting at 4%
 - Sleep (Hypnos) has been nerfed to only heal you in guardian encounters
 
