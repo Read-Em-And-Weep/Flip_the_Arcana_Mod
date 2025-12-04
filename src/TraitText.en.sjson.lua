@@ -110,7 +110,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedBonusDodge",
         DisplayName = "The Blacksmith",
-        Description = "Whenever you take damage, take {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} less.",
+        Description = "Whenever you take at least {#UpgradeFormat} 20 {#Prev} damage, take up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} less.",
     },
     {
         Id = "ReversedBonusDodge_FlavorText01",
@@ -162,7 +162,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLastStand",
         DisplayName = "Sleep",
-        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev}.",
+        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev} while facing a {$Keywords.Boss}.",
     },
     {
         Id = "ReversedLastStand_FlavorText01",

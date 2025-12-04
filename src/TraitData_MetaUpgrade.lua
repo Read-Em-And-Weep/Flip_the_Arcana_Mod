@@ -332,17 +332,25 @@ NewMetaUpgradeTraitData = {
 				Multiplier = 4.0,
 			},
 		},
-        DamageShave =
-		{
-			BaseValue = 1,
+        ActivatedDamageReductionThreshold = 20,
+		ActivatedDamageReduction = 
+		{ 
+			BaseValue = 1, 
 			AsInt = true,
+			MinValue = -1,
+			MinMultiplier = -2,
+			IdenticalMultiplier =
+			{
+				Value = -1,
+			},
 		},
+		ReportedValue = {BaseValue = 1},
 		ExtractValues =
 		{
 			{
-				Key = "DamageShave",
+				Key = "ReportedValue",
 				ExtractAs = "Damage",
-				Negative = true
+				Negative = true,
 			},
 		}
     },    
@@ -626,7 +634,7 @@ NewMetaUpgradeTraitData = {
 		{
 			{
 				LifeProperty = "DodgeChance",
-				BaseValue = 0.04,
+				BaseValue = 0.03,
                 ChangeType = "Add",
 				DataValue = false,
 				ReportValues = { ReportedDodgeChance = "ChangeValue"},

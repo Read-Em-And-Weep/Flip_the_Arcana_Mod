@@ -1063,7 +1063,7 @@ end
 
 function mod.NoLastStandRegeneration( unit, args )
 	while CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead do
-		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth then
+		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss" then
 			Heal( CurrentRun.Hero, { HealAmount = 1, SourceName = "NoLastStandRegeneration", Silent = true })
 			FrameState.RequestUpdateHealthUI = true
 			CreateAnimation({ Name = "HealthSparkleShower", DestinationId = CurrentRun.Hero.ObjectId, Group = "Overlay" })
@@ -1174,15 +1174,15 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local spawnTarget = nil
 	local duplicateOnClose = false
 	local name = source.Name
-	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and source.GodLoot or name == "HermesUpgrade" then
+	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and (source.GodLoot or name == "HermesUpgrade") then
 		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
-		if RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
+		if chanceUpgradeBoon and RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
 			thread(AddStackToTraits, { NumTraits = 1, NumStacks = 2})
 		end
 	end
 	if HeroHasTrait("ReversedDoorRerollMetaUpgrade") and IsFateValid() and not source.StrifeDuplicated and (source.GodLoot or source.CanDuplicate or name == "WeaponUpgrade" or name == "HermesUpgrade") then
 		local doubleRewardTrait = GetHeroTrait("ReversedDoorRerollMetaUpgrade")
-		if RandomChance(doubleRewardTrait.ModdedDoubleRewardChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
+		if doubleRewardTrait and RandomChance(doubleRewardTrait.ModdedDoubleRewardChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
 			duplicateOnClose = true
 			spawnTarget = SpawnObstacle({ Name = "InvisibleTarget", Group = "Standing", DestinationId = source.ObjectId })
 		end
