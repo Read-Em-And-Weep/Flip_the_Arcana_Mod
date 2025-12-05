@@ -2,7 +2,7 @@ modutil.mod.Path.Wrap("UnequipMetaUpgradeBonusCardPresentation", function(base, 
     if (button == nil) then
         return
     else
-        base(screen,button)
+        return base(screen,button)
     end
 end)
 
@@ -10,7 +10,7 @@ modutil.mod.Path.Wrap("EquipMetaUpgradeBonusCardPresentation", function(base, sc
     if (button == nil) then
         return
     else
-        base(screen,button)
+        return base(screen,button)
     end
 end)
 
@@ -68,7 +68,7 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
             end
         end
     end
-    base(source, args)
+    return base(source, args)
 end)
 
 modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, column, cardName, args)
@@ -563,7 +563,7 @@ modutil.mod.Path.Wrap("LoadCurrentMetaUpgradeSet", function(base,screen,button)
              end
         end
     end
-    base(screen,button)
+    return base(screen,button)
     
 
 end)
@@ -956,7 +956,7 @@ modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
 			mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
 		end
 	end
-    base(victim, triggerArgs)
+    return base(victim, triggerArgs)
 end)
 
 function mod.UpgradeAllTraits()
@@ -1047,7 +1047,7 @@ modutil.mod.Path.Wrap("AddStackToTraits", function(base, source, args)
 			args.NumTraits = (args.NumTraits+1) or 2
 		end
 	end
-	base(source, args)
+	return base(source, args)
 end)
 
 modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
@@ -1147,7 +1147,7 @@ if traitArgs.Vfx == "DemeterBossIceShatter" then
 	thread( mod.FamineSpawnKillPresentation, enemy )
 	thread( Damage, enemy, { AttackerId = CurrentRun.Hero.ObjectId, AttackerTable = CurrentRun.Hero, SourceProjectile = "ZeusOnSpawn", DamageAmount = damageAmount, Silent = false, PureDamage = true, IgnoreHealthBuffer = true } )
 else
-	base(enemy,traitArgs,damageAmount)
+	return base(enemy,traitArgs,damageAmount)
 end
 end)
 
@@ -1199,7 +1199,7 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 		thread( mod.StrifeDoubleRewardPresentation, newLoot.ObjectId )
 		Destroy({ Id = spawnTarget })
 	end
-	base(screen,button,args)
+	return base(screen,button,args)
 end)
 
 
@@ -1351,5 +1351,5 @@ end)
 modutil.mod.Path.Wrap("SetupMap", function(base)
 	local packageName = _PLUGIN.guid .. "NewCardArt"
 	game.LoadPackages({ Name = packageName })
-	base()
+	return base()
 end)
