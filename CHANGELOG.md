@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Minor grammar and tooltip fixes
+- Fixed issue with visibility of glow for flipped card
+
+### New Art
+- Companionship (Familiars), Hydra (Lernie), Retribution (Nemesis), Encouragement (Supportive Shade), has been added
+- Slight variations made to previous cards
+
 ## [1.3.1] - 2025-12-05
 
 ### Changes
