@@ -13,7 +13,7 @@ mods['SGG_Modding-ENVY'].auto()
 ---@diagnostic disable-next-line: undefined-global
 rom = rom
 ---@diagnostic disable-next-line: undefined-global
-_PLUGIN = PLUGIN
+_PLUGIN = _PLUGIN
 
 ---@module 'SGG_Modding-Hades2GameDef-Globals'
 game = rom.game
