@@ -36,7 +36,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowManaDamageBonus",
         DisplayName = "Performance",
-        Description = "While above {#UpgradeFormat} 85%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage, else gain a tenth of this benefit.",
+        Description = "While above {#UpgradeFormat} 85%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage; else, gain a tenth of this benefit.",
     },
     {
         Id = "ReversedLowManaDamageBonus_FlavorText01",
@@ -162,7 +162,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLastStand",
         DisplayName = "Sleep",
-        Description = "While you have no {!Icons.ExtraChance} {#BoldFormat} Death Defiances{#Prev} and are facing a {$Keywords.Boss}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev}.",
+        Description = "While you have no {$Keywords.ExtraChanceMisc} and are facing a {$Keywords.Boss}, regain {#UpgradeFormat}+1{!Icons.Health} {#Prev} every {#UpgradeFormat} {$TooltipData.StatDisplay1} second(s){#Prev}.",
     },
     {
         Id = "ReversedLastStand_FlavorText01",
@@ -257,7 +257,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedRarityBoost",
         DisplayName = "Famine",
-        Description = "The first time you strike a foe you have a {$TooltipData.StatDisplay1} chance to kill them immediately."
+        Description = "The first time you strike a foe, you have a {$TooltipData.StatDisplay1} chance to kill them immediately."
     },
     {
         Id = "ReversedRarityBoost_FlavorText01",
@@ -296,7 +296,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedScreenReroll",
         DisplayName = "Revelry",
-        Description = "While at the {$Keywords.Random}, whenever you claim a {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, a random boon will gain {#UpgradeFormat}+2{$Keywords.PomLevel}"
+        Description = "While at the {$Keywords.Random}, whenever you claim {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, a random boon will gain {#UpgradeFormat}+2{$Keywords.PomLevel}"
     },
     {
         Id = "ReversedScreenReroll_FlavorText01",
@@ -365,7 +365,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedCardDraw",
         DisplayName = "Monstrosity",
-        Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} times this night."
+        Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} time(s) this night."
     },
     {
         Id = "ReversedCardDraw_FlavorText01",
@@ -378,7 +378,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedCardDrawMetaUpgrade_Tray",
       DisplayName = "Monstrosity",
-      Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} more times this night.",
+      Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} more time(s) this night.",
     },
     
 }

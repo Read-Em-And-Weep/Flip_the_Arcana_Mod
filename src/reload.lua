@@ -33,12 +33,20 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
         end
     end
-    HasRun = true
     for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
 		for column, cardName in pairs( rowData ) do
+			if not hasRun then
+				if GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped then
+					row = MetaUpgradeCardData[cardName].Row
+            		column = MetaUpgradeCardData[cardName].Column
+            		buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+            		mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+				end
+			end
             GameState.MetaUpgradeState[cardName].Visible = true
         end
     end
+	HasRun = true
     CheckAutoEquipCards()
 end)
 
@@ -74,11 +82,14 @@ end)
 modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, column, cardName, args)
 
     GameState.MetaUpgradeState[cardName].Visible = true
-
     local newObstacle =  base(screen, row, column, cardName, args)
 	if MetaUpgradeCardData[cardName].Flipped then
 		SetColor({Id = newObstacle.EquippedHighlightId, Color = Color.MediumPurple})
-		SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 0, Duration = 0 })
+		if GameState.MetaUpgradeState[cardName].Equipped then
+			SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 1, Duration = 0.1 })
+		else
+			SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 0, Duration = 0 })
+		end
 	end
 	return newObstacle
 end)
@@ -1032,7 +1043,7 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	end
 	if HeroHasTrait("ReversedLastStandMetaUpgrade") then
 		local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
-		thread(NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
+		thread(mod.NoLastStandRegeneration, unit, lastStandHealTrait.ModdedSetupFunction.Args)
 	end
 end)
 
@@ -1066,7 +1077,7 @@ function mod.AddEncouragementElements(elementsToAdd)
 	end
 end
 
-function NoLastStandRegeneration( unit, args )
+function mod.NoLastStandRegeneration( unit, args )
 	while CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead do
 		game.wait(args.Interval, "NoLastStandRegeneration")
 		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss" then

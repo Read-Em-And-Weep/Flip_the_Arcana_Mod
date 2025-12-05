@@ -27,7 +27,7 @@ Random Chaos Trials cannot pull from the new deck right now, but fingers crossed
 
 
 # Thanks to:
-@burn03 for their incredible art on the cards!! They look amazing!! <3 (Currently the Strategist, the Faithful Daughter, the Loyal Protector, the Wanderer and Beauty).
+@burn03 for their incredible art on the cards!! They look amazing!! <3 (Currently anything that looks good is by them).
 
 # IMPORTANT INFORMATION :)
 If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).
