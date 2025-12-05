@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+### Changes
+- Grammar fix on Strategist
+- The cool new glow is now inactive for flipped cards if not equipped when they are first created/screen is first opened
 ## [1.3.0] - 2025-12-05
 ### Balance Changes made
 - Sleep (Hypnos) reverted to previous status of always being active in guardian encounters! Hypnos is always with you :)

@@ -192,7 +192,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedStatusVulnerability",
         DisplayName = "The Strategist",
-        Description = "You deal {$TooltipData.StatDisplay1} damage to foes afflicted with no {$Keywords.StatusPluralAlt} from any Olympian. Deal half of this benefit to foes with one {$Keywords.StatusPluralAlt}, and no benefit if they have more.",
+        Description = "You deal {$TooltipData.StatDisplay1} damage to foes afflicted with no {$Keywords.StatusPlural} from any Olympian. Deal half of this benefit to foes with one {$Keywords.Status}, and no benefit if they have more.",
     },
     {
         Id = "ReversedStatusVulnerability_FlavorText01",

@@ -78,6 +78,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, colum
     local newObstacle =  base(screen, row, column, cardName, args)
 	if MetaUpgradeCardData[cardName].Flipped then
 		SetColor({Id = newObstacle.EquippedHighlightId, Color = Color.MediumPurple})
+		SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 0, Duration = 0 })
 	end
 	return newObstacle
 end)
