@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.4.6] - 2025-12-06
+
 - Added Monstrosity (Typhon) art, which is terrifying. Thanks @burn03
 - Doom (Moros) art updated
 
@@ -87,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.5...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.6...HEAD
+[1.4.6]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.5...1.4.6
 [1.4.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.4...1.4.5
 [1.4.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.2...1.4.3
