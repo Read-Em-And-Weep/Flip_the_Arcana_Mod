@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.4.5] - 2025-12-06
+
 - Added Doom (Moros) art. Thanks @burn03!
+
 ## [1.4.4] - 2025-12-06
 
 - Removed a debug print
@@ -81,7 +85,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.4...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.5...HEAD
+[1.4.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.4...1.4.5
 [1.4.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.2...1.4.3
 [1.4.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.1...1.4.2
