@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- Fixed an error where the longing (Echo and Narcissus) to level up an extra trait was so great that it caused a crash
 ## [1.4.1] - 2025-12-05
 
 - Fixed an error that targeted NikkelM specifically
