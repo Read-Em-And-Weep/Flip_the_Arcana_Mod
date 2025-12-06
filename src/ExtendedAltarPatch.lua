@@ -78,3 +78,22 @@ addLegendaryMultiplier("ReversedTradeOffMetaUpgrade")
 addLegendaryMultiplier("ReversedScreenRerollMetaUpgrade")
 addLegendaryMultiplier("ReversedLowHealthBonusMetaUpgrade")
 addLegendaryMultiplier("ReversedEpicRarityBoostMetaUpgrade")
+
+for newMetaUpgradeCardName, newMetaUpgradeCardData in pairs(NewMetaUpgradeCardData) do
+    game.ProcessDataInheritance(newMetaUpgradeCardData, game.MetaUpgradeCardData)
+    game.MetaUpgradeCardData[newMetaUpgradeCardName]=newMetaUpgradeCardData
+	game.MetaUpgradeCardData[newMetaUpgradeCardName].Name = newMetaUpgradeCardName
+	if newMetaUpgradeCardData.UpgradeResourceCost then
+		for i, upgradeCost in pairs( newMetaUpgradeCardData.UpgradeResourceCost ) do
+				local upgradeName = newMetaUpgradeCardName..i
+				game.MetaUpgradeCardUpgradeData[upgradeName] =
+				{
+					Name = upgradeName,
+					DisplayName = newMetaUpgradeCardName,
+					Cost = upgradeCost,
+					Image = newMetaUpgradeCardData.Image,
+					IconScale = MetaUpgradeCardData.ChanneledCast.IconScale
+				}
+			end
+	end
+end

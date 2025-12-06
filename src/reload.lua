@@ -196,9 +196,9 @@ modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenPinItem", function(base, scre
     if screen.SelectedButton == nil then
 		return
 	end
-
     local selectedButton = screen.SelectedButton
-
+	print("CurrentButton = ".. selectedButton.CardName)
+	
     if screen.SelectedButton.RedirectClick == "MemCostModule" then
 		return
 	end
