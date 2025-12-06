@@ -1055,7 +1055,8 @@ modutil.mod.Path.Wrap("AddStackToTraits", function(base, source, args)
 			source = {} 
 		end
 		if RandomChance(increasedUpgradeTrait.ExtraTraitChance) then
-			args.NumTraits = (args.NumTraits+1) or 2
+			args.NumTraits = args.NumTraits or 1
+			args.NumTraits = (args.NumTraits+1)
 		end
 	end
 	return base(source, args)
