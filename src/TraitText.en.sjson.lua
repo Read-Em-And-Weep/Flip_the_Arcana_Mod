@@ -244,7 +244,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedMetaToRunUpgrade",
         DisplayName = "Longing",
-        Description = "Whenever you raise {$Keywords.PomLevel} of your {$Keywords.GodBoonPlural} from sources other than {$Keywords.PomPlural}, {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} of the time raise {$Keywords.PomLevel} of another {$Keywords.GodBoon}."
+        Description = "Whenever you raise {$Keywords.PomLevel} of your {$Keywords.GodBoonPlural} from sources other than {$Keywords.PomPlural}, {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} of the time raise {$Keywords.PomLevel} of up to 2 more {$Keywords.GodBoonPlural}."
     },
     {
         Id = "ReversedMetaToRunUpgrade_FlavorText01",
