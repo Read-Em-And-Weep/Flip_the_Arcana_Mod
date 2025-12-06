@@ -21,7 +21,7 @@ Some of the auto-equipping arcana may flip back to the original card when you op
 
 New cards also do not appear in the run history screen. I'm not sure if I know how to fix it :( but I'll be looking at it.
 
-Some of the cards do not have art yet, so enjoy Hades staring at you and judging you for installing mods. I tried to make stick people, but geniunely it was so bad I could not include it in here, for the sake of everyone.
+Some of the cards do not have art yet, so enjoy the amazing stick people for now!
 
 Random Chaos Trials cannot pull from the new deck right now, but fingers crossed I'll make the breakthrough on how to do it without breaking the game!
 
