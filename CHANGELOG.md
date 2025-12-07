@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+    - Encouragement (Supportive Shade) now also awards a random infusion boon to make use of the elements
+    - Performance (Apollo) and Revelry (Dionysus) nerfed
+    - Bounty (Poseidon) has been buffed to offer more rarify uses
+    - Gorgon (Dusa) buffed to reduce damage further
 ## [1.4.6] - 2025-12-06
 
 - Added Monstrosity (Typhon) art, which is terrifying. Thanks @burn03

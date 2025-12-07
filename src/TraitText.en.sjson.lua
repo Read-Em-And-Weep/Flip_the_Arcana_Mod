@@ -36,7 +36,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowManaDamageBonus",
         DisplayName = "Performance",
-        Description = "While above {#UpgradeFormat} 85%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage; else, gain a tenth of this benefit.",
+        Description = "While above {#UpgradeFormat} 90%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage; else, gain a tenth of this benefit.",
     },
     {
         Id = "ReversedLowManaDamageBonus_FlavorText01",
@@ -327,11 +327,11 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedEpicRarityBoost",
         DisplayName = "Encouragement",
-        Description = "Gain {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{$ConsumableData.ElementalBoost.UseFunctionArgs.[1].TraitName}."
+        Description = "Gain {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{$ConsumableData.ElementalBoost.UseFunctionArgs.[1].TraitName}, and one {#BoldFormatGraft}1 random {#Prev}{$Keywords.Synergy} {$Keywords.GodBoonNoTooltip}."
     },
     {
         Id = "ReversedEpicRarityBoost_FlavorText01",
-        DisplayName = "No-one knows where he came from, nor what he desires, but he seems to have an inexplicable fondness for the children of Hades."
+        DisplayName = "No-one knows where he came from, nor what he desires, but he has an inexplicable fondness for the children of Hades."
     },
     {
         Id = "ReversedEpicRarityBoostMetaUpgrade",

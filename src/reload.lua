@@ -961,6 +961,17 @@ modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
 				upgradeBoonsTrait.Uses = upgradeBoonsTrait.Uses - 1
 			end
 		end
+		--[[if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
+			local upgradeBoonsTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
+			mod.AwardDuosAndLegendaryTraits()
+			local i = 0
+			while i < upgradeBoonsTrait.Uses do
+				if RandomChance(0.5) then
+					mod.AwardDuosAndLegendaryTraits()
+				end
+				i = i+1
+			end
+		end]]
 		if HeroHasTrait("ReversedBonusRarityMetaUpgrade") then
 			local addFamiliarsTrait = GetHeroTrait("ReversedBonusRarityMetaUpgrade")
 			mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
@@ -968,6 +979,25 @@ modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
 	end
     return base(victim, triggerArgs)
 end)
+
+function mod.AwardDuosAndLegendaryTraits()
+	local addedTraits = {}
+	local DuoAndLegendaryTraits = {"RandomStatusBoon","DoubleExManaBoon","DoubleBloodDropBoon","InstantRootKill","WeaponUpgradeBoon","AllElementalBoon","BurnSprintBoon","AmplifyConeBoon","SpawnKillBoon","ManaBurstCountBoon","SprintEchoBoon","CharmCrowdBoon","AllCloseBoon","MaxHealthDamageBoon","BurnRefreshBoon","SlamManaBurstBoon","BloodManaBurstBoon","ApolloSecondStageCastBoon","RaiseDeadBoon","PoseidonSplashSprintBoon","StormSpawnBoon","CoverRegenerationBoon","BlindClearBoon","DoubleSwordBoon","SelfCastBoon","AutoRevengeBoon","BloodRetentionBoon","RapidSwordBoon","DoubleSplashBoon","FireballRendBoon","RootStrikeBoon","KeepsakeLevelBoon","GoodStuffBoon","BurnConsumeBoon","ClearRootBoon","ManaShieldBoon","ReboundingSparkBoon","MassiveCastBoon","DoubleMassiveAttackBoon","MoneyDamageBoon","ManaRestoreDamageBoon","SteamBoon","EchoBurnBoon","LightningVulnerabilityBoon",}
+		local eligibleTraits = {}
+		for s, traitName in pairs( DuoAndLegendaryTraits ) do
+			if IsGameStateEligible(TraitData, game.TraitData[traitName].GameStateRequirements) and not HeroHasTrait( traitName ) then
+				table.insert(eligibleTraits, traitName )
+			end
+		end
+		if not IsEmpty(eligibleTraits) then
+			local traitName  = GetRandomValue( eligibleTraits )
+			AddTraitToHero({ TraitName = traitName, FromLoot = true, SkipActivatedTraitUpdate = true })
+			addedTraits[traitName] = true
+		end
+	thread( BoonGrantedPresentation, addedTraits, 2.0 )
+	
+	CheckActivatedTraits( CurrentRun.Hero, { SkipPresentation = true } )
+end
 
 function mod.UpgradeAllTraits()
 	local sourceTraitData = nil
@@ -1065,6 +1095,7 @@ modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
 	local newTrait = DeepCopyTable( traitData )
 	if newTrait.Name == "ReversedEpicRarityBoostMetaUpgrade" then
 		mod.AddEncouragementElements(newTrait.ElementsGranted)
+		GrantBoons({BoonSets = {{ "ElementalDamageBoon", "ElementalOlympianDamageBoon", "ElementalBaseDamageBoon", "ElementalRallyBoon", "ElementalDamageFloorBoon", "ElementalDodgeBoon", "ElementalHealthBoon", "ElementalDamageCapBoon", "ElementalUnifiedBoon" },}}, nil)
 	end
 	return base(unit, traitData, args)
 end)

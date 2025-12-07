@@ -100,7 +100,7 @@ NewMetaUpgradeTraitData = {
 
             Common =
             {
-                Multiplier = 1,
+                Multiplier = 1.5,
             },
             Rare =
             {
@@ -108,11 +108,11 @@ NewMetaUpgradeTraitData = {
             },
             Epic =
             {
-                Multiplier = 3,
+                Multiplier = 2.5,
             },
             Heroic =
             {
-                Multiplier = 4,
+                Multiplier = 3,
             },
         },
         PriorityDisplay = true,
@@ -120,7 +120,7 @@ NewMetaUpgradeTraitData = {
 		HighHealthThresholdText =
 		{
 			-- Display variable only, to change the data value change the value below under "HighHealthSourceMultiplierData"
-			PercentThreshold = 0.85,
+			PercentThreshold = 0.90,
 			--Text = "Hint_HighHealthDamageTraitDeactivated",
 		},
 		HighHealthDamageBonus = {
@@ -132,7 +132,7 @@ NewMetaUpgradeTraitData = {
 		{
 			HighHealthSourceMultiplierData = 
 			{ 
-				Threshold = 0.85,
+				Threshold = 0.90,
 				ThresholdMultiplier = 10, --to double bonus when above threshold
 				Multiplier = 
 				{ 
@@ -248,19 +248,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 70, --30
+				Multiplier = 60, --40
 			},
 			Rare =
 			{
-				Multiplier = 65, --35
+				Multiplier = 55, --45
 			},
 			Epic =
 			{
-				Multiplier = 60, --40
+				Multiplier = 50, --50
 			},
 			Heroic =
 			{
-				Multiplier = 55, --45
+				Multiplier = 45, --55
 			},
 		},
         LessDamageDealt = {BaseValue = 0.01},
@@ -366,15 +366,15 @@ NewMetaUpgradeTraitData = {
 			},
 			Rare =
 			{
-				Multiplier = 4.0,
+				Multiplier = 5.0,
 			},
 			Epic =
 			{
-				Multiplier = 5.0,
+				Multiplier = 7.0,
 			},
 			Heroic =
 			{
-				Multiplier = 6.0,
+				Multiplier = 9.0,
 			},
 		},
         RarityUpgradeData = 
@@ -1072,19 +1072,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 2.0,
+				Multiplier = 1.6,
 			},
 			Rare =
 			{
-				Multiplier = 3.0,
+				Multiplier = 2.3,
 			},
 			Epic =
 			{
-				Multiplier = 4.0,
+				Multiplier = 3.0,
 			},
 			Heroic =
 			{
-				Multiplier = 5.0,
+				Multiplier = 3.7,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},
@@ -1211,7 +1211,7 @@ NewMetaUpgradeTraitData = {
 			{
 				Key = "Uses",
 				ExtractAs = "TooltipAmount",
-				IncludeSigns = true,
+				IncludeSigns = false,
 			},
 		},
     },
