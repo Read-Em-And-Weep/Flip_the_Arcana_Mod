@@ -817,7 +817,7 @@ NewMetaUpgradeTraitData = {
 		Name = "CompanionshipHealthFamiliar",
 		InheritFrom = {"BaseTrait"},
 		BlockInRunRarify = true,
-		Icon = "FamiliarIcon_Frog",
+		Icon = "FamiliarShopIcon_FrogHealthBonus",
 		RarityLevels = {
 			Common =
 			{
@@ -862,7 +862,7 @@ NewMetaUpgradeTraitData = {
 		Name = "CompanionshipCritFamiliar",
 		InheritFrom = {"BaseTrait"},
 		BlockInRunRarify = true,
-		Icon = "FamiliarIcon_Raven",
+		Icon = "FamiliarShopIcon_RavenCritChanceBonus",
 		RarityLevels = {
 			Common =
 			{
@@ -899,7 +899,7 @@ NewMetaUpgradeTraitData = {
 		Name = "CompanionshipDigFamiliar",
 		InheritFrom = {"BaseTrait"},
 		BlockInRunRarify = true,
-		Icon = "FamiliarIcon_Hound",
+		Icon = "FamiliarShopIcon_HoundManaBonus",
 		RarityLevels = {
 			Common =
 			{
@@ -944,7 +944,7 @@ NewMetaUpgradeTraitData = {
 		Name = "CompanionshipDodgeFamiliar",
 		InheritFrom = {"BaseTrait"},
 		BlockInRunRarify = true,
-		Icon = "FamiliarIcon_Polecat",
+		Icon = "FamiliarShopIcon_PolecatDodgeBonus",
 		RarityLevels = {
 			Common =
 			{
@@ -990,7 +990,7 @@ NewMetaUpgradeTraitData = {
 		Name = "CompanionshipLastStandFamiliar",
 		InheritFrom = {"BaseTrait"},
 		BlockInRunRarify = true,
-		Icon = "FamiliarIcon_Cat",
+		Icon = "FamiliarShopIcon_CatLastStandHeal",
 		RarityLevels = {
 			Common =
 			{
