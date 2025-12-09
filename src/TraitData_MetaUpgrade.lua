@@ -416,7 +416,7 @@ NewMetaUpgradeTraitData = {
 			},
 			Heroic =
 			{
-				Multiplier = 1.0,
+				Multiplier = 2.0,
 			},
 		},
 		FearMultipliedMultiplier =
