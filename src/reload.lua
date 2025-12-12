@@ -1257,6 +1257,9 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local upgradeData = button.Data
 	if upgradeData.MetaUpgrade then
 		local cardName = mod.GetCardFromTrait(upgradeData.Name)
+		if MetaUpgradeCardData[ cardName ].OnGrantedFunctionName then
+			thread( CallFunctionName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionName, MetaUpgradeCardData[ cardName ].TraitName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionArgs, args )
+		end
 		CurrentRun.TemporaryMetaUpgrades[cardName] = true
 		GameState.MetaUpgradeState[cardName].Equipped = true
 	end
@@ -1808,7 +1811,7 @@ end}) ]]
 
 modutil.mod.Path.Wrap("GetEligibleLootNames", function(base, excludeLootNames)
 	excludeLootNames = excludeLootNames or {}
-	table.insert(excludeLootNames, "BaseLoot")
+	table.insert(excludeLootNames, "MonstrosityMetaUpgradeUpgrade")
 	return base(excludeLootNames)
 end)
 
@@ -1821,7 +1824,7 @@ modutil.mod.Path.Wrap("CreateDoorRewardPreview", function(base, exitDoor, chosen
 	if chosenRewardType == "Devotion" then
 		print("room.Encounter.LootAName = "..tostring(room.Encounter.LootAName))
 		print("room.Encounter.LootBName = "..tostring(room.Encounter.LootBName))
-		if room.Encounter.LootBName == "BaseLoot" then
+		if room.Encounter.LootBName == "MonstrosityMetaUpgradeUpgrade" then
 			room.Encounter.LootBName = GetRandomValue(GetEligibleLootNames({room.Encounter.LootAName }))
 		end
 	end

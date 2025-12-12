@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- New animation for Monstrosity loot drop (Thank you @burn03 for the animation and @zerp for implementing it!)
+- Cards which call a function when being drawn (such as the Boatman) will now actually perform their function (oops!) when picked from Monstrosity
+
 ## [2.0.0] - 2025-12-12
 
 Major Changes
