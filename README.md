@@ -1,12 +1,12 @@
 # The Problem
-We've only got 25 arcana cards to use, meaning only around 500,000 combinations if you could freely select them. We're practically so limited in options :(
+We've only got 25 arcana cards to use, meaning only around 500,000 combinations if you had unlimited grasp. We're practically so limited in options :(
 
 
 # The Solution
 Every card can now be flipped into a whole new card with new upgrades to unlock! This explodes the possible number of combinations you can try, with them designed for different synergies, uses and builds. Unlock the full power of your arcana with familiar faces, ranging from Hypnos, to Dusa, to Typhon, your familiars and even Lernie the Bone Hydra!
 
 # How do I access the new arcana?
-After unlocking every familiar and gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
+After unlocking every familiar and gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things (or your reroll button, if that's preferable) to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
 
 # Compatibility
 No known compatibility issues. If you have Zagreus's Journey installed (Hades 1 run), the cards will require resources from that route in order to unlock and upgrade, giving you a real reason to take that route. 
@@ -27,11 +27,13 @@ Random Chaos Trials cannot pull from the new deck right now, but fingers crossed
 
 
 # Thanks to:
-@burn03 for their incredible art on the cards!! They look amazing!! <3 (Currently anything that looks good is by them).
+@burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Companionship, Doom, Encouragement and Monstrosity).
+
+@PunishedMat for the art on Bounty
 
 # IMPORTANT INFORMATION :)
 If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).
 
 Also, any feedback on balancing would be appreciated (at the same place as bugs) as I kind of guessed without an excess of testing. If certain things are too underpowered or too overpowered (I aim for it to be around as good as the other side of the card), or if upgrade costs are too expensive, let me know!
 
-If you are interested in making art for the cards, feel free to help out - @burn03 has made an awesome template on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes). It would be so awesome if you did so :)
+If you are interested in making art for the cards, feel free to help out - @burn03 has made an awesome template on the Hades Modding Discord (pinned under requests, in Reversed Arcana of Ashes). It would be so awesome if you did so :)

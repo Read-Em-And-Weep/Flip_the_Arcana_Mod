@@ -4,6 +4,8 @@ local newCardArtOrder = {
     "Name",
     "InheritFrom",
     "FilePath",
+    "Scale",
+    "Offset",
 }
 
 local newCardArtData = {
@@ -257,6 +259,13 @@ local newCardArtData = {
     InheritFrom = "CardArt_01",
     FilePath = _PLUGIN.guid .. "NewCardArt\\25._Monstrosity_inactive",
 },
+{
+    Name = "Inactive_Card_Icon",
+    InheritFrom = "BoonSymbolBase",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\MonstrosityCardDrawIcon",
+    Scale = 0.68,
+	OffsetY = -1,
+}
 }
 
 sjson.hook(GUIFile, function(data)

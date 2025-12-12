@@ -136,7 +136,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedMagicCrit",
         DisplayName = "Retribution",
-        Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage per {!Icons.ShrinePoint}, however you take {#PenaltyFormat}+20% {#Prev} damage in return.",
+        Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage per {!Icons.ShrinePoint}, however you take {#PenaltyFormat}+35% {#Prev} damage in return.",
     },
     {
         Id = "ReversedMagicCrit_FlavorText01",
@@ -175,7 +175,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedMaxHealthPerRoom",
         DisplayName = "The Wanderer",
-        Description = "You gain {#UpgradeFormat}+1{$Keywords.PomLevel} {#Prev} whenever you pass through {$TooltipData.StatDisplay1} {$Keywords.RoomPlural}.",
+        Description = "A random {$Keywords.GodBoon} of yours gains {#UpgradeFormat}+1{$Keywords.PomLevel} {#Prev} whenever you pass through {$TooltipData.StatDisplay1} {$Keywords.RoomPlural}.",
     },
     {
         Id = "ReversedMaxHealthPerRoom_FlavorText01",
@@ -296,7 +296,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedScreenReroll",
         DisplayName = "Revelry",
-        Description = "While at the {$Keywords.Random}, whenever you claim {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, a random boon will gain {#UpgradeFormat}+2{$Keywords.PomLevel}"
+        Description = "While at the {$Keywords.Random}, whenever you claim {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, up to two random {$Keywords.GodBoonPlural} will gain {#UpgradeFormat}+1{$Keywords.PomLevel}"
     },
     {
         Id = "ReversedScreenReroll_FlavorText01",
@@ -365,7 +365,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedCardDraw",
         DisplayName = "Monstrosity",
-        Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} time(s) this night."
+        Description = "You can purge most rewards for your choice of 3 {#BoldFormatGraft}Arcana Cards{#Prev}, up to {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}time(s) this night."
     },
     {
         Id = "ReversedCardDraw_FlavorText01",
@@ -378,7 +378,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedCardDrawMetaUpgrade_Tray",
       DisplayName = "Monstrosity",
-      Description = "After vanquishing a {$Keywords.Boss}, every {$Keywords.GodBoon} that can gain {#BoldFormat} Rarity {#Prev} does, up to {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} more time(s) this night.",
+        Description = "You can purge most rewards for your choice of 3 {#BoldFormatGraft}Arcana Cards{#Prev}, up to {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}more time(s) this night."
     },
     
 }

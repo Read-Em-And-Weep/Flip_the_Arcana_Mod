@@ -186,6 +186,48 @@ modutil.mod.Path.Wrap("MetaUpgradeCardScreenPinItem", function(base, screen, but
 
 end)
 
+function mod.AttemptCardFlip(screen, button)
+	print("Attempting FlipCard")
+	
+	
+	if screen.SelectedButton == nil then
+		return
+	end
+
+    local selectedButton = screen.SelectedButton
+
+    if screen.SelectedButton.RedirectClick == "MemCostModule" then
+		return
+	end
+	if selectedButton.CardName == button.Screen.LastMouseOffButtonCardName and selectedButton.Name ~= "MetaUpgradeMemCostBacking" then
+		return
+	end
+    
+
+    mod.ReverseCard(screen, selectedButton, true,{})
+    GetCurrentMetaUpgradeCost()
+end
+
+
+function mod.AttemptUpgradeCardFlip(screen, button)
+    
+	if screen.SelectedButton == nil then
+		return
+	end
+    local selectedButton = screen.SelectedButton
+
+    if screen.SelectedButton.RedirectClick == "MemCostModule" then
+		return
+	end
+	if selectedButton.CardName == button.Screen.LastMouseOffButtonCardName and selectedButton.Name ~= "MetaUpgradeMemCostBacking" then
+		return
+	end
+    if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return
+	end
+    mod.ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
+end
+
 modutil.mod.Path.Override("MetaUpgradeCardUpgradeScreenInspect", function(screen, button)
     --turn off inspecting cards so that you can flip on upgrade screen
     return
@@ -953,25 +995,7 @@ modutil.mod.Path.Wrap("CheckChamberTraits", function(base)
 end)
 
 modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
-	if victim.IsBoss and not victim.BlockPostBossMetaUpgrades and ( not victim.UseGroupHealthBar or victim.GroupHealthBarOwner ) then
-		if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
-			local upgradeBoonsTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
-			if upgradeBoonsTrait.Uses > 0 then
-				mod.UpgradeAllTraits()
-				upgradeBoonsTrait.Uses = upgradeBoonsTrait.Uses - 1
-			end
-		end
-		--[[if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
-			local upgradeBoonsTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
-			mod.AwardDuosAndLegendaryTraits()
-			local i = 0
-			while i < upgradeBoonsTrait.Uses do
-				if RandomChance(0.5) then
-					mod.AwardDuosAndLegendaryTraits()
-				end
-				i = i+1
-			end
-		end]]
+	if victim and victim.IsBoss and not victim.BlockPostBossMetaUpgrades and ( not victim.UseGroupHealthBar or victim.GroupHealthBarOwner ) then
 		if HeroHasTrait("ReversedBonusRarityMetaUpgrade") then
 			local addFamiliarsTrait = GetHeroTrait("ReversedBonusRarityMetaUpgrade")
 			mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
@@ -998,6 +1022,14 @@ function mod.AwardDuosAndLegendaryTraits()
 	
 	CheckActivatedTraits( CurrentRun.Hero, { SkipPresentation = true } )
 end
+
+modutil.mod.Path.Wrap("HasNeighboringUnlockedCards", function(base, row, column)
+	if Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return true
+	else
+		return base(row,column)
+	end
+end)
 
 function mod.UpgradeAllTraits()
 	local sourceTraitData = nil
@@ -1221,10 +1253,20 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local spawnTarget = nil
 	local duplicateOnClose = false
 	local name = source.Name
+
+	local upgradeData = button.Data
+	if upgradeData.MetaUpgrade then
+		local cardName = mod.GetCardFromTrait(upgradeData.Name)
+		CurrentRun.TemporaryMetaUpgrades[cardName] = true
+		GameState.MetaUpgradeState[cardName].Equipped = true
+	end
+
 	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and (source.GodLoot or name == "HermesUpgrade") then
 		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
 		if chanceUpgradeBoon and RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
-			thread(AddStackToTraits, { NumTraits = 1, NumStacks = 2})
+			thread(AddStackToTraits, { NumStacks = 1})
+			wait(0.8)
+			thread(AddStackToTraits, { NumStacks = 1})
 		end
 	end
 	if HeroHasTrait("ReversedDoorRerollMetaUpgrade") and IsFateValid() and not source.StrifeDuplicated and (source.GodLoot or source.CanDuplicate or name == "WeaponUpgrade" or name == "HermesUpgrade") then
@@ -1292,7 +1334,7 @@ end)
 
 modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, weaponData, triggerArgs) 
 	local originalCritChance = base(attacker,victim,weaponData, triggerArgs)
-	if HeroHasTrait("ReversedTradeOffMetaUpgrade") and IsFateValid() then
+	if HeroHasTrait("ReversedTradeOffMetaUpgrade") and IsFateValid() and victim and victim ~= CurrentRun.Hero then
 		local fatedCritTrait = GetHeroTrait("ReversedTradeOffMetaUpgrade")
 		originalCritChance = originalCritChance + fatedCritTrait.FatedCritcalChance
 	end
@@ -1394,4 +1436,394 @@ modutil.mod.Path.Wrap("SetupMap", function(base)
 	local packageName = _PLUGIN.guid .. "NewCardArt"
 	game.LoadPackages({ Name = packageName })
 	return base()
+end)
+
+modutil.mod.Path.Wrap("CreateUpgradeChoiceButton", function(base,screen, lootData, itemIndex, itemData, args)
+	if lootData.IsMetaUpgradeSource and itemData.ItemName ~= "FallbackGold" then
+		local output = base(screen, lootData, itemIndex, itemData, args)
+		local components = screen.Components
+		local icon = ShallowCopyTable( screen.Icon )
+		local itemLocationY = (ScreenCenterY - 190) + screen.ButtonSpacingY * ( itemIndex - 1 ) + 50
+		local itemLocationX = ScreenCenterX - 355
+		local purchaseButtonKey = "PurchaseButton"..itemIndex
+		local upgradeData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = itemData.ItemName, Rarity = itemData.Rarity })
+		icon.X = screen.IconOffsetX + itemLocationX + screen.ButtonOffsetX
+		icon.Y = screen.IconOffsetY + itemLocationY 
+		icon.Animation = MetaUpgradeCardData[ mod.GetCardFromTrait(upgradeData.Name)].Image
+		icon.Scale = 0.35
+		icon.Group = args.ButtonGroupName or icon.Group
+		components[purchaseButtonKey.."Icon"] = CreateScreenComponent( icon )
+		
+		return output
+	else 
+		return base(screen, lootData, itemIndex, itemData, args)
+	end
+end)
+
+
+modutil.mod.Path.Wrap("ShowBoonInfoScreen", function(base, args)
+	local screen = DeepCopyTable( ScreenData.BoonInfo )
+	screen.LootName = args.LootName
+	if not args.CodexEntryData then
+		return
+	else
+		return base(args)
+	end
+end)
+modutil.mod.Path.Wrap("SetTraitsOnLoot", function(base, lootData, args)
+	if lootData.IsMetaUpgradeSource then
+		local baseValue = base(lootData, args)
+		for metaUpgradeName, metaUpgradeData in ipairs(lootData.UpgradeOptions) do
+			metaUpgradeData.Rarity = TraitRarityData.RarityUpgradeOrder[GetMetaUpgradeLevel(mod.GetCardFromTrait(metaUpgradeData.ItemName))]
+		end
+		return baseValue
+	else
+		return base(lootData, args)
+	end
+end)
+
+
+function mod.GetCardFromTrait(traitName)
+	local combinedMetaUpgradeDefaultCardLayout = {
+        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+    }
+	for row, rowData in pairs( combinedMetaUpgradeDefaultCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = MetaUpgradeCardData[cardName]
+			if metaUpgradeData.TraitName == traitName then
+				return cardName
+			end
+		end
+	end
+end
+
+
+function mod.SetTraitsOnLootforMonstrosity(lootData, args)
+	local upgradeName = lootData.Name
+	local upgradeChoiceData = lootData
+	args = args or {}
+
+	local upgradeOptions = {}
+	
+	lootData.Rarity = {}
+	lootData.RarityRollOrder = lootData.RarityRollOrder or TraitRarityData.BoonRarityRollOrder
+
+	if lootData.Traits then
+		for _, traitName in pairs(lootData.Traits) do
+			local traitData = TraitData[traitName]
+			if (traitData.GameStateRequirements == nil or IsGameStateEligible(traitData, traitData.GameStateRequirements)) and traitData.PriorityRequirements and IsGameStateEligible(traitData, traitData.PriorityRequirements) then
+				local rarity = "Common"
+				local metaUpgradeName = mod.GetCardFromTrait(traitName)
+				if GetMetaUpgradeLevel(metaUpgradeName) then
+					rarity = TraitRarityData.RarityUpgradeOrder[GetMetaUpgradeLevel(metaUpgradeName)]
+				end
+				table.insert(upgradeOptions, { ItemName = traitName, Type = "Trait", Rarity = rarity })
+			end
+		end
+	end
+
+	if args and args.ExclusionNames then
+		-- Remove values that are excluded
+		for _, name in pairs(args.ExclusionNames) do
+			for i, upgradeData in pairs(upgradeOptions) do
+				if upgradeData.ItemName == name then
+					upgradeOptions[i] = nil
+				end
+			end
+		end
+		upgradeOptions = CollapseTable(upgradeOptions)
+	end
+	local eligibleOptions = {}
+
+	if TableLength(upgradeOptions) < 5 then
+		-- don't bother with this expensive calculation if we've filled up on priority traits
+		eligibleOptions = GetEligibleUpgrades(upgradeOptions, lootData, upgradeChoiceData)
+	end
+
+	-- build legal rarity table
+	local rarityTable = {}
+	for rarityName in pairs(TraitRarityData.RarityValues) do
+		rarityTable[rarityName] = {}
+	end
+
+	for s, options in pairs({ upgradeOptions, eligibleOptions }) do
+		for i, upgradeData in pairs(options) do
+			local rarityLevels = nil
+			if upgradeData.Type == "Trait" then
+				rarityLevels = TraitData[upgradeData.ItemName].RarityLevels
+			end
+			if upgradeData.Type == "Consumable" then
+				rarityLevels = ConsumableData[upgradeData.ItemName].RarityLevels
+			end
+
+			if rarityLevels == nil then
+				rarityLevels = { Common = true }
+			end
+
+			for key, table in pairs(rarityTable) do
+				if rarityLevels[key] ~= nil then
+					table[upgradeData.ItemName] = upgradeData
+				end
+			end
+		end
+	end
+
+	if args and args.ExclusionNames then
+		-- Remove values that are excluded
+		for i, name in pairs(args.ExclusionNames) do
+			for key, table in pairs(rarityTable) do
+				table[name] = nil
+			end
+		end
+		upgradeOptions = CollapseTable(upgradeOptions)
+	end
+
+	-- process priority traits. priority traits determine rarity instead of the other way around
+	for i, upgradeData in ipairs(upgradeOptions) do
+		if upgradeData.Rarity then
+			upgradeOptions[i].Rarity = upgradeData.Rarity
+		else
+			upgradeOptions[i].Rarity = "Common"
+			for _, rarityName in ipairs(lootData.RarityRollOrder) do
+				if rarityTable[rarityName][upgradeData.ItemName] and lootData.RarityChances and lootData.RarityChances[rarityName] and RandomChance(lootData.RarityChances[rarityName]) then
+					upgradeOptions[i].Rarity = rarityName
+				end
+			end
+		end
+
+		for rarityName in pairs(TraitRarityData.RarityValues) do
+			rarityTable[rarityName][upgradeData.ItemName] = nil
+		end
+	end
+
+	-- fill rest with eligible traits
+	for i = TableLength(upgradeOptions), GetTotalLootChoices() - 1 do
+		local validRarities = {}
+
+		for rarityName in pairs(TraitRarityData.RarityValues) do
+			validRarities[rarityName] = not IsEmpty(rarityTable[rarityName])
+		end
+
+		local chosenUpgrade = GetRandomValue(rarityTable.Common)
+		local chosenRarity = "Common"
+
+		for _, rarityName in ipairs(lootData.RarityRollOrder) do
+			if validRarities[rarityName] and lootData.RarityChances and lootData.RarityChances[rarityName] and RandomChance(lootData.RarityChances[rarityName]) then
+				chosenRarity = rarityName
+				chosenUpgrade = GetRandomValue(rarityTable[rarityName])
+			end
+		end
+
+		if chosenUpgrade then
+			chosenUpgrade.Rarity = chosenRarity
+			table.insert(upgradeOptions, chosenUpgrade)
+
+			for rarityName in pairs(TraitRarityData.RarityValues) do
+				rarityTable[rarityName][chosenUpgrade.ItemName] = nil
+			end
+		end
+	end
+
+	-- Fill empty spots with exchange traits
+	for i = TableLength(upgradeOptions), GetTotalLootChoices() - 1 do
+		if IsEmpty(chosenPriorityTraits) then
+			break
+		end
+		local chosenUpgrades = GetReplacementTraits(chosenPriorityTraits)
+		if chosenUpgrades == nil or chosenUpgrades[1] == nil then
+			break
+		end
+		local chosenUpgrade = chosenUpgrades[1]
+		table.insert(upgradeOptions, chosenUpgrade)
+		RemoveValueAndCollapse(chosenPriorityTraits, chosenUpgrade.ItemName)
+	end
+
+	-- Fill empty spots with any traits that failed the rarity check the first time around
+	local numBans = MetaUpgradeData.BanUnpickedBoonsShrineUpgrade.ChangeValue
+	if numBans <= 0 then
+		for i = TableLength(upgradeOptions), GetTotalLootChoices() - 1 do
+			local validRarities = {}
+
+			for rarityName in pairs(TraitRarityData.RarityValues) do
+				validRarities[rarityName] = not IsEmpty(rarityTable[rarityName])
+			end
+
+			local chosenUpgrade = GetRandomValue(rarityTable.Common)
+			local chosenRarity = "Common"
+
+			for _, rarityName in ipairs(lootData.RarityRollOrder) do
+				if validRarities[rarityName] and lootData.RarityChances[rarityName] then
+					chosenRarity = rarityName
+					chosenUpgrade = GetRandomValue(rarityTable[rarityName])
+				end
+			end
+
+			if chosenUpgrade then
+				chosenUpgrade.Rarity = chosenRarity
+				table.insert(upgradeOptions, chosenUpgrade)
+				for rarityName in pairs(TraitRarityData.RarityValues) do
+					rarityTable[rarityName][chosenUpgrade.ItemName] = nil
+				end
+			end
+		end
+	end
+
+	-- Block rerolling if we truly have no options left
+	local blockReroll = IsEmpty(chosenPriorityTraits) and (not args or IsEmpty(args.ExclusionNames))
+	for rarity, validTraits in pairs(rarityTable) do
+		if blockReroll and not IsEmpty(validTraits) then
+			blockReroll = false
+		end
+	end
+	lootData.BlockReroll = blockReroll
+	lootData.UpgradeOptions = upgradeOptions
+end
+
+function mod.CanCardifyReward(reward)
+	if not HeroHasTrait("ReversedCardDrawMetaUpgrade") then
+		return false
+	end
+	if not reward then
+		return false
+	end
+	if reward.ResourceCosts ~= nil and HasResourceCost( reward.ResourceCosts ) then
+		return false
+	end
+	local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
+	return reward.GoldConversionEligible and (cardDrawMetaTrait.Uses > 0)
+end
+
+modutil.mod.Path.Wrap("CanSpecialInteract", function(base, source)
+	if source.ResourceCosts ~= nil and HasResourceCost( source.ResourceCosts ) then
+		return false
+	end
+	if mod.CanCardifyReward(source) then
+		return true
+	else
+		return base(source)
+	end
+end)
+
+modutil.mod.Path.Wrap("ShowUseButton", function(base,objectId, useTarget)
+	if mod.CanCardifyReward(useTarget) and not (CanGoldifyReward(useTarget) and HeroHasTrait("GoldifyKeepsake")) then
+		useTarget = ShallowCopyTable(useTarget)
+		useTarget.UseTextTalkAndSpecial = "CardifyUseLootAndConsume"
+		useTarget.UseTextTalkGiftAndSpecial = "CardifyUseLootGiftAndConsume"
+		if useTarget.ReplaceSpecialForGoldify then
+			useTarget.UseTextTalkAndSpecial = "CardifyUseLootAndConsume"
+			useTarget.UseTextTalkGiftAndSpecial = "CardifyUseLootGiftAndConsume"
+		end
+	end
+	return base(objectId, useTarget)
+end)
+
+game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
+	if not IsEmpty(ActiveScreens) then
+		return
+	end
+
+	local target = triggerArgs.UseTarget
+	if target ~= nil and mod.CanCardifyReward( target ) then
+		
+		EndAutoSprint({ Halt = true, EndWeapon = true })
+		if mod.CanCardifyReward(target) and IsUseable({ Id = target.ObjectId }) then
+			
+			local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
+			local previouslyRequired = false
+			if MapState.RoomRequiredObjects[target.ObjectId] then
+				MapState.RoomRequiredObjects[target.ObjectId] = nil
+				previouslyRequired = true
+			end
+			HideUseButton(target.ObjectId, target)
+			if CurrentRun.CurrentRoom.Encounter ~= nil and CurrentRun.CurrentRoom.Encounter.RewardsToRestore ~= nil then
+				CurrentRun.CurrentRoom.Encounter.RewardsToRestore[target.ObjectId] = nil
+			end
+			mod.CardifyPresentation(target)
+			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "BaseLoot"
+			CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade" , SpawnPoint = target.ObjectId })				
+			local lootData = LootData["MonstrosityMetaUpgradeUpgrade"]
+			Destroy({ Id = target.ObjectId })
+			cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
+			
+			if target.MenuNotify then
+				NotifyResultsTable[ target.MenuNotify ] = target.Name
+				notifyExistingWaiters( target.MenuNotify )
+			end
+			if target.NotifyName then
+				notifyExistingWaiters( target.NotifyName )
+			end
+			if CheckRoomExitsReady(CurrentRun.CurrentRoom) then
+				UnlockRoomExits(CurrentRun, CurrentRun.CurrentRoom)
+			end
+		end
+	end
+end })
+
+modutil.mod.Path.Wrap("GoldifyPresentation", function(base,source)
+	local baseValue = base(source)
+	if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
+		local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
+		if cardDrawMetaTrait.Uses > 0 then
+			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "BaseLoot"
+		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })				
+		cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
+		end
+	end
+	return baseValue
+end)
+
+
+function mod.CardifyPresentation( source )
+	AddInputBlock({ Name = "CardifyPresentation" })
+	SessionMapState.GoldifySource = source.Name
+	Stop({ Id = CurrentRun.Hero.ObjectId })
+	Halt({ Id = CurrentRun.Hero.ObjectId })
+	wait( 0.02)
+	PlayInteractAnimation( source.ObjectId, { Animation = GetEquippedWeaponValue( "WeaponInteractAnimation" ) })
+	RemoveInputBlock({ Name = "CardifyPresentation" })
+	wait( 0.2 )
+	CreateAnimation({ Name = "ChronosGoldifyFx", DestinationId = source.ObjectId })
+	ShakeScreen({ Speed = 200, Distance = 5, Angle = 90, Duration = 0.15 })
+	wait( 0.1 )
+end
+
+
+
+--[[ function mod.TestingStuff()
+	CreateLoot({ Name = "MonstrosityMetaUpgradeUpgrade" , OffsetX = 100, SpawnPoint = CurrentRun.Hero.ObjectId })
+end
+
+game.OnControlPressed({'Gift', function()
+	return mod.TestingStuff()
+end}) ]]
+
+modutil.mod.Path.Wrap("GetEligibleLootNames", function(base, excludeLootNames)
+	excludeLootNames = excludeLootNames or {}
+	table.insert(excludeLootNames, "BaseLoot")
+	return base(excludeLootNames)
+end)
+
+
+modutil.mod.Path.Wrap("CreateDoorRewardPreview", function(base, exitDoor, chosenRewardType, chosenLootName, index, args)
+	local room = exitDoor.Room 
+	chosenRewardType = chosenRewardType or room.ChosenRewardType
+	chosenLootName = chosenLootName or room.ForceLootName
+
+	if chosenRewardType == "Devotion" then
+		print("room.Encounter.LootAName = "..tostring(room.Encounter.LootAName))
+		print("room.Encounter.LootBName = "..tostring(room.Encounter.LootBName))
+		if room.Encounter.LootBName == "BaseLoot" then
+			room.Encounter.LootBName = GetRandomValue(GetEligibleLootNames({room.Encounter.LootAName }))
+		end
+	end
+	return base(exitDoor, chosenRewardType, chosenLootName, index, args)
 end)

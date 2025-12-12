@@ -51,7 +51,7 @@ Incantations.addIncantation({
         en = "Expanding of the Deck"
     },
     Description = {
-        en = "Enhance the {$Keywords.CardTable} so that you can flip your {$Keywords.CardPlural} using the same button you use to pin them, allowing access to a new set of {$Keywords.CardPlural} to unlock and upgrade."
+        en = "Enhance the {$Keywords.CardTable} so that you can flip your {$Keywords.CardPlural} using the same button you use to pin them or by using your reroll button, allowing access to a new set of {$Keywords.CardPlural} to unlock and upgrade."
     },
     FlavorText = {
         en = "The sufficiently experienced and well-traveled witch can look within herself and find more powers within her grasp."

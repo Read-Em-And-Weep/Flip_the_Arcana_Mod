@@ -1300,7 +1300,7 @@ for newMetaUpgradeCardName, newMetaUpgradeCardData in pairs(NewMetaUpgradeCardDa
 	end
 end
 
-OldMetaUpgradeDefaultCardLayout = 
+local oldMetaUpgradeDefaultCardLayout = 
 {
 	{ "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
 	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
@@ -1310,7 +1310,7 @@ OldMetaUpgradeDefaultCardLayout =
 }
 
 
-for row, rowData in pairs(OldMetaUpgradeDefaultCardLayout) do
+for row, rowData in pairs(oldMetaUpgradeDefaultCardLayout) do
     for column, cardName in pairs(rowData) do
         game.MetaUpgradeCardData[cardName].Row = row
         game.MetaUpgradeCardData[cardName].Column = column

@@ -49,6 +49,9 @@ local function on_ready()
 	
 	mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 	
+	import("ScreenText.en.sjson.lua")
+	import("ButtonPatching.lua")
+	import("LootData.lua")
 	import("WorldUpgradeData.lua")
 	import("TraitData_MetaUpgrade.lua")
 	import("TraitText.en.sjson.lua")

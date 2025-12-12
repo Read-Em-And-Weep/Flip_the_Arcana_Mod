@@ -429,7 +429,7 @@ NewMetaUpgradeTraitData = {
         AddIncomingDamageModifiers = 
 		{
             HealthOnly = true,
-			ValidWeaponMultiplier = 1.20,
+			ValidWeaponMultiplier = 1.35,
             --does not update automatically in the traittext, make sure it matches
 			ReportValues = { DamageTakenMultiplier = "ValidWeaponMultiplier"},
 		},
@@ -1190,19 +1190,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1,
+				Multiplier = 6,
 			},
 			Rare =
 			{
-				Multiplier = 2,
+				Multiplier = 9,
 			},
 			Epic =
 			{
-				Multiplier = 3,
+				Multiplier = 12,
 			},
 			Heroic =
 			{
-				Multiplier = 4,
+				Multiplier = 15,
 			},
 		},
 		Uses = {BaseValue = 1},
