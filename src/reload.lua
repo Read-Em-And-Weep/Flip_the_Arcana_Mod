@@ -1748,7 +1748,7 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 				CurrentRun.CurrentRoom.Encounter.RewardsToRestore[target.ObjectId] = nil
 			end
 			mod.CardifyPresentation(target)
-			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "BaseLoot"
+			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "MonstrosityMetaUpgradeUpgrade"
 			CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade" , SpawnPoint = target.ObjectId })				
 			local lootData = LootData["MonstrosityMetaUpgradeUpgrade"]
 			Destroy({ Id = target.ObjectId })
@@ -1773,7 +1773,7 @@ modutil.mod.Path.Wrap("GoldifyPresentation", function(base,source)
 	if HeroHasTrait("ReversedCardDrawMetaUpgrade") then
 		local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
 		if cardDrawMetaTrait.Uses > 0 then
-			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "BaseLoot"
+			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "MonstrosityMetaUpgradeUpgrade"
 		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })				
 		cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
 		end

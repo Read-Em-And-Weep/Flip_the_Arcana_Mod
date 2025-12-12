@@ -50,6 +50,8 @@ local function on_ready()
 	mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 	
 	import("ScreenText.en.sjson.lua")
+	import("Items_General_VFX.sjson.lua")
+	import("Gameplay.sjson.lua")
 	import("ButtonPatching.lua")
 	import("LootData.lua")
 	import("WorldUpgradeData.lua")
