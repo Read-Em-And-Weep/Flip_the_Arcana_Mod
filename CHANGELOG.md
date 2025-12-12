@@ -6,18 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0] - 2025-12-12
+
 Major Changes
+
 - Monstrosity (Typhon) has been completely reworked to allow you to purge rewards to create a new loot type which rewards you with your choice of one of three unequipped arcana cards
 - CONTROLLER PLAYERS REJOICE! Now you can flip cards using the reroll button without opening your themes tab.
 - New art for Bounty (Poseidon). Thanks @PunishedMat! :)
 
-
 Minor Changes
+
 - Updated Wanderer (Odysseus) Text
 - Stopped flipped cards from not being able to be unlocked if neighbouring cards weren't unlocked
 - You take more damage when Retribution (Nemesis) is equipped
 - Fixed Revelry (Dionysus) not properly applying the right number of upgrades
 - Art for Encouragement (Supportive Shade) updated
+
 ## [1.5.1] - 2025-12-09
 
 - Changed the icons that companionship familiar bonds use
@@ -113,7 +118,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.5.1...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.5.1...2.0.0
 [1.5.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.6...1.5.0
 [1.4.6]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.4.5...1.4.6
