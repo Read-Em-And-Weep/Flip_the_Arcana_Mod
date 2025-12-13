@@ -1473,6 +1473,7 @@ modutil.mod.Path.Wrap("ShowBoonInfoScreen", function(base, args)
 		return base(args)
 	end
 end)
+
 modutil.mod.Path.Wrap("SetTraitsOnLoot", function(base, lootData, args)
 	if lootData.IsMetaUpgradeSource then
 		local baseValue = base(lootData, args)

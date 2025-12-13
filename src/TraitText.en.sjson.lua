@@ -84,7 +84,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedCastBuff",
         DisplayName = "The Gorgon",
-        Description = "Foes in your cast deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage.",
+        Description = "Foes in your {$Keywords.CastSet} deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage.",
     },
     {
         Id = "ReversedCastBuff_FlavorText01",
