@@ -1444,6 +1444,7 @@ end)
 modutil.mod.Path.Wrap("CreateUpgradeChoiceButton", function(base,screen, lootData, itemIndex, itemData, args)
 	if lootData.IsMetaUpgradeSource and itemData.ItemName ~= "FallbackGold" then
 		local output = base(screen, lootData, itemIndex, itemData, args)
+		args = args or {}
 		local components = screen.Components
 		local icon = ShallowCopyTable( screen.Icon )
 		local itemLocationY = (ScreenCenterY - 190) + screen.ButtonSpacingY * ( itemIndex - 1 ) + 50
