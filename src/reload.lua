@@ -1253,16 +1253,9 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local spawnTarget = nil
 	local duplicateOnClose = false
 	local name = source.Name
+	local args = args or {}
 
 	local upgradeData = button.Data
-	if upgradeData.MetaUpgrade then
-		local cardName = mod.GetCardFromTrait(upgradeData.Name)
-		if MetaUpgradeCardData[ cardName ].OnGrantedFunctionName then
-			thread( CallFunctionName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionName, MetaUpgradeCardData[ cardName ].TraitName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionArgs, args )
-		end
-		CurrentRun.TemporaryMetaUpgrades[cardName] = true
-		GameState.MetaUpgradeState[cardName].Equipped = true
-	end
 
 	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and (source.GodLoot or name == "HermesUpgrade") then
 		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
@@ -1286,7 +1279,16 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 		thread( mod.StrifeDoubleRewardPresentation, newLoot.ObjectId )
 		Destroy({ Id = spawnTarget })
 	end
-	return base(screen,button,args)
+	local outcome = base(screen,button,args)
+	if upgradeData.MetaUpgrade then
+		local cardName = mod.GetCardFromTrait(upgradeData.Name)
+		if MetaUpgradeCardData[ cardName ].OnGrantedFunctionName then
+			thread( CallFunctionName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionName, MetaUpgradeCardData[ cardName ].TraitName, MetaUpgradeCardData[ cardName ].OnGrantedFunctionArgs, args )
+		end
+		CurrentRun.TemporaryMetaUpgrades[cardName] = true
+		GameState.MetaUpgradeState[cardName].Equipped = true
+	end
+	return outcome
 end)
 
 
@@ -1813,8 +1815,9 @@ end}) ]]
 
 modutil.mod.Path.Wrap("GetEligibleLootNames", function(base, excludeLootNames)
 	excludeLootNames = excludeLootNames or {}
-	table.insert(excludeLootNames, "MonstrosityMetaUpgradeUpgrade")
-	return base(excludeLootNames)
+	local output = base(excludeLootNames)
+	game.RemoveValue( output, "MonstrosityMetaUpgradeUpgrade" )
+	return output
 end)
 
 
