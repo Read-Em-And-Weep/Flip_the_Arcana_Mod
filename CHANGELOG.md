@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.2.0] - 2025-12-15
+
 - Buffed Performance (Apollo) to be active at lower health
 - Buffed Beauty (Aphrodite) to give additional dodge chance
 - Nerfed the Weaver (Arachne) to give -1 armour per rank, and the doubling threshold was reduced from 20 -> 15
@@ -135,7 +138,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.1...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/1.5.1...2.0.0
