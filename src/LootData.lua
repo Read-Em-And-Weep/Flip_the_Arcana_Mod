@@ -65,7 +65,6 @@ local newLootData = {
 		"SorceryRegenMetaUpgrade",
 		"LowHealthBuffMetaUpgrade",
 		"MetaToRunMetaUpgrade",
-		"BossProgressionMetaUpgrade",
 		"ReversedChanneledCastMetaUpgrade",
 		"ReversedHealthRegenMetaUpgrade",
 		"ReversedLowManaDamageBonusMetaUpgrade",

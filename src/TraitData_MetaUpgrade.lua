@@ -120,7 +120,7 @@ NewMetaUpgradeTraitData = {
 		HighHealthThresholdText =
 		{
 			-- Display variable only, to change the data value change the value below under "HighHealthSourceMultiplierData"
-			PercentThreshold = 0.90,
+			PercentThreshold = 0.85,
 			--Text = "Hint_HighHealthDamageTraitDeactivated",
 		},
 		HighHealthDamageBonus = {
@@ -132,7 +132,7 @@ NewMetaUpgradeTraitData = {
 		{
 			HighHealthSourceMultiplierData = 
 			{ 
-				Threshold = 0.90,
+				Threshold = 0.85,
 				ThresholdMultiplier = 10, --to double bonus when above threshold
 				Multiplier = 
 				{ 
@@ -203,19 +203,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 6,
+				Multiplier = 9,
 			},
 			Rare =
 			{
-				Multiplier = 8,
+				Multiplier = 12,
 			},
 			Epic =
 			{
-				Multiplier = 10,
+				Multiplier = 15,
 			},
 			Heroic =
 			{
-				Multiplier = 12,
+				Multiplier = 18,
 			},
 		},
         HealAmount = {
@@ -491,15 +491,15 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.8,
+				Multiplier = 1.2,
 			},
 			Rare =
 			{
-				Multiplier = 1.4,
+				Multiplier = 1.0,
 			},
 			Epic =
 			{
-				Multiplier = 1.0,
+				Multiplier = 0.8,
 			},
 			Heroic =
 			{
@@ -626,7 +626,7 @@ NewMetaUpgradeTraitData = {
 		{
 			{
 				LifeProperty = "DodgeChance",
-				BaseValue = 0.03,
+				BaseValue = 0.04,
                 ChangeType = "Add",
 				DataValue = false,
 				ReportValues = { ReportedDodgeChance = "ChangeValue"},
@@ -681,19 +681,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 2,
+				Multiplier = 1,
 			},
 			Rare =
 			{
-				Multiplier = 3,
+				Multiplier = 2,
 			},
 			Epic =
 			{
-				Multiplier = 4,
+				Multiplier = 3,
 			},
 			Heroic =
 			{
-				Multiplier = 5,
+				Multiplier = 4,
 			},
 		},
         ArmorGranted = {BaseValue = 1},
@@ -1183,6 +1183,7 @@ NewMetaUpgradeTraitData = {
     },
 	ReversedCardDrawMetaUpgrade = {
         Name = "ReversedCardDrawMetaUpgrade",
+		Icon = "MiniMonstrosityTraitTrayIcon",
         InheritFrom = { "MetaUpgradeTrait" },
 		CustomTrayText = "ReversedCardDrawMetaUpgrade_Tray",
         RarityLevels =
@@ -1206,6 +1207,7 @@ NewMetaUpgradeTraitData = {
 			},
 		},
 		Uses = {BaseValue = 1},
+		ShowInHUD = true,
 		ExtractValues = 
 		{
 			{

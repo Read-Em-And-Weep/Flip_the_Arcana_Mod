@@ -265,11 +265,31 @@ local newCardArtData = {
     FilePath = _PLUGIN.guid .. "NewCardArt\\MonstrosityCardDrawIcon",
     Scale = 0.68,
 	OffsetY = -1,
+},
+{
+    
 }
 }
 
 sjson.hook(GUIFile, function(data)
     for _, newCardArt in ipairs(newCardArtData) do
         table.insert(data.Animations, sjson.to_object(newCardArt, newCardArtOrder))
+    end
+end)
+
+local newTraitBoonIconsData = {
+    {
+		Name = "MiniMonstrosityTraitTrayIcon",
+		InheritFrom = "BoonIcon",
+		FilePath = _PLUGIN.guid .. "NewCardArt\\MonstrosityHUDIcon",
+        Scale = 1.45
+	},
+}
+
+local boonGUIFile =  rom.path.combine(rom.paths.Content(), "Game\\Animations\\GUI_Boons_VFX.sjson")
+
+sjson.hook(boonGUIFile, function(data)
+    for _, newBoonArt in ipairs(newTraitBoonIconsData) do
+        table.insert(data.Animations, sjson.to_object(newBoonArt, newCardArtOrder))
     end
 end)

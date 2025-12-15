@@ -955,7 +955,7 @@ modutil.mod.Path.Override("UpgradeChoiceScreenCheckRarifyButton", function(scree
 		end
 	end
 	local multiUse = false
-	if upgradeTraitData and uses>1 then
+	if upgradeTraitData and uses>0 then
 		multiUse = true
 	end
 	if validUpgradeIndex and (not screen.UpgradedRarity or multiUse) and not screen.TraitTrayOpened then
@@ -1096,7 +1096,7 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	if HeroHasTrait("ReversedStartingGoldMetaUpgrade") then
 		local armorTrait = GetHeroTrait("ReversedStartingGoldMetaUpgrade")
 		local armorAmount = armorTrait.ArmorGranted
-		if CurrentRun.Hero.HealthBuffer < 20 then
+		if CurrentRun.Hero.HealthBuffer < 15 then
 			armorAmount = 2*armorAmount
 		end
 		AddArmor(armorAmount, {Delay = 0.25})
@@ -1760,7 +1760,8 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 			local lootData = LootData["MonstrosityMetaUpgradeUpgrade"]
 			Destroy({ Id = target.ObjectId })
 			cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
-			
+			UpdateTraitNumber(cardDrawMetaTrait)
+
 			if target.MenuNotify then
 				NotifyResultsTable[ target.MenuNotify ] = target.Name
 				notifyExistingWaiters( target.MenuNotify )
@@ -1783,6 +1784,7 @@ modutil.mod.Path.Wrap("GoldifyPresentation", function(base,source)
 			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "MonstrosityMetaUpgradeUpgrade"
 		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })				
 		cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
+		UpdateTraitNumber(cardDrawMetaTrait)
 		end
 	end
 	return baseValue
@@ -1818,6 +1820,15 @@ modutil.mod.Path.Wrap("GetEligibleLootNames", function(base, excludeLootNames)
 	local output = base(excludeLootNames)
 	game.RemoveValue( output, "MonstrosityMetaUpgradeUpgrade" )
 	return output
+end)
+
+modutil.mod.Path.Wrap("IsShownInHUD", function(base, trait)
+	if trait.Name == "ReversedCardDrawMetaUpgrade" and (trait.Uses or 0) > 0 and trait.ShowInHUD then
+		return true
+	else
+		return base(trait)
+	end
+	
 end)
 
 

@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Buffed Performance (Apollo) to be active at lower health
+- Buffed Beauty (Aphrodite) to give additional dodge chance
+- Nerfed the Weaver (Arachne) to give -1 armour per rank, and the doubling threshold was reduced from 20 -> 15
+- Buffed Loyal Protector (Cerberus) to heal more per rank
+- Monstrosity (Typhon) no longer offers Judgement as a possible card
+- Added HUD support for Monstrosity (Typhon)
+- Sleep (Hypnos) has been buffed to heal more quickly
 
 ## [2.1.1] - 2025-12-14
 

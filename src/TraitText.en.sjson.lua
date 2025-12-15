@@ -36,7 +36,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowManaDamageBonus",
         DisplayName = "Performance",
-        Description = "While above {#UpgradeFormat} 90%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage; else, gain a tenth of this benefit.",
+        Description = "While above {#UpgradeFormat} 85%{#Prev}{!Icons.Health}, deal {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} damage; else, gain a tenth of this benefit.",
     },
     {
         Id = "ReversedLowManaDamageBonus_FlavorText01",
@@ -231,7 +231,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedStartingGold",
         DisplayName = "The Weaver",
-        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 20{!Icons.ArmorTotal}{#Prev},  gain double.",
+        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 15{!Icons.ArmorTotal}{#Prev},  gain double.",
     },
     {
         Id = "ReversedStartingGold_FlavorText01",
