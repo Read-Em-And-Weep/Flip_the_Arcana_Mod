@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.1] - 2025-12-16
+
 - Fixed issue stopping ExtendedAshes from working
 - Fixed some of the issues with lighting of the Monstrosity (Typhon) drop
 
@@ -141,7 +143,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.0...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.1...HEAD
+[2.2.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.0.0...2.1.0
