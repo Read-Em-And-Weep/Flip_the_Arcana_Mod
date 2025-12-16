@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed issue stopping ExtendedAshes from working
+- Fixed some of the issues with lighting of the Monstrosity (Typhon) drop
+
 ## [2.2.0] - 2025-12-15
 
 - Buffed Performance (Apollo) to be active at lower health
