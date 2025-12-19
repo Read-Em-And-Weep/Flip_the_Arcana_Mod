@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.3.0] - 2025-12-19
+
 - Removed a debug print statement (oops!)
 - Added art for Longing (Echo and Narcissus - thanks @burn03!)
 - AUTO EQUIP CARDS NO LONGER FREAK OUT!!!!
@@ -146,7 +149,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.1...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.1.0...2.1.1
