@@ -14,29 +14,33 @@ modutil.mod.Path.Wrap("EquipMetaUpgradeBonusCardPresentation", function(base, sc
     end
 end)
 
+ 
 modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
     base(screen, cardArgs)
-    HasRun = HasRun or false
+    GameState.FlipTheArcanaHasRun = GameState.FlipTheArcanaHasRun or false
     for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
-        if GameState.MetaUpgradeState[metaUpgradeName].Equipped and not MetaUpgradeCardData[metaUpgradeName].Flipped and not HasRun then
+        if GameState.MetaUpgradeState[metaUpgradeName].Equipped and not MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun then
             GameState.MetaUpgradeState[metaUpgradeName].Visible = true
         else
             GameState.MetaUpgradeState[metaUpgradeName].Visible = false
         end
+	end
+	for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		GameState.FlipTheArcanaHasRun = true
 		return
 	end
-        if (GameState.MetaUpgradeState[metaUpgradeName].Equipped and MetaUpgradeCardData[metaUpgradeName].Flipped and not HasRun) then
-            row = MetaUpgradeCardData[metaUpgradeName].Row
-            column = MetaUpgradeCardData[metaUpgradeName].Column
-            buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+        if (GameState.MetaUpgradeState[metaUpgradeName].Visible and MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun) then
+            local row = MetaUpgradeCardData[metaUpgradeName].Row
+            local column = MetaUpgradeCardData[metaUpgradeName].Column
+            local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
             mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
         end
     end
     for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
 		for column, cardName in pairs( rowData ) do
-			if not hasRun then
-				if GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped then
+			if not GameState.FlipTheArcanaHasRun then
+				if (GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped) then
 					row = MetaUpgradeCardData[cardName].Row
             		column = MetaUpgradeCardData[cardName].Column
             		buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
@@ -46,7 +50,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             GameState.MetaUpgradeState[cardName].Visible = true
         end
     end
-	HasRun = true
+	GameState.FlipTheArcanaHasRun = true
     CheckAutoEquipCards()
 end)
 
@@ -61,7 +65,7 @@ end)
 modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
     if not game.CurrentHubRoom then return base(source,args) end
     if game.CurrentHubRoom.Name == "Hub_PreRun" then
-        HasRun = false
+        GameState.FlipTheArcanaHasRun = false
     end
     for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
         if GameState.MetaUpgradeState[metaUpgradeName].Visible == nil then
@@ -187,7 +191,6 @@ modutil.mod.Path.Wrap("MetaUpgradeCardScreenPinItem", function(base, screen, but
 end)
 
 function mod.AttemptCardFlip(screen, button)
-	print("Attempting FlipCard")
 	
 	
 	if screen.SelectedButton == nil then
@@ -644,6 +647,9 @@ end)
 
 modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
     local autoEquipMetaUpgrades = {}
+	if not GameState.FlipTheArcanaHasRun then
+		return
+	end
 	for metaUpgradeName, metaUpgradeData in pairs( GameState.MetaUpgradeState ) do
 		if metaUpgradeData.Unlocked and MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements then
 			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) and GameState.MetaUpgradeState[metaUpgradeName].Visible then

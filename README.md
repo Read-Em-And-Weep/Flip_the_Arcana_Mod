@@ -27,9 +27,9 @@ Random Chaos Trials cannot pull from the new deck right now, but fingers crossed
 
 
 # Thanks to:
-@burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Companionship, Doom, Encouragement and Monstrosity).
+@burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Longing, Companionship, Doom, Encouragement and Monstrosity).
 
-@PunishedMat for the art on Bounty
+@PunishedMat for the amazing art on Bounty!
 
 # IMPORTANT INFORMATION :)
 If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).
