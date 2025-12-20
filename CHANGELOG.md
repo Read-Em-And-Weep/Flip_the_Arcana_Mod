@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- Hopefully actually fixed the auto activating card issue
+- Added Strife (Eris) art. Thanks @burn03!
 ## [2.3.2] - 2025-12-19
 
 - Added a while loop that means trait inheritances are done independent of SetUpRun
