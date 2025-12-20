@@ -61,6 +61,11 @@ modutil.mod.Path.Wrap("MetaUpgradeCardAction", function(base, screen, button)
     end
 end)
 
+modutil.mod.Path.Wrap("CreateNewHero", function(base, prevRun, args )
+	GameState.FlipTheArcanaHasRun = false
+	return base(prevRun, args)
+end)
+
 
 modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
     if not game.CurrentHubRoom then return base(source,args) end

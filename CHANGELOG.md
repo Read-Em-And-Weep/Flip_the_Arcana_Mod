@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - Added a while loop that means trait inheritances are done independent of SetUpRun
 
+
 ## [2.3.1] - 2025-12-19
 
 ## [2.3.0] - 2025-12-19
