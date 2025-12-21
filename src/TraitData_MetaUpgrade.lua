@@ -203,19 +203,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 9,
+				Multiplier = 14,
 			},
 			Rare =
 			{
-				Multiplier = 12,
+				Multiplier = 17,
 			},
 			Epic =
 			{
-				Multiplier = 15,
+				Multiplier = 20,
 			},
 			Heroic =
 			{
-				Multiplier = 18,
+				Multiplier = 23,
 			},
 		},
         HealAmount = {
@@ -653,15 +653,15 @@ NewMetaUpgradeTraitData = {
 			},
 			Rare =
 			{
-				Multiplier = 4.0,
+				Multiplier = 3.0,
 			},
 			Epic =
 			{
-				Multiplier = 7.0,
+				Multiplier = 5.0,
 			},
 			Heroic =
 			{
-				Multiplier = 10.0,
+				Multiplier = 7.0,
 			},
 		},
         ModdedDoubleRewardChance = {BaseValue = 0.01},
@@ -1039,19 +1039,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 10,
+				Multiplier = 4,
 			},
 			Rare =
 			{
-				Multiplier = 15,
+				Multiplier = 7,
 			},
 			Epic =
 			{
-				Multiplier = 20,
+				Multiplier = 10,
 			},
 			Heroic =
 			{
-				Multiplier = 25,
+				Multiplier = 13,
 			},
 		},
         FatedCritcalChance = { BaseValue = 0.01,},
@@ -1072,19 +1072,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.6,
+				Multiplier = 0.6,
 			},
 			Rare =
 			{
-				Multiplier = 2.3,
+				Multiplier = 0.8,
 			},
 			Epic =
 			{
-				Multiplier = 3.0,
+				Multiplier = 1.0,
 			},
 			Heroic =
 			{
-				Multiplier = 3.7,
+				Multiplier = 1.2,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},
