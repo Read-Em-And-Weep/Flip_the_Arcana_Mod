@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Buffed Revelry (Dionysus) slightly
+
 ## [2.3.4] - 2025-12-21
 
 - Nerfed Strife (Eris), Revelry (Dionysus) and Doom (Moros)

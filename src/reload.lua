@@ -1153,9 +1153,9 @@ end
 
 function mod.NoLastStandRegeneration( unit, args )
 	while CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead do
-		game.wait(args.Interval, "NoLastStandRegeneration")
+		game.wait(args.Interval, "FlipTheArcanaNoLastStandRegeneration")
 		if CurrentRun and CurrentRun.Hero and not CurrentRun.Hero.IsDead and (IsCombatEncounterActive( CurrentRun ) or ((not IsEmpty(ActiveEnemies)) and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss")) and not HasLastStand( CurrentRun.Hero ) and CurrentRun.Hero.Health < CurrentRun.Hero.MaxHealth and CurrentRun.CurrentRoom.Encounter.EncounterType == "Boss" then
-			Heal( CurrentRun.Hero, { HealAmount = 1, SourceName = "NoLastStandRegeneration", Silent = true })
+			Heal( CurrentRun.Hero, { HealAmount = 1, SourceName = "FlipTheArcanaNoLastStandRegeneration", Silent = true })
 			FrameState.RequestUpdateHealthUI = true
 			CreateAnimation({ Name = "HealthSparkleShower", DestinationId = CurrentRun.Hero.ObjectId, Group = "Overlay" })
 		end

@@ -1072,19 +1072,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 0.1,
+				Multiplier = 0.6,
 			},
 			Rare =
 			{
-				Multiplier = 0.4,
+				Multiplier = 0.9,
 			},
 			Epic =
 			{
-				Multiplier = 0.7,
+				Multiplier = 1.2,
 			},
 			Heroic =
 			{
-				Multiplier = 1.0,
+				Multiplier = 1.5,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},
