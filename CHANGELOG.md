@@ -6,12 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Fixed bug which caused Encouragement (Supportive Shade) triggering in Training Grounds
 
 ## [2.4.0] - 2025-12-22
 
 - Buffed Revelry (Dionysus)
 - Nerfed Longing (Narcissus and Echo) and Famine (Demeter)
-- Hopefully fixed Companionship procing on Asterius miniboss in Zag Journey
+- Hopefully fixed Companionship (Familiars) procing on Asterius miniboss in Zag Journey
 - Stopped Famine (Demeter) from procing on enemies that cannot be charmed (e.g. Minibosses)
 - Revelry (Dionysus)/Strife (Eris) affected by Success Rate
 - Bounty (Poseidon) offers +1 rarify each rank
