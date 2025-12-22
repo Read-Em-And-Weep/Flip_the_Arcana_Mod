@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-12-22
+
 - Buffed Revelry (Dionysus)
 - Nerfed Longing (Narcissus and Echo) and Famine (Demeter)
 - Hopefully fixed Companionship procing on Asterius miniboss in Zag Journey
@@ -173,7 +175,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.4...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.4...2.4.0
 [2.3.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.3...2.3.4
 [2.3.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.2...2.3.3
 [2.3.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.1...2.3.2
