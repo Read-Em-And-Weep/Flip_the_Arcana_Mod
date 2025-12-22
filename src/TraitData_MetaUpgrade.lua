@@ -362,19 +362,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 3.0,
+				Multiplier = 4.0,
 			},
 			Rare =
 			{
-				Multiplier = 5.0,
+				Multiplier = 6.0,
 			},
 			Epic =
 			{
-				Multiplier = 7.0,
+				Multiplier = 8.0,
 			},
 			Heroic =
 			{
-				Multiplier = 9.0,
+				Multiplier = 10.0,
 			},
 		},
         RarityUpgradeData = 
@@ -670,7 +670,7 @@ NewMetaUpgradeTraitData = {
 			{
 				Key = "ModdedDoubleRewardChance",
 				ExtractAs = "Chance",
-				Format = "Percent"
+				Format = "LuckModifiedPercent"
 			},
 		}
     },
@@ -713,19 +713,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 35,
+				Multiplier = 20,
 			},
 			Rare =
 			{
-				Multiplier = 40,
+				Multiplier = 25,
 			},
 			Epic =
 			{
-				Multiplier = 45,
+				Multiplier = 30,
 			},
 			Heroic =
 			{
-				Multiplier = 50,
+				Multiplier = 35,
 			},
 		},
         ExtraTraitChance = {BaseValue = 0.01},
@@ -745,19 +745,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 10,
+				Multiplier = 5,
 			},
 			Rare =
 			{
-				Multiplier = 15,
+				Multiplier = 10,
 			},
 			Epic =
 			{
-				Multiplier = 20,
+				Multiplier = 15,
 			},
 			Heroic =
 			{
-				Multiplier = 25,
+				Multiplier = 20,
 			},
 		},
         OnEnemyDamagedAction =
@@ -1072,19 +1072,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 0.6,
+				Multiplier = 0.9,
 			},
 			Rare =
 			{
-				Multiplier = 0.9,
+				Multiplier = 1.5,
 			},
 			Epic =
 			{
-				Multiplier = 1.2,
+				Multiplier = 2.1,
 			},
 			Heroic =
 			{
-				Multiplier = 1.5,
+				Multiplier = 2.7,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},
@@ -1093,7 +1093,7 @@ NewMetaUpgradeTraitData = {
 			{
 				Key = "ModdedUpgradeChance",
 				ExtractAs = "Chance",
-				Format = "Percent"
+				Format = "LuckModifiedPercent"
 			},
 		},
     },

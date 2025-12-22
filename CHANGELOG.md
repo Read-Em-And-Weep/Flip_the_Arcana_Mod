@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Buffed Revelry (Dionysus) slightly
+- Buffed Revelry (Dionysus)
+- Nerfed Longing (Narcissus and Echo) and Famine (Demeter)
+- Hopefully fixed Companionship procing on Asterius miniboss in Zag Journey
+- Stopped Famine (Demeter) from procing on enemies that cannot be charmed (e.g. Minibosses)
+- Revelry (Dionysus)/Strife (Eris) affected by Success Rate
+- Bounty (Poseidon) offers +1 rarify each rank
+- Loyal Protector (Cerberus) now also heals in Warden/miniboss rooms!
 
 ## [2.3.4] - 2025-12-21
 

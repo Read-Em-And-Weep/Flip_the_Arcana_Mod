@@ -66,12 +66,12 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedSorceryRegenUpgrade",
         DisplayName = "The Loyal Protector",
-        Description = "Before facing a {$Keywords.Boss}, restore {$TooltipData.StatDisplay1}{!Icons.Health}."
+        Description = "Before facing a {$Keywords.Boss} or {$Keywords.MiniBoss}, restore {$TooltipData.StatDisplay1}{!Icons.Health}."
     },
     {
         Id = "ReversedSorceryRegenUpgrade_Vow",
         DisplayName = "The Loyal Protector",
-        Description = "Before facing a {$Keywords.Boss}, restore {$TooltipData.StatDisplay1}{!Icons.Health}, less than usual due to the {#PenaltyFormat}{$TooltipData.CustomStatLinesWithShrineUpgrade.ShrineUpgradeName}{#Prev}."
+        Description = "Before facing a {$Keywords.Boss} or {$Keywords.MiniBoss}, restore {$TooltipData.StatDisplay1}{!Icons.Health}, less than usual due to the {#PenaltyFormat}{$TooltipData.CustomStatLinesWithShrineUpgrade.ShrineUpgradeName}{#Prev}."
     },
     {
         Id = "ReversedSorceryRegenMetaUpgrade_FlavorText01",

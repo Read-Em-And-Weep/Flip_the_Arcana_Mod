@@ -1006,13 +1006,20 @@ modutil.mod.Path.Wrap("CheckChamberTraits", function(base)
 end)
 
 modutil.mod.Path.Wrap("Kill", function(base, victim, triggerArgs)
-	if victim and victim.IsBoss and not victim.BlockPostBossMetaUpgrades and ( not victim.UseGroupHealthBar or victim.GroupHealthBarOwner ) then
-		if HeroHasTrait("ReversedBonusRarityMetaUpgrade") then
-			local addFamiliarsTrait = GetHeroTrait("ReversedBonusRarityMetaUpgrade")
-			mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
+	if victim and victim.IsBoss and not victim.BlockPostBossMetaUpgrades and (not victim.UseGroupHealthBar or victim.GroupHealthBarOwner) then
+		local room = CurrentRun.CurrentRoom
+		if room then
+			local encounter = room.Encounter
+			if encounter and encounter.SkipBossTraits then
+			else
+				if HeroHasTrait("ReversedBonusRarityMetaUpgrade") then
+					local addFamiliarsTrait = GetHeroTrait("ReversedBonusRarityMetaUpgrade")
+					mod.AwardExtraPassiveFamiliarTrait(addFamiliarsTrait.RankAwarded)
+				end
+			end
 		end
 	end
-    return base(victim, triggerArgs)
+	return base(victim, triggerArgs)
 end)
 
 function mod.AwardDuosAndLegendaryTraits()
@@ -1098,7 +1105,7 @@ end
 modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	base(encounter)
 	encounter = encounter or CurrentRun.CurrentRoom.Encounter
-	if encounter.EncounterType == "Boss" and not encounter.SkipBossTraits and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") then
+	if (encounter.EncounterType == "Boss" or encounter.EncounterType == "Miniboss") and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") then
 		local healingTrait = GetHeroTrait("ReversedSorceryRegenMetaUpgrade")
 		local healingMultiplier = CalculateHealingMultiplier()
 		local healAmount = (healingTrait.HealAmount.Amount) * healingMultiplier
@@ -1226,7 +1233,7 @@ function mod.AwardExtraPassiveFamiliarTrait(rank)
 end
 
 modutil.mod.Path.Wrap("DoZeusSpawnDamage", function(base, enemy, traitArgs, damageAmount)
-if traitArgs.Vfx == "DemeterBossIceShatter" then
+if traitArgs.Vfx == "DemeterBossIceShatter" and not enemy.BlockCharm then
 	wait(0.1, RoomThreadName )
 	CreateAnimation({ Name = traitArgs.Vfx, DestinationId = enemy.ObjectId, Group = "FX_Standing_Top" })
 	thread( mod.FamineSpawnKillPresentation, enemy )
