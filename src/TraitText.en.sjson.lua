@@ -84,7 +84,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedCastBuff",
         DisplayName = "The Gorgon",
-        Description = "Foes in your {$Keywords.CastSet} deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage.",
+        Description = "At the start of every {$Keywords.EncounterAlt}, become {$Keywords.Invulnerable} for {$TooltipData.StatDisplay1} {#Prev} seconds.",
     },
     {
         Id = "ReversedCastBuff_FlavorText01",
@@ -327,7 +327,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedEpicRarityBoost",
         DisplayName = "Encouragement",
-        Description = "Gain {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{$ConsumableData.ElementalBoost.UseFunctionArgs.[1].TraitName}, and one {#BoldFormatGraft}1 random {#Prev}{$Keywords.Synergy} {$Keywords.GodBoonNoTooltip}."
+        Description = "Gain a {#BoldFormatGraft} random {#Prev} assortment of {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{$ConsumableData.ElementalBoost.UseFunctionArgs.[1].TraitName}, and one {#BoldFormatGraft} random {#Prev}{$Keywords.Synergy} {$Keywords.GodBoonNoTooltip}."
     },
     {
         Id = "ReversedEpicRarityBoost_FlavorText01",

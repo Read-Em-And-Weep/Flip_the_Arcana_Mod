@@ -50,7 +50,51 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             GameState.MetaUpgradeState[cardName].Visible = true
         end
     end
-	GameState.FlipTheArcanaHasRun = true
+	for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+            GameState.MetaUpgradeState[cardName].Visible = true
+        end
+    end
+	if not GameState.FlipTheArcanaHasRun then
+		GameState.FlipTheArcanaHasRun = true
+		for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
+        if GameState.MetaUpgradeState[metaUpgradeName].Equipped and not MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun then
+            GameState.MetaUpgradeState[metaUpgradeName].Visible = true
+        else
+            GameState.MetaUpgradeState[metaUpgradeName].Visible = false
+        end
+	end
+	for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
+    if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		GameState.FlipTheArcanaHasRun = true
+		return
+	end
+        if (GameState.MetaUpgradeState[metaUpgradeName].Visible and MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun) then
+            local row = MetaUpgradeCardData[metaUpgradeName].Row
+            local column = MetaUpgradeCardData[metaUpgradeName].Column
+            local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+            mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+        end
+    end
+    for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			if not GameState.FlipTheArcanaHasRun then
+				if (GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped) then
+					row = MetaUpgradeCardData[cardName].Row
+            		column = MetaUpgradeCardData[cardName].Column
+            		buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+            		mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+				end
+			end
+            GameState.MetaUpgradeState[cardName].Visible = true
+        end
+    end
+	for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+            GameState.MetaUpgradeState[cardName].Visible = true
+        end
+    end
+	end
     CheckAutoEquipCards()
 end)
 
@@ -374,6 +418,8 @@ end)
 
 modutil.mod.Path.Override("CloseMetaUpgradeCardScreen", function(screen, args)
     args = args or {}
+	CheckAutoEquipCards()
+	CheckAutoEquipCards()
     if not args.UpgradeTransition then
         if NoMetaUpgradeCardsUnlocked() then
             OpenNoUpgradeInfoScreen(screen)
@@ -397,28 +443,28 @@ modutil.mod.Path.Override("CloseMetaUpgradeCardScreen", function(screen, args)
     end
     RecordMetaUpgradeChanges(screen)
     UpdateEscapeDoorForLimitGraspShrineUpgrade(nil, { EscapeDoorIds = { 420947, 555784 } })
-    for metaUpgradeName, metaUpgradeData in pairs(GameState.MetaUpgradeState) do
-        if metaUpgradeData.Equipped then
-            local cardMultiplier = 1
-            if GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses and GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses.CustomMultiplier then
-                cardMultiplier = cardMultiplier +
-                GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses.CustomMultiplier
-            end
-            if HeroHasTrait(MetaUpgradeCardData[metaUpgradeName].TraitName) then
-                RemoveWeaponTrait(MetaUpgradeCardData[metaUpgradeName].TraitName, { Silent = true })
-            end
-            AddTraitToHero({
-                SkipNewTraitHighlight = true,
-                TraitName = MetaUpgradeCardData[metaUpgradeName].TraitName,
-                Rarity = TraitRarityData.RarityUpgradeOrder[GetMetaUpgradeLevel(metaUpgradeName)],
-                CustomMultiplier = cardMultiplier
-            })
-        else
-            if HeroHasTrait(MetaUpgradeCardData[metaUpgradeName].TraitName) and not metaUpgradeData.Equipped then
-                RemoveWeaponTrait(MetaUpgradeCardData[metaUpgradeName].TraitName, { Silent = true })
-            end
-        end
-    end
+	for metaUpgradeName, metaUpgradeData in pairs(GameState.MetaUpgradeState) do
+		if metaUpgradeData.Equipped then
+			local cardMultiplier = 1
+			if GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses and GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses.CustomMultiplier then
+				cardMultiplier = cardMultiplier +
+					GameState.MetaUpgradeState[metaUpgradeName].AdjacencyBonuses.CustomMultiplier
+			end
+			if HeroHasTrait(MetaUpgradeCardData[metaUpgradeName].TraitName) then
+				RemoveWeaponTrait(MetaUpgradeCardData[metaUpgradeName].TraitName, { Silent = true })
+			end
+			AddTraitToHero({
+				SkipNewTraitHighlight = true,
+				TraitName = MetaUpgradeCardData[metaUpgradeName].TraitName,
+				Rarity = TraitRarityData.RarityUpgradeOrder[GetMetaUpgradeLevel(metaUpgradeName)],
+				CustomMultiplier = cardMultiplier
+			})
+		else
+			if HeroHasTrait(MetaUpgradeCardData[metaUpgradeName].TraitName) and not metaUpgradeData.Equipped then
+				RemoveWeaponTrait(MetaUpgradeCardData[metaUpgradeName].TraitName, { Silent = true })
+			end
+		end
+	end
 
     CurrentRun.NumRerolls = GetTotalHeroTraitValue( "RerollCount" )
 
@@ -1106,10 +1152,8 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	base(encounter)
 	encounter = encounter or CurrentRun.CurrentRoom.Encounter
 	if (encounter.EncounterType == "Boss" or encounter.EncounterType == "Miniboss") and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") then
-		local healingTrait = GetHeroTrait("ReversedSorceryRegenMetaUpgrade")
-		local healingMultiplier = CalculateHealingMultiplier()
-		local healAmount = (healingTrait.HealAmount.Amount) * healingMultiplier
-		Heal(CurrentRun.Hero, {HealFraction = healAmount})
+		local heal = GetTotalHeroTraitValue("BossHealFraction") * CurrentRun.Hero.MaxHealth *CalculateHealingMultiplier()
+		Heal(CurrentRun.Hero, {HealAmount = heal, Silent = true})
 	end
 	if HeroHasTrait("ReversedStartingGoldMetaUpgrade") then
 		local armorTrait = GetHeroTrait("ReversedStartingGoldMetaUpgrade")
@@ -1152,9 +1196,12 @@ end)
 
 function mod.AddEncouragementElements(elementsToAdd)
 	local elementsAdded = 0 
+	local eligibleEssence = {"FireEssence", "WaterEssence","EarthEssence", "AirEssence"}
+	local essenceToAdd = GetRandomValue(eligibleEssence)
 	while elementsAdded < elementsToAdd do
-		AddTraitToHero({TraitName = "ElementalEssence"})
+		AddTraitToHero({TraitName = essenceToAdd})
 		elementsAdded = elementsAdded + 1
+		essenceToAdd = GetRandomValue(eligibleEssence)
 	end
 end
 
@@ -1338,10 +1385,6 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedMagicCritMetaUpgrade") and victim and GameState.SpentShrinePointsCache then
 		local fearMultipliedTrait = GetHeroTrait("ReversedMagicCritMetaUpgrade")
 		originalDamageMultiplier = originalDamageMultiplier * (1+fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
-	end
-	if attacker.ActiveEffects["ImpactSlow"] and HeroHasTrait("ReversedCastBuffMetaUpgrade") then
-		local decreasedDamageInCastTrait = GetHeroTrait("ReversedCastBuffMetaUpgrade")
-		originalDamageMultiplier = originalDamageMultiplier * decreasedDamageInCastTrait.LessDamageDealt
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedStatusVulnerabilityMetaUpgrade") and victim then
 		local noStatusDamageTrait = GetHeroTrait("ReversedStatusVulnerabilityMetaUpgrade")
@@ -1857,11 +1900,26 @@ modutil.mod.Path.Wrap("CreateDoorRewardPreview", function(base, exitDoor, chosen
 	chosenLootName = chosenLootName or room.ForceLootName
 
 	if chosenRewardType == "Devotion" then
-		print("room.Encounter.LootAName = "..tostring(room.Encounter.LootAName))
-		print("room.Encounter.LootBName = "..tostring(room.Encounter.LootBName))
 		if room.Encounter.LootBName == "MonstrosityMetaUpgradeUpgrade" then
 			room.Encounter.LootBName = GetRandomValue(GetEligibleLootNames({room.Encounter.LootAName }))
 		end
 	end
 	return base(exitDoor, chosenRewardType, chosenLootName, index, args)
 end)
+
+function mod.AwardStartingInvulnerability(unit, args)
+	local effectName = "AthenaInvulnerable"
+	local dataProperties = ShallowCopyTable( EffectData[effectName].DataProperties )
+	local duration = 0
+	if HeroHasTrait("ReversedCastBuffMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedCastBuffMetaUpgrade")
+		duration = trait.EncounterStartInvulnerabilityDuration
+	end 
+	dataProperties.Duration = duration
+	ApplyEffect({
+		DestinationId = CurrentRun.Hero.ObjectId,
+		Id = CurrentRun.Hero.ObjectId,
+		EffectName = effectName,
+		DataProperties = dataProperties
+	})
+end

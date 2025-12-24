@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- The Gorgon (Dusa) has been reworked to provide invulnerability time at the start of each encounter
+- Encouragement (Supportive Shade) now awards a random collection of elements
+- Hopefully fixed the issue of rarely getting both auto equip cards at the same time
+- Changed the way the Loyal Protector (Cerberus) worked, preventing it from incorrectly saying it healed 0 (when it was actually healing you)
 
 ## [2.4.1] - 2025-12-22
 

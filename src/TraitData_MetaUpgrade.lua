@@ -203,25 +203,22 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 14,
+				Multiplier = 1.4,
 			},
 			Rare =
 			{
-				Multiplier = 17,
+				Multiplier = 1.7,
 			},
 			Epic =
 			{
-				Multiplier = 20,
+				Multiplier = 2.0,
 			},
 			Heroic =
 			{
-				Multiplier = 23,
+				Multiplier = 2.3,
 			},
 		},
-        HealAmount = {
-            Amount = {BaseValue = .01},
-            ReportValues = { ReportedHeal = "Amount"}
-        },
+        BossHealFraction = {BaseValue = 0.1},
 		CustomStatLinesWithShrineUpgrade = 
 		{
 			ShrineUpgradeName = "HealingReductionShrineUpgrade",
@@ -233,7 +230,7 @@ NewMetaUpgradeTraitData = {
         ExtractValues = 
 		{
 			{
-				Key = "ReportedHeal",
+				Key = "BossHealFraction",
 				ExtractAs = "TooltipHeal",
 				Format = "PercentHeal",
 
@@ -248,29 +245,35 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 60, --40
+				Multiplier = 1, --40
 			},
 			Rare =
 			{
-				Multiplier = 55, --45
+				Multiplier = 3, --45
 			},
 			Epic =
 			{
-				Multiplier = 50, --50
+				Multiplier = 5, --50
 			},
 			Heroic =
 			{
-				Multiplier = 45, --55
+				Multiplier = 7, --55
 			},
 		},
-        LessDamageDealt = {BaseValue = 0.01},
+		EncounterStartInvulnerabilityDuration = {BaseValue = 1},
+		OnEncounterStartFunction = {
+			Name = _PLUGIN.guid .. ".AwardStartingInvulnerability",
+			Args = {
+				EffectName = "AthenaInvulnerable",
+				Duration = {BaseValue = 1},
+				ReportValues = {ReportedDuration = "Duration"}
+			}
+		},
         ExtractValues = 
 		{
 			{
-				Key = "LessDamageDealt",
-				ExtractAs = "OutgoingDamage",
-				Format = "PercentDelta"
-
+				Key = "ReportedDuration",
+				ExtractAs = "Duration",
 			},
         }
     },
@@ -1156,19 +1159,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1,
+				Multiplier = 2,
 			},
 			Rare =
 			{
-				Multiplier = 2,
+				Multiplier = 4,
 			},
 			Epic =
 			{
-				Multiplier = 3,
+				Multiplier = 6,
 			},
 			Heroic =
 			{
-				Multiplier = 4,
+				Multiplier = 8,
 			},
 		},
 		ElementsGranted = {BaseValue = 1},
