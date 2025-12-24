@@ -245,19 +245,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1, --40
+				Multiplier = 2, --40
 			},
 			Rare =
 			{
-				Multiplier = 3, --45
+				Multiplier = 4, --45
 			},
 			Epic =
 			{
-				Multiplier = 5, --50
+				Multiplier = 6, --50
 			},
 			Heroic =
 			{
-				Multiplier = 7, --55
+				Multiplier = 8, --55
 			},
 		},
 		EncounterStartInvulnerabilityDuration = {BaseValue = 1},
@@ -1159,19 +1159,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 2,
+				Multiplier = 4,
 			},
 			Rare =
 			{
-				Multiplier = 4,
+				Multiplier = 6,
 			},
 			Epic =
 			{
-				Multiplier = 6,
+				Multiplier = 8,
 			},
 			Heroic =
 			{
-				Multiplier = 8,
+				Multiplier = 10,
 			},
 		},
 		ElementsGranted = {BaseValue = 1},
