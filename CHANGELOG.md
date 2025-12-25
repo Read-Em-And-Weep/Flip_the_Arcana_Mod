@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.5.1] - 2025-12-25
+
 - Nerfed time Gorgon (Dusa) gives you invulnerability 
 
 ## [2.5.0] - 2025-12-24
@@ -187,7 +190,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.5.0...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.5.1...HEAD
+[2.5.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.5.0...2.5.1
 [2.5.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.4.1...2.5.0
 [2.4.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.3.4...2.4.0
