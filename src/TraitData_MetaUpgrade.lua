@@ -245,19 +245,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 2, --40
+				Multiplier = 2, 
 			},
 			Rare =
 			{
-				Multiplier = 4, --45
+				Multiplier = 3,
 			},
 			Epic =
 			{
-				Multiplier = 6, --50
+				Multiplier = 4,
 			},
 			Heroic =
 			{
-				Multiplier = 8, --55
+				Multiplier = 5,
 			},
 		},
 		EncounterStartInvulnerabilityDuration = {BaseValue = 1},
