@@ -16,7 +16,7 @@ end)
 
  
 modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
-    base(screen, cardArgs)
+	base(screen, cardArgs)
     GameState.FlipTheArcanaHasRun = GameState.FlipTheArcanaHasRun or false
     for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
         if GameState.MetaUpgradeState[metaUpgradeName].Equipped and not MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun then
@@ -1352,6 +1352,12 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 		end
 		CurrentRun.TemporaryMetaUpgrades[cardName] = true
 		GameState.MetaUpgradeState[cardName].Equipped = true
+		if CheckRoomExitsReady(CurrentRun.CurrentRoom) then
+			UnlockRoomExits(CurrentRun, CurrentRun.CurrentRoom)
+		end
+		if config.AlwaysUnlockAfterPurge then
+			UnlockRoomExits(CurrentRun, CurrentRun.CurrentRoom)
+		end
 	end
 	return outcome
 end)
@@ -1804,7 +1810,7 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 		
 		EndAutoSprint({ Halt = true, EndWeapon = true })
 		if mod.CanCardifyReward(target) and IsUseable({ Id = target.ObjectId }) then
-			
+				AddInputBlock({ Name = "Cardifying" })
 			local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
 			local previouslyRequired = false
 			if MapState.RoomRequiredObjects[target.ObjectId] then
@@ -1830,10 +1836,8 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 			if target.NotifyName then
 				notifyExistingWaiters( target.NotifyName )
 			end
-			if CheckRoomExitsReady(CurrentRun.CurrentRoom) then
-				UnlockRoomExits(CurrentRun, CurrentRun.CurrentRoom)
-			end
 		end
+			RemoveInputBlock({ Name = "Cardifying" })
 	end
 end })
 
@@ -1843,7 +1847,7 @@ modutil.mod.Path.Wrap("GoldifyPresentation", function(base,source)
 		local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
 		if cardDrawMetaTrait.Uses > 0 then
 			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "MonstrosityMetaUpgradeUpgrade"
-		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })				
+		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })
 		cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
 		UpdateTraitNumber(cardDrawMetaTrait)
 		end

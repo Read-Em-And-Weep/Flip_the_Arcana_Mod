@@ -23,7 +23,7 @@ Some of the cards do not have art yet, so enjoy the amazing stick people for now
 
 Random Chaos Trials cannot pull from the new deck right now, but fingers crossed I'll make the breakthrough on how to do it without having to override the base code!
 
-
+If you find you are getting stuck often after using Monstrosity (doors won't open), you can enable AlwaysUnlockAfterPurge in the config, which will always unlock doors after collecting the purged reward. This includes when it shouldn't - for instance in Devotion chambers, or in the Fields of Mourning
 # Thanks to:
 @burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Longing, Companionship, Doom, Encouragement and Monstrosity).
 
