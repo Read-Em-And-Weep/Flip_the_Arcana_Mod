@@ -1927,3 +1927,21 @@ function mod.AwardStartingInvulnerability(unit, args)
 		DataProperties = dataProperties
 	})
 end
+
+modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
+	if config.AutoUnlockAndUpgradeCards and Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		local newMetaUpgradeCards = {    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+}
+for row, rowData in pairs(newMetaUpgradeCards) do
+	for column, cardName in pairs(rowData) do
+		game.GameState.MetaUpgradeState[cardName].Unlocked = true
+		GameState.MetaUpgradeState[ cardName].Level = 3
+	end
+end
+	end
+	base(source,args) 
+end)

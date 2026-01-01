@@ -8,6 +8,7 @@ Every card can now be flipped into a whole new card with new upgrades to unlock!
 # How do I access the new arcana?
 After unlocking every familiar and gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things (or your reroll button, if that's preferable - particularly for controller users) to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
 
+If you don't want to unlock or upgrade the cards, there is a config option which when enabled will automatically unlock and upgrade to Epic all of the new cards.
 # Compatibility
 If you have Zagreus's Journey installed (Hades 1 run), the cards will require resources from that route in order to unlock and upgrade, giving you a real reason to take that route. 
 
@@ -24,6 +25,7 @@ Some of the cards do not have art yet, so enjoy the amazing stick people for now
 Random Chaos Trials cannot pull from the new deck right now, but fingers crossed I'll make the breakthrough on how to do it without having to override the base code!
 
 If you find you are getting stuck often after using Monstrosity (doors won't open), you can enable AlwaysUnlockAfterPurge in the config, which will always unlock doors after collecting the purged reward. This includes when it shouldn't - for instance in Devotion chambers, or in the Fields of Mourning
+
 # Thanks to:
 @burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Longing, Companionship, Doom, Encouragement and Monstrosity).
 

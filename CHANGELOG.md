@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- Added a new config option to auto unlock and upgrade cards to Epic once you've unlocked the incantation
 ## [2.5.2] - 2025-12-29
 
 - Added a new config option - if you find you are getting stuck often after using Monstrosity (doors won't open), you can enable AlwaysUnlockAfterPurge, which will always unlock doors after collecting the purged reward. This includes when it shouldn't - for instance in Devotion chambers, or in the Fields of Mourning
