@@ -698,6 +698,34 @@ end)
 
 modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
     local autoEquipMetaUpgrades = {}
+	if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		local autoEquipMetaUpgrades = {}
+	for metaUpgradeName, metaUpgradeData in pairs( GameState.MetaUpgradeState ) do
+		if metaUpgradeData.Unlocked and MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements then
+			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) then
+				if not MetaUpgradeCardEquipped(metaUpgradeName) then
+					autoEquipMetaUpgrades[ metaUpgradeName ] = true
+				end
+			elseif MetaUpgradeCardEquipped(metaUpgradeName) then
+				autoEquipMetaUpgrades[ metaUpgradeName ] = false
+			end
+		end
+	end
+	for metaUpgradeName, equipValue in pairs( autoEquipMetaUpgrades ) do
+		if equipValue then
+			if screen then
+				EquipMetaUpgradeBonusCardPresentation( screen, GetMetaUpgradeCardButton( screen, metaUpgradeName ))
+			end
+			GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+		else			
+			if screen then
+				UnequipMetaUpgradeBonusCardPresentation( screen, GetMetaUpgradeCardButton( screen, metaUpgradeName ))
+			end
+			GameState.MetaUpgradeState[metaUpgradeName].Equipped = nil
+		end
+	end
+	return
+	end
 	if not GameState.FlipTheArcanaHasRun then
 		return
 	end
