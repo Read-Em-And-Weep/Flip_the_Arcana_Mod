@@ -1215,7 +1215,7 @@ end)
 
 modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
 	local newTrait = DeepCopyTable( traitData )
-	if newTrait.Name == "ReversedEpicRarityBoostMetaUpgrade" and not (game.CurrentHubRoom and game.CurrentHubRoom.Name == "Hub_PreRun") then
+	if newTrait and newTrait.Name == "ReversedEpicRarityBoostMetaUpgrade" and not (game.CurrentHubRoom and game.CurrentHubRoom.Name == "Hub_PreRun") then
 		mod.AddEncouragementElements(newTrait.ElementsGranted)
 		GrantBoons({BoonSets = {{ "ElementalDamageBoon", "ElementalOlympianDamageBoon", "ElementalBaseDamageBoon", "ElementalRallyBoon", "ElementalDamageFloorBoon", "ElementalDodgeBoon", "ElementalHealthBoon", "ElementalDamageCapBoon", "ElementalUnifiedBoon" },}}, nil)
 	end
