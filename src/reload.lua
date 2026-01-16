@@ -416,8 +416,11 @@ end)
 
 
 
-modutil.mod.Path.Override("CloseMetaUpgradeCardScreen", function(screen, args)
-    args = args or {}
+modutil.mod.Path.Wrap("CloseMetaUpgradeCardScreen", function(base, screen, args)
+    if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return base(screen, args)
+	else
+	args = args or {}
 	CheckAutoEquipCards()
 	CheckAutoEquipCards()
     if not args.UpgradeTransition then
@@ -561,6 +564,7 @@ modutil.mod.Path.Override("CloseMetaUpgradeCardScreen", function(screen, args)
 	if (FatedEnableKeepsakes[GameState.LastAwardTrait] or HeroHasTrait("ReversedTradeOffMetaUpgrade") or HeroHasTrait("ReversedScreenRerollMetaUpgrade") or HeroHasTrait("ReversedDoorRerollMetaUpgrade")) and screen.StartingFateValid ~= PreRunIsFateValid() then
 		thread( FatedValidityStatePresentation, delay )
 	end
+end
 end)
 
 --[[ function LookupRowandColumn(metaUpgradeName)
@@ -1967,7 +1971,9 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
 for row, rowData in pairs(newMetaUpgradeCards) do
 	for column, cardName in pairs(rowData) do
 		game.GameState.MetaUpgradeState[cardName].Unlocked = true
+		if GameState.MetaUpgradeState[ cardName].Level and GameState.MetaUpgradeState[ cardName].Level < 3 then
 		GameState.MetaUpgradeState[ cardName].Level = 3
+		end
 	end
 end
 	end
