@@ -296,7 +296,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedScreenReroll",
         DisplayName = "Revelry",
-        Description = "While at the {$Keywords.Random}, whenever you claim {$Keywords.GodBoonPlural}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, up to two random {$Keywords.GodBoonPlural} will gain {#UpgradeFormat}+1{$Keywords.PomLevel}"
+        Description = "While at the {$Keywords.Random}, {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev} of the time, {$Keywords.PomPlural} will award twice the {$Keywords.PomLevel}"
     },
     {
         Id = "ReversedScreenReroll_FlavorText01",

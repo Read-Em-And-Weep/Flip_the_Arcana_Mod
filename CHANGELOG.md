@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- New art for Revelry (Dionysus). Thanks @cloveroforleans!
+- Revamped function of Revelry (Dionysus). Now has a chance to double to potency of Poms of Power when at Fates' Whim
+- Random Chaos Trials can now include your flipped arcana cards!
 ## [2.6.3] - 2026-01-16
 
 - Hopefully fixed issue preventing arcana screen from closing when you first unlock insights

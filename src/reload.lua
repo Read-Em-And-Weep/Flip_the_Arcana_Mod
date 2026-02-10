@@ -1354,14 +1354,6 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 
 	local upgradeData = button.Data
 
-	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() and (source.GodLoot or name == "HermesUpgrade") then
-		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
-		if chanceUpgradeBoon and RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
-			thread(AddStackToTraits, { NumStacks = 1})
-			wait(0.8)
-			thread(AddStackToTraits, { NumStacks = 1})
-		end
-	end
 	if HeroHasTrait("ReversedDoorRerollMetaUpgrade") and IsFateValid() and not source.StrifeDuplicated and (source.GodLoot or source.CanDuplicate or name == "WeaponUpgrade" or name == "HermesUpgrade") then
 		local doubleRewardTrait = GetHeroTrait("ReversedDoorRerollMetaUpgrade")
 		if doubleRewardTrait and RandomChance(doubleRewardTrait.ModdedDoubleRewardChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
@@ -1392,6 +1384,20 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 		end
 	end
 	return outcome
+end)
+
+modutil.mod.Path.Wrap("CreateStackLoot", function(base, args)
+	args = args or {}
+	if args.StackNum == nil then
+		args.StackNum = 1
+	end
+	if HeroHasTrait("ReversedScreenRerollMetaUpgrade") and IsFateValid() then
+		local chanceUpgradeBoon = GetHeroTrait("ReversedScreenRerollMetaUpgrade")
+		if chanceUpgradeBoon and RandomChance(chanceUpgradeBoon.ModdedUpgradeChance) then
+		args.StackNum = args.StackNum * 2
+		end
+	end
+	return base(args)
 end)
 
 
@@ -1978,4 +1984,315 @@ for row, rowData in pairs(newMetaUpgradeCards) do
 end
 	end
 	base(source,args) 
+end)
+
+--[[modutil.mod.Path.Wrap("StartPackagedBounty", function(base,screen, button)
+base(screen, button)
+local bountyData = button.Data
+if bountyData.RandomMetaUpgradeCostTotal then
+	for metaUpgradeName, metaUpgradeState in pairs( GameState.MetaUpgradeState ) do
+		GameState.MetaUpgradeState[metaUpgradeName].Equipped = false
+	end
+	local metaUpgradeNames = {}
+		local combinedMetaUpgradeDefaultCardLayout = {
+        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+    }
+
+		for row, rowData in pairs( combinedMetaUpgradeDefaultCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+			if metaUpgradeData and metaUpgradeData.Unlocked then
+				local fateConflict = false
+				if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
+					fateConflict = true
+				end
+				if FatedDisableKeepsakes[GameState.LastAwardTrait]and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
+					fateConflict = true
+				end
+				if not fateConflict then
+						table.insert(metaUpgradeNames, cardName)
+					end
+			end
+		end
+	end
+
+
+		local totalGraspCost = 0
+		for i, upgradeName in ipairs( metaUpgradeNames ) do
+			totalGraspCost = totalGraspCost + MetaUpgradeCardData[upgradeName].Cost
+		end
+-- Use a recursive subset-sum algorithm to determine a random combination of cards summing up to the budget
+		local budget = bountyData.RandomMetaUpgradeCostTotal
+		local cardState = {}
+		local equippedGraspCost = 0
+		RandomBountyProcessMetaUpgrades( 0, totalGraspCost, 0, budget, metaUpgradeNames, cardState )
+		for i, enabled in ipairs( cardState ) do
+			if enabled then
+				GameState.MetaUpgradeState[metaUpgradeNames[i].Equipped = true
+				equippedGraspCost = equippedGraspCost + MetaUpgradeCardData[metaUpgradeNames[i].Cost
+			end
+		end
+		DebugAssert({ Condition = (equippedGraspCost == budget), Text = "Equipped grasp for random Arcana does not match budget!", Owner = "Caleb" })
+		CheckAutoEquipCards()
+	end
+	GetCurrentMetaUpgradeCost()
+end)]]
+
+modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades", function(base, sum, remaining, index, budget, candidates, cardState )
+	if index == 0 then
+		local newCards = {}
+		local flippedMetaUpgradeDefaultCardLayout = {
+    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+    }
+
+		for row, rowData in pairs( flippedMetaUpgradeDefaultCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+			if metaUpgradeData and metaUpgradeData.Unlocked and metaUpgradeData.AutoEquipRequirements == nil then
+				local fateConflict = false
+				if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
+					fateConflict = true
+				end
+				if FatedDisableKeepsakes[GameState.LastAwardTrait]and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
+					fateConflict = true
+				end
+				if not fateConflict then
+						table.insert(candidates, game.RandomInt(1, #candidates-1), cardName)
+						table.insert(newCards, cardName)
+					end
+			end
+		end
+	end
+
+
+		for i, upgradeName in ipairs( newCards ) do
+			remaining = remaining + MetaUpgradeCardData[upgradeName].Cost
+		end
+
+	end
+	return base(sum, remaining, index, budget, candidates, cardState )
+end)
+
+modutil.mod.Path.Override("StartPackagedBounty", function(screen,button)
+	AddInputBlock({ Name = "StartPackagedBounty" })
+	SetAnimation({ DestinationId = CurrentRun.Hero.ObjectId, Name = "MelinoeIdleWeaponless" })
+	CloseBountyBoardScreen( screen, button )
+
+	local bountyData = button.Data
+
+	StoredGameStateInit( GameState )
+
+	if GameState.NextRunSeed ~= nil then
+		RandomSetNextInitSeed( { Seed = GameState.NextRunSeed } )
+		GameState.NextRunSeed = nil
+	end
+	RandomSynchronize()
+
+	if not bountyData.RandomBountyStreakEligible then
+		GameState.RandomBountyClearStreak = 0
+	end
+	
+	if bountyData.WeaponKitName ~= nil then
+		EquipPlayerWeapon( WeaponData[bountyData.WeaponKitName], { SkipPresentation = true } )
+	elseif bountyData.RandomWeaponKitNames ~= nil then
+		local eligibleWeaponKitNames = ShallowCopyTable( bountyData.RandomWeaponKitNames )
+		RemoveValueAndCollapse( eligibleWeaponKitNames, GameState.LastRandomBountyWeaponName )
+		local randomWeaponName = GetRandomValue( eligibleWeaponKitNames )
+		GameState.LastRandomBountyWeaponName = randomWeaponName
+		EquipPlayerWeapon( WeaponData[randomWeaponName], { SkipPresentation = true } )
+	end
+	if bountyData.WeaponUpgradeName ~= nil then
+		local weaponName = GetEquippedWeapon()
+		if HasAnyAspectUnlocked( weaponName ) then
+			GameState.LastWeaponUpgradeName[weaponName] = bountyData.WeaponUpgradeName
+		end
+	elseif bountyData.UseRandomWeaponUpgrade then
+		local weaponName = GetEquippedWeapon()
+		GameState.LastWeaponUpgradeName[weaponName] = GetRandomValue( ScreenData.WeaponUpgradeScreen.DisplayOrder[weaponName] )
+	end
+	
+	if bountyData.KeepsakeName ~= nil then
+		GameState.LastAwardTrait = bountyData.KeepsakeName
+	elseif bountyData.RandomKeepsakeNames ~= nil then
+		local eligibleKeepsakeNames = CombineTables( bountyData.RandomKeepsakeNames, bountyData.RandomFatedKeepsakeNames )
+		RemoveValueAndCollapse( eligibleKeepsakeNames, GameState.LastRandomBountyKeepsakeName )
+		GameState.LastAwardTrait = GetRandomValue( eligibleKeepsakeNames )
+		GameState.LastRandomBountyKeepsakeName = GameState.LastAwardTrait
+	end
+
+	if bountyData.RemoveFamiliar then
+		GameState.EquippedFamiliar = nil
+	elseif bountyData.FamiliarName ~= nil then
+		GameState.EquippedFamiliar = bountyData.FamiliarName
+	elseif bountyData.RandomFamiliarNames ~= nil then
+		GameState.EquippedFamiliar = GetRandomValue( bountyData.RandomFamiliarNames )
+	end
+
+	-- Clear all non-specified ShrineUpgrades
+	for shrineUpgradeName, shrineUpgradeLevel in pairs( GameState.ShrineUpgrades ) do
+		GameState.ShrineUpgrades[shrineUpgradeName] = 0
+	end
+	if bountyData.ShrineUpgradesActive ~= nil then
+		for shrineUpgradeName, shrineUpgradeLevel in pairs( bountyData.ShrineUpgradesActive ) do
+			GameState.ShrineUpgrades[shrineUpgradeName] = shrineUpgradeLevel
+		end
+	elseif bountyData.RandomShrineUpgradePointTotal ~= nil then
+		-- For now, mark all purely 1-pointer upgrades as reserved.
+		-- We may need them later to fill in gaps.
+		local reservedShrineUpgrades = {}
+		local totalReservedPoints = 0
+		for i, name in ipairs( ShrineUpgradeOrder ) do
+			local shrineUpgradeData = MetaUpgradeData[name]
+			if not shrineUpgradeData.IgnoredByRandomBounties then
+				local pointSum = 0
+				for j, rank in ipairs( shrineUpgradeData.Ranks ) do
+					if rank.Points == 1 then
+						pointSum = pointSum + 1
+					end
+				end
+				if pointSum == #shrineUpgradeData.Ranks then
+					reservedShrineUpgrades[name] = pointSum
+					totalReservedPoints = totalReservedPoints + pointSum
+				end
+			end
+		end
+
+		-- We only need to reserve 3 shrine points, so let's whittle down the list.
+		local maxPointsPerRank = 3
+		DebugAssert({ Condition = totalReservedPoints >= maxPointsPerRank, Text = "Not enough potential reserves!", Owner = "Caleb" })
+		while totalReservedPoints > maxPointsPerRank do
+			local shrineUpgrade = GetRandomKey( reservedShrineUpgrades )
+			reservedShrineUpgrades[shrineUpgrade] = reservedShrineUpgrades[shrineUpgrade] - 1
+			totalReservedPoints = totalReservedPoints - 1
+			if reservedShrineUpgrades[shrineUpgrade] <= 0 then
+				reservedShrineUpgrades[shrineUpgrade] = nil
+			end
+		end
+
+		-- Determine the available list of shrine upgrades (excluding reserved ranks)
+		local availableShrineUpgradeRanks = {}
+		for i, name in ipairs( ShrineUpgradeOrder ) do
+			local shrineUpgradeData = MetaUpgradeData[name]
+			if not shrineUpgradeData.IgnoredByRandomBounties then
+				local maxRank = GetShrineUpgradeMaxRank( shrineUpgradeData ) - (reservedShrineUpgrades[name] or 0)
+				if maxRank > 0 then
+					availableShrineUpgradeRanks[name] = maxRank
+				end
+			end
+		end
+
+		local budget = bountyData.RandomShrineUpgradePointTotal
+		local currentCostTotal = 0
+		while currentCostTotal < budget do
+			local outOfOptions = IsEmpty( availableShrineUpgradeRanks )
+			if outOfOptions and reservedShrineUpgrades == nil then
+				-- This should never happen, but just in case, prevent an infinite loop...
+				DebugAssert({ Condition = false, Text = "Ran completely out of shrine point options!", Owner = "Caleb" })
+				break
+			end
+
+			-- If we're out of affordable options, or if we're close to the budget, add the reserves to the pool.
+			if reservedShrineUpgrades ~= nil and ( outOfOptions or (budget - currentCostTotal) <= maxPointsPerRank ) then
+				for name, ranks in pairs( reservedShrineUpgrades ) do
+					availableShrineUpgradeRanks[name] = (availableShrineUpgradeRanks[name] or 0) + ranks
+				end
+				reservedShrineUpgrades = nil
+			end
+
+			-- Pick a random upgrade to level up.
+			-- If we can't afford it, we'll remove it from the pool and pick something else.
+			local randomUpgradeName = GetRandomKey( availableShrineUpgradeRanks )
+			local currentLevel = GameState.ShrineUpgrades[randomUpgradeName] or 0
+			local nextCost = MetaUpgradeData[randomUpgradeName].Ranks[currentLevel + 1].Points
+			if currentCostTotal + nextCost > budget then
+				-- priced out, remove the upgrade from the pool!
+				availableShrineUpgradeRanks[randomUpgradeName] = nil
+			else
+				-- purchased!
+				availableShrineUpgradeRanks[randomUpgradeName] = availableShrineUpgradeRanks[randomUpgradeName] - 1
+				if availableShrineUpgradeRanks[randomUpgradeName] <= 0 then
+					-- maxed out, remove the upgrade from the pool!
+					availableShrineUpgradeRanks[randomUpgradeName] = nil
+				end
+				GameState.ShrineUpgrades[randomUpgradeName] = (GameState.ShrineUpgrades[randomUpgradeName] or 0) + 1
+				currentCostTotal = currentCostTotal + nextCost
+			end
+		end
+	end
+	GameState.SpentShrinePointsCache = GetTotalSpentShrinePoints()
+	GameState.ActiveShrineBounty = nil
+
+	-- Clear all non-specified MetaUpgrades
+	for metaUpgradeName, metaUpgradeState in pairs( GameState.MetaUpgradeState ) do
+		GameState.MetaUpgradeState[metaUpgradeName].Equipped = false
+	end
+	if bountyData.MetaUpgradeStateEquipped ~= nil then
+		for k, metaUpgradeName in pairs( bountyData.MetaUpgradeStateEquipped ) do
+			GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+		end
+	elseif bountyData.RandomMetaUpgradeCostTotal ~= nil then
+		-- Gather all non-AutoEquip cards that don't conflict with the keepsake
+		local metaUpgradeNames = {}
+		for rowNum, upgradeNames in pairs( MetaUpgradeDefaultCardLayout ) do
+			for i, upgradeName in ipairs( upgradeNames ) do
+				if MetaUpgradeCardData[upgradeName].AutoEquipRequirements == nil then
+					if not FatedEnableKeepsakes[GameState.LastAwardTrait] or not FatedDisableMetaUpgrades[upgradeName] then
+						table.insert( metaUpgradeNames, upgradeName )
+					end
+				end
+			end
+		end
+
+		-- Sum up their Grasp costs
+		local totalGraspCost = 0
+		for i, upgradeName in ipairs( metaUpgradeNames ) do
+			totalGraspCost = totalGraspCost + MetaUpgradeCardData[upgradeName].Cost
+		end
+
+		-- Use a recursive subset-sum algorithm to determine a random combination of cards summing up to the budget
+		local budget = bountyData.RandomMetaUpgradeCostTotal
+		local cardState = {}
+		local equippedGraspCost = 0
+		RandomBountyProcessMetaUpgrades( 0, totalGraspCost, 0, budget, metaUpgradeNames, cardState )
+		for i, enabled in ipairs( cardState ) do
+			if enabled then
+				print(metaUpgradeNames[i])
+				GameState.MetaUpgradeState[metaUpgradeNames[i]].Equipped = true
+				equippedGraspCost = equippedGraspCost + MetaUpgradeCardData[metaUpgradeNames[i]].Cost
+			end
+		end
+		DebugAssert({ Condition = (equippedGraspCost == budget), Text = "Equipped grasp for random Arcana does not match budget!", Owner = "Caleb" })
+		CheckAutoEquipCards()
+	end
+	GetCurrentMetaUpgradeCost()
+
+	-- Bounties shouldn't have biome states unless explicitly provided
+	if GameState.NextBiomeStateName ~= nil then
+		local biomeStateData = BiomeStateData.BiomeStates[GameState.NextBiomeStateName]
+		if biomeStateData ~= nil and biomeStateData.BiomeEndPresentationFunctionName ~= nil then
+			thread( CallFunctionName, biomeStateData.BiomeEndPresentationFunctionName )
+		end
+	end
+	GameState.NextBiomeStateName = bountyData.ForcedBiomeState or BiomeStateData.DefaultBiomeState
+
+	GameState.PackagedBountyAttempts[bountyData.Name] = (GameState.PackagedBountyAttempts[bountyData.Name] or 0) + 1
+	
+	BountyPackagePreRunStartPresentation( bountyData, { ActiveBounty = bountyData.Name, ActiveBountyClears = GameState.PackagedBountyClears[bountyData.Name] or 0, ActiveBountyAttempts = GameState.PackagedBountyAttempts[bountyData.Name] } )
+	WaitForSpeechFinished()
+
+	StartOver( { StartingBiome = bountyData.StartingBiome, ForcedRewards = bountyData.ForcedRewards, ActiveBounty = bountyData.Name, RunOverrides = bountyData.RunOverrides, StartingRoomOverrides = bountyData.StartingRoomOverrides  } )
+	RemoveInputBlock({ Name = "StartPackagedBounty" })
 end)
