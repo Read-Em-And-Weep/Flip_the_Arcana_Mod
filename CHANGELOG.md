@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.1] - 2026-02-10
+
 - Removed a print statement I accidently left in. Oops!
 
 ## [2.7.0] - 2026-02-10
@@ -219,7 +221,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.0...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.1...HEAD
+[2.7.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.3...2.7.0
 [2.6.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.2...2.6.3
 [2.6.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.1...2.6.2
