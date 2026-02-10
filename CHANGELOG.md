@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.2] - 2026-02-10
+
 - Made changes to make the assortment of what cards you get in the Chaos Trial slightly more random
 - Bounty (Poseidon) now has Perfectionist support!
 - Buffed Reverly (Dionysus) chance to recieve double the number of levels from Poms
@@ -225,7 +227,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.1...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.2...HEAD
+[2.7.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.3...2.7.0
 [2.6.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.2...2.6.3
