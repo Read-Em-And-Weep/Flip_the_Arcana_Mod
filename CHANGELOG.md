@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Made changes to make the assortment of what cards you get in the Chaos Trial slightly more random
+- Bounty (Poseidon) now has Perfectionist support!
+- Buffed Reverly (Dionysus) chance to recieve double the number of levels from Poms
+
 ## [2.7.1] - 2026-02-10
 
 - Removed a print statement I accidently left in. Oops!

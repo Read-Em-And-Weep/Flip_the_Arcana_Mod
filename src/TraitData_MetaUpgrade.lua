@@ -385,7 +385,7 @@ NewMetaUpgradeTraitData = {
 			RequireNotExcludeFromLastRunBoon = true,
 			MultiUse = true,
 			Uses = { BaseValue = 1 },
-			MaxRarity = 3,
+			MaxRarity = 5,
 			ReportValues = 
 			{ 
 				ReportedUpgrades = "Uses",
@@ -1075,19 +1075,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.5,
+				Multiplier = 2.1,
 			},
 			Rare =
 			{
-				Multiplier = 2.1,
+				Multiplier = 2.7,
 			},
 			Epic =
 			{
-				Multiplier = 2.7,
+				Multiplier = 3.3,
 			},
 			Heroic =
 			{
-				Multiplier = 3.3,
+				Multiplier = 3.9,
 			},
 		},
 		ModdedUpgradeChance = {BaseValue = .1},

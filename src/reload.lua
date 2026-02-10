@@ -1011,6 +1011,7 @@ modutil.mod.Path.Override("UpgradeChoiceScreenCheckRarifyButton", function(scree
     local uses = 0
 	local upgradeTraitData = nil
 	local multiUse = false
+	local maxRarity = 0
 	for _, traitData in ipairs( CurrentRun.Hero.Traits ) do
 		if traitData.RarityUpgradeData then
 			if not traitData.RarityUpgradeData.LootName and ( button.LootData.GodLoot or button.LootData.TreatAsGodLootByShops) and (not traitData.RarityUpgradeData.RequireNotExcludeFromLastRunBoon or not button.LootData.ExcludeFromLastRunBoon ) then
@@ -1018,12 +1019,18 @@ modutil.mod.Path.Override("UpgradeChoiceScreenCheckRarifyButton", function(scree
                 if upgradeTraitData.RarityUpgradeData.RequireFated and not IsFateValid() then
                 else 
                     uses = uses + upgradeTraitData.RarityUpgradeData.Uses
+					if upgradeTraitData.RarityUpgradeData.MaxRarity > maxRarity then
+						maxRarity = upgradeTraitData.RarityUpgradeData.MaxRarity
+					end
                 end
 			end
 			if lootData.Name == traitData.RarityUpgradeData.LootName then
 				-- More specific upgrades always take priority over general ones
 				upgradeTraitData = traitData
                 uses = uses + upgradeTraitData.RarityUpgradeData.Uses
+				if upgradeTraitData.RarityUpgradeData.MaxRarity > maxRarity then
+				maxRarity = upgradeTraitData.RarityUpgradeData.MaxRarity
+				end
 			end
 		end
 	end
@@ -1036,7 +1043,7 @@ modutil.mod.Path.Override("UpgradeChoiceScreenCheckRarifyButton", function(scree
 				multiUse = true
 			end
 			for i, upgradeData in pairs(lootData.UpgradeOptions) do
-				if not traitData.BlockMenuRarify and traitData.Name == upgradeData.ItemName and GetUpgradedRarity(traitData.Rarity) ~= nil and traitData.RarityLevels[GetUpgradedRarity(traitData.Rarity)] ~= nil and GetRarityValue( traitData.Rarity ) <= upgradeTraitData.RarityUpgradeData.MaxRarity then
+				if not traitData.BlockMenuRarify and traitData.Name == upgradeData.ItemName and GetUpgradedRarity(traitData.Rarity) ~= nil and traitData.RarityLevels[GetUpgradedRarity(traitData.Rarity)] ~= nil and GetRarityValue( traitData.Rarity ) <= maxRarity then
 					upgradeData.Rarity = GetUpgradedRarity(traitData.Rarity)
 					validUpgradeIndex = true
 				end
@@ -1986,102 +1993,47 @@ end
 	base(source,args) 
 end)
 
---[[modutil.mod.Path.Wrap("StartPackagedBounty", function(base,screen, button)
-base(screen, button)
-local bountyData = button.Data
-if bountyData.RandomMetaUpgradeCostTotal then
-	for metaUpgradeName, metaUpgradeState in pairs( GameState.MetaUpgradeState ) do
-		GameState.MetaUpgradeState[metaUpgradeName].Equipped = false
-	end
-	local metaUpgradeNames = {}
-		local combinedMetaUpgradeDefaultCardLayout = {
-        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
-	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
-	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
-	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
 
-		for row, rowData in pairs( combinedMetaUpgradeDefaultCardLayout ) do
-		for column, cardName in pairs( rowData ) do
-			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
-			if metaUpgradeData and metaUpgradeData.Unlocked then
-				local fateConflict = false
-				if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
-					fateConflict = true
-				end
-				if FatedDisableKeepsakes[GameState.LastAwardTrait]and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
-					fateConflict = true
-				end
-				if not fateConflict then
-						table.insert(metaUpgradeNames, cardName)
+modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
+	function(base, sum, remaining, index, budget, candidates, cardState)
+		if index == 0 then
+			local newCards = {}
+			local flippedMetaUpgradeDefaultCardLayout = {
+				{ "ReversedChanneledCast", "ReversedHealthRegen",  "ReversedLowManaDamageBonus", "ReversedCastCount",           "ReversedSorceryRegenUpgrade", },
+				{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
+				{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
+				{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
+				{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" },
+			}
+
+			for row, rowData in pairs(flippedMetaUpgradeDefaultCardLayout) do
+				for column, cardName in pairs(rowData) do
+					local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+					if metaUpgradeData and metaUpgradeData.Unlocked and metaUpgradeData.AutoEquipRequirements == nil then
+						local fateConflict = false
+						if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
+							fateConflict = true
+						end
+						if FatedDisableKeepsakes[GameState.LastAwardTrait] and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
+							fateConflict = true
+						end
+						if not fateConflict then
+							if CoinFlip() then
+								table.insert(candidates, 1, cardName)
+								table.insert(newCards, cardName)
+							else
+								table.insert(candidates, #candidates - 1, cardName)
+								table.insert(newCards, cardName)
+							end
+						end
 					end
-			end
-		end
-	end
-
-
-		local totalGraspCost = 0
-		for i, upgradeName in ipairs( metaUpgradeNames ) do
-			totalGraspCost = totalGraspCost + MetaUpgradeCardData[upgradeName].Cost
-		end
--- Use a recursive subset-sum algorithm to determine a random combination of cards summing up to the budget
-		local budget = bountyData.RandomMetaUpgradeCostTotal
-		local cardState = {}
-		local equippedGraspCost = 0
-		RandomBountyProcessMetaUpgrades( 0, totalGraspCost, 0, budget, metaUpgradeNames, cardState )
-		for i, enabled in ipairs( cardState ) do
-			if enabled then
-				GameState.MetaUpgradeState[metaUpgradeNames[i].Equipped = true
-				equippedGraspCost = equippedGraspCost + MetaUpgradeCardData[metaUpgradeNames[i].Cost
-			end
-		end
-		DebugAssert({ Condition = (equippedGraspCost == budget), Text = "Equipped grasp for random Arcana does not match budget!", Owner = "Caleb" })
-		CheckAutoEquipCards()
-	end
-	GetCurrentMetaUpgradeCost()
-end)]]
-
-modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades", function(base, sum, remaining, index, budget, candidates, cardState )
-	if index == 0 then
-		local newCards = {}
-		local flippedMetaUpgradeDefaultCardLayout = {
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
-
-		for row, rowData in pairs( flippedMetaUpgradeDefaultCardLayout ) do
-		for column, cardName in pairs( rowData ) do
-			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
-			if metaUpgradeData and metaUpgradeData.Unlocked and metaUpgradeData.AutoEquipRequirements == nil then
-				local fateConflict = false
-				if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
-					fateConflict = true
 				end
-				if FatedDisableKeepsakes[GameState.LastAwardTrait]and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
-					fateConflict = true
-				end
-				if not fateConflict then
-						table.insert(candidates, game.RandomInt(1, #candidates-1), cardName)
-						table.insert(newCards, cardName)
-					end
+			end
+
+
+			for i, upgradeName in ipairs(newCards) do
+				remaining = remaining + MetaUpgradeCardData[upgradeName].Cost
 			end
 		end
-	end
-
-
-		for i, upgradeName in ipairs( newCards ) do
-			remaining = remaining + MetaUpgradeCardData[upgradeName].Cost
-		end
-
-	end
-	return base(sum, remaining, index, budget, candidates, cardState )
-end)
+		return base(sum, remaining, index, budget, candidates, cardState)
+	end)

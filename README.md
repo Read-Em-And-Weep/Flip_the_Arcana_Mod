@@ -14,6 +14,8 @@ If you have Zagreus's Journey installed (Hades 1 run), the cards will require re
 
 In addition, if Extended Altar of Ashes is installed, you will get additional levels for these cards! 
 
+If Perfectionist is installed, one of the cards will allow you to rarify to that rarity (though it does not display that you can, for some reason)
+
 # Uninstallation
 With my testing, it seems pretty safe to uninstall, however I would recommend that you unequip and flip over all of your cards before playing vanilla just to be safe.
 
