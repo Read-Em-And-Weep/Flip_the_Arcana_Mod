@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.3] - 2026-02-11
+
 - Added Cyclops (Polyphemus) art. Thanks @cloveroforleans!
 - Corrected the roman numeral on Bounty (Poseidon). Oops!
 
@@ -230,7 +232,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.2...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.3...HEAD
+[2.7.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.2...2.7.3
 [2.7.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.6.3...2.7.0
