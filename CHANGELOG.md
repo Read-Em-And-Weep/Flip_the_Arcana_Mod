@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added Cyclops (Polyphemus) art. Thanks @cloveroforleans!
+- Corrected the roman numeral on Bounty (Poseidon). Oops!
+
 ## [2.7.2] - 2026-02-10
 
 - Made changes to make the assortment of what cards you get in the Chaos Trial slightly more random
