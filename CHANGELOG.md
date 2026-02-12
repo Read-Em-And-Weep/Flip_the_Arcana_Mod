@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added Famine (Demeter) art. Thanks @cloveroforleans!
+
 ## [2.7.3] - 2026-02-11
 
 - Added Cyclops (Polyphemus) art. Thanks @cloveroforleans!
