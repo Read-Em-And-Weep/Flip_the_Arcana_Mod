@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.4] - 2026-02-12
+
 - Added Famine (Demeter) art. Thanks @cloveroforleans!
 
 ## [2.7.3] - 2026-02-11
@@ -234,7 +236,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.3...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.4...HEAD
+[2.7.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.3...2.7.4
 [2.7.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.2...2.7.3
 [2.7.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.0...2.7.1
