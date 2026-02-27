@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added Blacksmith (Hephaestus) art. Thanks @burn03!
+
 ## [2.7.4] - 2026-02-12
 
 - Added Famine (Demeter) art. Thanks @cloveroforleans!

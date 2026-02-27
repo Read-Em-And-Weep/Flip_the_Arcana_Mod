@@ -27,7 +27,7 @@ Some of the cards do not have art yet, so enjoy the amazing stick people for now
 If you find you are getting stuck often after using Monstrosity (doors won't open), you can enable AlwaysUnlockAfterPurge in the config, which will always unlock doors after collecting the purged reward. This includes when it shouldn't - for instance in Devotion chambers, or in the Fields of Mourning
 
 # Thanks to:
-@burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, Retribution, The Wanderer, The Strategist, Beauty, Longing, Companionship, Doom, Encouragement and Monstrosity).
+@burn03 for their incredible art on the cards!! (Currently The Faithful Daughter, Performance, The Hydra, The Loyal Protector, The Blacksmith, Retribution, The Wanderer, The Strategist, Beauty, Longing, Companionship, Doom, Encouragement and Monstrosity).
 
 @PunishedMat for the amazing art on Bounty!
 
