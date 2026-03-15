@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Updated requirements for incantation - all familiars no longer required
+- Fixed a few crashes
+
 ## [2.7.5] - 2026-02-27
 
 - Added Blacksmith (Hephaestus) art. Thanks @burn03!

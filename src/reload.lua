@@ -1258,41 +1258,42 @@ end
 function mod.AwardExtraPassiveFamiliarTrait(rank)
 	local traitTable = { "CompanionshipHealthFamiliar", "CompanionshipCritFamiliar", "CompanionshipDigFamiliar",
 		"CompanionshipDodgeFamiliar", "CompanionshipLastStandFamiliar" }
-	if HeroHasTrait("HealthFamiliar") or HeroHasTrait("CompanionshipHealthFamiliar") then
+	if HeroHasTrait("HealthFamiliar") or HeroHasTrait("CompanionshipHealthFamiliar") or not GameState.FamiliarsUnlocked.FrogFamiliar then
 		for k, v in pairs(traitTable) do
 			if v == "CompanionshipHealthFamiliar" then
 				table.remove(traitTable, k)
 			end
 		end
 	end
-	if HeroHasTrait("CritFamiliar") or HeroHasTrait("CompanionshipCritFamiliar") then
+	if HeroHasTrait("CritFamiliar") or HeroHasTrait("CompanionshipCritFamiliar") or not GameState.FamiliarsUnlocked.RavenFamiliar then
 		for k, v in pairs(traitTable) do
 			if v == "CompanionshipCritFamiliar" then
 				table.remove(traitTable, k)
 			end
 		end
 	end
-	if HeroHasTrait("DigFamiliar") or HeroHasTrait("CompanionshipDigFamiliar") then
+	if HeroHasTrait("DigFamiliar") or HeroHasTrait("CompanionshipDigFamiliar") or not GameState.FamiliarsUnlocked.HoundFamiliar then
 		for k, v in pairs(traitTable) do
 			if v == "CompanionshipDigFamiliar" then
 				table.remove(traitTable, k)
 			end
 		end
 	end
-	if HeroHasTrait("DodgeFamiliar") or HeroHasTrait("CompanionshipDodgeFamiliar") then
+	if HeroHasTrait("DodgeFamiliar") or HeroHasTrait("CompanionshipDodgeFamiliar") or not GameState.FamiliarsUnlocked.PolecatFamiliar then
 		for k, v in pairs(traitTable) do
 			if v == "CompanionshipDodgeFamiliar" then
 				table.remove(traitTable, k)
 			end
 		end
 	end
-	if HeroHasTrait("LastStandFamiliar") or HeroHasTrait("CompanionshipLastStandFamiliar") or not HeroHasTrait("LastStand") then
+	if HeroHasTrait("LastStandFamiliar") or HeroHasTrait("CompanionshipLastStandFamiliar") or not HeroHasTrait("LastStand") or not GameState.FamiliarsUnlocked.CatFamiliar then
 		for k, v in pairs(traitTable) do
 			if v == "CompanionshipLastStandFamiliar" then
 				table.remove(traitTable, k)
 			end
 		end
 	end
+
 	if #traitTable > 0 then
 		local newFamiliarTrait = RemoveRandomValue(traitTable)
 		local rarity = "Common"
@@ -2037,3 +2038,105 @@ modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
 		end
 		return base(sum, remaining, index, budget, candidates, cardState)
 	end)
+
+
+modutil.mod.Path.Wrap("UpgradeMetaUpgradeCardAction", function(base, screen, button)
+if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return base(screen, button)
+	end
+local selectedButton = button
+	
+	if screen.PickedUpButton then
+		screen.ChangeMade = true
+		DoCardSwap( screen, button )
+		return
+	end
+	local metaUpgradeName = selectedButton.CardName
+	local zoomOutDelay = 0
+	local revealCardData = {}
+	local expandPsyche = false
+	local components = button.Screen.Components
+	if selectedButton.CardState == "UNLOCKED" then
+		if not MetaUpgradeAtMaxLevel( metaUpgradeName ) then
+			local metaUpgradeData = MetaUpgradeCardData[metaUpgradeName]
+			local resourceCost = metaUpgradeData.UpgradeResourceCost[ GetMetaUpgradeLevel( metaUpgradeName )]
+			
+			if HasResources( resourceCost ) then
+				screen.ChangeMade = true
+				for resourceName, resourceCost in pairs( resourceCost ) do
+					SpendResource( resourceName, resourceCost, metaUpgradeName, { TargetId = components["ResourceIconBacking"..resourceName].Id, UseScreenLocation = true, TextOffsetY = 11, TextAnchorOffsetY = -50, SkipQuestStatusCheck = true } )
+				end
+				UpdateAffordabilityStatus()
+
+				RemoveStoreItemPin( selectedButton.CardName .. GetMetaUpgradeLevel( metaUpgradeName ), { Purchase = true } )
+				RemoveStoreItemPinPresentation( selectedButton )
+				IncrementTableValue(GameState.MetaUpgradeState[metaUpgradeName], "Level" )
+				screen.UpgradedMetaUpgrades[metaUpgradeName] = true
+				UpdateMetaUpgradeCardState( screen, selectedButton )
+				GameState.Flags.HasUpgradedCards = true
+
+				UpgradeMetaUpgradeCardPresentation( selectedButton )
+				if MetaUpgradeAtMaxLevel( metaUpgradeName ) then
+					MetaUpgradeCardMaxLevelPresentation( selectedButton )
+					SetAlpha({ Id = button.UpgradeIconId, Fraction = 0, Duration = 0.2 })
+					SetAlpha({ Id = components.MetaUpgradeMaxRank.Id, Fraction = 1, Duration = 0 })
+					SetAnimation({ DestinationId = components.MetaUpgradeMaxRank.Id, Name = "MetaUpgradeUpgradeScreenMaxRankAchieved" })
+				end
+				
+				MouseOverUpgradeMetaUpgrade( selectedButton )
+				if GetMetaUpgradeLevel( selectedButton.CardName ) > 1 then 
+					local rarity = TraitRarityData.RarityUpgradeOrder[ GetMetaUpgradeLevel( selectedButton.CardName )]
+					SetAnimation({ DestinationId = selectedButton.CardCornersId, Name = "RarityCircle".. rarity })
+					SetAnimation({ DestinationId = components.MetaUpgradeCardArtPatch.Id, Name = "RarityFrameLarge".. rarity .. "In" })
+				end
+				-- Update affordability state of all other cards
+				for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+					for column, cardName in pairs( rowData ) do
+						local otherButton = screen.Components[GetMetaUpgradeKey( row, column )]
+						if not MetaUpgradeAtMaxLevel( cardName ) then
+							local metaUpgradeData = MetaUpgradeCardData[cardName]
+							local resourceCost = metaUpgradeData.UpgradeResourceCost[ GetMetaUpgradeLevel( cardName )]
+							if not HasResources(resourceCost) and otherButton then
+								SetAlpha({ Id = otherButton.UpgradeIconId, Fraction = 0, Duration = 0.2 })
+								SetAlpha({ Id = otherButton.Id, Fraction = 0.2, Duration = 0.2 })
+								SetAlpha({ Id = otherButton.CardCornersId, Fraction = 0.2, Duration = 0.2 })
+							end
+						end
+					end
+				end
+
+				CheckAchievement( screen, { Name = "AchAllArcanaMax" } )
+
+			else
+				ScreenCantAffordPresentation( screen, selectedButton, resourceCost )
+			end
+		else
+			CannotUpgradeMaxLevelMetaUpgradePresentation( screen, selectedButton )
+		end
+	else
+		InvalidMetaUpgradeCardAction( screen, selectedButton )
+	end
+	UpdateUpgradeMetaUpgradeCardInteractionText( screen, selectedButton )
+
+end)
+
+modutil.mod.Path.Wrap("RevealMetaUpgradeCardPresentation", function(base, screen, button, args)
+if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return base(screen, button, args)
+	end
+IncrementTableValue(screen, "RevealingCards")
+	if not button then return end
+	SetAlpha({ Id = button.CostTextId, Fraction = 0, Duration = 0 })
+	CreateAnimation({ 
+		Name = "MetaUpgradeCardFlip", 
+		DestinationId = button.Id,
+		Group = "Combat_Menu_TraitTray_Overlay", 
+		Scale = 5 / screen.ZoomLevel,
+	})
+	thread( MetaUpgradeCardRevealComplete, button, args )
+	wait(0.12)
+		
+	SetAnimation({ Name = "Blank", DestinationId = button.CardArtId, Scale = screen.DefaultArtScale })
+	PlaySound({ Name = "/SFX/Menu Sounds/HeartHighlightShimmer", Id = button.Id })
+
+end)

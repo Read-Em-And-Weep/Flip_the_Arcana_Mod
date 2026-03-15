@@ -72,10 +72,6 @@ Incantations.addIncantation({
                 Path = { "GameState", "WorldUpgradesAdded"},
                 HasAll = {"WorldUpgradeCardUpgradeSystem" },
             },
-            {
-				Path = { "GameState", "FamiliarsUnlocked" },
-				HasAll = { "FrogFamiliar", "RavenFamiliar", "CatFamiliar", "HoundFamiliar", "PolecatFamiliar" },
-			},
     },
     IncantationVoiceLines =
 		{
