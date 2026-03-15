@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-03-15
+
 - Updated requirements for incantation - all familiars no longer required
 - Fixed a few crashes
 
@@ -243,7 +245,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.5...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.0...HEAD
+[2.8.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.5...2.8.0
 [2.7.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.4...2.7.5
 [2.7.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.3...2.7.4
 [2.7.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.2...2.7.3
