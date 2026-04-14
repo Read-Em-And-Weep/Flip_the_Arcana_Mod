@@ -1109,45 +1109,28 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 6.0,
+				Multiplier = 3.0,
 			},
 			Rare =
 			{
-				Multiplier = 9.0,
+				Multiplier = 6.0,
 			},
 			Epic =
 			{
-				Multiplier = 12.0,
+				Multiplier = 9.0,
 			},
 			Heroic =
 			{
-				Multiplier = 15.0,
+				Multiplier = 12.0,
 			},
 		},
-		AddOutgoingDamageModifiers =
-		{
-			SpentLastStandMultiplier =
-			{
-				BaseValue = 0.01,
-				IdenticalMultiplier =
-				{
-					Value = DuplicateMultiplier,
-				},
-			},
-			ReportValues = { ReportedWeaponMultiplier = "SpentLastStandMultiplier"},      
-		},  
+		ModdedDoubleDamageChancePerDD = {BaseValue = 0.01},
 		ExtractValues = 
 		{
 			{
-				Key = "ReportedWeaponMultiplier",
+				Key = "ModdedDoubleDamageChancePerDD",
 				ExtractAs = "DamageIncrease",
-				Format = "Percent"
-			},
-			{
-				Key = "ReportedWeaponMultiplier",
-				MultiplyBySpentLastStands = true,
-				ExtractAs = "CurrentDamageIncrease",
-				Format = "Percent"
+				Format = "LuckModifiedPercent"
 			},
 		},
     },

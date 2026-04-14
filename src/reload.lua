@@ -2140,3 +2140,33 @@ IncrementTableValue(screen, "RevealingCards")
 	PlaySound({ Name = "/SFX/Menu Sounds/HeartHighlightShimmer", Id = button.Id })
 
 end)
+
+function mod.WorkOutRemainingDefiances()
+	local currentLastStandNum = TableLength( CurrentRun.Hero.LastStands )
+	local maxLastStands = CurrentRun.Hero.MaxLastStands or 0
+	if HeroHasTrait("FocusLastStandBoon") then
+		local hasAthenaLastStand = false
+		for i, lastStand in ipairs( CurrentRun.Hero.LastStands ) do
+			if lastStand.Name == "Athena"  then
+				hasAthenaLastStand = true
+				break
+			end
+		end
+		if not hasAthenaLastStand then
+			currentLastStandNum = currentLastStandNum + 1
+		end
+	end
+	return maxLastStands - currentLastStandNum
+end
+
+modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(base, attacker, victim, weaponData, triggerArgs)
+	local chance = base(attacker, victim, weaponData, triggerArgs)
+
+	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") then
+		local lostLastStands = mod.WorkOutRemainingDefiances()
+		lostLastStands = math.max(0, lostLastStands)
+		local ddTrait = GetHeroTrait("ReversedLowHealthBonusMetaUpgrade")
+		chance = chance + lostLastStands * ddTrait.ModdedDoubleDamageChancePerDD
+	end
+	return chance
+end)

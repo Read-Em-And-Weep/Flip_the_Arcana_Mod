@@ -309,7 +309,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowHealthBonus",
         DisplayName = "Futility",
-        Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage for each {!Icons.ExtraChance} {#BoldFormat} Death Defiance {#Prev} used this night."
+        Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave."
     },
     {
         Id = "ReversedLowHealthBonus_FlavorText01",
@@ -322,7 +322,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedLowHealthBonusMetaUpgrade_Tray",
       DisplayName = "Futility",
-      Description = "You deal {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} damage for each {!Icons.ExtraChanceMisc} used this night. {#ItalicFormat} Currently: {#Prev} {#UpgradeFormat} {$TooltipData.StatDisplay2} {#Prev}.",
+      Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave.",
     },
     {
         Id = "ReversedEpicRarityBoost",
