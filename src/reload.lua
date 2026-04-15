@@ -2156,17 +2156,17 @@ function mod.WorkOutRemainingDefiances()
 			currentLastStandNum = currentLastStandNum + 1
 		end
 	end
-	return maxLastStands - currentLastStandNum
+	return (maxLastStands - currentLastStandNum)
 end
 
 modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(base, attacker, victim, weaponData, triggerArgs)
-	local chance = base(attacker, victim, weaponData, triggerArgs)
+	triggerArgs.DdChance = base(attacker, victim, weaponData, triggerArgs)
 
-	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") then
+	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") and attacker and attacker == CurrentRun.Hero then
 		local lostLastStands = mod.WorkOutRemainingDefiances()
 		lostLastStands = math.max(0, lostLastStands)
 		local ddTrait = GetHeroTrait("ReversedLowHealthBonusMetaUpgrade")
-		chance = chance + lostLastStands * ddTrait.ModdedDoubleDamageChancePerDD
+		addDdMultiplier( {}, lostLastStands * ddTrait.ModdedDoubleDamageChancePerDD, triggerArgs )
 	end
-	return chance
+	return triggerArgs.DdChance
 end)
