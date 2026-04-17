@@ -1194,16 +1194,14 @@ modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 		local heal = GetTotalHeroTraitValue("BossHealFraction") * CurrentRun.Hero.MaxHealth *CalculateHealingMultiplier()
 		Heal(CurrentRun.Hero, {HealAmount = heal, Silent = true})
 	end]]
-	if HeroHasTrait("ReversedStartingGoldMetaUpgrade") then
+	if HeroHasTrait("ReversedStartingGoldMetaUpgrade") and (not CurrentRun.Hero.HealthBuffer or CurrentRun.Hero.HealthBuffer < 35) then
 		local armorTrait = GetHeroTrait("ReversedStartingGoldMetaUpgrade")
 		local armorAmount = armorTrait.ArmorGranted
-		if CurrentRun.Hero.HealthBuffer < 35 then
 		if CurrentRun.Hero.HealthBuffer < 10 then
 			armorAmount = 2*armorAmount
 		end
 		AddArmor(armorAmount, {Delay = 0.25})
 		FrameState.RequestUpdateHealthUI = true
-	end
 	end
 	if HeroHasTrait("ReversedLastStandMetaUpgrade") then
 		local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
