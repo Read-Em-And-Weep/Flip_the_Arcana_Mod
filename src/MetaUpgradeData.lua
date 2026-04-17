@@ -219,11 +219,11 @@ NewMetaUpgradeCardData =
 			{ CardUpgradePoints = 6, OreHGlassrock = 8, MixerGBoss = 2, },
 		},
 
-		CustomTextWithShrineUpgrade = 
+		--[[CustomTextWithShrineUpgrade = 
 		{
 			ShrineUpgradeName = "HealingReductionShrineUpgrade",
 			CardTitle = "ReversedSorceryRegenUpgrade_Vow",
-		},
+		},]]
 
 		UnlockedCardVoiceLines =
 		{

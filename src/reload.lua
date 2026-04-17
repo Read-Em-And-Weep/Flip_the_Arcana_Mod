@@ -1190,18 +1190,20 @@ end
 modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
 	base(encounter)
 	encounter = encounter or CurrentRun.CurrentRoom.Encounter
-	if (encounter.EncounterType == "Boss" or encounter.EncounterType == "Miniboss") and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") then
+	--[[if (encounter.EncounterType == "Boss" or encounter.EncounterType == "Miniboss") and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") then
 		local heal = GetTotalHeroTraitValue("BossHealFraction") * CurrentRun.Hero.MaxHealth *CalculateHealingMultiplier()
 		Heal(CurrentRun.Hero, {HealAmount = heal, Silent = true})
-	end
+	end]]
 	if HeroHasTrait("ReversedStartingGoldMetaUpgrade") then
 		local armorTrait = GetHeroTrait("ReversedStartingGoldMetaUpgrade")
 		local armorAmount = armorTrait.ArmorGranted
-		if CurrentRun.Hero.HealthBuffer < 15 then
+		if CurrentRun.Hero.HealthBuffer < 35 then
+		if CurrentRun.Hero.HealthBuffer < 10 then
 			armorAmount = 2*armorAmount
 		end
 		AddArmor(armorAmount, {Delay = 0.25})
 		FrameState.RequestUpdateHealthUI = true
+	end
 	end
 	if HeroHasTrait("ReversedLastStandMetaUpgrade") then
 		local lastStandHealTrait = GetHeroTrait("ReversedLastStandMetaUpgrade")
@@ -2162,11 +2164,25 @@ end
 modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(base, attacker, victim, weaponData, triggerArgs)
 	triggerArgs.DdChance = base(attacker, victim, weaponData, triggerArgs)
 
-	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") and attacker and attacker == CurrentRun.Hero then
+	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") and ((attacker and attacker == CurrentRun.Hero) or (victim and victim == CurrentRun.Hero))then
 		local lostLastStands = mod.WorkOutRemainingDefiances()
 		lostLastStands = math.max(0, lostLastStands)
 		local ddTrait = GetHeroTrait("ReversedLowHealthBonusMetaUpgrade")
 		addDdMultiplier( {}, lostLastStands * ddTrait.ModdedDoubleDamageChancePerDD, triggerArgs )
 	end
 	return triggerArgs.DdChance
+end)
+
+modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentRoom, currentEncounter)
+	if currentEncounter == nil or currentEncounter.EncounterType == "NonCombat" or currentEncounter.SkipEndEncounterEffects then
+		return base(currentRun, currentRoom, currentEncounter)
+	end
+	if (currentEncounter == currentRoom.Encounter or currentEncounter == MapState.EncounterOverride) and HeroHasTrait("ReversedSorceryRegenMetaUpgrade") and (currentEncounter.EncounterType == "Boss" or currentEncounter.EncounterType == "Miniboss") then
+		local trait = GetHeroTrait("ReversedSorceryRegenMetaUpgrade")
+		if trait and trait.Uses and trait.Uses > 0 then
+			trait.Uses = trait.Uses - 1
+			CirceMetaUpgradeRarity({Count = 1})
+		end
+		end
+	return base(currentRun, currentRoom, currentEncounter)
 end)

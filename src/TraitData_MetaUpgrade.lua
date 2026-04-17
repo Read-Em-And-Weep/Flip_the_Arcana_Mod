@@ -198,42 +198,34 @@ NewMetaUpgradeTraitData = {
     },
     ReversedSorceryRegenMetaUpgrade = {
         Name = "ReversedSorceryRegenMetaUpgrade",
+		CustomTrayText = "ReversedSorceryRegenUpgrade_Tray",
         InheritFrom = { "MetaUpgradeTrait" },
         RarityLevels =
 		{
 			Common =
 			{
-				Multiplier = 1.4,
+				Multiplier = 1,
 			},
 			Rare =
 			{
-				Multiplier = 1.7,
+				Multiplier = 3,
 			},
 			Epic =
 			{
-				Multiplier = 2.0,
+				Multiplier = 5,
 			},
 			Heroic =
 			{
-				Multiplier = 2.3,
+				Multiplier = 7,
 			},
 		},
-        BossHealFraction = {BaseValue = 0.1},
-		CustomStatLinesWithShrineUpgrade = 
-		{
-			ShrineUpgradeName = "HealingReductionShrineUpgrade",
-			StatLines = 
-			{
-				"HealingReductionNotice",
-			},
-		},
+        Uses = {BaseValue = 1},
         ExtractValues = 
 		{
 			{
-				Key = "BossHealFraction",
-				ExtractAs = "TooltipHeal",
-				Format = "PercentHeal",
-
+				Key = "Uses",
+				ExtractAs = "TooltipAmount",
+				IncludeSigns = false,
 			},
         }
     },
@@ -1109,19 +1101,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 6.0,
+				Multiplier = 2.0,
 			},
 			Rare =
 			{
-				Multiplier = 8.0,
+				Multiplier = 4.0,
 			},
 			Epic =
 			{
-				Multiplier = 10.0,
+				Multiplier = 6.0,
 			},
 			Heroic =
 			{
-				Multiplier = 12.0,
+				Multiplier = 8.0,
 			},
 		},
 		ModdedDoubleDamageChancePerDD = {BaseValue = 0.01},

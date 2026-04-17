@@ -66,7 +66,12 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedSorceryRegenUpgrade",
         DisplayName = "The Loyal Protector",
-        Description = "Before facing a {$Keywords.Boss} or {$Keywords.MiniBoss}, restore {$TooltipData.StatDisplay1}{!Icons.Health}."
+        Description = "After vanquishing a {$Keywords.Boss} or {$Keywords.MiniBoss}, upgrade an {$Keywords.Card}, up to {$TooltipData.StatDisplay1} time(s). "
+    },
+    {
+        Id = "ReversedSorceryRegenUpgrade_Tray",
+        DisplayName = "The Loyal Protector",
+        Description = "After vanquishing a {$Keywords.Boss} or {$Keywords.MiniBoss}, upgrade an {$Keywords.Card}, up to {$TooltipData.StatDisplay1} more time(s)."
     },
     {
         Id = "ReversedSorceryRegenUpgrade_Vow",
@@ -231,7 +236,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedStartingGold",
         DisplayName = "The Weaver",
-        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 15{!Icons.ArmorTotal}{#Prev},  gain double.",
+        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 10{!Icons.ArmorTotal}{#Prev},  gain double. If you have more than {#UpgradeFormat} 35{!Icons.ArmorTotal}{#Prev}, gain none.",
     },
     {
         Id = "ReversedStartingGold_FlavorText01",
@@ -309,7 +314,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowHealthBonus",
         DisplayName = "Futility",
-        Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave."
+        Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to both deal and take {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave."
     },
     {
         Id = "ReversedLowHealthBonus_FlavorText01",
@@ -322,7 +327,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedLowHealthBonusMetaUpgrade_Tray",
       DisplayName = "Futility",
-      Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave.",
+      Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to both deal and take {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave.",
     },
     {
         Id = "ReversedEpicRarityBoost",
