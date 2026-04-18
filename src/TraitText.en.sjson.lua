@@ -236,7 +236,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedStartingGold",
         DisplayName = "The Weaver",
-        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 10{!Icons.ArmorTotal}{#Prev},  gain double. If you have more than {#UpgradeFormat} 35{!Icons.ArmorTotal}{#Prev}, gain none.",
+        Description = "Gain {#UpgradeFormat} {$TooltipData.StatDisplay1}{!Icons.ArmorTotal} {#Prev} every {$Keywords.RoomAlt}. If you have less than {#UpgradeFormat} 10{!Icons.ArmorTotal}{#Prev},  gain double.",
     },
     {
         Id = "ReversedStartingGold_FlavorText01",

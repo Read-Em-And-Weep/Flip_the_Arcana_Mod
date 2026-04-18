@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- The Weaver (Arachne) reverted to no longer have a cap on when it's effective.
+
 ## [2.8.2] - 2026-04-17
 
 - Futility (Sisyphus) updated to also have the chance to take double damage, so look out!
-- The Weaver (Arachne) updated to not award more armor above a maximum of 35 armor
-- The Loyal Protector (Cerberus) reworked to instead offer you the opportunity to upgrade your Arcana Cards after slaying dangerous foes
+- The Weaver (Arachne) updated to not award more armor above a maximum of 35 armor.
+- The Loyal Protector (Cerberus) reworked to instead offer you the opportunity to upgrade your Arcana Cards after slaying dangerous foes.
 
 ## [2.8.1] - 2026-04-15
 
