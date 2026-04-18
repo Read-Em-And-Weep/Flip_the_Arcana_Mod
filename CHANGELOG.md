@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.3] - 2026-04-18
+
 - The Weaver (Arachne) reverted to no longer have a cap on when it's effective.
 
 ## [2.8.2] - 2026-04-17
@@ -257,7 +259,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.2...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.3...HEAD
+[2.8.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.2...2.8.3
 [2.8.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.1...2.8.2
 [2.8.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.7.5...2.8.0
