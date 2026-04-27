@@ -280,9 +280,13 @@ function mod.AttemptUpgradeCardFlip(screen, button)
     mod.ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
 end
 
-modutil.mod.Path.Override("MetaUpgradeCardUpgradeScreenInspect", function(screen, button)
-    --turn off inspecting cards so that you can flip on upgrade screen
-    return
+modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenInspect", function(base,screen, button)
+    if CanUpgradeMetaUpgrade(screen.SelectedButton.CardName) or CanUpgradeMetaUpgrade(mod.GetFlippedCardName(screen.SelectedButton.CardName)) then
+		return
+	--turn off inspecting cards so that you can flip on upgrade screen if either side is not fully updated
+	else
+		return base(screen, button)
+	end
 end)
 
 modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenPinItem", function(base, screen, button)
@@ -299,6 +303,9 @@ modutil.mod.Path.Wrap("MetaUpgradeCardUpgradeScreenPinItem", function(base, scre
 		return
 	end
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return
+	end
+	if not (CanUpgradeMetaUpgrade(screen.SelectedButton.CardName) or CanUpgradeMetaUpgrade(mod.GetFlippedCardName(screen.SelectedButton.CardName)) ) then
 		return
 	end
     mod.ReverseCard(screen, selectedButton, true, { UpgradeStoreNames = true, ActionFunctionName = "UpgradeMetaUpgradeCardAction", HighlightFunctionName = "MouseOverUpgradeMetaUpgrade"})
@@ -2179,8 +2186,144 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 		local trait = GetHeroTrait("ReversedSorceryRegenMetaUpgrade")
 		if trait and trait.Uses and trait.Uses > 0 then
 			trait.Uses = trait.Uses - 1
-			CirceMetaUpgradeRarity({Count = 1})
+			mod.CerbMetaUpgradeRarity({Count = 1})
 		end
 		end
 	return base(currentRun, currentRoom, currentEncounter)
+end)
+
+function mod.CerbMetaUpgradeRarity( args )
+	args = args or {}
+	local eligibleTraits = {}
+	
+	for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			if GameState.MetaUpgradeState[cardName].Equipped and MetaUpgradeCardData[ cardName ].TraitName and MetaUpgradeCardData[ cardName ].TraitName ~= "ReversedSorceryRegenMetaUpgrade" and HeroHasTrait(MetaUpgradeCardData[ cardName ].TraitName ) then
+				local traitData = GetHeroTrait(MetaUpgradeCardData[ cardName ].TraitName )
+				if traitData.Rarity ~= nil and GetUpgradedRarity(traitData.Rarity) ~= nil and traitData.RarityLevels[GetUpgradedRarity(traitData.Rarity)] ~= nil then
+					table.insert(eligibleTraits, { TraitData = traitData, MetaUpgradeName = cardName })
+				end
+			end
+		end
+	end
+	if IsEmpty(eligibleTraits) then
+		return
+	end
+	local pickedTraits = {}
+	local count = args.Count or 1
+	while not IsEmpty(eligibleTraits) and count > 0 do
+		local randomValue = RemoveRandomValue( eligibleTraits )
+		local traitData = randomValue.TraitData
+		local metaUpgradeName = randomValue.MetaUpgradeName
+		RemoveWeaponTrait( traitData.Name )
+		local processedData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = traitData.Name, Rarity = GetUpgradedRarity(traitData.Rarity) }) 
+		AddTraitToHero({ TraitData = processedData })
+		if MetaUpgradeCardData[metaUpgradeName].OnUpgradedFunctionName then
+			CallFunctionName( MetaUpgradeCardData[metaUpgradeName].OnUpgradedFunctionName, traitData, processedData )
+		end
+		pickedTraits[traitData.Name] = true
+		MapState.TraitTrayMetaUpgradePriorityHighlight = traitData.Name
+		count = count - 1
+	end
+	thread( IncreasedTraitRarityPresentation, pickedTraits )
+end
+
+modutil.mod.Path.Wrap("RunHistoryScreenShowMetaUpgrades", function(base,screen, button )
+	game.MetaUpgradeDefaultCardLayout = {
+        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+    }
+	base(screen, button)
+	local run = GameState.RunHistory[screen.RunIndex] or CurrentRun
+	local components = screen.Components
+
+	local locationX = screen.TraitStartX
+	local locationY = screen.MetaUpgradeStartY
+
+	screen.FirstItem = nil
+
+	if run.TraitCache == nil then
+		return
+	end
+
+	local allMetaUpgradeTraits = {}
+	for traitName, count in pairs( run.TraitCache ) do
+		local traitData = TraitData[traitName]
+		if traitData ~= nil and traitData.MetaUpgrade then
+			allMetaUpgradeTraits[traitName] = true
+		end
+	end
+
+	local sortedTraits = {}
+	for rowIndex, row in ipairs( MetaUpgradeDefaultCardLayout ) do
+		for colIndex, metaUpgradeName in ipairs( row ) do
+			local traitName = MetaUpgradeCardData[metaUpgradeName].TraitName
+			if allMetaUpgradeTraits[traitName] then
+				table.insert( sortedTraits, TraitData[traitName] )
+			end
+		end
+	end
+
+	local countInColumn = 0
+	local columnIndex = 0
+	for i, traitData in ipairs( sortedTraits ) do
+		local metaUpgradeCardData = GetMetaUpgradeDataFromTraitName( traitData.Name )
+		if metaUpgradeCardData ~= nil then
+			local frameKey = "IconFrame"..traitData.Name
+			if components[frameKey] then
+				Destroy({Id = components[frameKey].Id})
+			end
+
+			local frame = CreateScreenComponent({ Name = "BlankObstacle", Group = screen.ComponentData.DefaultGroup, Scale = 0.7, X = locationX, Y = locationY, Animation = "DevCard_EquippedHighlight", Alpha = 0.0, AlphaTarget = 1.0, AlphaTargetDuration = 0.2 })
+			components[frameKey] = frame
+			table.insert( screen.IconIds, frame.Id )
+
+			local iconKey = "Icon"..traitData.Name
+			if components[iconKey] then
+				Destroy({Id = components[iconKey].Id})
+			end
+			local button = CreateScreenComponent({ Name = "BlankInteractableObstacle", Group = screen.ComponentData.DefaultGroup, Scale = screen.MetaUpgradeIconScale, X = locationX, Y = locationY, Animation = metaUpgradeCardData.Image, Alpha = 0.0, AlphaTarget = 1.0, AlphaTargetDuration = 0.2 })
+			button.Screen = screen
+			button.OnMouseOverFunctionName = "MouseOverRunHistoryItem"
+			button.OnMouseOffFunctionName = "MouseOffRunHistoryItem"
+			button.Data = metaUpgradeCardData
+			button.HighlightAnim = "DevCard_Hover"
+			button.HighlightScale = screen.MetaUpgradeIconScale * 3.5
+			if screen.FirstItem == nil then
+				screen.FirstItem = button
+			end
+			components[iconKey] = button
+			table.insert( screen.IconIds, button.Id )
+			AttachLua({ Id = button.Id, Table = button })
+
+			countInColumn = countInColumn + 1
+			if countInColumn >= screen.MetaUpgradesPerColumn then
+				locationX = locationX + screen.MetaUpgradeSpacingX
+				locationY = screen.MetaUpgradeStartY
+				countInColumn = 0
+				columnIndex = columnIndex + 1
+			else
+				locationY = locationY + screen.MetaUpgradeSpacingY
+			end
+			if columnIndex >= screen.TraitMaxColumns then
+				break
+			end
+		end
+	end
+
+	game.MetaUpgradeDefaultCardLayout = {
+	{ "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+}
 end)

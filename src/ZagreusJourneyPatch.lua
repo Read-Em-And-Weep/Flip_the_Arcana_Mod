@@ -452,7 +452,7 @@ NewMetaUpgradeCardData =
 		FlavorTextData = 
 		{
 			{
-				Name = "ManaOverTime_FlavorText01",
+				Name = "ReversedManaOverTime_FlavorText01",
 				GameStateRequirements =
 				{
 					{

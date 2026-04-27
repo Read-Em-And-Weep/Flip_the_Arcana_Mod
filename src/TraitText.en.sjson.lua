@@ -210,7 +210,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedChanneledBlock",
         DisplayName = "Beauty",
-        Description = "You have a {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to {$Keywords.Dodge} damage.",
+        Description = "You have a {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to {$Keywords.Dodge}.",
     },
     {
         Id = "ReversedChanneledBlock_FlavorText01",

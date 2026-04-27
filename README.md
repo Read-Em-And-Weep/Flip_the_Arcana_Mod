@@ -18,6 +18,8 @@ If Perfectionist is installed, one of the cards will allow you to rarify to that
 
 # Uninstallation
 With my testing, it seems pretty safe to uninstall, however I would recommend that you unequip and flip over all of your cards before playing vanilla just to be safe.
+## Important
+There is a known issue with uninstalling that if you try to access a saved Arcana layouts that has flipped cards after uninstalling, the game will crash. So to be safe, unflip all cards in saved Arcana layouts.
 
 # Known Issues
 New cards do not appear in the run history screen. I'm not sure if I know how to fix it :( but I'll be looking at it.

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Corrected Bounty's (Poseidon) flavour text
+- Updated the number of uses The Loyal Protector (Cerberus) provides, and it can now no longer hit itself
+- Flipped Arcana should now appear in the run history screen
+- Updated uninstallation instructions
+- We can finally inspect the beautiful (and not so beautiful) card art! On the Inspect screen, so long as you have upgraded both sides fully, instead of flipping the card, you will inspect it! 
+
 ## [2.8.3] - 2026-04-18
 
 - The Weaver (Arachne) reverted to no longer have a cap on when it's effective.

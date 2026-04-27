@@ -204,7 +204,7 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 1,
+				Multiplier = 2,
 			},
 			Rare =
 			{
@@ -212,11 +212,11 @@ NewMetaUpgradeTraitData = {
 			},
 			Epic =
 			{
-				Multiplier = 5,
+				Multiplier = 4,
 			},
 			Heroic =
 			{
-				Multiplier = 7,
+				Multiplier = 6,
 			},
 		},
         Uses = {BaseValue = 1},
