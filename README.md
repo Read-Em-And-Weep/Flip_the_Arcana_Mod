@@ -22,8 +22,6 @@ With my testing, it seems pretty safe to uninstall, however I would recommend th
 There is a known issue with uninstalling that if you try to access a saved Arcana layouts that has flipped cards after uninstalling, the game will crash. So to be safe, unflip all cards in saved Arcana layouts.
 
 # Known Issues
-New cards do not appear in the run history screen. I'm not sure if I know how to fix it :( but I'll be looking at it.
-
 Some of the cards do not have art yet, so enjoy the amazing stick people for now!
 
 If you find you are getting stuck often after using Monstrosity (doors won't open), you can enable AlwaysUnlockAfterPurge in the config, which will always unlock doors after collecting the purged reward. This includes when it shouldn't - for instance in Devotion chambers, or in the Fields of Mourning
