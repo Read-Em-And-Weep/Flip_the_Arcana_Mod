@@ -1435,8 +1435,8 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 	local originalDamageMultiplier = base(attacker,victim,weaponData, triggerArgs)
 	if attacker then
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedSprintShieldMetaUpgrade") then
-		if victim and not victim.HasBeenHit then
-			victim.HasBeenHit = true
+		if victim and not victim.FliptheArcanaHasBeenHit then
+			victim.FliptheArcanaHasBeenHit = true
 			local firstHitTrait = GetHeroTrait("ReversedSprintShieldMetaUpgrade")
 			originalDamageMultiplier = originalDamageMultiplier * (1+firstHitTrait.FirstHitMultiplier)
 		end
@@ -2326,4 +2326,22 @@ modutil.mod.Path.Wrap("RunHistoryScreenShowMetaUpgrades", function(base,screen, 
 	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
 	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
 }
+end)
+
+modutil.mod.Path.Wrap("HasAllWorldUpgradesRequiringResource", function(base,source,args)
+	local baseValue = base(source,args)
+	args = args or {}
+	if baseValue == false then return false end
+	local resourceName = args.ResourceName or GetFirstKey( source.Cost )
+	for cardName, cardData in pairs(game.MetaUpgradeCardData) do
+		print(cardName)
+		if cardData.UpgradeResourceCost then
+			for upgradeLevel, upgradeCost in ipairs(cardData.UpgradeResourceCost) do
+					if upgradeLevel >= GetMetaUpgradeLevel(cardName) and upgradeCost[resourceName] then
+						return false
+					end
+			end
+		end 
+	end
+	return baseValue
 end)

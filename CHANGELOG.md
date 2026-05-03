@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Recycling should now indicate if resources are needed for Arcana upgrades
+
 ## [2.9.0] - 2026-04-27
 
 - Corrected Bounty's (Poseidon) flavour text
