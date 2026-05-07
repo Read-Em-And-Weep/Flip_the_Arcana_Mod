@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.2] - 2026-05-07
+
 - Removed a print statement
 - Recycling should now indicate if resources are needed for Arcana unlocks
 - Changed the sound when closing Monstrosity loot to be more obvious
@@ -275,7 +277,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.1...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.2...HEAD
+[2.9.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.1...2.9.2
 [2.9.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.0...2.9.1
 [2.9.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.3...2.9.0
 [2.8.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.2...2.8.3
