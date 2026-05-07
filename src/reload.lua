@@ -2334,8 +2334,12 @@ modutil.mod.Path.Wrap("HasAllWorldUpgradesRequiringResource", function(base,sour
 	if baseValue == false then return false end
 	local resourceName = args.ResourceName or GetFirstKey( source.Cost )
 	for cardName, cardData in pairs(game.MetaUpgradeCardData) do
-		print(cardName)
-		if cardData.UpgradeResourceCost then
+		if not (cardName == "BaseMetaUpgrade" or cardName == "BaseBonusMetaUpgrade") and not cardData.DebugOnly and GameState.MetaUpgradeState[cardName] and not GameState.MetaUpgradeState[cardName].Unlocked then
+			if cardData.ResourceCost[resourceName] then 
+				return false 
+				end
+		end
+		if not (cardName == "BaseMetaUpgrade" or cardName == "BaseBonusMetaUpgrade") and not cardData.DebugOnly and cardData.UpgradeResourceCost then
 			for upgradeLevel, upgradeCost in ipairs(cardData.UpgradeResourceCost) do
 					if upgradeLevel >= GetMetaUpgradeLevel(cardName) and upgradeCost[resourceName] then
 						return false

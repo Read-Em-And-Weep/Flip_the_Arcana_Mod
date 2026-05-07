@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Removed a print statement
+- Recycling should now indicate if resources are needed for Arcana unlocks
+- Changed the sound when closing Monstrosity loot to be more obvious
+
 ## [2.9.1] - 2026-05-03
 
 - Recycling should now indicate if resources are needed for Arcana upgrades
