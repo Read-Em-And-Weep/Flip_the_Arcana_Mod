@@ -1,3 +1,32 @@
+mod.MetaUpgradeDefaultCardLayout = {
+    { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
+
+	{ "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
+	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
+	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
+	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
+	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+
+	{ "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
+	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
+	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
+	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
+	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},
+
+	{ "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
+	{ "ReversedFirstHitTransform",				"ReversedHealthWithBoons",			"ReversedProjectileSlow",			"ReversedCursedLegendaryBoost",			"ReversedFreeOmega" 			},
+	{ "ReversedDashRecovery",			"ReversedProtectionCooldown",			"ReversedElementRoom",	"ReversedUniqueGod",		"ReversedManaShield" 		},
+	{ "ReversedRandomSacrifice",			"ReversedAdditionalOmegaChance",		"ReversedRiposteKill",	"ReversedRandomCards", 			"ReversedBossResistance" 			},
+	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				},
+    }
+--TODO: New flipped traits need to be added to the Monstrosity trait table (in LootData) once they are made and named
+--TODO: New flipped traits need to be added to the pool for random bounties
+--TODO: Maybe rework the way I do it to use the game's FYShuffle function
+
 modutil.mod.Path.Wrap("UnequipMetaUpgradeBonusCardPresentation", function(base, screen, button)
     if (button == nil) then
         return
@@ -34,17 +63,17 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             local row = MetaUpgradeCardData[metaUpgradeName].Row
             local column = MetaUpgradeCardData[metaUpgradeName].Column
             local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-            mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+            mod.ReverseCardToCard(screen, buttonToFlip, metaUpgradeName, false, cardArgs)
         end
     end
-    for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+    for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			if not GameState.FlipTheArcanaHasRun then
-				if (GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped) then
+				if (GameState.MetaUpgradeState[cardName].Equipped) then
 					row = MetaUpgradeCardData[cardName].Row
             		column = MetaUpgradeCardData[cardName].Column
-            		buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-            		mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+            		local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+            		mod.ReverseCardToCard(screen, buttonToFlip, cardName, false, cardArgs)
 				end
 			end
             GameState.MetaUpgradeState[cardName].Visible = true
@@ -73,17 +102,17 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             local row = MetaUpgradeCardData[metaUpgradeName].Row
             local column = MetaUpgradeCardData[metaUpgradeName].Column
             local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-            mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+            mod.ReverseCardToCard(screen, buttonToFlip, metaUpgradeName, false, cardArgs)
         end
     end
-    for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+    for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			if not GameState.FlipTheArcanaHasRun then
-				if (GameState.MetaUpgradeState[mod.GetFlippedCardName(cardName)].Equipped) then
+				if (GameState.MetaUpgradeState[cardName].Equipped) then
 					row = MetaUpgradeCardData[cardName].Row
             		column = MetaUpgradeCardData[cardName].Column
-            		buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-            		mod.ReverseCard(screen, buttonToFlip, false, cardArgs)
+            		local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
+            		mod.ReverseCardToCard(screen, buttonToFlip, cardName, false, cardArgs)
 				end
 			end
             GameState.MetaUpgradeState[cardName].Visible = true
@@ -95,7 +124,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
         end
     end
 	end
-    CheckAutoEquipCards()
+    CheckAutoEquipCards(screen)
 end)
 
 modutil.mod.Path.Wrap("MetaUpgradeCardAction", function(base, screen, button)
@@ -120,7 +149,7 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
         if GameState.MetaUpgradeState[metaUpgradeName].Visible == nil then
             if MetaUpgradeCardData[metaUpgradeName].Flipped then
                 GameState.MetaUpgradeState[metaUpgradeName].Visible = false
-                GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)].Visible = true
+				GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)].Visible = true
             else
                 GameState.MetaUpgradeState[metaUpgradeName].Visible = true
                 if GameState.MetaUpgradeState[mod.GetFlippedCardName(metaUpgradeName)] then
@@ -137,7 +166,38 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, colum
     GameState.MetaUpgradeState[cardName].Visible = true
     local newObstacle =  base(screen, row, column, cardName, args)
 	if MetaUpgradeCardData[cardName].Flipped then
-		SetColor({Id = newObstacle.EquippedHighlightId, Color = Color.MediumPurple})
+		if MetaUpgradeCardData[cardName].Flipped == 1 then
+			SetColor({ Id = newObstacle.EquippedHighlightId, Color = Color.MediumPurple })
+		elseif MetaUpgradeCardData[cardName].Flipped == 2 or MetaUpgradeCardData[cardName].Flipped == 3 then
+			Destroy({ Ids = { newObstacle.EquippedHighlightId } })
+			local color = nil
+			if MetaUpgradeCardData[cardName].Flipped == 2 then
+				color = Color.Violet
+			elseif MetaUpgradeCardData[cardName].Flipped == 3 then
+				color = Color.Firebrick
+			end
+	local scale = 5 / screen.ZoomLevel
+	local scaleLerp = 1 - (screen.ZoomLevel - 3) / 2 
+	local offsetX = screen.DefaultStartX 
+	local offsetY = screen.DefaultStartY + screen.ScaledStartY * ( scaleLerp )
+	local xSpacer = screen.DefaultTalentXSpacer
+	local ySpacer = screen.DefaultTalentYSpacer
+	
+	local locationX = (column - 1) * xSpacer * scale + offsetX * scale + ScreenCenterNativeOffsetX
+	local locationY = (row - 1) * ySpacer * scale + offsetY * scale + ScreenCenterNativeOffsetY
+			
+			local equippedHighlight = CreateScreenComponent({
+				Name = "FlipTheArcanaCard_EquippedHighlight",
+				X = locationX,
+				Y = locationY,
+				Group = screen.ComponentData.DefaultHighlightGroup,
+				Scale = scale
+			})
+			newObstacle.EquippedHighlightId = equippedHighlight.Id
+			SetColor({ Id = newObstacle.EquippedHighlightId, Color = color })
+			SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 0, Duration = 0 })
+			Attach({ Id = equippedHighlight.Id, DestinationId = newObstacle.Id, })
+		end
 		if GameState.MetaUpgradeState[cardName].Equipped then
 			SetAlpha({ Id = newObstacle.EquippedHighlightId, Fraction = 1, Duration = 0.1 })
 		else
@@ -181,6 +241,41 @@ modutil.mod.Path.Wrap("GetCurrentMetaUpgradeCost", function(base)
 
     return base()
 end)
+
+
+function mod.ReverseCardToCard(screen, selectedButton, newCardName, doZoom, cardArgs)
+    if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
+		return
+	end
+    local metaUpgradeName = selectedButton.CardName
+    local wasEquipped = false
+    local newCardName = newCardName or mod.GetFlippedCardName(metaUpgradeName)
+
+    if MetaUpgradeCardEquipped(metaUpgradeName) then
+        screen.ChangeMade = true
+        UnequipMetaUpgradeCardPresentation(screen, selectedButton)
+        GameState.MetaUpgradeState[metaUpgradeName].Equipped = nil
+        GameState.MetaUpgradeState[metaUpgradeName].Visible = false
+        UpdateMetaUpgradeCardState(screen, selectedButton)
+        wasEquipped = true
+    end
+
+    MouseOffMetaUpgrade(selectedButton)
+    mod.RemoveOldCard(selectedButton)
+    GameState.MetaUpgradeState[newCardName].Visible = true
+    local newCard = CreateMetaUpgradeCard(screen, selectedButton.Row, selectedButton.Column,newCardName, cardArgs)
+    GameState.MetaUpgradeCardLayout[selectedButton.Row][selectedButton.Column] = newCard.CardName
+    if wasEquipped and newCard.CardState == "UNLOCKED"then
+        EquipMetaUpgradeButton( screen, newCard )
+    end
+    UpdateMetaUpgradeCardState( screen, newCard )
+    if doZoom then
+        MouseOverMetaUpgrade(newCard)
+    else
+        MouseOffMetaUpgrade(newCard)
+        UpdateMetaUpgradeCardAnimation(newCard)
+    end
+end
 
 
 function mod.ReverseCard(screen, selectedButton, doZoom, cardArgs)
@@ -394,6 +489,10 @@ end) ]]
 modutil.mod.Path.Wrap("CheckAutoEquipRequirements", function(base, requirementData)
     local basevalue = base(requirementData)
 
+	if requirementData.MetaUpgradeName and GameState.MetaUpgradeState[requirementData.MetaUpgradeName] and not GameState.MetaUpgradeState[requirementData.MetaUpgradeName].Visible then
+		return false
+	end
+
     if requirementData.MetaUpgradeName == "TradeOff" or requirementData.MetaUpgradeName == "ReversedTradeOff" then
         local sourceCoords = {Row = 5, Column = 1}
         if not sourceCoords then
@@ -428,8 +527,8 @@ modutil.mod.Path.Wrap("CloseMetaUpgradeCardScreen", function(base, screen, args)
 		return base(screen, args)
 	else
 	args = args or {}
-	CheckAutoEquipCards()
-	CheckAutoEquipCards()
+	CheckAutoEquipCards(screen)
+	CheckAutoEquipCards(screen)
     if not args.UpgradeTransition then
         if NoMetaUpgradeCardsUnlocked() then
             OpenNoUpgradeInfoScreen(screen)
@@ -572,6 +671,8 @@ modutil.mod.Path.Wrap("CloseMetaUpgradeCardScreen", function(base, screen, args)
 		thread( FatedValidityStatePresentation, delay )
 	end
 end
+ValidateMaxHealth()
+	ValidateMaxMana()
 end)
 
 --[[ function LookupRowandColumn(metaUpgradeName)
@@ -670,14 +771,20 @@ modutil.mod.Path.Wrap("LoadCurrentMetaUpgradeSet", function(base,screen,button)
                 buttonToFlip = screen.Components[GetMetaUpgradeKey(row,column)]
                 ReverseCard(screen, buttonToFlip, false)
             end]]
-            for row, rowData in pairs(GameState.MetaUpgradeCardLayout) do
+			local row = game.MetaUpgradeCardData[metaUpgradeName].Row
+			local column = game.MetaUpgradeCardData[metaUpgradeName].Column
+			if GameState.MetaUpgradeCardLayout[row][column] ~= metaUpgradeName then
+				local buttonToFlip = screen.Components[GetMetaUpgradeKey(row,column)]
+				mod.ReverseCardToCard(screen, buttonToFlip, metaUpgradeName, false, {})
+			end
+            --[[for row, rowData in pairs(GameState.MetaUpgradeCardLayout) do
                 for column, cardName in pairs(rowData) do
                     if mod.GetFlippedCardName(GameState.MetaUpgradeCardLayout[row][column]) == metaUpgradeName then
-                        buttonToFlip = screen.Components[GetMetaUpgradeKey(row,column)]
+                        local buttonToFlip = screen.Components[GetMetaUpgradeKey(row,column)]
                         mod.ReverseCard(screen, buttonToFlip, false, {})
                     end
                 end
-             end
+             end]]
         end
     end
     return base(screen,button)
@@ -712,8 +819,8 @@ modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
 	if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
 		local autoEquipMetaUpgrades = {}
 	for metaUpgradeName, metaUpgradeData in pairs( GameState.MetaUpgradeState ) do
-		if metaUpgradeData.Unlocked and MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements then
-			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) then
+		if GameState.MetaUpgradeState[metaUpgradeName].Unlocked and MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements then
+			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) and (screen and GetMetaUpgradeCardButton(screen, metaUpgradeName)) then
 				if not MetaUpgradeCardEquipped(metaUpgradeName) then
 					autoEquipMetaUpgrades[ metaUpgradeName ] = true
 				end
@@ -742,7 +849,7 @@ modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
 	end
 	for metaUpgradeName, metaUpgradeData in pairs( GameState.MetaUpgradeState ) do
 		if metaUpgradeData.Unlocked and MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements then
-			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) and GameState.MetaUpgradeState[metaUpgradeName].Visible then
+			if CheckAutoEquipRequirements(MetaUpgradeCardData[metaUpgradeName].AutoEquipRequirements) and GameState.MetaUpgradeState[metaUpgradeName].Visible and (screen and GetMetaUpgradeCardButton(screen, metaUpgradeName)) then
 				if not MetaUpgradeCardEquipped(metaUpgradeName) then
 					autoEquipMetaUpgrades[ metaUpgradeName ] = true
 				end
@@ -784,23 +891,56 @@ function mod.GetRow(screen, button)
     return row
 end
 
+function mod.GetNextTableValue(tableArg, value)
+	if not tableArg or not value then return end
+
+	for k, v in ipairs(tableArg) do
+		if v == value then
+			return tableArg[(k % #tableArg) + 1]
+		end
+	end
+end
+
+function mod.FindTableContainingValue(tableArg, value)
+	if not tableArg or not value then return end
+
+	for k, table in ipairs(tableArg) do
+		if Contains(table, value) then
+			return table
+		end
+	end
+end
+
 function mod.GetFlippedCardName(cardName)
-    local MetaUpgradeReversePairs = 
+    --[[local metaUpgradeReversePairs = 
     {
-        { "ChanneledCast", "ReversedChanneledCast" }, { "HealthRegen", "ReversedHealthRegen" }, { "LowManaDamageBonus", "ReversedLowManaDamageBonus" }, { "CastCount", "ReversedCastCount" }, { "SorceryRegenUpgrade", "ReversedSorceryRegenUpgrade" },
-        { "CastBuff",      "ReversedCastBuff" }, { "BonusHealth", "ReversedBonusHealth" }, { "BonusDodge", "ReversedBonusDodge" }, { "ManaOverTime", "ReversedManaOverTime" }, { "MagicCrit", "ReversedMagicCrit" },
-        { "SprintShield", "ReversedSprintShield" }, { "LastStand", "ReversedLastStand" }, { "MaxHealthPerRoom", "ReversedMaxHealthPerRoom" }, { "StatusVulnerability", "ReversedStatusVulnerability" }, { "ChanneledBlock", "ReversedChanneledBlock" },
+        { "ChanneledCast", "ReversedChanneledCast" , "ReversedChanneledCast1","ReversedChanneledCast2"}, { "HealthRegen", "ReversedHealthRegen", "ReversedHealthRegen1" }, { "LowManaDamageBonus", "ReversedLowManaDamageBonus", "ReversedLowManaDamageBonus1" }, { "CastCount", "ReversedCastCount", "ReversedCastCount1" }, { "SorceryRegenUpgrade", "ReversedSorceryRegenUpgrade","ReversedSorceryRegenUpgrade1" },
+        { "CastBuff",      "ReversedCastBuff", "ReversedCastBuff1" }, { "BonusHealth", "ReversedBonusHealth", "ReversedBonusHealth1" }, { "BonusDodge", "ReversedBonusDodge", "ReversedBonusDodge1" }, { "ManaOverTime", "ReversedManaOverTime", "ReversedManaOverTime1" }, { "MagicCrit", "ReversedMagicCrit", "ReversedMagicCrit1" },
+        { "SprintShield", "ReversedSprintShield", "ReversedSprintShield1" }, { "LastStand", "ReversedLastStand", "ReversedLastStand" }, { "MaxHealthPerRoom", "ReversedMaxHealthPerRoom" }, { "StatusVulnerability", "ReversedStatusVulnerability" }, { "ChanneledBlock", "ReversedChanneledBlock" },
         { "DoorReroll",   "ReversedDoorReroll" }, { "StartingGold", "ReversedStartingGold" }, { "MetaToRunUpgrade", "ReversedMetaToRunUpgrade" }, { "RarityBoost", "ReversedRarityBoost" }, { "BonusRarity", "ReversedBonusRarity" },
         { "TradeOff", "ReversedTradeOff" }, { "ScreenReroll", "ReversedScreenReroll" }, { "LowHealthBonus", "ReversedLowHealthBonus" }, { "EpicRarityBoost", "ReversedEpicRarityBoost" }, { "CardDraw", "ReversedCardDraw" },
-    }
-    for _, pair in ipairs(MetaUpgradeReversePairs) do
+    }]]
+	local metaUpgradeReversePairs = {}
+	for i = 1,5 do
+		for j = 1,5 do
+			local newTable = {}
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+5][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+10][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+15][j])
+			table.insert(metaUpgradeReversePairs, newTable)
+		end
+	end
+	--[[for _, pair in ipairs(MetaUpgradeReversePairs) do
         local a, b = pair[1], pair[2]
         if cardName == a then
             return b
         elseif cardName == b then
             return a
         end
-    end
+    end]]
+	-- Below for when we upgrade to more than one other side
+	return mod.GetNextTableValue(mod.FindTableContainingValue(metaUpgradeReversePairs, cardName), cardName)
 end
 
 
@@ -837,18 +977,7 @@ local equippedMetaUpgradesNum = 0
 	local xOffset = activeCategory.TraitStartX or screen.TraitStartX
 	local yOffset = ScreenHeight - (activeCategory.TraitStartBottomOffset or screen.TraitStartBottomOffset)
 	--for metaUpgradeName, metaUpgradeState in pairs( GameState.MetaUpgradeState ) do
-    local combinedMetaUpgradeDefaultCardLayout = {
-        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
-	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
-	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
-	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
+    local combinedMetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
 	for rowIndex, row in ipairs( combinedMetaUpgradeDefaultCardLayout ) do
 		for colIndex, metaUpgradeName in ipairs( row ) do
 			local metaUpgradeState = GameState.MetaUpgradeState[metaUpgradeName]
@@ -918,6 +1047,11 @@ local equippedMetaUpgradesNum = 0
 						table.insert( screen.PossibleAutoPins, traitIcon )
 					end
 					
+					if CurrentRun.FlipTheArcanaTycheMetaUpgrades and CurrentRun.FlipTheArcanaTycheMetaUpgrades[metaUpgradeName] then
+						SetColor({ Id = traitIcon.Id, Color = { 192, 192, 192, 160 } })
+						--ModifyTextBox({ Id = traitIcon.Id, Text = "{$Keywords.FlipTheArcanaRandomisedCard}" })
+					end
+
 					displayedTraitNum = displayedTraitNum + 1
 					if displayedTraitNum % (activeCategory.TraitsPerColumn or screen.TraitsPerColumn ) == 0 then
 						xOffset = xOffset + traitSpacingX
@@ -1092,6 +1226,9 @@ modutil.mod.Path.Wrap("CheckChamberTraits", function(base)
                     AddMaxHealth(addedEmptyHealth, trait.Name, { Thread = true, Delay = textDelay, NoHealing = true })
                     totalEmptyAddedHealth = totalEmptyAddedHealth + addedEmptyHealth
                 end
+				if trait.RoomsPerUpgrade.FlipTheArcanaRandomElement then
+					mod.AddEncouragementElements(1)
+				end
             end
         end
     end    
@@ -1237,8 +1374,36 @@ modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
 		mod.AddEncouragementElements(newTrait.ElementsGranted)
 		GrantBoons({BoonSets = {{ "ElementalDamageBoon", "ElementalOlympianDamageBoon", "ElementalBaseDamageBoon", "ElementalRallyBoon", "ElementalDamageFloorBoon", "ElementalDodgeBoon", "ElementalHealthBoon", "ElementalDamageCapBoon", "ElementalUnifiedBoon" },}}, nil)
 	end
+	if newTrait and newTrait.Name == "ReversedRandomCardsMetaUpgrade" and not (game.CurrentHubRoom and game.CurrentHubRoom.Name == "Hub_PreRun") then
+		thread(AddRandomMetaUpgrades, newTrait.FlipTheArcanaRandomCards, {RarityLevel = 1, Delay = 4} )
+	end
+	if newTrait and newTrait.Name == "ReversedMoreSacrificesMetaUpgrade" and not (game.CurrentHubRoom and game.CurrentHubRoom.Name == "Hub_PreRun") then
+		mod.IncreaseSacrificeChance(newTrait.FlipTheArcanaBonusSacrificeChance)
+	end
 	return base(unit, traitData, args)
 end)
+
+function mod.IncreaseSacrificeChance(amount)
+	if not CurrentRun.FlipTheArcanaIncreasedSacrificeChance then
+		CurrentRun.Hero.BoonData.ReplaceChance = CurrentRun.Hero.BoonData.ReplaceChance + amount
+		CurrentRun.FlipTheArcanaIncreasedSacrificeChance = true
+	end
+end
+
+modutil.mod.Path.Wrap("OpenTalentScreen", function(base, args, spellItem, contextArgs)
+	args = args or {}
+	if HeroHasTrait("ReversedBonusTalentMetaUpgrade") and not args.ReadOnly and spellItem and spellItem.AddTalentPoints then
+		local trait = GetHeroTrait("ReversedBonusTalentMetaUpgrade")
+		if trait.FlipTheArcanaBonusTalentPoints and trait.FlipTheArcanaBonusTalentPoints > 0 then
+			CurrentRun.NumTalentPoints = CurrentRun.NumTalentPoints or 0
+			CurrentRun.NumTalentPoints = CurrentRun.NumTalentPoints + trait.FlipTheArcanaBonusTalentPoints
+			trait.FlipTheArcanaBonusTalentPoints = 0
+		end
+	end
+	return base(args, spellItem, contextArgs)
+end)
+
+
 
 function mod.AddEncouragementElements(elementsToAdd)
 	local elementsAdded = 0 
@@ -1337,12 +1502,6 @@ else
 end
 end)
 
-function mod.FamineSpawnKillPresentation(unit)
-	PlaySound({ Name = "/Leftovers/SFX/PlayerKilledNEW", Id = unit.ObjectId })
-	if CheckCooldown( "SpawnKillPresentationCooldown", 1.0 ) then
-		thread( InCombatText, CurrentRun.Hero.ObjectId, "Hint_FamineSpawnKill", 0.75, { PreDelay = 0.25 } )
-	end
-end
 
 modutil.mod.Path.Wrap("LowHealthBonusBuffStatePresentation", function(base,delay)
 base(delay)
@@ -1368,7 +1527,10 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local args = args or {}
 
 	local upgradeData = button.Data
-
+	if HeroHasTrait("ReversedHealthWithBoonsMetaUpgrade") and (source.GodLoot or name == "HermesUpgrade") then
+		local trait = GetHeroTrait("ReversedHealthWithBoonsMetaUpgrade")
+		AddMaxHealth(trait.FlipTheArcanaHealthWithBoons, trait, {Thread = true, Delay = 0.5})
+	end
 	if HeroHasTrait("ReversedDoorRerollMetaUpgrade") and IsFateValid() and not source.StrifeDuplicated and (source.GodLoot or source.CanDuplicate or name == "WeaponUpgrade" or name == "HermesUpgrade") then
 		local doubleRewardTrait = GetHeroTrait("ReversedDoorRerollMetaUpgrade")
 		if doubleRewardTrait and RandomChance(doubleRewardTrait.ModdedDoubleRewardChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
@@ -1438,33 +1600,48 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 		if victim and not victim.FliptheArcanaHasBeenHit then
 			victim.FliptheArcanaHasBeenHit = true
 			local firstHitTrait = GetHeroTrait("ReversedSprintShieldMetaUpgrade")
-			originalDamageMultiplier = originalDamageMultiplier * (1+firstHitTrait.FirstHitMultiplier)
+			originalDamageMultiplier = originalDamageMultiplier + (1+firstHitTrait.FirstHitMultiplier)
 		end
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedMagicCritMetaUpgrade") and victim and GameState.SpentShrinePointsCache then
 		local fearMultipliedTrait = GetHeroTrait("ReversedMagicCritMetaUpgrade")
-		originalDamageMultiplier = originalDamageMultiplier * (1+fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
+		originalDamageMultiplier = originalDamageMultiplier + (fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedStatusVulnerabilityMetaUpgrade") and victim then
 		local noStatusDamageTrait = GetHeroTrait("ReversedStatusVulnerabilityMetaUpgrade")
 		if TableLength( victim.VulnerabilityEffects ) == nil or TableLength( victim.VulnerabilityEffects ) < 1 then
-			originalDamageMultiplier = originalDamageMultiplier * (1+noStatusDamageTrait.NoStatusBonusDamage)
+			originalDamageMultiplier = originalDamageMultiplier + noStatusDamageTrait.NoStatusBonusDamage
 		elseif TableLength( victim.VulnerabilityEffects ) == 1 then
-			originalDamageMultiplier = originalDamageMultiplier * (1+0.5*noStatusDamageTrait.NoStatusBonusDamage)
+			originalDamageMultiplier = originalDamageMultiplier + 0.5*noStatusDamageTrait.NoStatusBonusDamage
 		end
 	end
+	if MapState and MapState.FlipTheArcanaCrowdCharmedEnemy and MapState.FlipTheArcanaCrowdCharmedEnemy.ObjectId and attacker == MapState.FlipTheArcanaCrowdCharmedEnemy.ObjectId and victim ~= CurrentRun.Hero and HeroHasTrait("ReversedCharmedEnemyMetaUpgrade") then
+		local trait =GetHeroTrait("ReversedCharmedEnemyMetaUpgrade")
+		originalDamageMultiplier = originalDamageMultiplier + trait.CharmedEnemyMultiplier
+	end
+	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedCrowdDamageMetaUpgrade") and weaponData and IsExWeapon(weaponData.Name, { Combat = true }, triggerArgs) then
+		local trait = GetHeroTrait("ReversedCrowdDamageMetaUpgrade")
+		if mod.GetNumberofEnemies() >= trait.FlipTheArcanaCrowdThreshold then
+		originalDamageMultiplier = originalDamageMultiplier + trait.FlipTheArcanaCrowdDamage
+		end
+	end
+	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedFullDefianceMetaUpgrade") and mod.AtFullDefiance() then
+		local trait = GetHeroTrait("ReversedFullDefianceMetaUpgrade")
+		originalDamageMultiplier = originalDamageMultiplier + trait.FlipTheArcanaFullLastStandDamageMultiplier
+	end
 end
+
 	return originalDamageMultiplier
 end)
 
-modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, weaponData, triggerArgs) 
+--[[modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, weaponData, triggerArgs) 
 	local originalCritChance = base(attacker,victim,weaponData, triggerArgs)
 	if HeroHasTrait("ReversedTradeOffMetaUpgrade") and IsFateValid() and victim and victim ~= CurrentRun.Hero then
 		local fatedCritTrait = GetHeroTrait("ReversedTradeOffMetaUpgrade")
 		originalCritChance = originalCritChance + fatedCritTrait.FatedCritcalChance
 	end
 	return originalCritChance
-end)
+end)]]
 
 modutil.mod.Path.Override("AddRandomMetaUpgrades", function(numCards, args)
 args = args or {}
@@ -1473,18 +1650,7 @@ args = args or {}
 	local unequippedUnlockedMetaupgrades = {}
 	local skippedLowPriorityMetaupgrade = {}
 	local equippedMetaUpgrades = {}
-	local combinedMetaUpgradeDefaultCardLayout = {
-        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
-	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
-	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
-	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
+	local combinedMetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
 	for cardName, cardData in pairs(GameState.MetaUpgradeState) do
 		if cardData.Equipped then		
 			equippedMetaUpgrades[cardName] = true
@@ -1518,6 +1684,7 @@ args = args or {}
 	end
 
 	local addedMetaUpgrades = {}
+	
 	while (not IsEmpty( unequippedUnlockedMetaupgrades ) or not IsEmpty( skippedLowPriorityMetaupgrade )) and numCards > 0 do
 		numCards = numCards - 1
 		local metaUpgradeName = nil
@@ -1611,22 +1778,11 @@ end)
 
 
 function mod.GetCardFromTrait(traitName)
-	local combinedMetaUpgradeDefaultCardLayout = {
-        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
-	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
-	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
-	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
+	local combinedMetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
 	for row, rowData in pairs( combinedMetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			local metaUpgradeData = MetaUpgradeCardData[cardName]
-			if metaUpgradeData.TraitName == traitName then
+			if metaUpgradeData and metaUpgradeData.TraitName == traitName then
 				return cardName
 			end
 		end
@@ -1829,11 +1985,38 @@ function mod.CanCardifyReward(reward)
 	return reward.GoldConversionEligible and (cardDrawMetaTrait.Uses > 0)
 end
 
+function mod.CanSacrificeReward(reward)
+	if not HeroHasTrait("ReversedSacrificeForLevelsMetaUpgrade") then
+		return false
+	end
+	if not PommableSlottedTraitCountAtLeast("SacrificeReward", { 
+					Count = 1, 
+					Slots = 
+					{ 
+						Secondary = true,
+						Rush = true, 
+						Ranged = true, 
+						Melee = true, 
+						Mana = true, 
+					}
+				}) then
+					return false
+				end
+	if not reward then
+		return false
+	end
+	if reward.ResourceCosts ~= nil and HasResourceCost( reward.ResourceCosts ) then
+		return false
+	end
+	local metaTrait = GetHeroTrait("ReversedSacrificeForLevelsMetaUpgrade")
+	return reward.GoldConversionEligible and (metaTrait.Uses > 0)
+end
+
 modutil.mod.Path.Wrap("CanSpecialInteract", function(base, source)
 	if source.ResourceCosts ~= nil and HasResourceCost( source.ResourceCosts ) then
 		return false
 	end
-	if mod.CanCardifyReward(source) then
+	if mod.CanCardifyReward(source) or mod.CanSacrificeReward(source) then
 		return true
 	else
 		return base(source)
@@ -1841,7 +2024,7 @@ modutil.mod.Path.Wrap("CanSpecialInteract", function(base, source)
 end)
 
 modutil.mod.Path.Wrap("ShowUseButton", function(base,objectId, useTarget)
-	if mod.CanCardifyReward(useTarget) and not (CanGoldifyReward(useTarget) and HeroHasTrait("GoldifyKeepsake")) then
+	if (mod.CanCardifyReward(useTarget) or mod.CanSacrificeReward(useTarget)) and not (CanGoldifyReward(useTarget) and HeroHasTrait("GoldifyKeepsake")) then
 		useTarget = ShallowCopyTable(useTarget)
 		useTarget.UseTextTalkAndSpecial = "CardifyUseLootAndConsume"
 		useTarget.UseTextTalkGiftAndSpecial = "CardifyUseLootGiftAndConsume"
@@ -1859,9 +2042,10 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 	end
 
 	local target = triggerArgs.UseTarget
-	if target ~= nil and mod.CanCardifyReward( target ) then
+	if target ~= nil and (mod.CanCardifyReward( target ) or mod.CanSacrificeReward(target)) then
 		
 		EndAutoSprint({ Halt = true, EndWeapon = true })
+		local destroyTarget = false
 		if mod.CanCardifyReward(target) and IsUseable({ Id = target.ObjectId }) then
 				AddInputBlock({ Name = "Cardifying" })
 			local cardDrawMetaTrait = GetHeroTrait("ReversedCardDrawMetaUpgrade")
@@ -1878,7 +2062,7 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 			game.LootData.MonstrosityMetaUpgradeUpgrade.Name = "MonstrosityMetaUpgradeUpgrade"
 			CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade" , SpawnPoint = target.ObjectId })				
 			local lootData = LootData["MonstrosityMetaUpgradeUpgrade"]
-			Destroy({ Id = target.ObjectId })
+			destroyTarget = true
 			cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
 			UpdateTraitNumber(cardDrawMetaTrait)
 
@@ -1890,7 +2074,43 @@ game.OnControlPressed({ "SpecialInteract", function(triggerArgs)
 				notifyExistingWaiters( target.NotifyName )
 			end
 		end
+		if mod.CanSacrificeReward(target) and IsUseable({ Id = target.ObjectId }) then
+			AddInputBlock({ Name = "Sacrificing" })
+			local metaTrait = GetHeroTrait("ReversedSacrificeForLevelsMetaUpgrade")
+			local previouslyRequired = false
+			if MapState.RoomRequiredObjects[target.ObjectId] then
+				MapState.RoomRequiredObjects[target.ObjectId] = nil
+				previouslyRequired = true
+			end
+			HideUseButton(target.ObjectId, target)
+			if CurrentRun.CurrentRoom.Encounter ~= nil and CurrentRun.CurrentRoom.Encounter.RewardsToRestore ~= nil then
+				CurrentRun.CurrentRoom.Encounter.RewardsToRestore[target.ObjectId] = nil
+			end
+			mod.SacrificePresentation(target)
+			destroyTarget = true
+			DistributeLevels({
+			Slots = { "Secondary", "Rush", "Ranged", "Melee", "Mana" },
+			LevelBonus = metaTrait.BonusLevels})
+			metaTrait.Uses = metaTrait.Uses - 1
+			UpdateTraitNumber(metaTrait)
+
+			if target.MenuNotify then
+				NotifyResultsTable[ target.MenuNotify ] = target.Name
+				notifyExistingWaiters( target.MenuNotify )
+			end
+			if target.NotifyName then
+				notifyExistingWaiters( target.NotifyName )
+			end
+		end
+		if destroyTarget then
+			MapState.RoomRequiredObjects[target.ObjectId] = nil
+			Destroy({ Id = target.ObjectId })
+			if CheckRoomExitsReady(CurrentRun.CurrentRoom) then
+			UnlockRoomExits(CurrentRun, CurrentRun.CurrentRoom)
+			end
+		end
 			RemoveInputBlock({ Name = "Cardifying" })
+			RemoveInputBlock({ Name = "Sacrificing" })
 	end
 end })
 
@@ -1903,6 +2123,27 @@ modutil.mod.Path.Wrap("GoldifyPresentation", function(base,source)
 		CreateLoot({Name = "MonstrosityMetaUpgradeUpgrade", SpawnPoint = source.ObjectId })
 		cardDrawMetaTrait.Uses = cardDrawMetaTrait.Uses - 1
 		UpdateTraitNumber(cardDrawMetaTrait)
+		end
+	end
+	if HeroHasTrait("ReversedSacrificeForLevelsMetaUpgrade") and PommableSlottedTraitCountAtLeast("SacrificeReward", { 
+					Count = 1, 
+					Slots = 
+					{ 
+						Secondary = true,
+						Rush = true, 
+						Ranged = true, 
+						Melee = true, 
+						Mana = true, 
+					}
+				}) then
+		local metaTrait = GetHeroTrait("ReversedSacrificeForLevelsMetaUpgrade")
+		if metaTrait.Uses > 0 then
+						DistributeLevels({
+			Slots = { "Secondary", "Rush", "Ranged", "Melee", "Mana" },
+			LevelBonus = metaTrait.BonusLevels})
+
+		metaTrait.Uses = metaTrait.Uses - 1
+		UpdateTraitNumber(metaTrait)
 		end
 	end
 	return baseValue
@@ -1924,7 +2165,20 @@ function mod.CardifyPresentation( source )
 	wait( 0.1 )
 end
 
-
+function mod.SacrificePresentation( source )
+	AddInputBlock({ Name = "SacrificePresentation" })
+	SessionMapState.GoldifySource = source.Name
+	Stop({ Id = CurrentRun.Hero.ObjectId })
+	Halt({ Id = CurrentRun.Hero.ObjectId })
+	wait( 0.02)
+	PlaySound({ Name = "/SFX/Menu Sounds/PortraitEmoteSparklySFX" })
+	PlayInteractAnimation( source.ObjectId, { Animation = GetEquippedWeaponValue( "WeaponInteractAnimation" ) })
+	RemoveInputBlock({ Name = "SacrificePresentation" })
+	wait( 0.2 )
+	CreateAnimation({ Name = "RadialNovaPentagramCharged_Ares", DestinationId = source.ObjectId })
+	ShakeScreen({ Speed = 200, Distance = 5, Angle = 90, Duration = 0.15 })
+	wait( 0.1 )
+end
 
 --[[ function mod.TestingStuff()
 	CreateLoot({ Name = "MonstrosityMetaUpgradeUpgrade" , OffsetX = 100, SpawnPoint = CurrentRun.Hero.ObjectId })
@@ -1947,7 +2201,6 @@ modutil.mod.Path.Wrap("IsShownInHUD", function(base, trait)
 	else
 		return base(trait)
 	end
-	
 end)
 
 
@@ -1983,17 +2236,19 @@ end
 
 modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
 	if config.AutoUnlockAndUpgradeCards and Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
-		local newMetaUpgradeCards = {    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
+		local oldMetaUpgradeCards = {    { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
+	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
+	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
+	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
 }
-for row, rowData in pairs(newMetaUpgradeCards) do
+for row, rowData in pairs(mod.MetaUpgradeDefaultCardLayout) do
 	for column, cardName in pairs(rowData) do
+		if not Contains(oldMetaUpgradeCards, cardName) then
 		game.GameState.MetaUpgradeState[cardName].Unlocked = true
 		if GameState.MetaUpgradeState[ cardName].Level and GameState.MetaUpgradeState[ cardName].Level < 3 then
 		GameState.MetaUpgradeState[ cardName].Level = 3
+		end
 		end
 	end
 end
@@ -2012,6 +2267,18 @@ modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
 				{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
 				{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
 				{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" },
+
+				{ "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
+	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
+	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
+	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
+	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},
+
+	{ "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
+	{ "ReversedFirstHitTransform",				"ReversedHealthWithBoons",			"ReversedProjectileSlow",			"ReversedCursedLegendaryBoost",			"ReversedFreeOmega" 			},
+	{ "ReversedDashRecovery",			"ReversedProtectionCooldown",			"ReversedElementRoom",	"ReversedUniqueGod",		"ReversedManaShield" 		},
+	{ "ReversedRandomSacrifice",			"ReversedAdditionalOmegaChance",		"ReversedRiposteKill",	"ReversedRandomCards", 			"ReversedBossResistance" 			},
+	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				},
 			}
 
 			for row, rowData in pairs(flippedMetaUpgradeDefaultCardLayout) do
@@ -2042,6 +2309,7 @@ modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
 			for i, upgradeName in ipairs(newCards) do
 				remaining = remaining + MetaUpgradeCardData[upgradeName].Cost
 			end
+			candidates = FYShuffle(candidates)
 		end
 		return base(sum, remaining, index, budget, candidates, cardState)
 	end)
@@ -2169,11 +2437,15 @@ end
 modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(base, attacker, victim, weaponData, triggerArgs)
 	triggerArgs.DdChance = base(attacker, victim, weaponData, triggerArgs)
 
-	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") and ((attacker and attacker == CurrentRun.Hero) or (victim and victim == CurrentRun.Hero))then
+	if HeroHasTrait("ReversedLowHealthBonusMetaUpgrade") and ((attacker and attacker == CurrentRun.Hero) or (victim and victim == CurrentRun.Hero)) and not CurrentHubRoom then
 		local lostLastStands = mod.WorkOutRemainingDefiances()
 		lostLastStands = math.max(0, lostLastStands)
 		local ddTrait = GetHeroTrait("ReversedLowHealthBonusMetaUpgrade")
 		addDdMultiplier( {}, lostLastStands * ddTrait.ModdedDoubleDamageChancePerDD, triggerArgs )
+	end
+	if HeroHasTrait("ReversedTradeOffMetaUpgrade") and (attacker and attacker == CurrentRun.Hero) and not (victim and victim == CurrentRun.Hero) and IsFateValid() then
+		local fatedDDTrait = GetHeroTrait("ReversedTradeOffMetaUpgrade")
+		addDdMultiplier( {}, fatedDDTrait.FatedDDChance, triggerArgs )
 	end
 	return triggerArgs.DdChance
 end)
@@ -2192,11 +2464,18 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 	return base(currentRun, currentRoom, currentEncounter)
 end)
 
+modutil.mod.Path.Wrap("CirceMetaUpgradeRarity", function(base, args)
+	local prevLayout = DeepCopyTable(GameState.MetaUpgradeCardLayout)
+	GameState.MetaUpgradeCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
+	base(args)
+	GameState.MetaUpgradeCardLayout = prevLayout
+end)
+
 function mod.CerbMetaUpgradeRarity( args )
 	args = args or {}
 	local eligibleTraits = {}
 	
-	for row, rowData in pairs( GameState.MetaUpgradeCardLayout ) do
+	for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			if GameState.MetaUpgradeState[cardName].Equipped and MetaUpgradeCardData[ cardName ].TraitName and MetaUpgradeCardData[ cardName ].TraitName ~= "ReversedSorceryRegenMetaUpgrade" and HeroHasTrait(MetaUpgradeCardData[ cardName ].TraitName ) then
 				local traitData = GetHeroTrait(MetaUpgradeCardData[ cardName ].TraitName )
@@ -2229,18 +2508,7 @@ function mod.CerbMetaUpgradeRarity( args )
 end
 
 modutil.mod.Path.Wrap("RunHistoryScreenShowMetaUpgrades", function(base,screen, button )
-	game.MetaUpgradeDefaultCardLayout = {
-        { "ChanneledCast",			"HealthRegen",			"LowManaDamageBonus",	"CastCount",			"SorceryRegenUpgrade", 	},
-	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
-	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
-	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-    { "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-    }
+	game.MetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
 	base(screen, button)
 	local run = GameState.RunHistory[screen.RunIndex] or CurrentRun
 	local components = screen.Components
@@ -2349,3 +2617,1156 @@ modutil.mod.Path.Wrap("HasAllWorldUpgradesRequiringResource", function(base,sour
 	end
 	return baseValue
 end)
+
+function mod.CheckSpawnDemeterDamage( enemy, traitArgs, triggerArgs )
+	if not enemy or not enemy.ObjectId or SessionMapState.SpawnKillRecord[enemy.ObjectId] or enemy == CurrentRun.Hero or (triggerArgs and traitArgs.ExcludeProjectileName and triggerArgs.SourceProjectile == traitArgs.ExcludeProjectileName ) then
+		return
+	end
+	if enemy.IsBoss or enemy.UseBossHealthBar or not RandomChance(traitArgs.Chance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
+		SessionMapState.SpawnKillRecord[enemy.ObjectId] = true
+		return
+	end
+	SessionMapState.SpawnKillRecord[enemy.ObjectId] = true
+	local damageAmount = traitArgs.Damage
+	thread( mod.DoDemeterSpawnDamage, enemy, traitArgs, damageAmount )
+end
+
+function mod.DoDemeterSpawnDamage( enemy, traitArgs, damageAmount )
+	wait(0.1, RoomThreadName )
+	CreateAnimation({ Name = traitArgs.Vfx or "DemeterBossIceShatter", DestinationId = enemy.ObjectId, Group = "FX_Standing_Top" })
+	thread( mod.FamineSpawnKillPresentation, enemy )
+	thread( Damage, enemy, { AttackerId = CurrentRun.Hero.ObjectId, AttackerTable = CurrentRun.Hero, SourceProjectile = "ZeusOnSpawn", DamageAmount = damageAmount, Silent = false, PureDamage = true, IgnoreHealthBuffer = true } )
+end
+
+function mod.FamineSpawnKillPresentation( unit )
+	PlaySound({ Name = "/Leftovers/SFX/PlayerKilledNEW", Id = unit.ObjectId })
+	if CheckCooldown( "SpawnKillPresentationCooldown", 1.0 ) then
+		thread( InCombatText, CurrentRun.Hero.ObjectId, "Hint_FamineSpawnKill", 0.75, { PreDelay = 0.25 } )
+	end
+end
+
+function mod.FlipArcanaCheckPerfectClear(traitData, args)
+    if not SessionMapState.EncounterStartDamage then
+		return
+	end
+	args = args or {}
+    	local damageTaken = CurrentRun.TotalDamageTaken - SessionMapState.EncounterStartDamage
+    if damageTaken <= 0 then
+		if args.PerfectFunctionName then
+		thread(CallFunctionName, args.PerfectFunctionName, traitData, args.PerfectFunctionArgs)
+		end
+    end
+end
+
+function mod.FlipArcanaIncreaseAccumulatedDamageBonus(traitData, args)
+    traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus - (1-traitData.FlipArcanaPerfectClearDamageBonus)
+	wait( 0.45, RoomThreadName )
+	thread( InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaPerfectClearDamageBonus", 0.75, { PreDelay = 0.25 } )
+
+
+	local soundId = PlaySound({ Name = "/SFX/Player Sounds/PoseidonWaterWrathAttackLoop" })
+	SetVolume({ Id = soundId, Value = 0.3 })
+	CreateAnimation({ Name = "PoseidonElementalKnockupFxAlt", DestinationId = CurrentRun.Hero.ObjectId })
+	ShakeScreen({ Speed = 500, Distance = 4, FalloffSpeed = 1000, Duration = 0.3 })
+    UpdateTraitNumber(traitData)
+end
+
+function mod.DoReversedDoorCash(currentRun, door)
+	if HeroHasTrait("ReversedDoorCashMetaUpgrade") and not HasHeroTraitValue("BlockMoney") then
+		local trait = GetHeroTrait("ReversedDoorCashMetaUpgrade")
+		local money = round( trait.FlipTheArcanaDoorCash * GetTotalHeroTraitValue( "MoneyMultiplier", { IsMultiplier = true } ))
+		AddResource( "Money", money, trait.Name )
+		thread( DoorGoldCostumePresentation, money )
+		IncrementTableValue( SessionMapState, "DoorTextCount" )
+	end
+end
+
+function mod.RenewLastStand(unit,args)
+	if CurrentRun.CurrentRoom and CurrentRun.CurrentRoom.BlockTraitSetup or not args then
+		return
+	end
+		local hasRenewableLastStand = false
+	for i, lastStand in pairs( unit.LastStands ) do
+		if lastStand.Name == "FlipTheArcanaRenewableLastStand"  then
+			hasRenewableLastStand = true
+			return
+		end
+	end
+	if not hasRenewableLastStand  then
+		CurrentRun.Hero.LastStands = CurrentRun.Hero.LastStands or {}
+		CurrentRun.Hero.MaxLastStands = CurrentRun.Hero.MaxLastStands or TableLength( CurrentRun.Hero.LastStands )
+		local numLastStands = CurrentRun.Hero.MaxLastStands - TableLength( CurrentRun.Hero.LastStands )
+		local startingLastStand = HasLastStand( CurrentRun.Hero )
+		local trait = GetHeroTrait("ReversedRenewableDDMetaUpgrade")
+		if not CurrentRun.Hero.FlipArcanaRenewableDDAdded then
+		--if numLastStands > 0 then
+			-- only run once
+			AddLastStand({
+				Name = "FlipTheArcanaRenewableLastStand",
+				Icon = "ExtraLifeSkelly",
+				ManaFraction = trait.FlipArcanaRestoreFraction/2,
+				HealFraction = trait.FlipArcanaRestoreFraction/2,
+				Silent = true,
+				IncreaseMax = true,
+			})
+			CurrentRun.Hero.FlipArcanaRenewableDDAdded = true
+			numLastStands = numLastStands - 1
+			if startingLastStand ~= HasLastStand( CurrentRun.Hero ) then
+				thread( RoomStartLowHealthBonusBuffStatePresentation  )
+			end
+		else
+			AddLastStand({
+				Name = "FlipTheArcanaRenewableLastStand",
+				Icon = "ExtraLifeSkelly",
+				ManaFraction = trait.FlipArcanaRestoreFraction/2,
+				HealFraction = trait.FlipArcanaRestoreFraction/2,
+				Silent = true,
+			})
+		end
+		--end
+	end
+end
+
+function mod.GrantRenewableMetaUpgradeLastStands(args)
+	AddLastStand({
+				Name = "FlipTheArcanaRenewableLastStand",
+				Icon = "ExtraLifeSkelly",
+				ManaFraction = args.ManaFraction,
+				HealFraction = args.HealFraction,
+				Silent = false,
+				IncreaseMax = true,
+				ValidityFunctionName = _PLUGIN.guid .. ".IsRenewableLastStandEligible",
+			})
+			RecreateLifePips()
+end
+
+function mod.IsRenewableLastStandEligible()
+return not CurrentRun or not CurrentRun.Hero or IsEmpty(CurrentRun.Hero.Traits) or not HeroHasTrait("ReversedRenewableDDMetaUpgrade")
+end
+
+modutil.mod.Path.Wrap("SetTraitsOnLoot", function(base, lootData, args)
+	base(lootData, args)
+	if lootData.GodLoot and HeroHasTrait("ReversedHeroicRarityMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedHeroicRarityMetaUpgrade")
+		for itemIndex, itemData in ipairs(lootData.UpgradeOptions) do
+			if (itemData.Rarity == "Common" or itemData.Rarity == "Rare" or itemData.Rarity == "Epic") and not itemData.IsElementalTrait and RandomChance(trait.FlipTheArcanaUpgradeToHeroicChance) then
+				itemData.Rarity = "Heroic"
+			end
+		end
+	end
+end)
+
+modutil.mod.Path.Wrap("AddMaxHealth", function(base, healthGained, source, args)
+	args = args or {}
+	if HeroHasTrait("ReversedSharedRunProgressMetaUpgrade") and not args.Thread then
+		local actualHealthGain = round(healthGained)
+		actualHealthGain = round(actualHealthGain * GetTotalHeroTraitValue("MaxHealthMultiplier", { IsMultiplier = true }))
+		local trait = GetHeroTrait("ReversedSharedRunProgressMetaUpgrade")
+		local newArgs = {}
+		if not IsEmpty(args) then
+			newArgs = DeepCopyTable(args)
+		end
+		newArgs.PreDelay = newArgs.PreDelay or 0
+		newArgs.PreDelay = newArgs.PreDelay + 0.5
+		thread(mod.AddEchoMaxMana, actualHealthGain * trait.FlipTheArcanaSharedRatio, source, newArgs)
+	end
+	return base(healthGained, source, args)
+end)
+
+function mod.AddEchoMaxMana(manaGained, source, args)
+args = args or {}
+	if args.Thread then
+		args.Thread = false
+		thread( mod.AddEchoMaxMana, manaGained, source, args )
+		return
+	end
+	local startingMana = CurrentRun.Hero.MaxMana
+	wait( args.Delay )
+	manaGained = round(manaGained)
+	local traitName = "RoomRewardMaxManaTrait"
+
+	local manaTraitData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = traitName })
+	manaTraitData.PropertyChanges[1].ChangeValue = manaGained
+	manaTraitData.Source = args.Source
+	AddTraitToHero({ TraitData = manaTraitData })
+	if not( args.Silent ) then
+		thread( InCombatTextArgs, { TargetId = CurrentRun.Hero.ObjectId, UseProgressiveStack = true, Text = "MaxManaIncrease", PreDelay = args.PreDelay or 0, Duration = 0.7, LuaKey = "TooltipData", ShadowScale = 0.7, OffsetY = -100, LuaValue = { TooltipMana = manaGained }})
+	end
+end
+
+modutil.mod.Path.Wrap("AddMaxMana", function(base, manaGained, source, args)
+	args = args or {}
+	if HeroHasTrait("ReversedSharedRunProgressMetaUpgrade") and not args.Thread then
+		local actualManaGain = round(manaGained)
+		local trait = GetHeroTrait("ReversedSharedRunProgressMetaUpgrade")
+		local newArgs = {}
+		if not IsEmpty(args) then
+			newArgs = DeepCopyTable(args)
+		end
+		newArgs.PreDelay = newArgs.PreDelay or 0
+		newArgs.PreDelay = newArgs.PreDelay + 0.5
+		thread(mod.AddEchoMaxHealth, actualManaGain * trait.FlipTheArcanaSharedRatio, source)
+	end
+	return base(manaGained, source, args)
+end)
+
+function mod.AddEchoMaxHealth(healthGained, source, args)
+	args = args or {}
+	if args.Thread then
+		args.Thread = false
+		thread( mod.AddEchoMaxHealth, healthGained, source, args )
+		return
+	end
+	local startingHealth = CurrentRun.Hero.MaxHealth
+	wait( args.Delay )
+	healthGained = round(healthGained)
+	local traitName = "RoomRewardMaxHealthTrait"
+
+	local healthTraitData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = traitName })
+	healthTraitData.PropertyChanges[1].ChangeValue = healthGained
+	AddTraitToHero({ TraitData = healthTraitData })
+	if not( args.Silent ) then
+		MaxHealthIncreaseText({ MaxHealthGained = CurrentRun.Hero.MaxHealth - startingHealth , SpecialText = "MaxHealthIncrease" })
+		thread( UpdateHealthUI, { FalloffDelay = 0.0 } )
+end
+end
+
+
+function mod.DistributeUpgradesToAllTraits(args)
+	args = args or {}
+	local pause = args.Wait or 0
+	wait(pause)
+	AddStackToTraits("TheHeir",{NumTraits = args.LevelBonus, NumStacks = 1, Thread = true})
+end
+
+modutil.mod.Path.Wrap("StartRoom", function(base,currentRun, currentRoom)
+	base(currentRun, currentRoom)
+	if currentRoom.BiomeStartRoom and (CurrentRun.EnteredBiomes and CurrentRun.EnteredBiomes > 1) and HeroHasTrait("ReversedPomBiomeStartMetaUpgrade") and CurrentRun.Hero.UpgradableTraitCount > 0 then
+		local trait = GetHeroTrait("ReversedPomBiomeStartMetaUpgrade")
+		thread( InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaBonusLevelsAwarded", 0.75, { PreDelay = 0.75 } )
+		mod.DistributeUpgradesToAllTraits({LevelBonus = trait.FlipTheArcanaBonusLevels, Wait = 0.75})
+	end
+	if currentRoom.BiomeStartRoom and HeroHasTrait("ReversedDDRefillBiomeStartMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedDDRefillBiomeStartMetaUpgrade")
+		mod.RefillDefiancesWithTrait(trait)
+	end
+	if currentRoom.BiomeStartRoom and HeroHasTrait("ReversedRandomBuildMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedRandomBuildMetaUpgrade")
+		mod.RandomiseArcanaBuild(trait, {})
+	end
+end)
+
+modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, weaponData, triggerArgs)
+	local critChance = base(attacker, victim, weaponData, triggerArgs)
+	if victim and attacker == CurrentRun.Hero and HeroHasTrait("ReversedStatusCritMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedStatusCritMetaUpgrade")
+		if victim.VulnerabilityEffects and TableLength( victim.VulnerabilityEffects ) >= trait.FlipTheArcanaStatusCrit.MinRequiredVulnerabilityEffects then
+			critChance = critChance + trait.FlipTheArcanaStatusCrit.Chance
+		end
+	end
+	if attacker and attacker == CurrentRun.Hero and HeroHasTrait("ReversedLowHealthCritMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedLowHealthCritMetaUpgrade")
+		if attacker.Health / attacker.MaxHealth <= trait.FlipTheArcanaLowHealthCritData.Threshold and trait.FlipTheArcanaLowHealthCritData.CritChance then
+			critChance = critChance + trait.FlipTheArcanaLowHealthCritData.CritChance
+		end
+	end
+	if attacker and attacker == CurrentRun.Hero and MapState.FlipTheArcanaCritVolleys and MapState.FlipTheArcanaCritVolleys [triggerArgs.SourceWeapon] and triggerArgs.SourceProjectileVolley and MapState.FlipTheArcanaCritVolleys[triggerArgs.SourceWeapon][triggerArgs.SourceProjectileVolley] then
+		local chance = TraitData["ReversedRiposteKillMetaUpgrade"].FlipTheArcanaValidVolleyChance
+		critChance = critChance + chance
+	end
+	if attacker and attacker == CurrentRun.Hero and MapState.FlipTheArcanaCritVolleys and MapState.FlipTheArcanaCritVolleys [triggerArgs.SourceWeapon] and triggerArgs.ProjectileId and MapState.FlipTheArcanaCritVolleys[triggerArgs.SourceWeapon][triggerArgs.ProjectileId] then
+		local chance = TraitData["ReversedRiposteKillMetaUpgrade"].FlipTheArcanaValidVolleyChance
+		critChance = critChance + chance
+	elseif attacker and attacker == CurrentRun.Hero and MapState.FlipTheArcanaCritVolleys and MapState.FlipTheArcanaCritVolleys [triggerArgs.SourceWeapon] and triggerArgs.ProjectileId and MapState.FlipTheArcanaCritVolleys[triggerArgs.SourceWeapon]["BackupProjectile"] then
+	local chance = TraitData["ReversedRiposteKillMetaUpgrade"].FlipTheArcanaValidVolleyChance
+		critChance = critChance + chance
+	end
+	return critChance
+end)
+
+function mod.StartChannelSturdy( weaponData, args )
+	AddIncomingDamageModifier( CurrentRun.Hero,
+	{
+		HealthOnly = true,
+		Name = "FlipTheArcanaChannelSturdy",
+		ValidWeaponMultiplier = args.DamageTakenModifier,
+		Temporary = true,
+	})
+	CreateAnimation({ Name = "HyperArmorLoop", DestinationId = CurrentRun.Hero.ObjectId })
+end
+
+function mod.EndChannelSturdy()
+	RemoveIncomingDamageModifier( CurrentRun.Hero, "FlipTheArcanaChannelSturdy" )
+	StopAnimation({ Name = "HyperArmorLoop", DestinationId = CurrentRun.Hero.ObjectId })
+end
+
+modutil.mod.Path.Wrap("ChooseNextRewardStore", function(base, run)
+	local prevRewardStore = base(run)
+
+	if HeroHasTrait("ReversedUnFatedRewardMetaUpgrade") and not IsFateValid() then
+		local trait = GetHeroTrait("ReversedUnFatedRewardMetaUpgrade")
+		if RandomChance(trait.FlipTheArcanaUnFatedMajorFindChance*GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })) then
+			run.NextRewardStoreName = "RunProgress"
+			return "RunProgress"
+		end
+	end
+	return prevRewardStore
+end)
+
+function mod.CharmCrowd(hero, args)
+while true do
+		local nearbyTargetIds = GetClosestIds({ Id = CurrentRun.Hero.ObjectId, DestinationName = "EnemyTeam", IgnoreInvulnerable = true, IgnoreHomingIneligible = true, IgnoreSelf = true, Distance = 2000 })
+		local eligibleEnemies = {}
+		for _, id in pairs(nearbyTargetIds) do
+			if ActiveEnemies[id] and not ActiveEnemies[id].IsDead and not ActiveEnemies[id].SkipModifiers and not (MapState.CrowdCharmedEnemy and MapState.CrowdCharmedEnemy == ActiveEnemies[id]) then
+				table.insert(eligibleEnemies, ActiveEnemies[id])
+			end
+		end
+		if not IsEmpty(eligibleEnemies) and TableLength(eligibleEnemies) >= args.Minimum then
+			if not MapState.FlipTheArcanaCrowdCharmedEnemy or MapState.FlipTheArcanaCrowdCharmedEnemy.IsDead then
+				MapState.FlipTheArcanaCrowdCharmedEnemy = GetRandomValue(eligibleEnemies)
+			end
+
+			if MapState.FlipTheArcanaCrowdCharmedEnemy.IsBoss or MapState.FlipTheArcanaCrowdCharmedEnemy.BlockCharm then
+				MapState.FlipTheArcanaCrowdCharmedEnemy = nil
+			else
+				ApplyEffect({ 
+					Id = CurrentRun.Hero.ObjectId, 
+					DestinationId = MapState.FlipTheArcanaCrowdCharmedEnemy.ObjectId, 
+					EffectName = args.EffectName or "Charm",
+					DataProperties = 
+					{
+						Type = "CHARM",
+						Duration = 0.5,
+						Active = true,
+						TimeModifierFraction = 0,
+					}
+				})
+			end
+		end
+		wait(0.3, RoomThreadName)
+	end
+end
+
+function mod.GetNumberofEnemies()
+	local nearbyTargetIds = GetClosestIds({ Id = CurrentRun.Hero.ObjectId, DestinationName = "EnemyTeam", IgnoreInvulnerable = true, IgnoreHomingIneligible = true, IgnoreSelf = true, Distance = 2000 })
+		local eligibleEnemies = {}
+		for _, id in pairs(nearbyTargetIds) do
+			if ActiveEnemies[id] and not ActiveEnemies[id].IsDead and not ActiveEnemies[id].SkipModifiers then
+				table.insert(eligibleEnemies, ActiveEnemies[id])
+			end
+		end
+	return TableLength(eligibleEnemies)
+end
+
+modutil.mod.Path.Wrap("RemoveStoreItem", function(base, args)
+	if HeroHasTrait("ReversedExtraPurchaseMetaUpgrade") then
+	if CurrentRun == nil or CurrentRun.CurrentRoom == nil or CurrentRun.CurrentRoom.Store == nil or IsEmpty( CurrentRun.CurrentRoom.Store.StoreOptions ) then
+		return base(args)
+	end
+	args = args or {}
+	local wasFirstPurchase = not CurrentRun.CurrentRoom.FirstPurchase
+	local removedItem = false
+	local replacedKitId = nil
+	local replacedIndex = nil
+	for i, data in pairs( CurrentRun.CurrentRoom.Store.StoreOptions ) do
+		local dataArgs = data.Args or {}
+		if args.IsBoon and data.Type == "Boon" and data.Args and data.Args.ForceLootName == args.Name and TableLength(dataArgs.BoonRaritiesOverride) == TableLength(args.BoonRaritiesOverride) then
+			if dataArgs.BoonRaritiesOverride == args.BoonRaritiesOverride then
+				removedItem = true
+				break
+			elseif dataArgs.BoonRaritiesOverride ~= nil and args.BoonRaritiesOverride ~= nil and dataArgs.BoonRaritiesOverride.Epic == args.BoonRaritiesOverride.Epic and  dataArgs.BoonRaritiesOverride.Rare == args.BoonRaritiesOverride.Rare then
+				removedItem = true
+				break
+			end
+		elseif data.Name == ( args.Name .. "Drop" ) or data.Name == ( "Shop" .. args.Name )  then
+			removedItem = true
+			break
+		elseif data.Name == args.Name then
+			removedItem = true
+			break
+		end
+	end
+	if CurrentRun.CurrentRoom.Store.SpawnedStoreItems then
+		for i, data in pairs(CurrentRun.CurrentRoom.Store.SpawnedStoreItems ) do
+			if data.ObjectId == args.Id then
+				replacedKitId = data.KitId
+				replacedIndex = i
+			end
+		end 
+	end
+	base(args)
+	if wasFirstPurchase and removedItem and not CurrentRun.CurrentRoom.DeliveredFlippedArcanaBonusSale and not HasHeroTraitValue("FirstPurchaseDiscount") then
+		CurrentRun.CurrentRoom.FirstPurchase = true
+		CurrentRun.CurrentRoom.DeliveredFlippedArcanaBonusSale = true
+		local room = CurrentRun.CurrentRoom
+			if room.StoreDataName ~= nil then
+				local storeData = StoreData[room.StoreDataName]
+				if storeData ~= nil then
+					thread( RestockWorldItem, replacedIndex, replacedKitId, args )
+				end
+			end
+	elseif not wasFirstPurchase and not CurrentRun.CurrentRoom.DeliveredFlippedArcanaBonusSale and HasHeroTraitValue("FirstPurchaseDiscount") then
+		CurrentRun.CurrentRoom.DeliveredFlippedArcanaBonusSale = true
+		local room = CurrentRun.CurrentRoom
+			if room.StoreDataName ~= nil then
+				local storeData = StoreData[room.StoreDataName]
+				replacedIndex = 3
+				if storeData ~= nil then
+					thread( RestockWorldItem, replacedIndex, replacedKitId, args )
+				end
+			end
+	end
+else
+	return base(args)
+end
+end)
+
+modutil.mod.Path.Wrap("GetTotalHeroTraitValue", function(base,propertyName, args)
+	if propertyName == "ResourceGatherHeal" and HeroHasTrait("ReversedGatherRarityMetaUpgrade") then
+		mod.DoGatherUpgrade()
+	end
+	return base(propertyName, args)
+end)
+
+function mod.DoGatherUpgrade()
+	if not HeroHasTrait("ReversedGatherRarityMetaUpgrade") then return end
+	local trait = GetHeroTrait("ReversedGatherRarityMetaUpgrade")
+	if RandomChance(trait.FlipTheArcanaUpgradeArcanaChance) then
+		mod.CerbMetaUpgradeRarity({Count = 1})
+	else
+		AddRarityToTraits(trait, { NumTraits = 1,})
+	end
+end
+
+modutil.mod.Path.Wrap("KeepsakeScreenClose", function(base,screen,button)
+	--Need to do this for GiftRackEquipRandomKeepsake
+	if not CanFreeSwapKeepsakes() and screen.LastTrait ~= GameState.LastAwardTrait and GameState.LastAwardTrait and HeroHasTrait("ReversedKeepsakeReAddMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedKeepsakeReAddMetaUpgrade")
+		trait.KeepsakeToCopy = screen.LastTrait
+		--GameState.LastAwardTrait
+	end
+	base(screen, button)
+	if HeroHasTrait("ReversedKeepsakeReAddMetaUpgrade") and not CanFreeSwapKeepsakes() then
+		local traitData = GetHeroTrait("ReversedKeepsakeReAddMetaUpgrade")
+		local keepsakeToCopy = traitData.KeepsakeToCopy
+		traitData.KeepsakeToCopy = nil
+		if not keepsakeToCopy then return end
+		if Contains({ "AthenaEncounterKeepsake", "HadesAndPersephoneKeepsake", "EscalatingKeepsake", "FountainRarityKeepsake" }, keepsakeToCopy) then return end
+		local baseRepeatedTraitData = TraitData[keepsakeToCopy]
+		if baseRepeatedTraitData then
+			local rarityTable = {"Common", "Rare", "Epic", "Heroic"}
+			local rarityNum = traitData.FlipTheArcanaReuseKeepsakeRarity
+			if rarityNum > 4 then
+				rarityNum = 4
+			end
+			if rarityNum == 4 and not baseRepeatedTraitData.RarityLevels[rarityTable[rarityNum]] then
+				rarityNum = 3
+			end
+			local rarity = rarityTable[rarityNum]
+			if baseRepeatedTraitData.Permanent and HeroHasTrait(keepsakeToCopy) then
+				local trait = GetHeroTrait(keepsakeToCopy)
+				local newTraitData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = keepsakeToCopy, Rarity = rarity})
+				-- With only two cases I don't think it's worth making a generic solution
+				if trait.Name == "GoldifyKeepsake" then
+					trait.BoonConversionUses = trait.BoonConversionUses + newTraitData.BoonConversionUses
+				elseif trait.Name == "RarifyKeepsake" then
+					trait.RarityUpgradeData.Uses = trait.RarityUpgradeData.Uses + newTraitData.RarityUpgradeData.Uses
+				end
+			else
+				EquipKeepsake( CurrentRun.Hero, keepsakeToCopy, { ForceRarity = rarity, FromLoot = true, OverwriteSlot = true, SkipAddToHUD = true })
+				local newKeepsake = keepsakeToCopy
+				if newKeepsake == "BonusMoneyKeepsake" then
+					local newTraitData = GetHeroTrait("BonusMoneyKeepsake") 
+					AddResource( "Money", round(newTraitData.BonusMoney * GetTotalHeroTraitValue( "MoneyMultiplier", { IsMultiplier = true } )), "BonusMoneyKeepsake" )
+				end
+			end
+		end
+	end
+end)
+
+modutil.mod.Path.Wrap("GiftRackEquipRandomKeepsake", function(base, source, args)
+	if not CanFreeSwapKeepsakes() and GameState.LastAwardTrait and HeroHasTrait("ReversedKeepsakeReAddMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedKeepsakeReAddMetaUpgrade")
+		trait.KeepsakeToCopy = GameState.LastAwardTrait
+	end
+	base(source, args)
+	if HeroHasTrait("ReversedKeepsakeReAddMetaUpgrade") and not CanFreeSwapKeepsakes() then
+		local traitData = GetHeroTrait("ReversedKeepsakeReAddMetaUpgrade")
+		local keepsakeToCopy = traitData.KeepsakeToCopy
+		traitData.KeepsakeToCopy = nil
+		if not keepsakeToCopy then return end
+		if Contains({ "AthenaEncounterKeepsake", "HadesAndPersephoneKeepsake", "EscalatingKeepsake", "FountainRarityKeepsake" }, keepsakeToCopy) then return end
+		local baseRepeatedTraitData = TraitData[keepsakeToCopy]
+		if baseRepeatedTraitData then
+			local rarityTable = {"Common", "Rare", "Epic", "Heroic"}
+			local rarityNum = traitData.FlipTheArcanaReuseKeepsakeRarity
+			if rarityNum > "4" then
+				rarityNum = 4
+			end
+			if rarityNum == "4" and not baseRepeatedTraitData.RarityLevels[rarityTable[rarityNum]] then
+				rarityNum = 3
+			end
+			local rarity = rarityTable[rarityNum]
+			if baseRepeatedTraitData.Permanent and HeroHasTrait(keepsakeToCopy) then
+				local trait = GetHeroTrait(keepsakeToCopy)
+				local newTraitData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = keepsakeToCopy, Rarity = rarity})
+				-- With only two cases I don't think it's worth making a generic solution
+				if trait.Name == "GoldifyKeepsake" then
+					trait.BoonConversionUses = trait.BoonConversionUses + newTraitData.BoonConversionUses
+				elseif trait.Name == "RarifyKeepsake" then
+					trait.RarityUpgradeData.Uses = trait.RarityUpgradeData.Uses + newTraitData.RarityUpgradeData.Uses
+				end
+			else
+				EquipKeepsake( CurrentRun.Hero, keepsakeToCopy, { ForceRarity = rarity, FromLoot = true, OverwriteSlot = true, SkipAddToHUD = true })
+				local newKeepsake = keepsakeToCopy
+				if newKeepsake == "BonusMoneyKeepsake" then
+					local newTraitData = GetHeroTrait("BonusMoneyKeepsake") 
+					AddResource( "Money", round(newTraitData.BonusMoney * GetTotalHeroTraitValue( "MoneyMultiplier", { IsMultiplier = true } )), "BonusMoneyKeepsake" )
+				end
+			end
+		end
+	end
+end)
+
+modutil.mod.Path.Wrap("CreateUpgradeChoiceButton", function(base,screen, lootData, itemIndex, itemData, args )
+	local upgradeData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = itemData.ItemName, Rarity = itemData.Rarity })
+	if HeroHasTrait("ReversedRandomBonusLevelsMetaUpgrade") and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost then
+		if not itemData.StackNum then
+					local stackNum = itemData.StackNum or 0
+
+			local maxRank = GetTotalHeroTraitValue("MaxBonusBoonRankWeighted")
+			local distribution = GetHeroTraitValues("MaxBonusBoonRankDistribution", { First = true })[1]
+			if not IsEmpty( distribution ) and not IsEmpty(distribution[maxRank] ) then
+				stackNum = GetRandomValueFromWeightedList( distribution[maxRank] )
+			else
+				stackNum = RandomInt( 0, maxRank )
+			end
+			if IsFateValid() and GetTotalHeroTraitValue("FatedBoonLevelBonus") > 0 then
+				stackNum = stackNum + GetTotalHeroTraitValue("FatedBoonLevelBonus") + 1
+			end
+		local trait = GetHeroTrait("ReversedRandomBonusLevelsMetaUpgrade")
+		if RandomChance(0.7) then
+			stackNum = stackNum + RandomInt( 0, trait.MaxBonusLevels )
+			if stackNum == 1 then stackNum = 0 end
+		end
+		itemData.StackNum = stackNum
+	end
+	end
+	local traitData = TraitData[itemData.ItemName]
+	if HeroHasTrait("ReversedRandomSacrificeMetaUpgrade") and not traitData.Slot and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost then
+		local metaUpgradeTrait = GetHeroTrait("ReversedRandomSacrificeMetaUpgrade")
+		if not itemData.TraitToReplace and not screen.FlipTheArcanaTraitToReplaceName and itemData.Rarity ~= "Heroic" and RandomChance(metaUpgradeTrait.FlipTheArcanaRandomSacrificeChance) then
+			local traitToReplaceName = mod.GetReplacementTrait()
+			if traitToReplaceName then
+				local traitToReplace = GetHeroTrait(traitToReplaceName)
+				itemData.TraitToReplace = traitToReplaceName
+				itemData.OldRarity = traitToReplace.Rarity
+				itemData.Rarity = GetUpgradedRarity(traitToReplace.Rarity)
+				screen.FlipTheArcanaTraitToReplaceName = traitToReplaceName
+			end
+		end
+	end
+	return base(screen, lootData, itemIndex, itemData, args)
+end)
+
+modutil.mod.Path.Wrap("FormatExtractedValue", function(base,value,extractData)
+if extractData.Format and extractData.Format == "FlipArcanaKeepsakeRarity" then
+    local table = {"AwardRank1","AwardRank2", "AwardRank3", "AwardRank4"}
+    return "{!Icons." ..table[value].."}"
+end
+return base(value, extractData)
+end)
+
+modutil.mod.Path.Wrap("CreateRoom", function(base, roomData, args)
+	if HeroHasTrait("ReversedExtraFeaturesMetaUpgrade") then 
+	local room = base(roomData, args)
+	local trait = GetHeroTrait("ReversedExtraFeaturesMetaUpgrade")
+	local challengeBaseIds = GetIdsByType({ Name = "ChallengeSwitchBase" })
+
+	if RandomChance(trait.FlipTheArcanaExtraFeatureChance) and challengeBaseIds and not (room.ChallengeChanceSuccess or room.WellShopChanceSuccess or room.SurfaceShopChanceSuccess) then
+		local options = {}
+		
+		local requirements = roomData.ChallengeSpawnRequirements or RoomData.BaseRoom.ChallengeSpawnRequirements
+		if IsGameStateEligible( room, requirements) then
+			table.insert(options,"ForceEliteSwitch")
+			table.insert(options,"ForceChallengeSwitch")
+			table.insert(options,"ForcePerfectClearSwitch")
+		end
+		requirements = roomData.WellShopRequirements or RoomData.BaseRoom.WellShopRequirements
+		if IsGameStateEligible( room, requirements)  then
+			table.insert(options, "ForceWellShop")
+		end
+				
+		requirements = roomData.SurfaceShopRequirements or RoomData.BaseRoom.SurfaceShopRequirements
+		if IsGameStateEligible( room, requirements)then
+			table.insert(options, "ForceSurfaceShop")
+		end
+		if not IsEmpty(options) then
+		local success = RemoveRandomValue(options)
+		room[success] = true
+		end
+	end
+	return room
+	else
+		return base(roomData, args)
+	end
+end)
+
+function mod.CheckPerfectPower(victim, args, triggerArgs)
+	if IsExWeapon( triggerArgs.SourceWeapon, { Combat = true }, triggerArgs ) then
+		return
+	end
+	if triggerArgs.SourceProjectile and ProjectileData[triggerArgs.SourceProjectile] and ProjectileData[triggerArgs.SourceProjectile].IsAdditionalCastProjectile then
+		return
+	end
+	if not HeroHasTrait("ReversedPerfectPowerMetaUpgrade") then return end
+	local trait = GetHeroTrait("ReversedPerfectPowerMetaUpgrade")
+	local isUpdated = false
+	if trait.FlipTheArcanaCurrentBonusStacks < trait.FlipTheArcanaMaxBonusStacks then
+		trait.FlipTheArcanaCurrentBonusStacks = math.min(trait.FlipTheArcanaCurrentBonusStacks + 1, trait.FlipTheArcanaMaxBonusStacks)
+		isUpdated = true
+	end
+	if isUpdated and trait.FlipTheArcanaCurrentBonusStacks == trait.FlipTheArcanaMaxBonusStacks then
+		PlaySound({ Name = "/SFX/ThanatosCreepyBellStart", Id = CurrentRun.Hero.ObjectId })
+	end
+end
+
+function mod.ResetPerfectPower( attacker, args, triggerArgs )
+	if triggerArgs.ManuallyTriggered or not triggerArgs.DamageAmount or triggerArgs.DamageAmount <= 0 then
+		return
+	end
+	local trait = GetHeroTrait( "ReversedPerfectPowerMetaUpgrade")
+	trait.FlipTheArcanaCurrentBonusStacks = 0
+end
+
+modutil.mod.Path.Wrap("CalculateBaseDamageAdditions", function(base, attacker, victim, triggerArgs)
+    local damageAddition = base(attacker, victim, triggerArgs)
+	if HeroHasTrait("ReversedPerfectPowerMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedPerfectPowerMetaUpgrade")
+		local stacks = trait.FlipTheArcanaCurrentBonusStacks or 0
+		local powerPerStack = trait.FlipTheArcanaPowerPerStack or 0
+		damageAddition = damageAddition + stacks * powerPerStack
+	end
+    return damageAddition
+end)
+
+function mod.CheckFarewellBuff()
+	if not HeroHasTrait("ReversedFullDefianceMetaUpgrade") then return end
+	if not mod.AtFullDefiance() then return end
+	local trait = GetHeroTrait("ReversedFullDefianceMetaUpgrade")
+	if not MapState.FlipTheArcanaFarewellDodge then
+		local dodgeChance = trait.FlipTheArcanaFullDDDodgeChance
+		MapState.FlipTheArcanaFarewellDodge = dodgeChance
+		SetLifeProperty({ Property = "DodgeChance", Value = dodgeChance, ValueChangeType = "Add", DestinationId = CurrentRun.Hero.ObjectId, DataValue = false })
+	end
+end
+
+function mod.RemoveFarewellBuff()
+	if MapState.FlipTheArcanaFarewellDodge and MapState.FlipTheArcanaFarewellDodge > 0 then
+		SetLifeProperty({ Property = "DodgeChance", Value = -MapState.FlipTheArcanaFarewellDodge, ValueChangeType = "Add", DestinationId = CurrentRun.Hero.ObjectId, DataValue = false })
+		MapState.FlipTheArcanaFarewellDodge = nil
+	end
+end
+
+function mod.AtFullDefiance()
+	local currentLastStandNum = TableLength( CurrentRun.Hero.LastStands )
+	local maxLastStands = CurrentRun.Hero.MaxLastStands or 0
+	if HeroHasTrait("FocusLastStandBoon") then
+		local hasAthenaLastStand = false
+		for i, lastStand in ipairs( CurrentRun.Hero.LastStands ) do
+			if lastStand.Name == "Athena"  then
+				hasAthenaLastStand = true
+				break
+			end
+		end
+		if not hasAthenaLastStand then
+			currentLastStandNum = currentLastStandNum + 1
+		end
+	end
+	if currentLastStandNum < maxLastStands then return false end
+	if maxLastStands == 0 then return false end
+	if currentLastStandNum >= maxLastStands then return true end
+end
+
+modutil.mod.Path.Wrap("CheckLastStand", function(base, victim, triggerArgs)
+	local value = base(victim, triggerArgs)
+	if MapState.FlipTheArcanaFarewellDodge and MapState.FlipTheArcanaFarewellDodge > 0 and not mod.AtFullDefiance() then
+		mod.RemoveFarewellBuff()
+	end
+	return value
+end)
+
+modutil.mod.Path.Wrap("HasHeroTraitValue", function(base, propertyName)
+	if propertyName == "CapMaxHealth" and HeroHasTrait("ReversedArtemisKeepsakeMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedArtemisKeepsakeMetaUpgrade")
+		return trait
+	end
+	return base(propertyName)
+end)
+
+
+function mod.IncreaseOmegaCount( weaponData, traitArgs, triggerArgs )
+	if CurrentRun.Hero.Frozen or triggerArgs.UnitIdOverride then
+		return
+	end
+	if traitArgs.IsEx and (not IsExWeapon( weaponData.Name , {Combat = true}, triggerArgs) and not triggerArgs.DisjointExCast) then
+		return
+	end
+	if Contains({ "WeaponCast",  "WeaponCastArm", "WeaponCastVacuum", "WeaponAnywhereCast", "WeaponCastProjectile", "WeaponCastProjectileHades","WeaponCastLob", "WeaponSprint", "WeaponSprintEx",}, weaponData.Name)
+	then return end
+    SessionMapState.FlipTheArcanaOmegasUsed = SessionMapState.FlipTheArcanaOmegasUsed or 0
+	SessionMapState.FlipTheArcanaOmegasUsed = SessionMapState.FlipTheArcanaOmegasUsed + 1
+end
+
+modutil.mod.Path.Wrap("GetManaCost", function(base,weaponData, useRequiredMana, args)
+	if HeroHasTrait("ReversedFreeOmegaMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedFreeOmegaMetaUpgrade")
+		if SessionMapState.FlipTheArcanaOmegasUsed and SessionMapState.FlipTheArcanaOmegasUsed >= trait.FlipTheArcanaFreeOmegas then
+			return base(weaponData, useRequiredMana, args)
+		else
+			if IsExWeapon(weaponData.Name, {}, {}) and not Contains({ "WeaponCast",  "WeaponCastArm", "WeaponCastVacuum", "WeaponAnywhereCast", "WeaponCastProjectile", "WeaponCastProjectileHades","WeaponCastLob"}, weaponData.Name) then
+				return 0
+			end
+			return base(weaponData, useRequiredMana, args)
+		end
+	end
+	return base(weaponData, useRequiredMana, args)
+end)
+
+function mod.FirstHitPolymorph( victim, functionArgs, triggerArgs )
+	if victim.FlipTheArcanaFirstHitPolymorphRun then return end
+	victim.FlipTheArcanaFirstHitPolymorphRun = true
+	if not RandomChance( functionArgs.Chance ) then
+		return
+	end
+	if not victim then return end
+	--[[if not IsExWeapon( triggerArgs.SourceWeapon, { Combat = true }, triggerArgs ) then
+		return
+	end]]
+
+	if victim.ImmuneToPolymorph or victim.IsPolymorphed then
+		return
+	end
+
+	
+	if victim == CurrentRun.Hero then
+		return
+	end
+
+	--[[if HeroHasTrait("ExPolymorphBoon") then
+		TraitUIActivateTrait( GetHeroTrait("ExPolymorphBoon"), { FlashOnActive = true, Duration = functionArgs.Cooldown })
+	end]]
+	-- Kludgey, should move the effect data off of the polymorph projectile and into EffectData.
+	local duration = 0
+	local effectName = "PolymorphTag"
+	local dataProperties = MergeAllTables({
+		EffectData[effectName].DataProperties, 
+		functionArgs.EffectArgs
+	})
+	duration = functionArgs.Duration
+	dataProperties.Duration = duration
+	
+	SessionMapState.PolymorphIgnores[victim.ObjectId] = true
+	ApplyEffect( { DestinationId = victim.ObjectId, Id = CurrentRun.Hero.ObjectId, EffectName = effectName, DataProperties = dataProperties } )
+	
+	effectName = "PolymorphDamageTaken"
+	local dataProperties = MergeAllTables({
+		EffectData[effectName].DataProperties, 
+		functionArgs.EffectArgs
+	})
+	dataProperties.Duration = duration
+	dataProperties.Modifier = GetTotalHeroTraitValue("PolymorphDamageMultiplier", { IsMultiplier = true })
+	ApplyEffect( { DestinationId = victim.ObjectId, Id = CurrentRun.Hero.ObjectId, EffectName = effectName, DataProperties = dataProperties } )
+end
+
+function mod.CheckDaggerCritCharges( weaponData, functionArgs, triggerArgs )
+	if MapState.FlipTheArcanaDaggerCharges and MapState.FlipTheArcanaDaggerCharges >= 1 then
+		MapState.FlipTheArcanaCritVolleys = MapState.FlipTheArcanaCritVolleys or {}
+		MapState.FlipTheArcanaCritVolleys[weaponData.Name] = MapState.FlipTheArcanaCritVolleys[weaponData.Name] or {}
+		if triggerArgs.ProjectileVolley then
+			IncrementTableValue(MapState.FlipTheArcanaCritVolleys[weaponData.Name], triggerArgs.ProjectileVolley, triggerArgs.NumProjectiles )
+		else
+
+			IncrementTableValue(MapState.FlipTheArcanaCritVolleys[weaponData.Name],"BackupProjectile", triggerArgs.NumProjectiles )
+		end
+		local numProjectiles = 1
+		if weaponData.Name == "WeaponDaggerThrow" then
+			numProjectiles = triggerArgs.NumProjectiles or numProjectiles
+		end
+		MapState.FlipTheArcanaDaggerCharges = MapState.FlipTheArcanaDaggerCharges - numProjectiles
+
+		for k,v in ipairs( SessionMapState.FlipTheArcanaDaggerCritTicks ) do
+			if k > MapState.FlipTheArcanaDaggerCharges then
+				mod.RemoveArtemisDaggerTick( k )
+				if not triggerArgs.ProjectileVolley then
+					triggerArgs.WeaponName = weaponData.Name
+					mod.RemoveCritVolley(triggerArgs)
+				end
+			end
+		end
+
+		if MapState.FlipTheArcanaDaggerCharges <= 0 then
+			thread( DaggerBlockClearedPresentation, {ActivatedVfx = "DaggerBlockActiveFx"} )
+			MapState.FlipTheArcanaDaggerCharges = 0
+		end
+	end
+end
+
+function mod.RemoveArtemisDaggerTick( index )
+	if SessionMapState.FlipTheArcanaDaggerCritTicks[ index ] then 
+		local daggerId = SessionMapState.FlipTheArcanaDaggerCritTicks[ index ]
+		SetAnimation({ Name = "ArtemisCritDaggerTickOut", DestinationId = daggerId})
+		wait( 0.13333 )
+		if daggerId then
+		Destroy({ Id = daggerId})
+		end
+	end
+end
+
+function mod.RemoveCritVolley(triggerArgs)
+	if triggerArgs.WeaponName and MapState.FlipTheArcanaCritVolleys and MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName] then
+		if triggerArgs.ProjectileVolley then
+		DecrementTableValue( MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName], triggerArgs.ProjectileVolley )
+		if MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName][triggerArgs.ProjectileVolley] <= 0 then
+			MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName][triggerArgs.ProjectileVolley] = nil
+		end
+		else
+			DecrementTableValue( MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName], "BackupProjectile" )
+		if MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName]["BackupProjectile"] <= 0 then
+			MapState.FlipTheArcanaCritVolleys[triggerArgs.WeaponName]["BackupProjectile"] = nil
+		end	
+		end
+	end
+end
+
+function mod.SetupArtemisDaggerTicks( victim, functionArgs, triggerArgs )
+	
+	SessionMapState.FlipTheArcanaDaggerCritTicks = SessionMapState.FlipTheArcanaDaggerCritTicks or {}
+
+	for k,v in ipairs( SessionMapState.FlipTheArcanaDaggerCritTicks ) do
+		Destroy({ Id = SessionMapState.FlipTheArcanaDaggerCritTicks[ k ]})
+	end
+
+	MapState.FlipTheArcanaDaggerCharges = functionArgs.CritCount
+	local daggerTicks = MapState.FlipTheArcanaDaggerCharges
+	
+Destroy({ Ids = SessionMapState.FlipTheArcanaDaggerCritTicks})
+
+	for k,v in ipairs( SessionMapState.FlipTheArcanaDaggerCritTicks ) do
+		Destroy({ Id = SessionMapState.FlipTheArcanaDaggerCritTicks[ k ]})
+	end
+
+	for i = 1, daggerTicks do
+		if SessionMapState.FlipTheArcanaDaggerCritTicks[i] then
+			Destroy({Id = SessionMapState.FlipTheArcanaDaggerCritTicks[i]})
+		end
+		SessionMapState.FlipTheArcanaDaggerCritTicks[i] = SpawnObstacle({ Name = "BlankObstacle", DestinationId = CurrentRun.Hero.ObjectId, Group = "Standing" })
+		Attach({ Id = SessionMapState.FlipTheArcanaDaggerCritTicks[i], DestinationId = CurrentRun.Hero.ObjectId , OffsetY = -50})
+		SetAnimation({ Name = "ArtemisCritDaggerTick", DestinationId = SessionMapState.FlipTheArcanaDaggerCritTicks[i] })
+		wait( 0.01 )
+
+		local centeredAngle = 90
+		local angleSpread = 220
+		local angleOffset = math.floor(i/2) / math.floor(daggerTicks/2) * angleSpread / 2
+
+		angleOffset = angleOffset * ( i%2*2-1 )
+		centeredAngle = centeredAngle  + angleOffset
+		if daggerTicks % 2 == 0 then 
+			centeredAngle = centeredAngle + ( angleSpread / daggerTicks / 2)
+		end
+
+		SetAngle({ Id = SessionMapState.FlipTheArcanaDaggerCritTicks[i], Angle = centeredAngle })
+	end
+end
+
+function mod.RefillDefiancesWithTrait(trait)
+	if not trait then return end
+	if not trait.FlipTheArcanaDDRestored then return end
+	local spentDD = mod.WorkOutRemainingDefiances()
+	local refillNum = math.min(spentDD, trait.FlipTheArcanaDDRestored)
+	mod.RefillSomeDD(refillNum)
+	if refillNum > 0 then
+		trait.FlipTheArcanaDDRestored = trait.FlipTheArcanaDDRestored - refillNum
+		thread(InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaDDRestoreProcess", 0.5, { PreDelay = 0.5 })
+	end
+end
+
+function mod.RefillSomeDD(refillNum)
+if not CurrentRun.Hero.MaxLastStands then
+		return	
+	end
+	args = args or {}
+	local numLastStands = refillNum
+	local hadLastStands = HasLastStand( CurrentRun.Hero )
+	if numLastStands > 0 then
+		local currentFraction = 0.4 
+		while numLastStands > 0 do
+			AddLastStand({
+				Name = "Echo",
+				Icon = "ExtraLifeStyx",
+				ManaFraction = currentFraction,
+				HealFraction = currentFraction,
+				Silent = true,
+			})
+			numLastStands = numLastStands - 1
+		end
+		
+		if not hadLastStands then
+			thread( LowHealthBonusBuffStatePresentation, 0.5 )
+		end
+		RecreateLifePips()
+	end
+end
+
+function mod.GetReplacementTrait( )
+	
+
+	local traitOptions = {}
+
+	for i, traitData in ipairs( CurrentRun.Hero.Traits ) do
+		if IsGodTrait(traitData.Name, { ForShop = true }) and not traitData.Slot and traitData.Rarity ~= nil and GetRarityValue( traitData.Rarity ) <= 3 and GetUpgradedRarity(traitData.Rarity) then
+			table.insert(traitOptions, traitData.Name)
+		end
+	end
+	if IsEmpty(traitOptions) then return nil end
+
+	return GetRandomValue(traitOptions)
+end
+
+modutil.mod.Path.Wrap("Damage", function(base,victim, triggerArgs)
+	if victim and triggerArgs and victim == CurrentRun.Hero and HeroHasTrait("ReversedProtectionCooldownMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedProtectionCooldownMetaUpgrade")
+		if triggerArgs.DamageAmount > 0 and CheckCooldown("ReversedProtectionCooldownMetaUpgrade", trait.FlipTheArcanaUnyieldingCooldown) then
+			StopAnimation({ Name = "MelShieldFront", DestinationId = CurrentRun.Hero.ObjectId })
+			StopAnimation({ Name = "MelShieldBack", DestinationId = CurrentRun.Hero.ObjectId })
+			triggerArgs.DamageAmount = 1
+			thread(mod.RestoreUnyielding, trait.FlipTheArcanaUnyieldingCooldown)
+		end
+	end
+	if victim and triggerArgs and victim == CurrentRun.Hero and HeroHasTrait("ReversedManaShieldMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedManaShieldMetaUpgrade")
+		local manaShieldData = trait.FlipTheArcanaManaShieldData
+		local manaCost = math.ceil(math.ceil(triggerArgs.DamageAmount * manaShieldData.DamageBlocked) * manaShieldData.ManaPerDamageBlocked)
+		if manaCost > CurrentRun.Hero.Mana then
+			manaCost = CurrentRun.Hero.Mana
+		end
+		triggerArgs.DamageAmount = triggerArgs.DamageAmount - math.ceil( manaCost / manaShieldData.ManaPerDamageBlocked )
+		ManaDelta( -manaCost, { IgnoreSpend = true, ManaDrain = true })
+	end
+	return base(victim, triggerArgs)
+end)
+
+modutil.mod.Path.Wrap("UseHealthFountain", function(base, used, user)
+	if HeroHasTrait("ReversedFountainGoldMetaUpgrade") then
+		local trait = GetHeroTrait("ReversedFountainGoldMetaUpgrade")
+		thread( GushMoney, { Amount = trait.FlipTheArcanaFountainGold, LocationId = CurrentRun.Hero.ObjectId, Radius = 100, Source = "FlipTheArcana Gold Fountain Trait"})
+	end
+	return base(used, user)
+end)
+
+function mod.RestoreUnyielding(cooldown)
+	wait(cooldown, RoomThreadName)
+    PlaySound({ Name = "/SFX/WrathOver", Id = CurrentRun.Hero.ObjectId })
+	thread( InCombatTextArgs, { TargetId = CurrentRun.Hero.ObjectId, Text = "FlipTheArcanaUnyieldingRestored", Duration = 1, PreDelay = 0 } )
+	CreateAnimation({ Name = "MelShieldFront", DestinationId = CurrentRun.Hero.ObjectId })
+end
+
+function mod.SetupUnyielding()
+CreateAnimation({ Name = "MelShieldFront", DestinationId = CurrentRun.Hero.ObjectId })
+end
+
+--[[function mod.GetCardAllSides(cardName)
+	local metaUpgradeReversePairs = {}
+	for i = 1,5 do
+		for j = 1,5 do
+			local newTable = {}
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+5][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+10][j])
+			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+15][j])
+			table.insert(metaUpgradeReversePairs, newTable)
+		end
+	end
+	return mod.FindTableContainingValue(metaUpgradeReversePairs, cardName)
+end
+
+
+function mod.DrawCardOtherSides(numCards, args)
+	args = args or {}
+	numCards = numCards or 3
+	local delay = args.Delay or 3
+	local unequippedUnlockedMetaupgrades = {}
+	local skippedLowPriorityMetaupgrade = {}
+	local equippedMetaUpgrades = {}
+	local combinedMetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
+	wait(delay)
+	local eligibleCards = {}
+	for cardName, cardData in pairs(GameState.MetaUpgradeState) do
+		if cardData.Equipped then		
+			equippedMetaUpgrades[cardName] = true
+		end
+	end
+
+	for _, cardName in paits(equippedMetaUpgrades) do
+		if not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedDrawOtherSides"}, cardName) then
+			table.insert(eligibleCards, mod.GetCardAllSides(cardName))
+		end
+	end
+	
+
+	for row, rowData in pairs( eligibleCards ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped then
+				local fateConflict = false
+				if GameState.FatedStatus == "Fated" and FatedDisableMetaUpgrades[cardName] then
+					fateConflict = true
+				end
+				if GameState.FatedStatus ~= "Fated" and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
+					fateConflict = true
+				end
+				if not fateConflict and not (Contains(unequippedUnlockedMetaupgrades, cardName) or Contains(skippedLowPriorityMetaupgrade, cardName)) then
+					if MetaUpgradeCardData[cardName].RandomDrawChance then
+						if RandomChance(MetaUpgradeCardData[cardName].RandomDrawChance) then
+							table.insert(unequippedUnlockedMetaupgrades, cardName)
+						else
+							table.insert(skippedLowPriorityMetaupgrade, cardName)
+						end
+					else
+						table.insert(unequippedUnlockedMetaupgrades, cardName)
+					end
+				end
+			end
+		end
+	end
+
+	local addedMetaUpgrades = {}
+	while (not IsEmpty( unequippedUnlockedMetaupgrades ) or not IsEmpty( skippedLowPriorityMetaupgrade )) and numCards > 0 do
+		numCards = numCards - 1
+		local metaUpgradeName = nil
+		if not IsEmpty( unequippedUnlockedMetaupgrades ) then
+			metaUpgradeName = RemoveRandomValue(unequippedUnlockedMetaupgrades)
+		else
+			metaUpgradeName = RemoveRandomValue(skippedLowPriorityMetaupgrade)
+		end
+		if MetaUpgradeCardData[metaUpgradeName].RequiredCardNames and not ContainsAnyKey( equippedMetaUpgrades, MetaUpgradeCardData[metaUpgradeName].RequiredCardNames ) and not IsEmpty(unequippedUnlockedMetaupgrades) then
+			table.insert( skippedLowPriorityMetaupgrade, metaUpgradeName )
+			metaUpgradeName = RemoveRandomValue( unequippedUnlockedMetaupgrades )
+		end
+		CurrentRun.TemporaryMetaUpgrades[metaUpgradeName] = true
+		GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+		equippedMetaUpgrades[metaUpgradeName] = true
+
+		table.insert( addedMetaUpgrades, metaUpgradeName )
+		if MetaUpgradeCardData[ metaUpgradeName ].TraitName then
+			local rarityLevel = GetMetaUpgradeLevel( metaUpgradeName )
+			if args.RarityLevel then
+				rarityLevel = args.RarityLevel
+			end
+			AddTraitToHero({ 
+				SkipNewTraitHighlight = true, 
+				TraitName = MetaUpgradeCardData[ metaUpgradeName ].TraitName, 
+				Rarity = TraitRarityData.RarityUpgradeOrder[ rarityLevel ],
+				CustomMultiplier = 1,
+				SourceName = metaUpgradeName,
+				})
+		end
+		if MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName then
+			thread( CallFunctionName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName, MetaUpgradeCardData[ metaUpgradeName ].TraitName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionArgs, args )
+		end
+	end
+
+	thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
+end]]
+
+function mod.RandomiseArcanaBuild(trait,args)
+
+		args = args or {}
+	numCards = trait.FlipTheArcanaRandomCardsDrawn
+
+	if CurrentRun.FlipTheArcanaTycheMetaUpgrades then
+		for cardName in pairs(CurrentRun.FlipTheArcanaTycheMetaUpgrades) do
+			GameState.MetaUpgradeState[cardName].Equipped = nil
+			local metaUpgradeData = MetaUpgradeCardData[cardName]
+			RemoveTrait( CurrentRun.Hero, metaUpgradeData.TraitName )
+		end
+	end
+	local delay = args.Delay or 3
+	local unequippedUnlockedMetaupgrades = {}
+	local skippedLowPriorityMetaupgrade = {}
+	local equippedMetaUpgrades = {}
+	for cardName, cardData in pairs(GameState.MetaUpgradeState) do
+		if cardData.Equipped then		
+			equippedMetaUpgrades[cardName] = true
+		end
+	end
+
+	for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
+		for column, cardName in pairs( rowData ) do
+			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
+			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped and not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedRandomBuild", "ReversedRandomCards"}, cardName) then
+				local fateConflict = false
+				if GameState.FatedStatus == "Fated" and FatedDisableMetaUpgrades[cardName] then
+					fateConflict = true
+				end
+				if not fateConflict then
+					if MetaUpgradeCardData[cardName].RandomDrawChance then
+						if RandomChance(MetaUpgradeCardData[cardName].RandomDrawChance) then
+							table.insert(unequippedUnlockedMetaupgrades, cardName)
+						else
+							table.insert(skippedLowPriorityMetaupgrade, cardName)
+						end
+					else
+						table.insert(unequippedUnlockedMetaupgrades, cardName)
+					end
+				end
+			end
+		end
+	end
+
+	local addedMetaUpgrades = {}
+	CurrentRun.FlipTheArcanaTycheMetaUpgrades = {}
+	while (not IsEmpty( unequippedUnlockedMetaupgrades ) or not IsEmpty( skippedLowPriorityMetaupgrade )) and numCards > 0 do
+		numCards = numCards - 1
+		local metaUpgradeName = nil
+		if not IsEmpty( unequippedUnlockedMetaupgrades ) then
+			metaUpgradeName = RemoveRandomValue(unequippedUnlockedMetaupgrades)
+		else
+			metaUpgradeName = RemoveRandomValue(skippedLowPriorityMetaupgrade)
+		end
+		if MetaUpgradeCardData[metaUpgradeName].RequiredCardNames and not ContainsAnyKey( equippedMetaUpgrades, MetaUpgradeCardData[metaUpgradeName].RequiredCardNames ) and not IsEmpty(unequippedUnlockedMetaupgrades) then
+			table.insert( skippedLowPriorityMetaupgrade, metaUpgradeName )
+			metaUpgradeName = RemoveRandomValue( unequippedUnlockedMetaupgrades )
+		end
+		CurrentRun.TemporaryMetaUpgrades[metaUpgradeName] = true
+		CurrentRun.FlipTheArcanaTycheMetaUpgrades[metaUpgradeName] = true
+		GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+		equippedMetaUpgrades[metaUpgradeName] = true
+
+		table.insert( addedMetaUpgrades, metaUpgradeName )
+		if MetaUpgradeCardData[ metaUpgradeName ].TraitName then
+			local rarityLevel = GetMetaUpgradeLevel( metaUpgradeName )
+			if args.RarityLevel then
+				rarityLevel = args.RarityLevel
+			end
+			AddTraitToHero({ 
+				SkipNewTraitHighlight = true, 
+				TraitName = MetaUpgradeCardData[ metaUpgradeName ].TraitName, 
+				Rarity = TraitRarityData.RarityUpgradeOrder[ rarityLevel ],
+				CustomMultiplier = 1,
+				SourceName = metaUpgradeName,
+				})
+		end
+		if MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName then
+			thread( CallFunctionName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName, MetaUpgradeCardData[ metaUpgradeName ].TraitName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionArgs, args )
+		end
+	end
+	if numCards > 0 and not IsEmpty(lowPriorityMetaupgrades) then
+	
+	end
+
+	thread(InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaBuildRandomised", 0.5, { PreDelay = 0.1 })
+	--thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
+
+end

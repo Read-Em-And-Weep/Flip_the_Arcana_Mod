@@ -14,6 +14,10 @@ local newScreenTextData = {
     {
         Id = "MetaUpgradeMem_FlipCard",
         DisplayName = " ",
+    },
+    {
+      Id = "FlipTheArcanaCashBoon_Reroll",
+      DisplayName = "{RR} RE-OFFER {#StatFormat}[-{$TempTextData.Amount}{!Icons.Currency}]",
     }
 }
 

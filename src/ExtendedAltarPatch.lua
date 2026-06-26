@@ -10,22 +10,23 @@ local function multiplyCosts(costTable, multiplier)
 end
 
 
+local function addLegendaryMultiplier(traitName)
+    local oldEpic = game.TraitData[traitName].RarityLevels.Epic.Multiplier
+    local oldHeroic = game.TraitData[traitName].RarityLevels.Heroic.Multiplier
+    game.TraitData[traitName].RarityLevels["Legendary"] = {Multiplier = (2 * oldHeroic - oldEpic) }
+    return
+end
+
 
 local function addAdditionalUpgrades(upgradeTable, skipLegendary)
     local lastUpgrade = upgradeTable.UpgradeResourceCost[#upgradeTable.UpgradeResourceCost]
     if lastUpgrade then
         table.insert(upgradeTable.UpgradeResourceCost, multiplyCosts(lastUpgrade, 1.5))
         if not skipLegendary then
+            addLegendaryMultiplier(upgradeTable.TraitName)
             table.insert(upgradeTable.UpgradeResourceCost, multiplyCosts(lastUpgrade, 2))
         end
     end
-end
-
-local function addLegendaryMultiplier(traitName)
-    local oldEpic = game.TraitData[traitName].RarityLevels.Epic.Multiplier
-    local oldHeroic = game.TraitData[traitName].RarityLevels.Heroic.Multiplier
-    game.TraitData[traitName].RarityLevels["Legendary"] = {Multiplier = (2 * oldHeroic - oldEpic) }
-    return
 end
 
 
@@ -55,7 +56,62 @@ addAdditionalUpgrades(MetaUpgradeCardData.ReversedMetaToRunUpgrade, false)
 addAdditionalUpgrades(MetaUpgradeCardData.ReversedEpicRarityBoost, false)
 addAdditionalUpgrades(MetaUpgradeCardData.ReversedCardDraw, false)
 
-addLegendaryMultiplier("ReversedChanneledCastMetaUpgrade")
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedDoorCashCard, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedManaPerRoomCard, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedLowHealthCrit, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedSturdyChannel, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedCharmedEnemy, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedCrowdDamage, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedSharedRunProgress, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedOlympianDamage, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedExtraPurchase, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedPomBiomeStart, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedStrongRush, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRenewableDD, true) 
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedArmorPerRoom, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedStatusCrit, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedEncounterHeal, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedExtraFeatures, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedPerfectClearBoost, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedHeroicRarity, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedSacrificeForLevels, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedGatherRarity, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedPerfectPower, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedUnFatedReward, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedFullDefiance, false)  
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRandomBonusLevels, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedKeepsakeReAdd, true)
+
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedCheaperChannel, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedPotentDefiance, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedBackstab, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedBonusTalent, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedSpellDamage, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedFirstHitTransform, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedHealthWithBoons, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedProjectileSlow, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedCursedLegendaryBoost, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedFreeOmega, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedDashRecovery, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedProtectionCooldown, true) 
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedElementRoom, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedUniqueGod, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedManaShield, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRandomSacrifice, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedAdditionalOmegaChance, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRiposteKill, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRandomCards, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedBossResistance, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedArtemisKeepsake, true)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedFountainGold, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedDDRefillBiomeStart, false)  
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedMoreSacrifices, false)
+addAdditionalUpgrades(MetaUpgradeCardData.ReversedRandomBuild, true)
+
+
+--TODO: REMEMBER TO DO THIS FOR NEW CARDS
+
+--[[addLegendaryMultiplier("ReversedChanneledCastMetaUpgrade")
 addLegendaryMultiplier("ReversedHealthRegenMetaUpgrade")
 addLegendaryMultiplier("ReversedLowManaDamageBonusMetaUpgrade")
 addLegendaryMultiplier("ReversedCastCountMetaUpgrade")
@@ -77,9 +133,9 @@ addLegendaryMultiplier("ReversedTradeOffMetaUpgrade")
 addLegendaryMultiplier("ReversedScreenRerollMetaUpgrade")
 addLegendaryMultiplier("ReversedLowHealthBonusMetaUpgrade")
 addLegendaryMultiplier("ReversedEpicRarityBoostMetaUpgrade")
-addLegendaryMultiplier("ReversedCardDrawMetaUpgrade")
+addLegendaryMultiplier("ReversedCardDrawMetaUpgrade")]]
 
-for newMetaUpgradeCardName, newMetaUpgradeCardData in pairs(NewMetaUpgradeCardData) do
+for newMetaUpgradeCardName, newMetaUpgradeCardData in pairs(mod.NewMetaUpgradeCardData) do
     game.ProcessDataInheritance(newMetaUpgradeCardData, game.MetaUpgradeCardData)
     game.MetaUpgradeCardData[newMetaUpgradeCardName]=newMetaUpgradeCardData
 	game.MetaUpgradeCardData[newMetaUpgradeCardName].Name = newMetaUpgradeCardName

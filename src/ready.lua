@@ -6,9 +6,47 @@ local newCardArtOrder = {
     "FilePath",
     "Scale",
     "Offset",
+	"ChildAnimation",
+	"Duration",
+		"StartAlpha",
+		"EndAlpha",
+		"PingPongColor",
+		"EaseIn",
+		"EaseOut",
+		"NumFrames",
+		"Loop",
+		"Material",
+		"RandomStartFrame",
+		"ReRandomizeOnLoop",
+		"PlaySpeed",
 }
 
 local newCardArtData = {
+	{
+		Name = "FlipTheArcanaDevCard_EquippedHighlight",
+		InheritFrom = "DevCard",
+		FilePath = _PLUGIN.guid .. "NewCardArt\\CardEquippedHighlighta",
+		Scale = 0.281,
+		ChildAnimation = "FlipTheArcanaCardEquippedHighlightBorder",
+		Duration = 3,
+		StartAlpha = 1,
+		EndAlpha = 0.5,
+		PingPongColor = true,
+		EaseIn = 0,
+		EaseOut = 1,
+		Loop = true
+	},
+	{
+		Name = "FlipTheArcanaCardEquippedHighlightBorder",
+		FilePath = _PLUGIN.guid .. "NewCardArt\\CardEquippedHighlight\\CardEquippedHighlight",
+		NumFrames = 45,
+		Loop = true,
+		Material = "Unlit",
+		RandomStartFrame = true,
+		ReRandomizeOnLoop = false,
+		PlaySpeed = 30,
+		Scale = 0.84,
+	},
 {
     Name = "FlippedCardArt_01",
     InheritFrom = "CardArt_01",
@@ -260,15 +298,513 @@ local newCardArtData = {
     FilePath = _PLUGIN.guid .. "NewCardArt\\25._Monstrosity_inactive",
 },
 {
+    Name = "FlippedCardArt_Greed",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Greed_Active"
+},
+{
+    Name = "FlippedCardArt_Greed_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Greed_Inactive",
+},
+{
+    Name = "FlippedCardArt_Beloved_Child",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Beloved_Child_Active"
+},
+{
+    Name = "FlippedCardArt_Beloved_Child_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Beloved_Child_Inactive",
+},
+{
+    Name = "FlippedCardArt_Trapper",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Trapper_Active"
+},
+{
+    Name = "FlippedCardArt_Trapper_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Trapper_Inactive",
+},
+{
+    Name = "FlippedCardArt_Sky",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sky_Active"
+},
+{
+    Name = "FlippedCardArt_Sky_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sky_Inactive",
+},
+{
+    Name = "FlippedCardArt_Witch",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Witch_Active"
+},
+{
+    Name = "FlippedCardArt_Witch_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Witch_Inactive",
+},
+{
+    Name = "FlippedCardArt_Sirens",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sirens_Active"
+},
+{
+    Name = "FlippedCardArt_Sirens_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sirens_Inactive",
+},
+{
+    Name = "FlippedCardArt_Curiousity",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Curiousity_Active"
+},
+{
+    Name = "FlippedCardArt_Curiousity_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Curiousity_Inactive",
+},
+{
+    Name = "FlippedCardArt_Automaton",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Automaton_Active"
+},
+{
+    Name = "FlippedCardArt_Automaton_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Automaton_Inactive",
+},
+{
+    Name = "FlippedCardArt_Shades",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Shades_Active"
+},
+{
+    Name = "FlippedCardArt_Shades_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Shades_Inactive",
+},
+{
+    Name = "FlippedCardArt_Hatred",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Hatred_Active"
+},
+{
+    Name = "FlippedCardArt_Hatred_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Hatred_Inactive",
+},
+{
+    Name = "FlippedCardArt_Heroine",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Heroine_Active"
+},
+{
+    Name = "FlippedCardArt_Heroine_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Heroine_Inactive",
+},
+{
+    Name = "FlippedCardArt_Idolation",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Idolation_Active"
+},
+{
+    Name = "FlippedCardArt_Idolation_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Idolation_Inactive",
+},
+{
+    Name = "FlippedCardArt_Seer",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Seer_Active"
+},
+{
+    Name = "FlippedCardArt_Seer_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Seer_Inactive",
+},
+{
+    Name = "FlippedCardArt_Dawn",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Dawn_Active"
+},
+{
+    Name = "FlippedCardArt_Dawn_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Dawn_Inactive",
+},
+{
+    Name = "FlippedCardArt_Metamorphosis",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Metamorphosis_Active"
+},
+{
+    Name = "FlippedCardArt_Metamorphosis_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Metamorphosis_Inactive",
+},
+{
+    Name = "FlippedCardArt_Youth",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Youth_Active"
+},
+{
+    Name = "FlippedCardArt_Youth_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Youth_Inactive",
+},
+{
+    Name = "FlippedCardArt_Winds",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Winds_Active"
+},
+{
+    Name = "FlippedCardArt_Winds_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Winds_Inactive",
+},
+{
+    Name = "FlippedCardArt_Sun",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sun_Active"
+},
+{
+    Name = "FlippedCardArt_Sun_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sun_Inactive",
+},
+{
+    Name = "FlippedCardArt_Elegance",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Elegance_Active"
+},
+{
+    Name = "FlippedCardArt_Elegance_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Elegance_Inactive",
+},
+{
+    Name = "FlippedCardArt_Flight",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Flight_Active"
+},
+{
+    Name = "FlippedCardArt_Flight_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Flight_Inactive",
+},
+{
+    Name = "FlippedCardArt_Discipline",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Discipline_Active"
+},
+{
+    Name = "FlippedCardArt_Discipline_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Discipline_Inactive",
+},
+{
+    Name = "FlippedCardArt_Burden",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Burden_Active"
+},
+{
+    Name = "FlippedCardArt_Burden_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Burden_Inactive",
+},
+{
+    Name = "FlippedCardArt_Heir",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Heir_Active"
+},
+{
+    Name = "FlippedCardArt_Heir_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Heir_Inactive",
+},
+{
+    Name = "FlippedCardArt_Cunning",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Cunning_Active"
+},
+{
+    Name = "FlippedCardArt_Cunning_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Cunning_Inactive",
+},
+{
+    Name = "FlippedCardArt_Isolation",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Isolation_Active"
+},
+{
+    Name = "FlippedCardArt_Isolation_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Isolation_Inactive",
+},
+{
+    Name = "FlippedCardArt_Muses",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Muses_Active"
+},
+{
+    Name = "FlippedCardArt_Muses_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Muses_Inactive",
+},
+{
+    Name = "FlippedCardArt_Soul",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Soul_Active"
+},
+{
+    Name = "FlippedCardArt_Soul_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Soul_Inactive",
+},
+{
+    Name = "FlippedCardArt_Sculptor",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sculptor_Active"
+},
+{
+    Name = "FlippedCardArt_Sculptor_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sculptor_Inactive",
+},
+{
+    Name = "FlippedCardArt_Duty",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Duty_Active"
+},
+{
+    Name = "FlippedCardArt_Duty_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Duty_Inactive",
+},
+{
+    Name = "FlippedCardArt_Coven",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Coven_Active"
+},
+{
+    Name = "FlippedCardArt_Coven_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Coven_Inactive",
+},
+{
+    Name = "FlippedCardArt_Tides",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Tides_Active"
+},
+{
+    Name = "FlippedCardArt_Tides_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Tides_Inactive",
+},
+{
+    Name = "FlippedCardArt_Mockery",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Mockery_Active"
+},
+{
+    Name = "FlippedCardArt_Mockery_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Mockery_Inactive",
+},
+{
+    Name = "FlippedCardArt_Labyrinth",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Labyrinth_Active"
+},
+{
+    Name = "FlippedCardArt_Labyrinth_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Labyrinth_Inactive",
+},
+{
+    Name = "FlippedCardArt_Warrioresses",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Warrioresses_Active"
+},
+{
+    Name = "FlippedCardArt_Warrioresses_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Warrioresses_Inactive",
+},
+{
+    Name = "FlippedCardArt_Wild",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Wild_Active"
+},
+{
+    Name = "FlippedCardArt_Wild_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Wild_Inactive",
+},
+{
+    Name = "FlippedCardArt_Sacrifice",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sacrifice_Active"
+},
+{
+    Name = "FlippedCardArt_Sacrifice_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Sacrifice_Inactive",
+},
+{
+    Name = "FlippedCardArt_Earth",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Earth_Active"
+},
+{
+    Name = "FlippedCardArt_Earth_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Earth_Inactive",
+},
+{
+    Name = "FlippedCardArt_Ruse",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Ruse_Active"
+},
+{
+    Name = "FlippedCardArt_Ruse_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Ruse_Inactive",
+},
+{
+    Name = "FlippedCardArt_Beasts",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Beasts_Active"
+},
+{
+    Name = "FlippedCardArt_Beasts_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Beasts_Inactive",
+},
+{
+    Name = "FlippedCardArt_Victory",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Victory_Active"
+},
+{
+    Name = "FlippedCardArt_Victory_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Victory_Inactive",
+},
+{
+    Name = "FlippedCardArt_Prophet",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Prophet_Active"
+},
+{
+    Name = "FlippedCardArt_Prophet_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Prophet_Inactive",
+},
+{
+    Name = "FlippedCardArt_King",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\King_Active"
+},
+{
+    Name = "FlippedCardArt_King_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\King_Inactive",
+},
+{
+    Name = "FlippedCardArt_Titaness",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Titaness_Active"
+},
+{
+    Name = "FlippedCardArt_Titaness_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Titaness_Inactive",
+},
+{
+    Name = "FlippedCardArt_Farewell",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Farewell_Active"
+},
+{
+    Name = "FlippedCardArt_Farewell_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Farewell_Inactive",
+},
+{
+    Name = "FlippedCardArt_Physician",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Physician_Active"
+},
+{
+    Name = "FlippedCardArt_Physician_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Physician_Inactive",
+},
+{
+    Name = "FlippedCardArt_Temptation",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Temptation_Active"
+},
+{
+    Name = "FlippedCardArt_Temptation_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Temptation_Inactive",
+},
+{
+    Name = "FlippedCardArt_Garden",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Garden_Active"
+},
+{
+    Name = "FlippedCardArt_Garden_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Garden_Inactive",
+},
+{
+    Name = "FlippedCardArt_Fortune",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Fortune_Active"
+},
+{
+    Name = "FlippedCardArt_Fortune_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Fortune_Inactive",
+},
+{
+    Name = "FlippedCardArt_Regret",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Regret_Active"
+},
+{
+    Name = "FlippedCardArt_Regret_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Regret_Inactive",
+},
+{
+    Name = "FlippedCardArt_Betrayal",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Betrayal_Active"
+},
+{
+    Name = "FlippedCardArt_Betrayal_Inactive",
+    InheritFrom = "CardArt_01",
+    FilePath = _PLUGIN.guid .. "NewCardArt\\Betrayal_Inactive",
+},
+{
     Name = "Inactive_Card_Icon",
     InheritFrom = "BoonSymbolBase",
     FilePath = _PLUGIN.guid .. "NewCardArt\\MonstrosityCardDrawIcon",
     Scale = 0.68,
 	OffsetY = -1,
 },
-{
-    
-}
+
 }
 
 sjson.hook(GUIFile, function(data)
@@ -624,3 +1160,31 @@ for traitName, traitData in pairs( TraitData ) do
 
 		traitData.TraitOrderingValueCache = GetTraitOrderingValue( traitData )
 	end
+
+	local newObstacleData = {
+		{
+      Name = "FlipTheArcanaCard_EquippedHighlight",
+      InheritFrom = "1_BaseGUIObstacle",
+      DisplayInEditor = true,
+      Thing =
+      {
+        EditorOutlineDrawBounds = false,
+        Graphic = "FlipTheArcanaDevCard_EquippedHighlight",
+      },
+    }
+	}
+	local newObstacleOrder = {
+		"Name",
+		"InheritFrom",
+		"DisplayInEditor",
+		"Thing",
+	}
+
+
+local GUIFileObstacle = rom.path.combine(rom.paths.Content(), "Game\\Obstacles\\GUI.sjson")
+
+	sjson.hook(GUIFileObstacle, function(data)
+    for _, newCardArt in ipairs(newObstacleData) do
+        table.insert(data.Obstacles, sjson.to_object(newCardArt, newObstacleOrder))
+    end
+end)

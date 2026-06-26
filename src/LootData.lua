@@ -89,9 +89,19 @@ local newLootData = {
 		"ReversedScreenRerollMetaUpgrade",
 		"ReversedLowHealthBonusMetaUpgrade",
 		"ReversedEpicRarityBoostMetaUpgrade",
+		"ReversedDoorCashMetaUpgrade",			"ReversedManaPerRoomMetaUpgrade",			"ReversedLowHealthCritMetaUpgrade",	"ReversedSturdyChannelMetaUpgrade",				"ReversedCharmedEnemyMetaUpgrade",
+		"ReversedCrowdDamageMetaUpgrade",				"ReversedSharedRunProgressMetaUpgrade",			"ReversedOlympianDamageMetaUpgrade",			"ReversedExtraPurchaseMetaUpgrade",			"ReversedPomBiomeStartMetaUpgrade",
+		"ReversedStrongRushMetaUpgrade",			"ReversedRenewableDDMetaUpgrade",			"ReversedArmorPerRoomMetaUpgrade",	"ReversedStatusCritMetaUpgrade",		"ReversedEncounterHealMetaUpgrade",
+		"ReversedExtraFeaturesMetaUpgrade",			"ReversedPerfectClearBoostMetaUpgrade",		"ReversedHeroicRarityMetaUpgrade",	"ReversedSacrificeForLevelsMetaUpgrade", 			"ReversedGatherRarityMetaUpgrade",
+		 "ReversedPerfectPowerMetaUpgrade",				"ReversedUnFatedRewardMetaUpgrade",		"ReversedFullDefianceMetaUpgrade",		"ReversedRandomBonusLevelsMetaUpgrade",
+		 "ReversedCheaperChannelMetaUpgrade",			"ReversedPotentDefianceMetaUpgrade",			"ReversedBackstabMetaUpgrade",	"ReversedBonusTalentMetaUpgrade",				"ReversedSpellDamageMetaUpgrade",
+		"ReversedDashRecoveryMetaUpgrade",			"ReversedProtectionCooldownMetaUpgrade",			"ReversedElementRoomMetaUpgrade",	"ReversedUniqueGodMetaUpgrade",		"ReversedManaShieldMetaUpgrade",
+		"ReversedRandomSacrificeMetaUpgrade",			"ReversedAdditionalOmegaChanceMetaUpgrade",		"ReversedRiposteKillMetaUpgrade",	"ReversedRandomCardsMetaUpgrade", 			"ReversedBossResistanceMetaUpgrade",
+		"ReversedArtemisKeepsakeMetaUpgrade",				"ReversedFountainGoldMetaUpgrade",		"ReversedDDRefillBiomeStartMetaUpgrade",		"ReversedMoreSacrificesMetaUpgrade",
+
 		},
 		Consumables = {},
-
+		
 		FirstSpawnVoiceLines =
 		{
 			PreLineWait = 0.7,

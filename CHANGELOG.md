@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- **NEW!** 50 new arcana cards for you to experiment with!! I'd love some feedback on them if you feel any are too weak or too strong :)
+
+- Made Famine (Demeter) less likely to show up as Shocking Loss
+- Fixed a typo on Futility (Sisyphus) description
+- Nerfed some cards to make them more in line with base game
+- The Loyal Protector (Cerberus) and Circe now have extra checks that allow them to upgrade flipped cards they previously could not
+- Upgrading the Weaver (Arachne) should no longer cause a crash
+- Certain multipliers are now additive rather than multiplicative
+
 ## [2.9.2] - 2026-05-07
 
 - Removed a print statement

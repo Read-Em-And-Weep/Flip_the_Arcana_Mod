@@ -3,7 +3,7 @@ We've only got 25 arcana cards to use, meaning only around 500,000 combinations 
 
 
 # The Solution
-Every card can now be flipped into a whole new card with new upgrades to unlock! This explodes the possible number of combinations you can try, with them being designed for different synergies, uses and builds. Unlock the full power of your arcana with familiar faces, ranging from Hypnos, to Dusa, to Typhon, your familiars and even Lernie the Bone Hydra!
+Every card can now be flipped into new cards with new upgrades to unlock! This explodes the possible number of combinations you can try, with them being designed for different synergies, uses and builds. Unlock the full power of your arcana with familiar faces, ranging from Hypnos, to Dusa, to Typhon, your familiars and even Lernie the Bone Hydra!
 
 # How do I access the new arcana?
 After gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things (or your reroll button, if that's preferable - particularly for controller users) to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
