@@ -784,7 +784,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedSpellDamage",
-        DisplayName = "The Dawn",
+        DisplayName = "Dawn",
         Description = "Your {$Keywords.Spell} deals {#UpgradeFormat}{$TooltipData.ExtractData.Bonus:P} {#Prev}damage.",
     },
     {

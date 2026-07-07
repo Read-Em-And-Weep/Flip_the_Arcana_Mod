@@ -74,7 +74,7 @@ Located at The Lovers (Eurydice and Orpheus)
  - The Sculptor (Pygmalion and Galatea) - Whenever you take damage, absorb some of it as magick
 
 Located at The Enchantress (Circe)
- - Strife (Eris) - While not at Fate's Whim, Boons, Hammers and Poms may be duplicated
+ - Strife (Eris) - While at Fate's Whim, Boons, Hammers and Poms may be duplicated
  - Duty (Iris) - Locations are more likely to include features such as Wells of Charon, Shrines of Hermes, Infernal Troves, and Moon Monuments
  - The Coven (The Graeae) - Boons may ask for the sacrifice of unrelated boons for additional rarity. In addition, sacrifice boons give additional levels
 
@@ -99,7 +99,7 @@ Located at The Queen (Persephone)
  - The Ruse (The Trojan Horse) - You take less damage from Guardians
 
 Located at The Fates (Clotho, Lachesis and Atropos)
- - Doom (Moros) - While not at Fate's Whim, you have an additional chance to deal double damage
+ - Doom (Moros) - While at Fate's Whim, you have an additional chance to deal double damage
  - Victory (Nike) - Whenever you strike a foe, gain additional power for your Omega moves, up to a limit. Whenever you take damage, lose this power
  - The Beasts (Monsters) - You have additional chance to deal critical damage, but your max health is capped
 
