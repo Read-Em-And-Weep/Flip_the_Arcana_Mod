@@ -80,7 +80,7 @@ local newHelpTextData = {
       Id = "FlipTheArcanaPerfectPowerStacks",
       InheritFrom = "BaseTooltip",
       DisplayName = "Triumph",
-      Description = "A fleeting bonus of +{$TooltipData.ExtractData.PowerPerStack} {$Keywords.BaseDamage} per stack, lost upon taking damage.",
+      Description = "A fleeting bonus of +{$TooltipData.ExtractData.PowerPerStack} {$Keywords.BaseDamage} per stack to your {$Keywords.Omega}, lost upon taking damage.",
     },
     {
       Id = "FlipTheArcanaRiposte",
@@ -97,19 +97,40 @@ local newHelpTextData = {
     {
       Id = "FlipTheArcanaRandomisedCard",
       InheritFrom = "BaseTooltip",
-      DisplayName = "Fortunate Card",
-      Description = "This {$Keywords.Card} has been randomly drawn due to the effects of {#BoldFormat} Good Fortune{#Prev}. You will lose this at the start of the next {$Keywords.Biome}.",
+      DisplayName = "{#PenaltyFormat}Fortunate Card",
+      Description = "This {$Keywords.Card} was randomly drawn due to {#GraspFormat} Good Fortune{#Prev}. You will lose this at the start of the next {$Keywords.Biome}.",
     },
     {
       Id = "FlipTheArcanaRandomisedCardBase",
       InheritFrom = "BaseTooltip",
-      DisplayName = "{$Keywords.FlipTheArcanaRandomisedCard}",
+      Description = "{$Keywords.FlipTheArcanaRandomisedCard}",
     },
     {
       Id = "FlipTheArcanaUnyielding",
       InheritFrom = "BaseTooltip",
       DisplayName = "Unyielding",
       Description = "When you are next hit, take {#PenaltyFormat} 1 {#Prev} damage instead. Regain this after {$TooltipData.ExtractData.Cooldown} Sec.",
+    },
+    {
+      Id = "FlipTheArcanaCardLost_CombatText",
+      DisplayName = "{#CombatTextHighlightFormat}{$TempTextData.Name} {#Prev}Shattered!",
+    },
+    {
+      Id = "FlipTheArcanaFragileArcanaCards",
+      InheritFrom = "BaseTooltip",
+      DisplayName = "{#GraspFormat} Fragile Arcana Cards",
+      Description = "Whenever you are hit, you have a {#PenaltyFormat} {$TooltipData.ExtractData.Chance}% {#Prev} chance of losing a random one of these transient Arcana Cards.",
+    },
+    {
+      Id = "FlipTheArcanaFragileCard",
+      InheritFrom = "BaseTooltip",
+      DisplayName = "{#GraspFormat}Fragile Card",
+      Description = "Whenever you are hit, you have a {#PenaltyFormat} 50% {#Prev} chance of losing a {#PenaltyFormat} Fragile Card {#Prev} whenever you are hit.",
+    },
+    {
+      Id = "FlipTheArcanaFragileCardBase",
+      InheritFrom = "BaseTooltip",
+      Description = "{$Keywords.FlipTheArcanaFragileCard}",
     },
 }
 
@@ -120,6 +141,8 @@ table.insert(game.KeywordList, "FlipTheArcanaRiposte")
 table.insert(game.KeywordList, "FlipTheArcanaTraitExchange")
 table.insert(game.KeywordList, "FlipTheArcanaRandomisedCard")
 table.insert(game.KeywordList, "FlipTheArcanaUnyielding")
+table.insert(game.KeywordList, "FlipTheArcanaFragileArcanaCards")
+table.insert(game.KeywordList, "FlipTheArcanaFragileCard")
 
 ResetKeywords()
 

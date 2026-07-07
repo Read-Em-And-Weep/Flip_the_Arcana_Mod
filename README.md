@@ -16,10 +16,12 @@ In addition, if Extended Altar of Ashes is installed, you will get additional le
 
 If Perfectionist is installed, one of the cards will allow you to rarify to that rarity (though it does not display that you can, for some reason)
 
+I also highly recommend installing Extra Arcana Layout Slots, to allow you to save more layouts for the overwhelming amount of combinations possible.
+
 # Uninstallation
 With my testing, it seems pretty safe to uninstall, however I would recommend that you unequip and flip over all of your cards before playing vanilla just to be safe.
-## Important
-There is a known issue with uninstalling that if you try to access a saved Arcana layouts that has flipped cards after uninstalling, the game will crash. So to be safe, unflip all cards in saved Arcana layouts.
+
+Also, the saved layouts are handled seperately to prevent issues involved with uninstalling, so any changes you make to them with the mod installed will not be saved.
 
 # Known Issues
 Some of the cards do not have art yet, so enjoy the amazing stick people for now!

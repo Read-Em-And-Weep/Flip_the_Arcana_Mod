@@ -96,7 +96,7 @@ local newLootData = {
 		 "ReversedPerfectPowerMetaUpgrade",				"ReversedUnFatedRewardMetaUpgrade",		"ReversedFullDefianceMetaUpgrade",		"ReversedRandomBonusLevelsMetaUpgrade",
 		 "ReversedCheaperChannelMetaUpgrade",			"ReversedPotentDefianceMetaUpgrade",			"ReversedBackstabMetaUpgrade",	"ReversedBonusTalentMetaUpgrade",				"ReversedSpellDamageMetaUpgrade",
 		"ReversedDashRecoveryMetaUpgrade",			"ReversedProtectionCooldownMetaUpgrade",			"ReversedElementRoomMetaUpgrade",	"ReversedUniqueGodMetaUpgrade",		"ReversedManaShieldMetaUpgrade",
-		"ReversedRandomSacrificeMetaUpgrade",			"ReversedAdditionalOmegaChanceMetaUpgrade",		"ReversedRiposteKillMetaUpgrade",	"ReversedRandomCardsMetaUpgrade", 			"ReversedBossResistanceMetaUpgrade",
+		"ReversedRandomSacrificeMetaUpgrade",			"ReversedAdditionalOmegaChanceMetaUpgrade",		"ReversedRiposteKillMetaUpgrade", 			"ReversedBossResistanceMetaUpgrade",
 		"ReversedArtemisKeepsakeMetaUpgrade",				"ReversedFountainGoldMetaUpgrade",		"ReversedDDRefillBiomeStartMetaUpgrade",		"ReversedMoreSacrificesMetaUpgrade",
 
 		},

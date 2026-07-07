@@ -59,6 +59,7 @@ local function on_ready()
 	import("TraitText.en.sjson.lua")
 	import("HelpText.en.sjson.lua")
 	import("ready.lua")
+	import("ScreenData.lua")
 	if ZagreusJourney then
 		import("ZagreusJourneyPatch.lua")
 	else

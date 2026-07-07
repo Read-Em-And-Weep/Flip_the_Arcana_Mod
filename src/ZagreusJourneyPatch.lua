@@ -3176,7 +3176,7 @@ mod.NewMetaUpgradeCardData =
 			}
 		},
 	},
-	ReversedElementRoom = -- Isolation, Calypso
+	ReversedElementRoom = -- Solitude, Calypso
 	{
 		InheritFrom = { "BaseBonusMetaUpgrade" },
 		Flipped = 3,

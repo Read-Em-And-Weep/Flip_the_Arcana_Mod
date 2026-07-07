@@ -396,8 +396,8 @@ local newMetaUpgradeCardData = {
         Description = "After each {$Keywords.EncounterAlt}, restore {$TooltipData.StatDisplay1} of the {!Icons.Health} lost in that {$Keywords.EncounterAlt}, less than usual due to the {#PenaltyFormat}{$TooltipData.CustomStatLinesWithShrineUpgrade.ShrineUpgradeName}{#Prev}."
     },
     {
-        Id = "ReversedChanneledBlock1_FlavorText01",
-        DisplayName = "Fighting endlessly, against gods and mortals alike, for love is truly the most human thing of all."
+        Id = "ReversedEncounterHeal_FlavorText01",
+        DisplayName = "They fight endlessly, against gods and mortals alike, for love is truly the most human thing of all."
     },
     {
         Id = "ReversedEncounterHealMetaUpgrade",
@@ -450,7 +450,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedLowHealthCrit",
         DisplayName = "The Trapper",
-        Description = "While below {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Health}, you have {#UpgradeFormat}{$TooltipData.ExtractData.CritBonus}% {#Prev} chance to deal {$Keywords.Crit} damage.",
+        Description = "While below {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Health}, you have {#UpgradeFormat}+{$TooltipData.ExtractData.CritBonus}% {#Prev} chance to deal {$Keywords.Crit} damage.",
     },
     {
         Id = "ReversedLowHealthCrit_FlavorText01",
@@ -619,7 +619,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedSacrificeForLevels",
         DisplayName = "The Sacrifice",
-        Description = "You can purge most rewards for {$TooltipData.StatDisplay1}{$Keywords.PomLevel} for your leftmost column {$Keywords.GodBoonPluralAlt}, up to {#UpgradeFormat}{$TooltipData.StatDisplay2} {#Prev} times this night.",
+        Description = "You can purge most rewards for {$TooltipData.StatDisplay1}{$Keywords.PomLevel} spread across your leftmost column {$Keywords.GodBoonPluralAlt}, up to {#UpgradeFormat}{$TooltipData.StatDisplay2} {#Prev} times this night.",
     },
     {
         Id = "ReversedSacrificeForLevels_FlavorText01",
@@ -632,7 +632,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedSacrificeForLevelsMetaUpgrade_Tray",
       DisplayName = "The Sacrifice",
-        Description = "You can purge most rewards for {$TooltipData.StatDisplay1}{$Keywords.PomLevel} for your leftmost column {$Keywords.GodBoonPluralAlt}, up to {#UpgradeFormat}{$TooltipData.StatDisplay2} {#Prev}more time(s) this night."
+        Description = "You can purge most rewards for {$TooltipData.StatDisplay1}{$Keywords.PomLevel} spread across your leftmost column {$Keywords.GodBoonPluralAlt}, up to {#UpgradeFormat}{$TooltipData.StatDisplay2} {#Prev}more time(s) this night."
     },
     {
         Id = "ReversedGatherRarity",
@@ -676,7 +676,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedKeepsakeReAdd",
         DisplayName = "Regret",
-        Description = "After you switch {$Keywords.Keepsakes}, gain the effect of your previous {$Keywords.KeepsakeAlt} with up to {$TooltipData.StatDisplay1} levels.",
+        Description = "Gain {$TooltipData.StatDisplay1} {$Keywords.FlipTheArcanaFragileArcanaCards}.",
     },
     {
         Id = "ReversedKeepsakeReAdd_FlavorText01",
@@ -836,7 +836,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedElementRoom",
-        DisplayName = "Isolation",
+        DisplayName = "Solitude",
         Description = "Gain {#BoldFormatGraft}+1 random {$ConsumableData.ElementalBoost.UseFunctionArgs.[1].TraitName} {#Prev} whenever you pass through {$TooltipData.StatDisplay1} {$Keywords.RoomPlural}."
     },
     {
@@ -981,7 +981,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedRandomSacrifice_FlavorText01",
-        DisplayName = "With their one tooth and eye, they see naught but the future and taste naught but the truth."
+        DisplayName = "With their one eye and tooth, they see naught but the future and taste naught but the truth."
     },
     {
         Id = "ReversedRandomSacrificeMetaUpgrade",
@@ -990,7 +990,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedManaShield",
         DisplayName = "The Sculptor",
-        Description = "Automatically use {#ManaFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Mana} per {!Icons.HealthDown} to resist up to {#UpgradeFormat}{$TooltipData.ExtractData.TooltipDamageBlocked}% {#Prev}of any damage."
+        Description = "Automatically use {#ManaFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Mana} per {!Icons.Health} to resist up to {#UpgradeFormat}{$TooltipData.ExtractData.TooltipDamageBlocked}% {#Prev}of any damage."
     },
     {
         Id = "ReversedManaShield_FlavorText01",
@@ -1003,7 +1003,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedFountainGold",
         DisplayName = "The King",
-        Description = "Whenever you use a {$Keywords.Fountain}, gain {#UpgradeFormat}{$TooltipData.ExtractData.FountainGold}{#Prev}{!Icons.Currency}."
+        Description = "Whenever you use a {$Keywords.Fountain}, gain {#UpgradeFormat}+{$TooltipData.ExtractData.FountainGold}{#Prev}{!Icons.Currency}."
     },
     {
         Id = "ReversedFountainGold_FlavorText01",
@@ -1042,7 +1042,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedRandomBuild",
         DisplayName = "Good Fortune",
-        Description = "Draw {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} random {$Keywords.CardPlural}. Lose these for a new set at the start of the next {$Keywords.Biome}."
+        Description = "Draw {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} random {#BoldFormat} Arcana Cards{#Prev}. Lose these for a new set at the start of the next {$Keywords.Biome}."
     },
     {
         Id = "ReversedRandomBuild_FlavorText01",
@@ -1059,7 +1059,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedProtectionCooldown_FlavorText01",
-        DisplayName = "The gods justice sentenced him to an eternity of suffering for the world to continue. Perhaps someday, he can rest."
+        DisplayName = "The gods' justice sentenced him to an eternity of suffering for the world to continue. Perhaps someday, he can rest."
     },
     {
         Id = "ReversedProtectionCooldownMetaUpgrade",

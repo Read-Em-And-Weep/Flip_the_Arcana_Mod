@@ -1202,19 +1202,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 2,
+				Multiplier = 1.5,
 			},
 			Rare =
 			{
-				Multiplier = 3,
+				Multiplier = 2.5,
 			},
 			Epic = 
 			{
-				Multiplier = 4,
+				Multiplier = 3.5,
 			},
 			Heroic = 
 			{
-				Multiplier = 5,
+				Multiplier = 4.5,
 			}
 		},
 		OnEncounterStartFunction =
@@ -2030,27 +2030,42 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1
+				Multiplier = 17
 			},
 			Rare =
 			{
-				Multiplier = 2
+				Multiplier = 21
 			},
 			Epic =
 			{
-				Multiplier = 3
+				Multiplier = 25
 			},
 			Heroic =
 			{
-				Multiplier = 4
+				Multiplier = 29
 			},
 		},
-		FlipTheArcanaReuseKeepsakeRarity = { BaseValue = 1},
+		--FlipTheArcanaReuseKeepsakeRarity = { BaseValue = 1},
+		FlipTheArcanaRandomCards = {BaseValue = 1},
+		BaseCardLossChance = 0.5, 
+		-- NOTE: THE ABOVE VALUE needs to be updated maunally in the Help Text
+		--CardLossChanceGrowth = 0.1,
+		--CurrentCardLossChance = 0.5,
 		ExtractValues = {
-			{
+			--[[{
 				Key = "FlipTheArcanaReuseKeepsakeRarity",
 				ExtractAs = "KeepsakeRarity",
 				Format = "FlipArcanaKeepsakeRarity"
+			},]]
+			{
+				Key = "FlipTheArcanaRandomCards",
+				ExtractAs = "Count",
+				IncludeSigns = true,
+			},
+			{
+				Key = "BaseCardLossChance",
+				ExtractAs = "Chance",
+				Format = "Percent",
 			},
 		}
     },
@@ -2757,19 +2772,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 50,
+				Multiplier = 40,
 			},
 			Rare =
 			{
-				Multiplier = 55,
+				Multiplier = 45,
 			},
 			Epic =
 			{
-				Multiplier = 60,
+				Multiplier = 50,
 			},
 			Heroic =
 			{
-				Multiplier = 65,
+				Multiplier = 55,
 			},
 		},
         OnEnemyDamagedAction =
@@ -2923,19 +2938,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 2,
+				Multiplier = 1,
 			},
 			Rare =
 			{
-				Multiplier = 3,
+				Multiplier = 2,
 			},
 			Epic = 
 			{
-				Multiplier = 4,
+				Multiplier = 3,
 			},
 			Heroic = 
 			{
-				Multiplier = 5,
+				Multiplier = 4,
 			}
 		},
 		FlipTheArcanaDDRestored = {BaseValue = 1},
@@ -2964,19 +2979,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 7,
+				Multiplier = 4,
 			},
 			Rare =
 			{
-				Multiplier = 10,
+				Multiplier = 7,
 			},
 			Epic =
 			{
-				Multiplier = 13,
+				Multiplier = 10,
 			},
 			Heroic =
 			{
-				Multiplier = 16,
+				Multiplier = 13,
 			},
 		},
 		FlipTheArcanaHealthWithBoons = {BaseValue = 1}, 
@@ -3239,19 +3254,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 35,
+				Multiplier = 30,
 			},
 			Rare =
 			{
-				Multiplier = 30,
+				Multiplier = 25,
 			},
 			Epic =
 			{
-				Multiplier = 25,
+				Multiplier = 20,
 			},
 			Heroic =
 			{
-				Multiplier = 20,
+				Multiplier = 15,
 			},
 		},
         FlipTheArcanaUnyieldingCooldown = {BaseValue = 1},

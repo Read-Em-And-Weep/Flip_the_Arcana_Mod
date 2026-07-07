@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The Loyal Protector (Cerberus) and Circe now have extra checks that allow them to upgrade flipped cards they previously could not
 - Upgrading the Weaver (Arachne) should no longer cause a crash
 - Certain multipliers are now additive rather than multiplicative
+- Fixed an issue which caused crashes when loading layouts with flipped cards once the mod was uninstalled
+- You can no longer randomly draw cards that occupy the bottom right (Judgement location) if you already have one of them equipped (e.g. you may no longer draw Monstrosity from Judgement)
 
 ## [2.9.2] - 2026-05-07
 
