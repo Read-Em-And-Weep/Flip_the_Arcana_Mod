@@ -4,7 +4,7 @@ Located at The Sorceress (Medea)
  - The Seer (Tiresias) - You use less magick
 
 Located at The Wayward Son (Zagreus)
- - The Faithful Daughter (Melinoe) - Gain empty max health every room
+ - The Faithful Daughter (Melinoë) - Gain empty max health every room
  - The Beloved Child (Macaria) - Gain max mana every room
  - Hatred (Styx) - Your death defiance effects heal more health
 
@@ -20,7 +20,7 @@ Located at Eternity (Chronos)
 
 Located at The Moon (Selene)
  - The Loyal Protector (Cerberus) - Defeating Wardens or Guardians will increase the rarity of Arcana Cards
- - The Witch (Pasiphae) - When dealing with encounters of more than 4 foes, one will be charmed and deal more damage
+ - The Witch (Pasiphaë) - When dealing with encounters of more than 4 foes, one will be charmed and deal more damage
  - Dawn (Eos) - Your hex deals more damage
 
 Located at The Furies (Alecto, Tisiphone and Megaera)
@@ -41,7 +41,7 @@ Located at The Messenger (Hermes)
 Located at The Unseen (Hecate)
  - Bounty (Poseidon) - Gain additional rarify uses
  - The Steadfast Shades (Head Chef, Wretched Broker, etc.) - Gold gains are increased. Also, one additional purchase from Charon will be restocked.
- - The Sun (Helios) - Gain increased chance for legendary boons, but lower rare or epic boons
+ - The Sun (Helios) - Gain increased chance for legendary boons, but lower chance for rare or epic boons
 
 Located at Night (Nyx)
  - Retribution (Nemesis) - You deal more damage for each level of fear you have. You also take more damage
