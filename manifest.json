@@ -1,0 +1,18 @@
+{
+  "namespace": "Read-Em-And-Weep",
+  "name": "Flip_the_Arcana_Mod",
+  "description": "Allows to do some super duper thing.",
+  "version_number": "1.0.0",
+  "dependencies": [
+    "Hell2Modding-Hell2Modding-1.0.28",
+    "SGG_Modding-ENVY-1.1.0",
+    "SGG_Modding-Chalk-2.0.2",
+    "SGG_Modding-ReLoad-1.0.1",
+    "SGG_Modding-SJSON-1.0.0",
+    "SGG_Modding-ModUtil-4.0.0",
+    "BlueRaja-IncantationsAPI-1.0.0",
+    "zerp-BoonOverflowFix-1.0.0"
+  ],
+  "website_url": "https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod",
+  "FullName": "Read-Em-And-Weep-Flip_the_Arcana_Mod"
+}

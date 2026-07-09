@@ -18,6 +18,7 @@ SGG_Modding-ReLoad = "1.0.1"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "4.0.0"
 BlueRaja-IncantationsAPI = "1.0.0"
+zerp-BoonOverflowFix = "1.0.0"
 
 
 [build]
