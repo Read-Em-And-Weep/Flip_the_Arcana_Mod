@@ -13,7 +13,7 @@ local newHelpTextData = {
     },
     {
       Id = "FlipTheArcanaPerfectClearDamageBonus",
-      DisplayName = "{#CombatTextHighlightFormat}King Tide{#Prev}!",
+      DisplayName = "{#CombatTextHighlightFormat}Growing Tide{#Prev}!",
     },
     {
       Id = "FlipTheArcanaBonusLevelsAwarded",
@@ -51,6 +51,14 @@ local newHelpTextData = {
     {
       Id = "CardifyUseLootGiftAndConsume",
       DisplayName = "{I} Accept\n {G} Gift\n {SI} Purge"
+    },
+    {
+      Id = "UseConvertOrCardifyResourcePickup",
+      DisplayName = "{I} Gain {#UseLockKeyFormat}+{$TempTextData.ResourceAmount}{!TempTextData.ResourceIconPath}\n {G} Transform {#StatFormat}{$TempTextData.ConvertAmount}/{$TempTextData.ConvertMaxAmount}\n {SI} Purge"
+    },
+    {
+      Id = "UseConvertOrCardifyResourcePickupRunProgress",
+      DisplayName = "{I} Gain {#UseLockKeyFormat}+{$TempTextData.ResourceAmount}{!TempTextData.ResourceIconPath} +{$TempTextData.RunProgressResourceAmount}{!TempTextData.RunProgressResourceIconPath}\n {G} Transform {#StatFormat}{$TempTextData.ConvertAmount}/{$TempTextData.ConvertMaxAmount}\n {SI} Purge"
     },
     {
       Id = "MonstrosityCardifyUpgrade_FlavorText01",

@@ -247,6 +247,7 @@ function mod.ReverseCardToCard(screen, selectedButton, newCardName, doZoom, card
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
 		return
 	end
+	if not selectedButton then return end
     local metaUpgradeName = selectedButton.CardName
     local wasEquipped = false
     local newCardName = newCardName or mod.GetFlippedCardName(metaUpgradeName)
@@ -1390,6 +1391,8 @@ modutil.mod.Path.Wrap("AddTraitData", function(base, unit, traitData, args)
 	return base(unit, traitData, args)
 end)
 
+
+
 function mod.IncreaseSacrificeChance(amount)
 	if not CurrentRun.FlipTheArcanaIncreasedSacrificeChance then
 		CurrentRun.Hero.BoonData.ReplaceChance = CurrentRun.Hero.BoonData.ReplaceChance + amount
@@ -1650,9 +1653,25 @@ end)
 	return originalCritChance
 end)]]
 
+function mod.GetNumberOfCardsActive()
+	local numCards = 0
+	for cardName, cardData in pairs(GameState.MetaUpgradeState) do
+		if cardData.Equipped then 
+			numCards = numCards + 1
+		end
+	end
+	return numCards
+end
+
 modutil.mod.Path.Override("AddRandomMetaUpgrades", function(numCards, args)
 args = args or {}
 	numCards = numCards or 3
+	local totalMetaUpgradesEquipped = mod.GetNumberOfCardsActive()
+	if config and config.LimitMaxArcanaDrawn and config.MaxArcanaDrawn then
+		local maxArcanaDrawn = config.MaxArcanaDrawn or 40
+		numCards = math.min(numCards, maxArcanaDrawn - totalMetaUpgradesEquipped)
+		numCards = math.max(numCards, 0)
+	end
 	local delay = args.Delay or 3
 	local unequippedUnlockedMetaupgrades = {}
 	local skippedLowPriorityMetaupgrade = {}
@@ -1735,12 +1754,13 @@ args = args or {}
 				SourceName = metaUpgradeName,
 				})
 		end
-		if MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName then
+		if MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName and CurrentRun.CurrentRoom then
 			thread( CallFunctionName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionName, MetaUpgradeCardData[ metaUpgradeName ].TraitName, MetaUpgradeCardData[ metaUpgradeName ].OnGrantedFunctionArgs, args )
 		end
 	end
-
+	if not IsEmpty(addedMetaUpgrades) then
 	thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
+	end
 end)
 
 
@@ -2046,11 +2066,25 @@ end)
 modutil.mod.Path.Wrap("ShowUseButton", function(base,objectId, useTarget)
 	if (mod.CanCardifyReward(useTarget) or mod.CanSacrificeReward(useTarget)) and not (CanGoldifyReward(useTarget) and HeroHasTrait("GoldifyKeepsake")) then
 		useTarget = ShallowCopyTable(useTarget)
+		local specialText = false
+		local extraSpecialText = false
+		if useTarget.UseTextTalkGiftAndSpecial == "UseConvertOrGoldifyResourcePickup" then
+			specialText = true
+		end
+		if useTarget.UseTextTalkGiftAndSpecial == "UseConvertOrGoldifyResourcePickupRunProgress" then
+			extraSpecialText = true
+		end
 		useTarget.UseTextTalkAndSpecial = "CardifyUseLootAndConsume"
 		useTarget.UseTextTalkGiftAndSpecial = "CardifyUseLootGiftAndConsume"
 		if useTarget.ReplaceSpecialForGoldify then
 			useTarget.UseTextTalkAndSpecial = "CardifyUseLootAndConsume"
 			useTarget.UseTextTalkGiftAndSpecial = "CardifyUseLootGiftAndConsume"
+			if specialText then
+				useTarget.UseTextTalkGiftAndSpecial = "UseConvertOrCardifyResourcePickup"
+			end
+			if extraSpecialText then
+				useTarget.UseTextTalkGiftAndSpecial = "UseConvertOrCardifyResourcePickupRunProgress"
+			end
 		end
 	end
 	return base(objectId, useTarget)
@@ -3151,7 +3185,9 @@ end)]]
 
 modutil.mod.Path.Wrap("CreateUpgradeChoiceButton", function(base,screen, lootData, itemIndex, itemData, args )
 	local upgradeData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = itemData.ItemName, Rarity = itemData.Rarity })
-	if HeroHasTrait("ReversedRandomBonusLevelsMetaUpgrade") and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost then
+	args = args or {}
+	if HeroHasTrait("ReversedRandomBonusLevelsMetaUpgrade") and not itemData.FlipTheArcanaRandomBonusLevelsRun and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost then
+		itemData.FlipTheArcanaRandomBonusLevelsRun = true
 		if not itemData.StackNum then
 					local stackNum = itemData.StackNum or 0
 
@@ -3174,8 +3210,9 @@ modutil.mod.Path.Wrap("CreateUpgradeChoiceButton", function(base,screen, lootDat
 	end
 	end
 	local traitData = TraitData[itemData.ItemName]
-	if HeroHasTrait("ReversedRandomSacrificeMetaUpgrade") and not traitData.Slot and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost then
+	if HeroHasTrait("ReversedRandomSacrificeMetaUpgrade") and not itemData.FlipTheArcanaRandomSacrificeRun and not traitData.Slot and not upgradeData.BlockStacking and IsGodTrait(itemData.ItemName) and not lootData.IgnoreStackBoost and (lootData.GodLoot and not lootData.TreatAsGodLootByShops) then
 		local metaUpgradeTrait = GetHeroTrait("ReversedRandomSacrificeMetaUpgrade")
+		itemData.FlipTheArcanaRandomSacrificeRun = true
 		if not itemData.TraitToReplace and not screen.FlipTheArcanaTraitToReplaceName and itemData.Rarity ~= "Heroic" and RandomChance(metaUpgradeTrait.FlipTheArcanaRandomSacrificeChance) then
 			local traitToReplaceName = mod.GetReplacementTrait()
 			if traitToReplaceName then
@@ -3719,7 +3756,12 @@ function mod.RandomiseArcanaBuild(trait,args)
 		for cardName in pairs(CurrentRun.FlipTheArcanaTycheMetaUpgrades) do
 			GameState.MetaUpgradeState[cardName].Equipped = nil
 			local metaUpgradeData = MetaUpgradeCardData[cardName]
-			RemoveTrait( CurrentRun.Hero, metaUpgradeData.TraitName )
+			if cardName == "LastStand" then
+				mod.RemoveLastStands(CurrentRun.Hero, "Default")
+			elseif cardName == "ReversedRenewableDD" then
+				mod.RemoveLastStands(CurrentRun.Hero, "FlipTheArcanaRenewableLastStand")
+			end
+			RemoveWeaponTrait( metaUpgradeData.TraitName, {Silent = true} )
 		end
 	end
 	local delay = args.Delay or 3
@@ -3795,6 +3837,7 @@ function mod.RandomiseArcanaBuild(trait,args)
 	if numCards > 0 and not IsEmpty(lowPriorityMetaupgrades) then
 	
 	end
+	CurrentRun.NumRerolls = GetTotalHeroTraitValue( "RerollCount" )
 
 	thread(InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaBuildRandomised", 0.5, { PreDelay = 0.1 })
 	--thread( AddedMetaUpgradePresentation, addedMetaUpgrades, delay )
@@ -3911,6 +3954,11 @@ function mod.LossFragileCards(numCards)
 		hero = hero or CurrentRun.Hero
 		if MetaUpgradeCardData[ cardToRemove ] and GameState.MetaUpgradeState[cardToRemove].Equipped and MetaUpgradeCardData[ cardToRemove ].TraitName then
 			GameState.MetaUpgradeState[cardToRemove].Equipped = nil
+			if cardToRemove == "LastStand" then
+				mod.RemoveLastStands(CurrentRun.Hero, "Default", "ExtraLifeMel")
+			elseif cardToRemove == "ReversedRenewableDD" then
+				mod.RemoveLastStands(CurrentRun.Hero, "FlipTheArcanaRenewableLastStand", "ExtraLifeSkelly")
+			end
 			RemoveWeaponTrait(	MetaUpgradeCardData[ cardToRemove ].TraitName )
 			thread( InCombatTextArgs, { TargetId= CurrentRun.Hero.ObjectId, Text = "FlipTheArcanaCardLost_CombatText", SkipRise = false, SkipFlash = false, Duration = 0.95, ShadowScale = 0.75, ShadowScaleX = 1.28, LuaKey = "TempTextData", LuaValue = { Name = cardToRemove }})
 		end
@@ -3924,3 +3972,13 @@ modutil.mod.Path.Wrap("AddRerolls", function(base, source, args)
 	end
 	return base(source, args)
 end)
+
+function mod.RemoveLastStands(heroUnit, name, icon )
+	local unit = heroUnit or CurrentRun.Hero
+	for i, lastStandData in pairs(unit.LastStands) do
+		if lastStandData.Name == name and lastStandData.Icon == icon then
+			table.remove(unit.LastStands, i )
+			return
+		end
+	end
+end

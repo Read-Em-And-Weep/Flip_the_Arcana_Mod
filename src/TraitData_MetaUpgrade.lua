@@ -2626,19 +2626,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 1.7,
+				Multiplier = 2.7,
 			},
 			Rare =
 			{
-				Multiplier = 2.0,
+				Multiplier = 3.0,
 			},
 			Epic =
 			{
-				Multiplier = 2.3,
+				Multiplier = 3.3,
 			},
 			Heroic =
 			{
-				Multiplier = 2.6,
+				Multiplier = 3.6,
 			},
 		},
 		

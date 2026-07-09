@@ -23,6 +23,10 @@ With my testing, it seems pretty safe to uninstall, however I would recommend th
 
 Also, the saved layouts are handled seperately to prevent issues involved with uninstalling, so any changes you make to them with the mod installed will not be saved.
 
+# Config
+LimitMaxArcanaDrawn - Should the game prevent you from randomly drawing more Arcana Cards after you reach a certain number to prevent you from becoming dangerously unbalanced? Default = _true_
+MaxArcanaDrawn - If _LimitMaxArcanaDrawn_ is enabled, then how many cards should the maximum be? Default = _40_
+
 # Known Issues
 Some of the cards do not have art yet, so enjoy the amazing stick people for now!
 

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **NEW!** 50 new arcana cards for you to experiment with!! I'd love some feedback on them if you feel any are too weak or too strong :)
 
+- Added new config options to limit the maximum amount of Arcana you can draw, to prevent runaway builds
 - Made Famine (Demeter) less likely to show up as Shocking Loss
 - Fixed a typo on Futility (Sisyphus) description
 - Nerfed some cards to make them more in line with base game
