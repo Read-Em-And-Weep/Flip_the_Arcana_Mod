@@ -958,7 +958,7 @@ end
 
 
 modutil.mod.Path.Override("TraitTrayShowMetaUpgrades", function(screen, activeCategory, args)
-local equippedMetaUpgradesNum = 0
+	local equippedMetaUpgradesNum = 0
 	for k, upgrade in pairs(GameState.MetaUpgradeState) do
 		if upgrade.Equipped then
 			equippedMetaUpgradesNum = equippedMetaUpgradesNum + 1
@@ -978,92 +978,97 @@ local equippedMetaUpgradesNum = 0
 	local yOffset = ScreenHeight - (activeCategory.TraitStartBottomOffset or screen.TraitStartBottomOffset)
 	--for metaUpgradeName, metaUpgradeState in pairs( GameState.MetaUpgradeState ) do
     local combinedMetaUpgradeDefaultCardLayout = DeepCopyTable(mod.MetaUpgradeDefaultCardLayout)
+	local maxMetaUpgradesPerPage = 25
+	local numMetaUpgradeCardsDrawn = 0
+	local metaUpgradePageNum = activeCategory.MetaUpradePageIndex or 1
 	for rowIndex, row in ipairs( combinedMetaUpgradeDefaultCardLayout ) do
 		for colIndex, metaUpgradeName in ipairs( row ) do
 			local metaUpgradeState = GameState.MetaUpgradeState[metaUpgradeName]
 			if metaUpgradeState ~= nil and metaUpgradeState.Equipped then
-				--DebugPrint({ Text = "metaUpgradeName = "..metaUpgradeName })
-				local metaUpgradeCardData = MetaUpgradeCardData[metaUpgradeName]
-				if metaUpgradeCardData.TraitName ~= nil and HeroHasTrait(metaUpgradeCardData.TraitName) then
-					local trait = GetHeroTrait( metaUpgradeCardData.TraitName )
-					local traitFrameId = CreateScreenObstacle({ Name = "BlankObstacle", X = xOffset, Y = yOffset,  Group = screen.ComponentData.DefaultGroup, Scale = 0.7, Alpha = 0.0 })
-					--Attach({ Id = traitFrameId, DestinationId = traitIcon.Id })
-					SetAnimation({ Name = "DevCard_EquippedHighlight", DestinationId = traitFrameId })
-					SetAlpha({ Id = traitFrameId, Fraction = 1.0, Duration = 0.1 })
-					table.insert( screen.Frames, traitFrameId )
+				numMetaUpgradeCardsDrawn = numMetaUpgradeCardsDrawn + 1
+				if not rom.mods["zerp-BoonOverflowFix"] or (numMetaUpgradeCardsDrawn > maxMetaUpgradesPerPage * (metaUpgradePageNum - 1) and numMetaUpgradeCardsDrawn <= maxMetaUpgradesPerPage * (metaUpgradePageNum)) then
+					--DebugPrint({ Text = "metaUpgradeName = "..metaUpgradeName })
+					local metaUpgradeCardData = MetaUpgradeCardData[metaUpgradeName]
+					if metaUpgradeCardData.TraitName ~= nil and HeroHasTrait(metaUpgradeCardData.TraitName) then
+						local trait = GetHeroTrait( metaUpgradeCardData.TraitName )
+						local traitFrameId = CreateScreenObstacle({ Name = "BlankObstacle", X = xOffset, Y = yOffset,  Group = screen.ComponentData.DefaultGroup, Scale = 0.7, Alpha = 0.0 })
+						--Attach({ Id = traitFrameId, DestinationId = traitIcon.Id })
+						SetAnimation({ Name = "DevCard_EquippedHighlight", DestinationId = traitFrameId })
+						SetAlpha({ Id = traitFrameId, Fraction = 1.0, Duration = 0.1 })
+						table.insert( screen.Frames, traitFrameId )
 
-					local iconScale = 0.21
-					local traitIcon = CreateScreenComponent({ Name = "TraitTrayIconButton", X = xOffset, Y = yOffset, Group = screen.ComponentData.DefaultGroup, Animation = metaUpgradeCardData.Image, Scale = iconScale, Alpha = 0.0 })
-					AttachLua({ Id = traitIcon.Id, Table = traitIcon })
-					traitIcon.Screen = screen
-					traitIcon.OnMouseOverFunctionName = "TraitTrayIconButtonMouseOver"
-					traitIcon.OnMouseOffFunctionName = "TraitTrayIconButtonMouseOff"
-					traitIcon.OnPressedFunctionName = "PinTraitDetails"
-					--trait.AnchorId = traitIcon.Id
-					traitIcon.Icon = metaUpgradeCardData.Image
-					traitIcon.IconScale = iconScale
-					traitIcon.PinIconScale = 0.12
-					traitIcon.PinIconFrameScale = 0.4
-					traitIcon.OffsetX = xOffset
-					traitIcon.OffsetY = yOffset
-					traitIcon.HighlightAnim = "DevCard_Hover"
-					traitIcon.HighlightAnimScale = 0.33
-					traitIcon.PinAnimationIn = "TraitPinIn_Arcana"
-					traitIcon.PinAnimationOut = "TraitPinOut_Arcana"
-					traitIcon.TrayHighlightAnimScale = 1.5
-					SetAlpha({ Id = traitIcon.Id, Fraction = 1.0, Duration = 0.1 })
-					CreateTextBox({
-						Id = traitIcon.Id,
-						UseDescription = true,
-						VariableAutoFormat = "BoldFormatGraft",
-						Scale = 0.0,
-						Hide = true,
-					})
+						local iconScale = 0.21
+						local traitIcon = CreateScreenComponent({ Name = "TraitTrayIconButton", X = xOffset, Y = yOffset, Group = screen.ComponentData.DefaultGroup, Animation = metaUpgradeCardData.Image, Scale = iconScale, Alpha = 0.0 })
+						AttachLua({ Id = traitIcon.Id, Table = traitIcon })
+						traitIcon.Screen = screen
+						traitIcon.OnMouseOverFunctionName = "TraitTrayIconButtonMouseOver"
+						traitIcon.OnMouseOffFunctionName = "TraitTrayIconButtonMouseOff"
+						traitIcon.OnPressedFunctionName = "PinTraitDetails"
+						--trait.AnchorId = traitIcon.Id
+						traitIcon.Icon = metaUpgradeCardData.Image
+						traitIcon.IconScale = iconScale
+						traitIcon.PinIconScale = 0.12
+						traitIcon.PinIconFrameScale = 0.4
+						traitIcon.OffsetX = xOffset
+						traitIcon.OffsetY = yOffset
+						traitIcon.HighlightAnim = "DevCard_Hover"
+						traitIcon.HighlightAnimScale = 0.33
+						traitIcon.PinAnimationIn = "TraitPinIn_Arcana"
+						traitIcon.PinAnimationOut = "TraitPinOut_Arcana"
+						traitIcon.TrayHighlightAnimScale = 1.5
+						SetAlpha({ Id = traitIcon.Id, Fraction = 1.0, Duration = 0.1 })
+						CreateTextBox({
+							Id = traitIcon.Id,
+							UseDescription = true,
+							VariableAutoFormat = "BoldFormatGraft",
+							Scale = 0.0,
+							Hide = true,
+						})
 
-					if args.DisableTooltips then
-						ModifyTextBox({ Id = traitIcon.Id, BlockTooltip = true })
-					end
+						if args.DisableTooltips then
+							ModifyTextBox({ Id = traitIcon.Id, BlockTooltip = true })
+						end
 
-					table.insert( components, traitIcon )
-					traitIcon.TraitData = trait
-					screen.Icons[traitIcon.Id] = traitIcon
+						table.insert( components, traitIcon )
+						traitIcon.TraitData = trait
+						screen.Icons[traitIcon.Id] = traitIcon
 
-					if not firstTrait then
-						highlightedTrait = traitIcon
-						firstTrait = true
-					end
+						if not firstTrait then
+							highlightedTrait = traitIcon
+							firstTrait = true
+						end
 
-					local uniqueTraitName = TraitTrayGetUniqueName( traitIcon )
-					if uniqueTraitName == args.HighlightName or uniqueTraitName == activeCategory.PrevHighlightName then
-						highlightedTrait = traitIcon
-					end
-					if trait.Name == MapState.TraitTrayMetaUpgradePriorityHighlight then
-						highlightedTrait = traitIcon
-						MapState.TraitTrayMetaUpgradePriorityHighlight = nil
-					end
+						local uniqueTraitName = TraitTrayGetUniqueName( traitIcon )
+						if uniqueTraitName == args.HighlightName or uniqueTraitName == activeCategory.PrevHighlightName then
+							highlightedTrait = traitIcon
+						end
+						if trait.Name == MapState.TraitTrayMetaUpgradePriorityHighlight then
+							highlightedTrait = traitIcon
+							MapState.TraitTrayMetaUpgradePriorityHighlight = nil
+						end
 
-					screen.TraitComponentDictionary[uniqueTraitName] = traitIcon
-					if screen.AutoPin and not activeCategory.OpenedOnce and IsPossibleMetaUpgradeAutoPin( trait ) then
-						table.insert( screen.PossibleAutoPins, traitIcon )
-					end
-					
-					if CurrentRun.FlipTheArcanaTycheMetaUpgrades and CurrentRun.FlipTheArcanaTycheMetaUpgrades[metaUpgradeName] then
-						SetColor({ Id = traitIcon.Id, Color = { 192, 192, 192, 160 } })
-						--ModifyTextBox({ Id = traitIcon.Id, Text = "{$Keywords.FlipTheArcanaRandomisedCard}" })
-					end
-					if CurrentRun.FlipTheArcanaRegretMetaUpgrades and CurrentRun.FlipTheArcanaRegretMetaUpgrades[metaUpgradeName] then
-						SetColor({ Id = traitIcon.Id, Color = { 192, 192, 192, 160 } })
-						--ModifyTextBox({ Id = traitIcon.Id, Text = "{$Keywords.FlipTheArcanaRandomisedCard}" })
-					end
+						screen.TraitComponentDictionary[uniqueTraitName] = traitIcon
+						if screen.AutoPin and not activeCategory.OpenedOnce and IsPossibleMetaUpgradeAutoPin( trait ) then
+							table.insert( screen.PossibleAutoPins, traitIcon )
+						end
+						
+						if CurrentRun.FlipTheArcanaTycheMetaUpgrades and CurrentRun.FlipTheArcanaTycheMetaUpgrades[metaUpgradeName] then
+							SetColor({ Id = traitIcon.Id, Color = { 192, 192, 192, 160 } })
+							--ModifyTextBox({ Id = traitIcon.Id, Text = "{$Keywords.FlipTheArcanaRandomisedCard}" })
+						end
+						if CurrentRun.FlipTheArcanaRegretMetaUpgrades and CurrentRun.FlipTheArcanaRegretMetaUpgrades[metaUpgradeName] then
+							SetColor({ Id = traitIcon.Id, Color = { 192, 192, 192, 160 } })
+							--ModifyTextBox({ Id = traitIcon.Id, Text = "{$Keywords.FlipTheArcanaRandomisedCard}" })
+						end
 
-					displayedTraitNum = displayedTraitNum + 1
-					if displayedTraitNum % (activeCategory.TraitsPerColumn or screen.TraitsPerColumn ) == 0 then
-						xOffset = xOffset + traitSpacingX
-						yOffset = ScreenHeight - (activeCategory.TraitStartBottomOffset or screen.TraitStartBottomOffset)
-					else
-						yOffset = yOffset + (activeCategory.TraitSpacingY or screen.TraitSpacingY)
+						displayedTraitNum = displayedTraitNum + 1
+						if displayedTraitNum % (activeCategory.TraitsPerColumn or screen.TraitsPerColumn ) == 0 then
+							xOffset = xOffset + traitSpacingX
+							yOffset = ScreenHeight - (activeCategory.TraitStartBottomOffset or screen.TraitStartBottomOffset)
+						else
+							yOffset = yOffset + (activeCategory.TraitSpacingY or screen.TraitSpacingY)
+						end
 					end
-
 				end
 			end
 		end
@@ -1079,8 +1084,6 @@ local equippedMetaUpgradesNum = 0
 		SetAlpha({ Id = components.ChaosLock.Id, Fraction = 1.0, Duration = 0.1 })
 	end
 end)
-
-
 
 modutil.mod.Path.Override("UpgradeMouseOverUpgradeChoice", function( screen, button ) 
 	if screen.MouseOverButton == nil then
