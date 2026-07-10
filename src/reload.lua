@@ -3780,7 +3780,7 @@ function mod.RandomiseArcanaBuild(trait,args)
 	for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
-			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped and not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedRandomBuild", "ReversedRandomCards"}, cardName) then
+			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped and not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedRandomBuild", "ReversedRandomCards", "ReversedEpicRarityBoost", "StartingGold"}, cardName) then
 				local fateConflict = false
 				if GameState.FatedStatus == "Fated" and FatedDisableMetaUpgrades[cardName] then
 					fateConflict = true
@@ -3885,7 +3885,7 @@ function mod.AddFragileCards(numCards)
 	for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			local metaUpgradeData = GameState.MetaUpgradeState[cardName]
-			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped and not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedRandomBuild", "ReversedRandomCards"}, cardName) then
+			if metaUpgradeData and metaUpgradeData.Unlocked and not metaUpgradeData.Equipped and not Contains({"CardDraw", "ReversedCardDraw", "ReversedKeepsakeReAdd", "ReversedRandomBuild", "ReversedRandomCards", "ReversedEpicRarityBoost"}, cardName) then
 				local fateConflict = false
 				if GameState.FatedStatus == "Fated" and FatedDisableMetaUpgrades[cardName] then
 					fateConflict = true

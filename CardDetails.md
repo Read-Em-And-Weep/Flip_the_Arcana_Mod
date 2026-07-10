@@ -1,6 +1,6 @@
 Located at The Sorceress (Medea)
  - Bloodlust (Ares) - Your attack, special and cast are faster
- - Greed (Minos) - Gain gold whenever you leave a location
+ - Greed (Midas) - Gain gold whenever you leave a location
  - The Seer (Tiresias) - You use less magick
 
 Located at The Wayward Son (Zagreus)
