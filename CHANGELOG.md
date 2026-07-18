@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed an issue causing auto equip cards to not equip without having done the "Expanding of the Deck" incantation
+
 ## [3.0.0] - 2026-07-18
 
 - **NEW!** 50 new arcana cards for you to experiment with!! I'd love some feedback on them if you feel any are too weak or too strong :)

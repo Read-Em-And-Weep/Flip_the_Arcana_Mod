@@ -33,6 +33,7 @@ end)
 
 modutil.mod.Path.Wrap("DoPatches", function(base)
     base()
+	if not GameState then return end
     if not GameState.FlipTheArcanaSavedMetaUpgradeLayouts and GameState.SavedMetaUpgradeLayouts then
        GameState.FlipTheArcanaSavedMetaUpgradeLayouts = DeepCopyTable(GameState.SavedMetaUpgradeLayouts) or {}
     end
