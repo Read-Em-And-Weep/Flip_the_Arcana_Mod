@@ -3604,7 +3604,7 @@ modutil.mod.Path.Wrap("Damage", function(base,victim, triggerArgs)
 			thread(mod.RestoreUnyielding, trait.FlipTheArcanaUnyieldingCooldown)
 		end
 	end
-	if victim and triggerArgs and victim == CurrentRun.Hero and HeroHasTrait("ReversedManaShieldMetaUpgrade") then
+	if victim and triggerArgs and triggerArgs.DamageAmount and triggerArgs.DamageAmount > 0 and victim == CurrentRun.Hero and HeroHasTrait("ReversedManaShieldMetaUpgrade") then
 		local trait = GetHeroTrait("ReversedManaShieldMetaUpgrade")
 		local manaShieldData = trait.FlipTheArcanaManaShieldData
 		local manaCost = math.ceil(math.ceil(triggerArgs.DamageAmount * manaShieldData.DamageBlocked) * manaShieldData.ManaPerDamageBlocked)

@@ -2181,19 +2181,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 10,
+				Multiplier = 5,
 			},
 			Rare =
 			{
-				Multiplier = 15,
+				Multiplier = 10,
 			},
 			Epic = 
 			{
-				Multiplier = 20,
+				Multiplier = 15,
 			},
 			Heroic = 
 			{
-				Multiplier = 25,
+				Multiplier = 20,
 			}
 		},
 		CustomTrayText = "ReversedPerfectPowerMetaUpgrade_Tray",
@@ -2626,19 +2626,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 2.7,
+				Multiplier = 3.4,
 			},
 			Rare =
 			{
-				Multiplier = 3.0,
+				Multiplier = 3.7,
 			},
 			Epic =
 			{
-				Multiplier = 3.3,
+				Multiplier = 4.0,
 			},
 			Heroic =
 			{
-				Multiplier = 3.6,
+				Multiplier = 4.3,
 			},
 		},
 		

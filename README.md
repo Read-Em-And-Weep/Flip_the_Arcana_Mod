@@ -25,7 +25,7 @@ Also, the saved layouts are handled seperately to prevent issues involved with u
 
 # Config
 LimitMaxArcanaDrawn - Should the game prevent you from randomly drawing more Arcana Cards after you reach a certain number to prevent you from becoming dangerously unbalanced? Default = _true_
-MaxArcanaDrawn - If _LimitMaxArcanaDrawn_ is enabled, then how many cards should the maximum be? Default = _40_
+MaxArcanaDrawn - If _LimitMaxArcanaDrawn_ is enabled, then how many cards should the maximum be? Default = _45_
 
 # Known Issues
 Some of the cards do not have art yet, so enjoy the amazing stick people for now!
