@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-07-18
+
 - Fixed an issue causing auto equip cards to not equip without having done the "Expanding of the Deck" incantation
 - Prevented a crash on fresh-file saves
 
@@ -294,7 +296,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.0...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.1...HEAD
+[3.0.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.2...3.0.0
 [2.9.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.1...2.9.2
 [2.9.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.0...2.9.1
