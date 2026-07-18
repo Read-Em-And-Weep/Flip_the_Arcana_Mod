@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-07-18
+
 - **NEW!** 50 new arcana cards for you to experiment with!! I'd love some feedback on them if you feel any are too weak or too strong :)
 
 - Added new config options to limit the maximum amount of Arcana you can draw, to prevent runaway builds
@@ -289,7 +291,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.2...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.2...3.0.0
 [2.9.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.1...2.9.2
 [2.9.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.9.0...2.9.1
 [2.9.0]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/2.8.3...2.9.0
