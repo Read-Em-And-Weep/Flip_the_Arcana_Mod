@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added a new config to disable sets of cards to your liking. All enabled true by default.
+
 ## [3.0.1] - 2026-07-18
 
 - Fixed an issue causing auto equip cards to not equip without having done the "Expanding of the Deck" incantation

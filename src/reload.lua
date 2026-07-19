@@ -3,29 +3,44 @@ mod.MetaUpgradeDefaultCardLayout = {
 	{ "CastBuff",				"BonusHealth",			"BonusDodge",			"ManaOverTime",			"MagicCrit" 			},
 	{ "SprintShield",			"LastStand",			"MaxHealthPerRoom",		"StatusVulnerability",	"ChanneledBlock" 		},
 	{ "DoorReroll",				"StartingGold",			"MetaToRunUpgrade",		"RarityBoost", 			"BonusRarity" 			},
-	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},
-
-	{ "ReversedChanneledCast",			"ReversedHealthRegen",			"ReversedLowManaDamageBonus",	"ReversedCastCount",			"ReversedSorceryRegenUpgrade", 	},
-	{ "ReversedCastBuff",				"ReversedBonusHealth",			"ReversedBonusDodge",			"ReversedManaOverTime",			"ReversedMagicCrit" 			},
-	{ "ReversedSprintShield",			"ReversedLastStand",			"ReversedMaxHealthPerRoom",		"ReversedStatusVulnerability",	"ReversedChanneledBlock" 		},
-	{ "ReversedDoorReroll",				"ReversedStartingGold",			"ReversedMetaToRunUpgrade",		"ReversedRarityBoost", 			"ReversedBonusRarity" 			},
-	{ "ReversedTradeOff",				"ReversedScreenReroll",			"ReversedLowHealthBonus",		"ReversedEpicRarityBoost",		"ReversedCardDraw" 				},
-
-	{ "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
+	{ "TradeOff",				"ScreenReroll",			"LowHealthBonus",		"EpicRarityBoost",		"CardDraw" 				},}
+mod.setsAdded = 0
+if config and config.EnableBlueCards then
+	mod.setsAdded = mod.setsAdded + 1
+	local newSet = { { "ReversedChanneledCast", "ReversedHealthRegen", "ReversedLowManaDamageBonus", "ReversedCastCount", "ReversedSorceryRegenUpgrade", },
+		{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
+		{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
+		{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
+		{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" }, }
+	for row, rowData in ipairs(newSet) do
+		table.insert(mod.MetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+if config and config.EnableVioletCards then
+	mod.setsAdded = mod.setsAdded + 1
+	local newSet = { { "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
 	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
 	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
 	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
-	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},
-
-	{ "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
+	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},}
+	for row, rowData in ipairs(newSet) do
+		table.insert(mod.MetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+if config and config.EnableRedCards then
+	mod.setsAdded = mod.setsAdded + 1
+	local newSet = { { "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
 	{ "ReversedFirstHitTransform",				"ReversedHealthWithBoons",			"ReversedProjectileSlow",			"ReversedCursedLegendaryBoost",			"ReversedFreeOmega" 			},
 	{ "ReversedDashRecovery",			"ReversedProtectionCooldown",			"ReversedElementRoom",	"ReversedUniqueGod",		"ReversedManaShield" 		},
 	{ "ReversedRandomSacrifice",			"ReversedAdditionalOmegaChance",		"ReversedRiposteKill",	"ReversedRandomCards", 			"ReversedBossResistance" 			},
-	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				},
-    }
---TODO: New flipped traits need to be added to the Monstrosity trait table (in LootData) once they are made and named
---TODO: New flipped traits need to be added to the pool for random bounties
---TODO: Maybe rework the way I do it to use the game's FYShuffle function
+	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				}, }
+	for row, rowData in ipairs(newSet) do
+		table.insert(mod.MetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+
+
+
 
 modutil.mod.Path.Wrap("UnequipMetaUpgradeBonusCardPresentation", function(base, screen, button)
     if (button == nil) then
@@ -929,22 +944,26 @@ function mod.GetFlippedCardName(cardName)
 		for j = 1,5 do
 			local newTable = {}
 			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i][j])
+			if mod.setsAdded >= 1 then
 			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+5][j])
+			end
+			if mod.setsAdded >= 2 then
 			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+10][j])
+			end
+			if mod.setsAdded >= 3 then
 			table.insert(newTable, mod.MetaUpgradeDefaultCardLayout[i+15][j])
+			end
 			table.insert(metaUpgradeReversePairs, newTable)
 		end
 	end
-	--[[for _, pair in ipairs(MetaUpgradeReversePairs) do
-        local a, b = pair[1], pair[2]
-        if cardName == a then
-            return b
-        elseif cardName == b then
-            return a
-        end
-    end]]
-	-- Below for when we upgrade to more than one other side
-	return mod.GetNextTableValue(mod.FindTableContainingValue(metaUpgradeReversePairs, cardName), cardName)
+	local tableContainingValue = mod.FindTableContainingValue(metaUpgradeReversePairs, cardName)
+	if not tableContainingValue then
+		local metaUpgradeData = MetaUpgradeCardData[cardName]
+		local row = metaUpgradeData.Row
+		local column = metaUpgradeData.Column
+		return mod.MetaUpgradeDefaultCardLayout[row][column]
+	end
+	return mod.GetNextTableValue(tableContainingValue, cardName)
 end
 
 
@@ -2321,25 +2340,39 @@ modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
 	function(base, sum, remaining, index, budget, candidates, cardState)
 		if index == 0 then
 			local newCards = {}
-			local flippedMetaUpgradeDefaultCardLayout = {
-				{ "ReversedChanneledCast", "ReversedHealthRegen",  "ReversedLowManaDamageBonus", "ReversedCastCount",           "ReversedSorceryRegenUpgrade", },
-				{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
-				{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
-				{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
-				{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" },
-
-				{ "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
+			
+			local flippedMetaUpgradeDefaultCardLayout = {}
+if config and config.EnableBlueCards then
+	local newSet = { { "ReversedChanneledCast", "ReversedHealthRegen", "ReversedLowManaDamageBonus", "ReversedCastCount", "ReversedSorceryRegenUpgrade", },
+		{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
+		{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
+		{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
+		{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" }, }
+	for row, rowData in ipairs(newSet) do
+		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+if config and config.EnableVioletCards then
+	local newSet = { { "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
 	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
 	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
 	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
-	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},
-
-	{ "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
+	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},}
+	for row, rowData in ipairs(newSet) do
+		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+if config and config.EnableRedCards then
+	local newSet = { { "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
 	{ "ReversedFirstHitTransform",				"ReversedHealthWithBoons",			"ReversedProjectileSlow",			"ReversedCursedLegendaryBoost",			"ReversedFreeOmega" 			},
 	{ "ReversedDashRecovery",			"ReversedProtectionCooldown",			"ReversedElementRoom",	"ReversedUniqueGod",		"ReversedManaShield" 		},
 	{ "ReversedRandomSacrifice",			"ReversedAdditionalOmegaChance",		"ReversedRiposteKill",	"ReversedRandomCards", 			"ReversedBossResistance" 			},
-	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				},
-			}
+	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				}, }
+	for row, rowData in ipairs(newSet) do
+		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+	end
+end
+				
 
 			for row, rowData in pairs(flippedMetaUpgradeDefaultCardLayout) do
 				for column, cardName in pairs(rowData) do

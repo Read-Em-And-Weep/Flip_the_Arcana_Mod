@@ -26,6 +26,7 @@ Also, the saved layouts are handled seperately to prevent issues involved with u
 # Config
 LimitMaxArcanaDrawn - Should the game prevent you from randomly drawing more Arcana Cards after you reach a certain number to prevent you from becoming dangerously unbalanced? Default = _true_
 MaxArcanaDrawn - If _LimitMaxArcanaDrawn_ is enabled, then how many cards should the maximum be? Default = _45_
+In addition, each individual set of cards can be turned off by turning it's respective config off. Please unequip all cards of that color before you do so (ideally in all of the pre-layout sets), since it will count that card as being equipped when it's not for equipping the free arcana (e.g. Moon, Fates) while no awarding you the benefit or allowing you to unequip. All sets are enabled true by default.
 
 # Known Issues
 Some of the cards do not have art yet, so enjoy the amazing stick people for now!
