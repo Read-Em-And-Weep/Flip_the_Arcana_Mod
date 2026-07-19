@@ -65,40 +65,6 @@ local newLootData = {
 		"SorceryRegenMetaUpgrade",
 		"LowHealthBuffMetaUpgrade",
 		"MetaToRunMetaUpgrade",
-		"ReversedChanneledCastMetaUpgrade",
-		"ReversedHealthRegenMetaUpgrade",
-		"ReversedLowManaDamageBonusMetaUpgrade",
-		"ReversedCastCountMetaUpgrade",
-		"ReversedSorceryRegenMetaUpgrade",
-		"ReversedCastBuffMetaUpgrade",
-		"ReversedBonusHealthMetaUpgrade",
-		"ReversedBonusDodgeMetaUpgrade",
-		"ReversedManaOverTimeMetaUpgrade",
-		"ReversedMagicCritMetaUpgrade",
-		"ReversedSprintShieldMetaUpgrade",
-		"ReversedLastStandMetaUpgrade",
-		"ReversedMaxHealthPerRoomMetaUpgrade",
-		"ReversedStatusVulnerabilityMetaUpgrade",
-		"ReversedChanneledBlockMetaUpgrade",
-		"ReversedDoorRerollMetaUpgrade",
-		"ReversedStartingGoldMetaUpgrade",
-		"ReversedMetaToRunUpgradeMetaUpgrade",
-		"ReversedRarityBoostMetaUpgrade",
-		"ReversedBonusRarityMetaUpgrade",
-		"ReversedTradeOffMetaUpgrade",
-		"ReversedScreenRerollMetaUpgrade",
-		"ReversedLowHealthBonusMetaUpgrade",
-		"ReversedEpicRarityBoostMetaUpgrade",
-		"ReversedDoorCashMetaUpgrade",			"ReversedManaPerRoomMetaUpgrade",			"ReversedLowHealthCritMetaUpgrade",	"ReversedSturdyChannelMetaUpgrade",				"ReversedCharmedEnemyMetaUpgrade",
-		"ReversedCrowdDamageMetaUpgrade",				"ReversedSharedRunProgressMetaUpgrade",			"ReversedOlympianDamageMetaUpgrade",			"ReversedExtraPurchaseMetaUpgrade",			"ReversedPomBiomeStartMetaUpgrade",
-		"ReversedStrongRushMetaUpgrade",			"ReversedRenewableDDMetaUpgrade",			"ReversedArmorPerRoomMetaUpgrade",	"ReversedStatusCritMetaUpgrade",		"ReversedEncounterHealMetaUpgrade",
-		"ReversedExtraFeaturesMetaUpgrade",			"ReversedPerfectClearBoostMetaUpgrade",		"ReversedHeroicRarityMetaUpgrade",	"ReversedSacrificeForLevelsMetaUpgrade", 			"ReversedGatherRarityMetaUpgrade",
-		 "ReversedPerfectPowerMetaUpgrade",				"ReversedUnFatedRewardMetaUpgrade",		"ReversedFullDefianceMetaUpgrade",		"ReversedRandomBonusLevelsMetaUpgrade",
-		 "ReversedCheaperChannelMetaUpgrade",			"ReversedPotentDefianceMetaUpgrade",			"ReversedBackstabMetaUpgrade",	"ReversedBonusTalentMetaUpgrade",				"ReversedSpellDamageMetaUpgrade",
-		"ReversedDashRecoveryMetaUpgrade",			"ReversedProtectionCooldownMetaUpgrade",			"ReversedElementRoomMetaUpgrade",	"ReversedUniqueGodMetaUpgrade",		"ReversedManaShieldMetaUpgrade",
-		"ReversedRandomSacrificeMetaUpgrade",			"ReversedAdditionalOmegaChanceMetaUpgrade",		"ReversedRiposteKillMetaUpgrade", 			"ReversedBossResistanceMetaUpgrade",
-		"ReversedArtemisKeepsakeMetaUpgrade",				"ReversedFountainGoldMetaUpgrade",		"ReversedDDRefillBiomeStartMetaUpgrade",		"ReversedMoreSacrificesMetaUpgrade",
-
 		},
 		Consumables = {},
 		
@@ -181,6 +147,61 @@ local newLootData = {
 		},
 	},
 }
+
+if config and config.EnableBlueCards then
+	local newSet = { "ReversedChanneledCastMetaUpgrade",
+		"ReversedHealthRegenMetaUpgrade",
+		"ReversedLowManaDamageBonusMetaUpgrade",
+		"ReversedCastCountMetaUpgrade",
+		"ReversedSorceryRegenMetaUpgrade",
+		"ReversedCastBuffMetaUpgrade",
+		"ReversedBonusHealthMetaUpgrade",
+		"ReversedBonusDodgeMetaUpgrade",
+		"ReversedManaOverTimeMetaUpgrade",
+		"ReversedMagicCritMetaUpgrade",
+		"ReversedSprintShieldMetaUpgrade",
+		"ReversedLastStandMetaUpgrade",
+		"ReversedMaxHealthPerRoomMetaUpgrade",
+		"ReversedStatusVulnerabilityMetaUpgrade",
+		"ReversedChanneledBlockMetaUpgrade",
+		"ReversedDoorRerollMetaUpgrade",
+		"ReversedStartingGoldMetaUpgrade",
+		"ReversedMetaToRunUpgradeMetaUpgrade",
+		"ReversedRarityBoostMetaUpgrade",
+		"ReversedBonusRarityMetaUpgrade",
+		"ReversedTradeOffMetaUpgrade",
+		"ReversedScreenRerollMetaUpgrade",
+		"ReversedLowHealthBonusMetaUpgrade",
+		"ReversedEpicRarityBoostMetaUpgrade", }
+	for traitNum, traitName in ipairs(newSet) do
+		table.insert(newLootData.MonstrosityMetaUpgradeUpgrade.Traits, traitName)
+	end
+end
+if config and config.EnableVioletCards then
+	local newSet = { "ReversedDoorCashMetaUpgrade",			"ReversedManaPerRoomMetaUpgrade",			"ReversedLowHealthCritMetaUpgrade",	"ReversedSturdyChannelMetaUpgrade",				"ReversedCharmedEnemyMetaUpgrade",
+		"ReversedCrowdDamageMetaUpgrade",				"ReversedSharedRunProgressMetaUpgrade",			"ReversedOlympianDamageMetaUpgrade",			"ReversedExtraPurchaseMetaUpgrade",			"ReversedPomBiomeStartMetaUpgrade",
+		"ReversedStrongRushMetaUpgrade",			"ReversedRenewableDDMetaUpgrade",			"ReversedArmorPerRoomMetaUpgrade",	"ReversedStatusCritMetaUpgrade",		"ReversedEncounterHealMetaUpgrade",
+		"ReversedExtraFeaturesMetaUpgrade",			"ReversedPerfectClearBoostMetaUpgrade",		"ReversedHeroicRarityMetaUpgrade",	"ReversedSacrificeForLevelsMetaUpgrade", 			"ReversedGatherRarityMetaUpgrade",
+		 "ReversedPerfectPowerMetaUpgrade",				"ReversedUnFatedRewardMetaUpgrade",		"ReversedFullDefianceMetaUpgrade",		"ReversedRandomBonusLevelsMetaUpgrade",}
+	
+	for traitNum, traitName in ipairs(newSet) do
+		table.insert(newLootData.MonstrosityMetaUpgradeUpgrade.Traits, traitName)
+	end
+end
+if config and config.EnableRedCards then
+	local newSet = { "ReversedCheaperChannelMetaUpgrade",			"ReversedPotentDefianceMetaUpgrade",			"ReversedBackstabMetaUpgrade",	"ReversedBonusTalentMetaUpgrade",				"ReversedSpellDamageMetaUpgrade",
+	"ReversedFirstHitTransformMetaUpgrade",				"ReversedHealthWithBoonsMetaUpgrade",			"ReversedProjectileSlowMetaUpgrade",			"ReversedCursedLegendaryBoostMetaUpgrade",			"ReversedFreeOmegaMetaUpgrade",
+		"ReversedDashRecoveryMetaUpgrade",			"ReversedProtectionCooldownMetaUpgrade",			"ReversedElementRoomMetaUpgrade",	"ReversedUniqueGodMetaUpgrade",		"ReversedManaShieldMetaUpgrade",
+		"ReversedRandomSacrificeMetaUpgrade",			"ReversedAdditionalOmegaChanceMetaUpgrade",		"ReversedRiposteKillMetaUpgrade", 			"ReversedBossResistanceMetaUpgrade",
+		"ReversedArtemisKeepsakeMetaUpgrade",				"ReversedFountainGoldMetaUpgrade",		"ReversedDDRefillBiomeStartMetaUpgrade",		"ReversedMoreSacrificesMetaUpgrade",}
+	
+	for traitNum, traitName in ipairs(newSet) do
+		table.insert(newLootData.MonstrosityMetaUpgradeUpgrade.Traits, traitName)
+	end
+end
+
+
+
 
 for newLootName, newLootData in pairs(newLootData) do
     game.ProcessDataInheritance(newLootData, game.LootData)
