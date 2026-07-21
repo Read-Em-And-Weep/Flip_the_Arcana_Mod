@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.4] - 2026-07-21
+
 - The Death Defiance offered Discipline (Skelly) will no longer linger while in the Crossroads, however, it will also not appear until you start the run
 
 ## [3.0.3] - 2026-07-19
@@ -306,7 +308,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.3...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.4...HEAD
+[3.0.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.0...3.0.1
