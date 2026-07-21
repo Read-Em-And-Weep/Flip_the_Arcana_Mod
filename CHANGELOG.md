@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- The Death Defiance offered Discipline (Skelly) will no longer linger while in the Crossroads, however, it will also not appear until you start the run
+
 ## [3.0.3] - 2026-07-19
 
-- Monstrosity loot will now obey the config of which cards are enabled
+- Monstrosity (Typhon) loot will now obey the config of which cards are enabled
 
 ## [3.0.2] - 2026-07-19
 

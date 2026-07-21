@@ -2775,6 +2775,8 @@ function mod.DoReversedDoorCash(currentRun, door)
 end
 
 function mod.RenewLastStand(unit,args)
+	if CurrentRun.Hero.IsDead then return end
+	if CurrentHubRoom then return end
 	if CurrentRun.CurrentRoom and CurrentRun.CurrentRoom.BlockTraitSetup or not args then
 		return
 	end
