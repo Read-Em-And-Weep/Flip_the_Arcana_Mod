@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.5] - 2026-07-25
+
 - Added a check to stop a weird crash by providing a backup for when there is not a row/column for accessing GetFlippedCard
 
 ## [3.0.4] - 2026-07-21
@@ -310,7 +312,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.4...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.5...HEAD
+[3.0.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.4...3.0.5
 [3.0.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.1...3.0.2
