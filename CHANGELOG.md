@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Now properly initialize MetaUpgradeState 
 - Fixed an edge case where GameState.MetaUpgradeState[cardName] was not yet defined
 
 ## [3.0.5] - 2026-07-25

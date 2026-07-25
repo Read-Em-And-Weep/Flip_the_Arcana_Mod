@@ -58,9 +58,24 @@ modutil.mod.Path.Wrap("EquipMetaUpgradeBonusCardPresentation", function(base, sc
     end
 end)
 
+function mod.InitializeMetaUpgradeState()
+	for metaUpgradeName, initialData in pairs( MetaUpgradeCardData ) do
+		if not GameState.MetaUpgradeState[metaUpgradeName] then
+			GameState.MetaUpgradeState[metaUpgradeName] = {}
+		end
+		GameState.MetaUpgradeState[metaUpgradeName].Level = GameState.MetaUpgradeState[metaUpgradeName].Level or 1
+		local maxLevel = #initialData.UpgradeResourceCost + 1
+		if GameState.MetaUpgradeState[metaUpgradeName].Level > maxLevel then
+			-- Undo bad mod (Wow SuperGiant, tell me how you really feel)
+			GameState.MetaUpgradeState[metaUpgradeName].Level = maxLevel
+		end
+	end
+end
+
  
 modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
 	base(screen, cardArgs)
+	mod.InitializeMetaUpgradeState()
     GameState.FlipTheArcanaHasRun = GameState.FlipTheArcanaHasRun or false
     for metaUpgradeName in pairs(GameState.MetaUpgradeState) do
         if GameState.MetaUpgradeState[metaUpgradeName].Equipped and not MetaUpgradeCardData[metaUpgradeName].Flipped and not GameState.FlipTheArcanaHasRun then
@@ -84,7 +99,6 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
     for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			if not GameState.FlipTheArcanaHasRun then
-				GameState.MetaUpgradeState[cardName] = GameState.MetaUpgradeState[cardName] or {}
 				if (GameState.MetaUpgradeState[cardName].Equipped) then
 					row = MetaUpgradeCardData[cardName].Row
             		column = MetaUpgradeCardData[cardName].Column
@@ -92,7 +106,6 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             		mod.ReverseCardToCard(screen, buttonToFlip, cardName, false, cardArgs)
 				end
 			end
-			GameState.MetaUpgradeState[cardName] = GameState.MetaUpgradeState[cardName] or {}
             GameState.MetaUpgradeState[cardName].Visible = true
         end
     end
