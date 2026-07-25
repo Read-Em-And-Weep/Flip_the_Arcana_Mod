@@ -84,6 +84,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
     for row, rowData in pairs( mod.MetaUpgradeDefaultCardLayout ) do
 		for column, cardName in pairs( rowData ) do
 			if not GameState.FlipTheArcanaHasRun then
+				GameState.MetaUpgradeState[cardName] = GameState.MetaUpgradeState[cardName] or {}
 				if (GameState.MetaUpgradeState[cardName].Equipped) then
 					row = MetaUpgradeCardData[cardName].Row
             		column = MetaUpgradeCardData[cardName].Column
