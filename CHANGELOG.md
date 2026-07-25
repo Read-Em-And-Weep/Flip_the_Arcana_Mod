@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added a check to stop a weird crash by providing a backup for when there is not a row/column for accessing GetFlippedCard
+
 ## [3.0.4] - 2026-07-21
 
-- The Death Defiance offered Discipline (Skelly) will no longer linger while in the Crossroads, however, it will also not appear until you start the run
+- The Death Defiance offered by Discipline (Skelly) will no longer linger while in the Crossroads, however, it will also not appear until you start the run
 
 ## [3.0.3] - 2026-07-19
 

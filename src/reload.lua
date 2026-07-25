@@ -816,23 +816,6 @@ end)
 
 
 
-
-    --[[if not IsEmpty(GameState.FlipTheArcanaSavedMetaUpgradeLayouts[GameState.CurrentMetaUpgradeLayout]) then
-		for metaUpgradeName in pairs( GameState.FlipTheArcanaSavedMetaUpgradeLayouts[GameState.CurrentMetaUpgradeLayout] ) do
-			if GameState.MetaUpgradeState[GetFlippedCardName(metaUpgradeName)].Equipped == true then
-                row, column = LookupRowandColumn(GetFlippedCardName(metaUpgradeName))
-                print("row")
-                print(row)
-                print("column")
-                print(column)
-                --local buttonToFlip = screen.Components[GetMetaUpgradeKey(row, column)]
-                --ReverseCard(screen, buttonToFlip)
-            end
-		end
-	end]]
-
-
-
 modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
     if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
 		local autoEquipMetaUpgrades = {}
@@ -959,9 +942,18 @@ function mod.GetFlippedCardName(cardName)
 	local tableContainingValue = mod.FindTableContainingValue(metaUpgradeReversePairs, cardName)
 	if not tableContainingValue then
 		local metaUpgradeData = MetaUpgradeCardData[cardName]
-		local row = metaUpgradeData.Row
-		local column = metaUpgradeData.Column
-		return mod.MetaUpgradeDefaultCardLayout[row][column]
+		local row = metaUpgradeData.Row or 1
+		local column = metaUpgradeData.Column or 1
+		local rowData = mod.MetaUpgradeDefaultCardLayout[row]
+		if rowData then
+			if mod.MetaUpgradeDefaultCardLayout[row][column] then 
+				return mod.MetaUpgradeDefaultCardLayout[row][column] 
+			else 
+				return mod.MetaUpgradeDefaultCardLayout[row][1] 
+			end
+		else 
+			return mod.MetaUpgradeDefaultCardLayout[1][1]
+		end
 	end
 	return mod.GetNextTableValue(tableContainingValue, cardName)
 end
@@ -1010,7 +1002,6 @@ modutil.mod.Path.Override("TraitTrayShowMetaUpgrades", function(screen, activeCa
 			if metaUpgradeState ~= nil and metaUpgradeState.Equipped then
 				numMetaUpgradeCardsDrawn = numMetaUpgradeCardsDrawn + 1
 				if not rom.mods["zerp-BoonOverflowFix"] or (numMetaUpgradeCardsDrawn > maxMetaUpgradesPerPage * (metaUpgradePageNum - 1) and numMetaUpgradeCardsDrawn <= maxMetaUpgradesPerPage * (metaUpgradePageNum)) then
-					--DebugPrint({ Text = "metaUpgradeName = "..metaUpgradeName })
 					local metaUpgradeCardData = MetaUpgradeCardData[metaUpgradeName]
 					if metaUpgradeCardData.TraitName ~= nil and HeroHasTrait(metaUpgradeCardData.TraitName) then
 						local trait = GetHeroTrait( metaUpgradeCardData.TraitName )
@@ -1559,7 +1550,7 @@ modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base,screen,butto
 	local spawnTarget = nil
 	local duplicateOnClose = false
 	local name = source.Name
-	local args = args or {}
+	args = args or {}
 
 	local upgradeData = button.Data
 	if HeroHasTrait("ReversedHealthWithBoonsMetaUpgrade") and (source.GodLoot or name == "HermesUpgrade") then
