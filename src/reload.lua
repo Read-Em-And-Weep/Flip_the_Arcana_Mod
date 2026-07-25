@@ -91,6 +91,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCards", function(base, screen, cardArgs)
             		mod.ReverseCardToCard(screen, buttonToFlip, cardName, false, cardArgs)
 				end
 			end
+			GameState.MetaUpgradeState[cardName] = GameState.MetaUpgradeState[cardName] or {}
             GameState.MetaUpgradeState[cardName].Visible = true
         end
     end

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed an edge case where GameState.MetaUpgradeState[cardName] was not yet defined
+
 ## [3.0.5] - 2026-07-25
 
 - Added a check to stop a weird crash by providing a backup for when there is not a row/column for accessing GetFlippedCard
