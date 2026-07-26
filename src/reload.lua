@@ -171,9 +171,8 @@ modutil.mod.Path.Wrap("CreateNewHero", function(base, prevRun, args )
 	return base(prevRun, args)
 end)
 
-
-modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
-    if not game.CurrentHubRoom then return base(source,args) end
+function mod.HubLoadWrap(base, source, args)
+	if not game.CurrentHubRoom then return base(source,args) end
     if game.CurrentHubRoom.Name == "Hub_PreRun" then
         GameState.FlipTheArcanaHasRun = false
     end
@@ -191,6 +190,18 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
         end
     end
     return base(source, args)
+end
+
+modutil.mod.Path.Wrap("DeathAreaRoomTransition", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
+end)
+
+modutil.mod.Path.Wrap("HubPostBountyLoad", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
+end)
+
+modutil.mod.Path.Wrap("HubPostDreamLoad", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
 end)
 
 modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, column, cardName, args)
@@ -2423,20 +2434,6 @@ modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades", function(base, sum, rem
 		end
 	end
 	return base(sum, remaining, index, budget, candidates, cardState)
-end)
-
-modutil.mod.Path.Wrap("StoredGameStateInit", function (base, originalState)
-	base()
-	game.StoredGameState.FlipTheArcanaHasRun = originalState.FlipTheArcanaHasRun
-	game.StoredGameState.MetaUpgradeCardLayout = originalState.MetaUpgradeCardLayout
-end)
-
-modutil.mod.Path.Wrap("RestorePackagedBountyGameState", function (base)
-	if game.StoredGameState then
-		game.GameState.FlipTheArcanaHasRun = game.StoredGameState.FlipTheArcanaHasRun
-		game.GameState.MetaUpgradeCardLayout = game.StoredGameState.MetaUpgradeCardLayout
-	end
-	return base()
 end)
 
 modutil.mod.Path.Wrap("UpgradeMetaUpgradeCardAction", function(base, screen, button)
