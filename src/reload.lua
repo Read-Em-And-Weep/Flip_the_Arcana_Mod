@@ -2402,30 +2402,42 @@ function mod.GetLegalFlippedCandidates(card)
 	return legalFlips
 end
 
-modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
-	function(base, sum, remaining, index, budget, candidates, cardState)
-		if sum == budget then
-			local cardCoordMap = {}
-			for row, cardRow in ipairs(game.MetaUpgradeDefaultCardLayout) do
-				for col, card in ipairs(cardRow) do
-					cardCoordMap[card] = {Row = row, Column = col}
-				end
-			end
-			for card_index, card in ipairs(candidates) do
-				local legalFlips = mod.GetLegalFlippedCandidates(candidates[card_index])
-				for key, value in pairs(legalFlips) do
-					game.GameState.MetaUpgradeState[value].Visible = false
-				end
-				candidates[card_index] = game.GetRandomValue(legalFlips)
-				local row = cardCoordMap[card].Row
-				local col = cardCoordMap[card].Column
-				game.GameState.MetaUpgradeCardLayout[row][col] = candidates[card_index]
-				game.GameState.MetaUpgradeState[candidates[card_index]].Visible = true
+modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades", function(base, sum, remaining, index, budget, candidates, cardState)
+	if sum == budget then
+		local cardCoordMap = {}
+		for row, cardRow in ipairs(game.MetaUpgradeDefaultCardLayout) do
+			for col, card in ipairs(cardRow) do
+				cardCoordMap[card] = {Row = row, Column = col}
 			end
 		end
-		return base(sum, remaining, index, budget, candidates, cardState)
-	end)
+		for card_index, card in ipairs(candidates) do
+			local legalFlips = mod.GetLegalFlippedCandidates(candidates[card_index])
+			for key, value in pairs(legalFlips) do
+				game.GameState.MetaUpgradeState[value].Visible = false
+			end
+			candidates[card_index] = game.GetRandomValue(legalFlips)
+			local row = cardCoordMap[card].Row
+			local col = cardCoordMap[card].Column
+			game.GameState.MetaUpgradeCardLayout[row][col] = candidates[card_index]
+			game.GameState.MetaUpgradeState[candidates[card_index]].Visible = true
+		end
+	end
+	return base(sum, remaining, index, budget, candidates, cardState)
+end)
 
+modutil.mod.Path.Wrap("StoredGameStateInit", function (base, originalState)
+	base()
+	game.StoredGameState.FlipTheArcanaHasRun = originalState.FlipTheArcanaHasRun
+	game.StoredGameState.MetaUpgradeCardLayout = originalState.MetaUpgradeCardLayout
+end)
+
+modutil.mod.Path.Wrap("RestorePackagedBountyGameState", function (base)
+	if game.StoredGameState then
+		game.GameState.FlipTheArcanaHasRun = game.StoredGameState.FlipTheArcanaHasRun
+		game.GameState.MetaUpgradeCardLayout = game.StoredGameState.MetaUpgradeCardLayout
+	end
+	return base()
+end)
 
 modutil.mod.Path.Wrap("UpgradeMetaUpgradeCardAction", function(base, screen, button)
 if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
