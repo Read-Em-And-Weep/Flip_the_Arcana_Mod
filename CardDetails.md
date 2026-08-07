@@ -59,7 +59,7 @@ Located at Death (Thanatos)
  - Burden (Atlas) - Whenever you are first hit, it only deals one damage. Regain this after a certain period of time.
 
 Located at The Centaur (Chiron)
- - The Wanderer (Odysseus) - Gain a random level to a boon after a certain number of chambers
+ - The Wanderer (Odysseus) - Give a level to a random boon after a certain number of chambers
  - Cunning (Penelope) - Gain armor after a certain number of chambers
  - Solitude (Calypso) - Gain a random element after a certain number of chambers
 
@@ -95,7 +95,7 @@ Located at Excellence (Patroclus)
 
 Located at The Queen (Persephone)
  - Companionship (Familiars) - After defeating Guardians, gain the passive effect of a random familiar of yours at a particular rarity
- - The Earth (Gaia) - Whenever you gather from a location, increase the rarity of your boons, or an Arcana Card
+ - The Earth (Gaia) - Whenever you gather from a location, increase the rarity of your boons, or sometimes an Arcana Card
  - The Ruse (The Trojan Horse) - You take less damage from Guardians
 
 Located at The Fates (Clotho, Lachesis and Atropos)

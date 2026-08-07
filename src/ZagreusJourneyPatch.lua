@@ -3815,7 +3815,7 @@ mod.NewMetaUpgradeCardData =
 		UpgradeResourceCost = 
 		{
 			{ CardUpgradePoints = 10, MixerOBoss = 2, WeaponPointsRare = 1 },
-			{ CardUpgradePoints = 20, MixerIBoss = 3, ModsNikkelMHadesBiomes_BossResourceAsphodels = 2 },
+			{ CardUpgradePoints = 20, MixerIBoss = 3, ModsNikkelMHadesBiomes_BossResourceAsphodel = 2 },
 		},
 
 		UnlockedCardVoiceLines =

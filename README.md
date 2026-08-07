@@ -1,9 +1,11 @@
 # The Problem
-We've only got 25 arcana cards to use, meaning only around 500,000 combinations if you had unlimited grasp. We're practically so limited in options :(
+We've only got 25 arcana cards to use, meaning only 332,473 combinations (credit to @lumosterris for the math). We're practically so limited in options :(
 
 
 # The Solution
-Every card can now be flipped into new cards with new upgrades to unlock! This explodes the possible number of combinations you can try, with them being designed for different synergies, uses and builds. Unlock the full power of your arcana with familiar faces, ranging from Hypnos, to Dusa, to Typhon, your familiars and even Lernie the Bone Hydra!
+Every card can now be flipped into new cards with new upgrades to unlock! This explodes the possible number of combinations you can try (>8 trillion!), with them being designed for different synergies, uses and builds. Unlock the full power of your arcana with familiar faces, ranging from Hypnos, to Dusa, to Typhon, your familiars and even Lernie the Bone Hydra!
+
+A full list of the cards and effects can be found at https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/blob/main/CardDetails.md
 
 # How do I access the new arcana?
 After gaining the ability to upgrade your arcana, you will learn a new incantation. This will enable you to flip cards. After you do perform the incantation in the Cauldron, use the same button you use to pin things (or your reroll button, if that's preferable - particularly for controller users) to flip your cards (which will have the side effect of also pinning whatever card you are clicking).
@@ -25,7 +27,9 @@ Also, the saved layouts are handled seperately to prevent issues involved with u
 
 # Config
 LimitMaxArcanaDrawn - Should the game prevent you from randomly drawing more Arcana Cards after you reach a certain number to prevent you from becoming dangerously unbalanced? Default = _true_
+
 MaxArcanaDrawn - If _LimitMaxArcanaDrawn_ is enabled, then how many cards should the maximum be? Default = _45_
+
 In addition, each individual set of cards can be turned off by turning it's respective config off. Please unequip all cards of that color before you do so (ideally in all of the pre-layout sets), since it will count that card as being equipped when it's not for equipping the free arcana (e.g. Moon, Fates) while no awarding you the benefit or allowing you to unequip. All sets are enabled true by default.
 
 # Known Issues

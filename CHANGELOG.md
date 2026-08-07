@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed an issue preventing fully upgrading Good Fortune (Tyche) while Zagreus Journey was installed
+- Updated README to contain the number of combinations calculated by @lumosterris 
+
 ## [3.0.6] - 2026-07-25
 
 - Now properly initialize MetaUpgradeState 
