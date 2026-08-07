@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.7] - 2026-08-07
+
 - Fixed an issue preventing fully upgrading Good Fortune (Tyche) while Zagreus Journey was installed
 - Updated README to contain the number of combinations calculated by @lumosterris 
 
@@ -320,7 +322,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.6...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.7...HEAD
+[3.0.7]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.6...3.0.7
 [3.0.6]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.5...3.0.6
 [3.0.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.4...3.0.5
 [3.0.4]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.3...3.0.4
