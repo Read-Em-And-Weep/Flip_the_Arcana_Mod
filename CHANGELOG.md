@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.8] - 2026-08-08
+
 - Improved the selection of cards for random bounties (thanks @zerp!)
 - Metamorphosis (Io) now has a cooldown for how often it can activate, but has increased chance to activate to compensate
 - Earth (Gaia) now only has a chance of activating for every time you gather resources, and will no longer upgrade Arcana
@@ -328,7 +330,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.7...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.8...HEAD
+[3.0.8]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.7...3.0.8
 [3.0.7]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.6...3.0.7
 [3.0.6]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.5...3.0.6
 [3.0.5]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.4...3.0.5
