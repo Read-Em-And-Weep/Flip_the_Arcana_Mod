@@ -1998,19 +1998,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 5
+				Multiplier = 30
 			},
 			Rare =
 			{
-				Multiplier = 10
+				Multiplier = 40
 			},
 			Epic =
 			{
-				Multiplier = 15
+				Multiplier = 50
 			},
 			Heroic =
 			{
-				Multiplier = 20
+				Multiplier = 60
 			},
 		},
 		FlipTheArcanaUpgradeArcanaChance = { BaseValue = 0.01},
@@ -2664,6 +2664,7 @@ NewMetaUpgradeTraitData = {
 				{
 	"WeaponStaffSwing5",
 	"WeaponDagger5",
+	"WeaponAxeSpecialSwing"
 	--"WeaponTorch",
 	--"WeaponAxeSpin",
 	--"WeaponLobChargedPulse",
@@ -2772,19 +2773,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 40,
+				Multiplier = 50,
 			},
 			Rare =
 			{
-				Multiplier = 45,
+				Multiplier = 55,
 			},
 			Epic =
 			{
-				Multiplier = 50,
+				Multiplier = 60,
 			},
 			Heroic =
 			{
-				Multiplier = 55,
+				Multiplier = 65,
 			},
 		},
         OnEnemyDamagedAction =
@@ -2792,10 +2793,12 @@ NewMetaUpgradeTraitData = {
 			FunctionName = _PLUGIN.guid..".FirstHitPolymorph",
 			Args = 
 			{
+				Cooldown = 0.5,
 				Chance = {BaseValue = 0.01},
 				Duration = 2,
 				ReportValues = { ReportedChance = "Chance",
-			ReportedDuration = "Duration"},
+			ReportedDuration = "Duration",
+		ReportedCooldown = "Cooldown",},
 			}
 		},
         ExtractValues = 
@@ -2805,6 +2808,10 @@ NewMetaUpgradeTraitData = {
 				ExtractAs = "Chance",
 				Format = "Percent",
 				HideSigns = true,
+			},
+			{
+				Key = "ReportedCooldown",
+				ExtractAs = "Cooldown",
 			},
 			{
 				--[[External = true,

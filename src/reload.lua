@@ -3156,8 +3156,6 @@ function mod.DoGatherUpgrade()
 	if not HeroHasTrait("ReversedGatherRarityMetaUpgrade") then return end
 	local trait = GetHeroTrait("ReversedGatherRarityMetaUpgrade")
 	if RandomChance(trait.FlipTheArcanaUpgradeArcanaChance) then
-		mod.CerbMetaUpgradeRarity({Count = 1})
-	else
 		AddRarityToTraits(trait, { NumTraits = 1,})
 	end
 end
@@ -3480,10 +3478,10 @@ function mod.FirstHitPolymorph( victim, functionArgs, triggerArgs )
 		return
 	end
 
-	--[[if HeroHasTrait("ExPolymorphBoon") then
-		TraitUIActivateTrait( GetHeroTrait("ExPolymorphBoon"), { FlashOnActive = true, Duration = functionArgs.Cooldown })
-	end]]
-	-- Kludgey, should move the effect data off of the polymorph projectile and into EffectData.
+	if not CheckCooldown( "FlipTheArcanaFirstHitPolymorph" , functionArgs.Cooldown ) then
+		return
+	end
+
 	local duration = 0
 	local effectName = "PolymorphTag"
 	local dataProperties = MergeAllTables({

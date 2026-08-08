@@ -637,7 +637,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedGatherRarity",
         DisplayName = "The Earth",
-        Description = "Whenever you gather resources, a random {$Keywords.GodBoon} — or {$TooltipData.StatDisplay1} of the time, an {$Keywords.Card} — gains {$Keywords.Rarity}.",
+        Description = "Whenever you gather resources, a random {$Keywords.GodBoon} gains {$Keywords.Rarity} {$TooltipData.StatDisplay1} of the time.",
     },
     {
         Id = "ReversedGatherRarity_FlavorText01",
@@ -902,7 +902,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedFirstHitTransform",
         DisplayName = "Metamorphosis",
-        Description = "When you first hit a susceptible foe, inflict {$Keywords.Polymorph} {#UpgradeFormat} {$TooltipData.ExtractData.Chance:F} {#Prev} of the time."
+        Description = "When you first hit a susceptible foe, inflict {$Keywords.Polymorph} {#UpgradeFormat} {$TooltipData.ExtractData.Chance:F} {#Prev} of the time, {#BoldFormatGraft}{$TooltipData.ExtractData.Cooldown} Sec. {#Prev}apart."
     },
     {
         Id = "ReversedFirstHitTransform_FlavorText01",

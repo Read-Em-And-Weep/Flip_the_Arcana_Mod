@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Improved the selection of cards for random bounties (thanks @zerp!)
+- Metamorphosis (Io) now has a cooldown for how often it can activate, but has increased chance to activate to compensate
+- Earth (Gaia) now only has a chance of activating for every time you gather resources, and will no longer upgrade Arcana
+- Mockery (Momus) will now have a chance to duplicate axe special
+
+
 ## [3.0.7] - 2026-08-07
 
 - Fixed an issue preventing fully upgrading Good Fortune (Tyche) while Zagreus Journey was installed
