@@ -7,22 +7,24 @@ mod.MetaUpgradeDefaultCardLayout = {
 mod.setsAdded = 0
 if config and config.EnableBlueCards then
 	mod.setsAdded = mod.setsAdded + 1
-	local newSet = { { "ReversedChanneledCast", "ReversedHealthRegen", "ReversedLowManaDamageBonus", "ReversedCastCount", "ReversedSorceryRegenUpgrade", },
-		{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
-		{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
-		{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
-		{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" }, }
+	local newSet = { 
+					{ "ReversedChanneledCast", "ReversedHealthRegen", "ReversedLowManaDamageBonus", "ReversedCastCount", "ReversedSorceryRegenUpgrade", },
+					{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
+					{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
+					{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
+					{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" }, }
 	for row, rowData in ipairs(newSet) do
 		table.insert(mod.MetaUpgradeDefaultCardLayout, rowData)
 	end
 end
 if config and config.EnableVioletCards then
 	mod.setsAdded = mod.setsAdded + 1
-	local newSet = { { "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
-	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
-	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
-	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
-	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},}
+	local newSet = { 
+			{ "ReversedDoorCashCard",		"ReversedManaPerRoomCard",		"ReversedLowHealthCrit",	"ReversedSturdyChannel",		"ReversedCharmedEnemy", 	},
+			{ "ReversedCrowdDamage",		"ReversedSharedRunProgress",	"ReversedOlympianDamage",	"ReversedExtraPurchase",		"ReversedPomBiomeStart" 			},
+			{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",		"ReversedStatusCrit",			"ReversedEncounterHeal" 		},
+			{ "ReversedExtraFeatures",		"ReversedPerfectClearBoost",	"ReversedHeroicRarity",		"ReversedSacrificeForLevels", 	"ReversedGatherRarity" 			},
+			{ "ReversedPerfectPower",		"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",	"ReversedKeepsakeReAdd" 				},}
 	for row, rowData in ipairs(newSet) do
 		table.insert(mod.MetaUpgradeDefaultCardLayout, rowData)
 	end
@@ -169,9 +171,8 @@ modutil.mod.Path.Wrap("CreateNewHero", function(base, prevRun, args )
 	return base(prevRun, args)
 end)
 
-
-modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
-    if not game.CurrentHubRoom then return base(source,args) end
+function mod.HubLoadWrap(base, source, args)
+	if not game.CurrentHubRoom then return base(source,args) end
     if game.CurrentHubRoom.Name == "Hub_PreRun" then
         GameState.FlipTheArcanaHasRun = false
     end
@@ -189,6 +190,18 @@ modutil.mod.Path.Wrap("DeathAreaRoomTransition", function(base, source, args)
         end
     end
     return base(source, args)
+end
+
+modutil.mod.Path.Wrap("DeathAreaRoomTransition", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
+end)
+
+modutil.mod.Path.Wrap("HubPostBountyLoad", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
+end)
+
+modutil.mod.Path.Wrap("HubPostDreamLoad", function (base, source, args)
+	return mod.HubLoadWrap(base, source, args)
 end)
 
 modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, column, cardName, args)
@@ -861,6 +874,43 @@ modutil.mod.Path.Override("CheckAutoEquipCards", function(screen)
 	return
 	end
 	local autoEquipMetaUpgrades = {}
+	if modutil.mod.Locals.Stacked(3).bountyData and modutil.mod.Locals.Stacked(3).bountyData.RandomMetaUpgradeCostTotal then
+		local defaultAutoEquipCards = {}
+		local cardCoordMap = {}
+		for row, cardRow in ipairs(game.MetaUpgradeDefaultCardLayout) do
+			for col, card in ipairs(cardRow) do
+				if game.MetaUpgradeCardData[card].AutoEquipRequirements then
+					table.insert(defaultAutoEquipCards, card)
+					cardCoordMap[card] = {Row = row, Column = col}
+				end
+			end
+		end
+		local flippedAutoEquipCards = {}
+		for index, card in ipairs(defaultAutoEquipCards) do
+			flippedAutoEquipCards[card] = mod.GetLegalFlippedCandidates(card)
+			for index, flippedCard in ipairs(flippedAutoEquipCards[card]) do
+				autoEquipMetaUpgrades[flippedCard] = false
+				game.GameState.MetaUpgradeState[flippedCard].Visible = false
+			end
+			local visibleCardIndex = game.RandomInt(1, #flippedAutoEquipCards[card])
+			local visibleCard = flippedAutoEquipCards[card][visibleCardIndex]
+			local row = cardCoordMap[card].Row
+			local col = cardCoordMap[card].Column
+			game.GameState.MetaUpgradeCardLayout[row][col] = visibleCard
+			game.GameState.MetaUpgradeState[visibleCard].Visible = true
+			if game.CheckAutoEquipRequirements(game.MetaUpgradeCardData[visibleCard].AutoEquipRequirements) then
+				autoEquipMetaUpgrades[visibleCard] = true
+			end
+		end
+		for metaUpgradeName, equipValue in pairs( autoEquipMetaUpgrades ) do
+			if equipValue then
+				GameState.MetaUpgradeState[metaUpgradeName].Equipped = true
+			else		
+				GameState.MetaUpgradeState[metaUpgradeName].Equipped = false
+			end
+		end
+		return
+	end
 	if not GameState.FlipTheArcanaHasRun then
 		return
 	end
@@ -2341,78 +2391,50 @@ end
 	base(source,args) 
 end)
 
-
-modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades",
-	function(base, sum, remaining, index, budget, candidates, cardState)
-		if index == 0 then
-			local newCards = {}
-			
-			local flippedMetaUpgradeDefaultCardLayout = {}
-if config and config.EnableBlueCards then
-	local newSet = { { "ReversedChanneledCast", "ReversedHealthRegen", "ReversedLowManaDamageBonus", "ReversedCastCount", "ReversedSorceryRegenUpgrade", },
-		{ "ReversedCastBuff",      "ReversedBonusHealth",  "ReversedBonusDodge",         "ReversedManaOverTime",        "ReversedMagicCrit" },
-		{ "ReversedSprintShield",  "ReversedLastStand",    "ReversedMaxHealthPerRoom",   "ReversedStatusVulnerability", "ReversedChanneledBlock" },
-		{ "ReversedDoorReroll",    "ReversedStartingGold", "ReversedMetaToRunUpgrade",   "ReversedRarityBoost",         "ReversedBonusRarity" },
-		{ "ReversedTradeOff",      "ReversedScreenReroll", "ReversedLowHealthBonus",     "ReversedEpicRarityBoost",     "ReversedCardDraw" }, }
-	for row, rowData in ipairs(newSet) do
-		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+function mod.GetLegalFlippedCandidates(card)
+	local numFlips = 0
+	if config and config.EnableBlueCards then
+		numFlips = numFlips + 1
 	end
-end
-if config and config.EnableVioletCards then
-	local newSet = { { "ReversedDoorCashCard",			"ReversedManaPerRoomCard",			"ReversedLowHealthCrit",	"ReversedSturdyChannel",				"ReversedCharmedEnemy", 	},
-	{ "ReversedCrowdDamage",				"ReversedSharedRunProgress",			"ReversedOlympianDamage",			"ReversedExtraPurchase",			"ReversedPomBiomeStart" 			},
-	{ "ReversedStrongRush",			"ReversedRenewableDD",			"ReversedArmorPerRoom",	"ReversedStatusCrit",		"ReversedEncounterHeal" 		},
-	{ "ReversedExtraFeatures",			"ReversedPerfectClearBoost",		"ReversedHeroicRarity",	"ReversedSacrificeForLevels", 			"ReversedGatherRarity" 			},
-	{ "ReversedPerfectPower",				"ReversedUnFatedReward",		"ReversedFullDefiance",		"ReversedRandomBonusLevels",			"ReversedKeepsakeReAdd" 				},}
-	for row, rowData in ipairs(newSet) do
-		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+	if config and config.EnableVioletCards then
+		numFlips = numFlips + 1
 	end
-end
-if config and config.EnableRedCards then
-	local newSet = { { "ReversedCheaperChannel",			"ReversedPotentDefiance",			"ReversedBackstab",	"ReversedBonusTalent",				"ReversedSpellDamage", 	},
-	{ "ReversedFirstHitTransform",				"ReversedHealthWithBoons",			"ReversedProjectileSlow",			"ReversedCursedLegendaryBoost",			"ReversedFreeOmega" 			},
-	{ "ReversedDashRecovery",			"ReversedProtectionCooldown",			"ReversedElementRoom",	"ReversedUniqueGod",		"ReversedManaShield" 		},
-	{ "ReversedRandomSacrifice",			"ReversedAdditionalOmegaChance",		"ReversedRiposteKill",	"ReversedRandomCards", 			"ReversedBossResistance" 			},
-	{ "ReversedArtemisKeepsake",				"ReversedFountainGold",		"ReversedDDRefillBiomeStart",		"ReversedMoreSacrifices",			"ReversedRandomBuild" 				}, }
-	for row, rowData in ipairs(newSet) do
-		table.insert(flippedMetaUpgradeDefaultCardLayout, rowData)
+	if config and config.EnableRedCards then
+		numFlips = numFlips + 1
 	end
-end
-				
-
-			for row, rowData in pairs(flippedMetaUpgradeDefaultCardLayout) do
-				for column, cardName in pairs(rowData) do
-					local metaUpgradeData = GameState.MetaUpgradeState[cardName]
-					if metaUpgradeData and metaUpgradeData.Unlocked and metaUpgradeData.AutoEquipRequirements == nil then
-						local fateConflict = false
-						if FatedEnableKeepsakes[GameState.LastAwardTrait] and FatedDisableMetaUpgrades[cardName] then
-							fateConflict = true
-						end
-						if FatedDisableKeepsakes[GameState.LastAwardTrait] and (cardName == "ReversedDoorReroll" or cardName == "ReversedTradeOff" or cardName == "ReversedScreenReroll") then
-							fateConflict = true
-						end
-						if not fateConflict then
-							if CoinFlip() then
-								table.insert(candidates, 1, cardName)
-								table.insert(newCards, cardName)
-							else
-								table.insert(candidates, #candidates - 1, cardName)
-								table.insert(newCards, cardName)
-							end
-						end
-					end
-				end
-			end
-
-
-			for i, upgradeName in ipairs(newCards) do
-				remaining = remaining + MetaUpgradeCardData[upgradeName].Cost
-			end
-			candidates = FYShuffle(candidates)
+	local flipCandidate = card
+	local legalFlips = {}
+	for _ = 0, numFlips do
+		if GameState.MetaUpgradeState[flipCandidate].Unlocked then
+			table.insert(legalFlips, flipCandidate)
 		end
-		return base(sum, remaining, index, budget, candidates, cardState)
-	end)
+		flipCandidate = mod.GetFlippedCardName(flipCandidate)
+	end
+	return legalFlips
+end
 
+modutil.mod.Path.Wrap("RandomBountyProcessMetaUpgrades", function(base, sum, remaining, index, budget, candidates, cardState)
+	if sum == budget then
+		local cardCoordMap = {}
+		for row, cardRow in ipairs(game.MetaUpgradeDefaultCardLayout) do
+			for col, card in ipairs(cardRow) do
+				cardCoordMap[card] = {Row = row, Column = col}
+			end
+		end
+		for card_index, card in ipairs(candidates) do
+			local legalFlips = mod.GetLegalFlippedCandidates(candidates[card_index])
+			for key, value in pairs(legalFlips) do
+				game.GameState.MetaUpgradeState[value].Visible = false
+			end
+			candidates[card_index] = game.GetRandomValue(legalFlips)
+			local row = cardCoordMap[card].Row
+			local col = cardCoordMap[card].Column
+			game.GameState.MetaUpgradeCardLayout[row][col] = candidates[card_index]
+			game.GameState.MetaUpgradeState[candidates[card_index]].Visible = true
+		end
+	end
+	return base(sum, remaining, index, budget, candidates, cardState)
+end)
 
 modutil.mod.Path.Wrap("UpgradeMetaUpgradeCardAction", function(base, screen, button)
 if not Incantations.isIncantationEnabled("ExtraArcanaWorldUpgradeCardFlip") then
