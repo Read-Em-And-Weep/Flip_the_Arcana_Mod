@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+    
+    - Buffed Earth (Gaia) and Mockery (Momus) chances of activating
+    - The Tides (Triton) should no longer be so offended by your gall at upgrading it that it resets your bonus
+    - Changed the glow color of the red cards slightly, to make it more obvious
+    - Added The Witch (Pasiphaë) art
 
 ## [3.0.8] - 2026-08-08
 
@@ -13,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Metamorphosis (Io) now has a cooldown for how often it can activate, but has increased chance to activate to compensate
 - Earth (Gaia) now only has a chance of activating for every time you gather resources, and will no longer upgrade Arcana
 - Mockery (Momus) will now have a chance to duplicate axe special
-
 
 ## [3.0.7] - 2026-08-07
 

@@ -370,7 +370,7 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedCardDraw",
         DisplayName = "Monstrosity",
-        Description = "You can purge most rewards for your choice from` 3 {#BoldFormatGraft}Arcana Cards{#Prev}, up to {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}time(s) this night."
+        Description = "You can purge most rewards for your choice from 3 {#BoldFormatGraft}Arcana Cards{#Prev}, up to {#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}time(s) this night."
     },
     {
         Id = "ReversedCardDraw_FlavorText01",

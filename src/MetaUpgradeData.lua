@@ -2113,6 +2113,7 @@ mod.NewMetaUpgradeCardData =
 		TraitName = "ReversedPerfectClearBoostMetaUpgrade",
 		CustomTrayText = "ReversedPerfectClearBoostMetaUpgrade_Tray",
 
+		OnUpgradedFunctionName = _PLUGIN.guid..".UpgradeIncreaseAccumulatedDamageBonus",
 
 		UpgradeResourceCost = 
 		{
@@ -2859,6 +2860,7 @@ mod.NewMetaUpgradeCardData =
 		{
 			{ GlobalVoiceLines = "CardInspectVoiceLines" },
 		},
+
 
 		FlavorTextData = 
 		{

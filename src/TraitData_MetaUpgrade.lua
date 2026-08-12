@@ -1998,19 +1998,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 30
+				Multiplier = 45
 			},
 			Rare =
 			{
-				Multiplier = 40
+				Multiplier = 55
 			},
 			Epic =
 			{
-				Multiplier = 50
+				Multiplier = 65
 			},
 			Heroic =
 			{
-				Multiplier = 60
+				Multiplier = 75
 			},
 		},
 		FlipTheArcanaUpgradeArcanaChance = { BaseValue = 0.01},
@@ -2626,19 +2626,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 3.4,
+				Multiplier = 5.6,
 			},
 			Rare =
 			{
-				Multiplier = 3.7,
+				Multiplier = 5.9,
 			},
 			Epic =
 			{
-				Multiplier = 4.0,
+				Multiplier = 6.2,
 			},
 			Heroic =
 			{
-				Multiplier = 4.3,
+				Multiplier = 6.5,
 			},
 		},
 		

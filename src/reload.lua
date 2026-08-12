@@ -217,7 +217,7 @@ modutil.mod.Path.Wrap("CreateMetaUpgradeCard", function(base, screen, row, colum
 			if MetaUpgradeCardData[cardName].Flipped == 2 then
 				color = Color.Violet
 			elseif MetaUpgradeCardData[cardName].Flipped == 3 then
-				color = Color.Firebrick
+				color = Color.PenaltyRed
 			end
 	local scale = 5 / screen.ZoomLevel
 	local scaleLerp = 1 - (screen.ZoomLevel - 3) / 2 
@@ -2790,6 +2790,15 @@ function mod.FlipArcanaIncreaseAccumulatedDamageBonus(traitData, args)
 	CreateAnimation({ Name = "PoseidonElementalKnockupFxAlt", DestinationId = CurrentRun.Hero.ObjectId })
 	ShakeScreen({ Speed = 500, Distance = 4, FalloffSpeed = 1000, Duration = 0.3 })
     UpdateTraitNumber(traitData)
+end
+
+function mod.UpgradeIncreaseAccumulatedDamageBonus(oldTrait, newTrait)
+	if not HeroHasTrait("ReversedPerfectClearBoostMetaUpgrade") then return end
+		local newTraitData = GetHeroTrait("ReversedPerfectClearBoostMetaUpgrade")
+	if oldTrait.AccumulatedDamageBonus then
+		newTraitData.AccumulatedDamageBonus = oldTrait.AccumulatedDamageBonus
+		UpdateTraitNumber(newTraitData)
+	end
 end
 
 function mod.DoReversedDoorCash(currentRun, door)
