@@ -2986,19 +2986,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 4,
+				Multiplier = 1,
 			},
 			Rare =
 			{
-				Multiplier = 7,
+				Multiplier = 4,
 			},
 			Epic =
 			{
-				Multiplier = 10,
+				Multiplier = 7,
 			},
 			Heroic =
 			{
-				Multiplier = 13,
+				Multiplier = 10,
 			},
 		},
 		FlipTheArcanaHealthWithBoons = {BaseValue = 1}, 

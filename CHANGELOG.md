@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Decreased health gain from Youth (Hebe)
+- Fixed the changelog of release 3.0.9
+
 ## [3.0.9] - 2026-08-12
-    
-    - Buffed Earth (Gaia) and Mockery (Momus) chances of activating
-    - The Tides (Triton) should no longer be so offended by your gall at upgrading it that it resets your bonus
-    - Changed the glow color of the red cards slightly, to make it more obvious
-    - Added The Witch (Pasiphaë) art
+
+- Buffed Earth (Gaia) and Mockery (Momus) chances of activating
+- The Tides (Triton) should no longer be so offended by your gall at upgrading it that it resets your bonus
+- Changed the glow color of the red cards slightly, to make it more obvious
+- Added The Witch (Pasiphaë) art
 
 ## [3.0.8] - 2026-08-08
 
