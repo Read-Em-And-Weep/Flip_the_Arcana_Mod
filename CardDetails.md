@@ -25,7 +25,7 @@ Located at The Moon (Selene)
 
 Located at The Furies (Alecto, Tisiphone and Megaera)
  - The Gorgon (Dusa) - You have a period of immunity from damage at the start of every encounter
- - The Sirens (Scylla, Jetty and Roxy) - Deal more damage when there are more than 5 foes in an encounter 
+ - The Sirens (Scylla, Jetty and Roxy) - Deal more damage while there are more than 5 foes in an encounter 
  - Metamorphosis (Io) - The first time you hit foes, you have a chance to inflict Morph
 
 Located at Persistence (Prometheus)
@@ -40,7 +40,7 @@ Located at The Messenger (Hermes)
 
 Located at The Unseen (Hecate)
  - Bounty (Poseidon) - Gain additional rarify uses
- - The Steadfast Shades (Head Chef, Wretched Broker, etc.) - Gold gains are increased. Also, one additional purchase from Charon will be restocked.
+ - The Steadfast Shades (Head Chef, Wretched Broker, etc.) - Gold gains are increased. Also, one additional purchase from Charon (not wells or shrines) will be restocked.
  - The Sun (Helios) - Gain increased chance for legendary boons, but lower chance for rare or epic boons
 
 Located at Night (Nyx)
@@ -95,7 +95,7 @@ Located at Excellence (Patroclus)
 
 Located at The Queen (Persephone)
  - Companionship (Familiars) - After defeating Guardians, gain the passive effect of a random familiar of yours at a particular rarity
- - The Earth (Gaia) - Whenever you gather from a location, increase the rarity of your boons, or sometimes an Arcana Card
+ - The Earth (Gaia) - Whenever you gather from a location, sometimes increase the rarity of your boons
  - The Ruse (The Trojan Horse) - You take less damage from Guardians
 
 Located at The Fates (Clotho, Lachesis and Atropos)

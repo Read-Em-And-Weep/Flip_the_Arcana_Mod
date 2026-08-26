@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- The Tides (Triton) should no longer cause a constant audio loop of 'raining sounds', instead using the Thanatos bell chime to indicate damage increase
 - Decreased health gain from Youth (Hebe)
+- Nerfed Riposte gained from The Warrioresses (Amazons)
+- Nerfed crit chance from Riposte on Warrioresses (Amazons)
+- Reduced uses of the Sacrifice (Iphigenia) by one
 - Fixed the changelog of release 3.0.9
 
 ## [3.0.9] - 2026-08-12

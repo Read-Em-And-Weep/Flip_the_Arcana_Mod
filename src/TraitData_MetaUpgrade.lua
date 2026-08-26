@@ -2093,7 +2093,7 @@ NewMetaUpgradeTraitData = {
 				Multiplier = 4,
 			},
 		},
-		Uses = 3,
+		Uses = 2,
 		BonusLevels = {BaseValue = 1},
 		ExtractValues = 
 		{
@@ -2892,15 +2892,15 @@ NewMetaUpgradeTraitData = {
 			},
 			Rare =
 			{
-				Multiplier = 3,
+				Multiplier = 2,
 			},
 			Epic =
 			{
-				Multiplier = 5,
+				Multiplier = 3,
 			},
 			Heroic =
 			{
-				Multiplier = 7,
+				Multiplier = 4,
 			},
 		},
 		OnWeaponFiredFunctions = 
@@ -2913,7 +2913,7 @@ NewMetaUpgradeTraitData = {
 			Name = _PLUGIN.guid..".RemoveCritVolley",
 		},
 		
-			FlipTheArcanaValidVolleyChance = 0.35,
+		FlipTheArcanaValidVolleyChance = 0.15,
 		OnEnemyDeathFunction = 
 		{
 			Name = _PLUGIN.guid .. ".SetupArtemisDaggerTicks",

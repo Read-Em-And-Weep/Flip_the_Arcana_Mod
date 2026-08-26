@@ -2785,7 +2785,7 @@ function mod.FlipArcanaIncreaseAccumulatedDamageBonus(traitData, args)
 	thread( InCombatText, CurrentRun.Hero.ObjectId, "FlipTheArcanaPerfectClearDamageBonus", 0.75, { PreDelay = 0.25 } )
 
 
-	local soundId = PlaySound({ Name = "/SFX/Player Sounds/PoseidonWaterWrathAttackLoop" })
+	local soundId = PlaySound({ Name = "/SFX/ThanatosAttackBell" })
 	SetVolume({ Id = soundId, Value = 0.3 })
 	CreateAnimation({ Name = "PoseidonElementalKnockupFxAlt", DestinationId = CurrentRun.Hero.ObjectId })
 	ShakeScreen({ Speed = 500, Distance = 4, FalloffSpeed = 1000, Duration = 0.3 })
