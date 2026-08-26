@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.11] - 2026-08-26
+
 - The Tides (Triton) should no longer cause a constant audio loop of 'raining sounds', instead using the Thanatos bell chime to indicate damage increase
 - Decreased health gain from Youth (Hebe)
 - Nerfed Riposte gained from The Warrioresses (Amazons)
@@ -343,7 +345,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.9...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.11...HEAD
+[3.0.11]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.9...3.0.11
 [3.0.9]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.8...3.0.9
 [3.0.8]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.7...3.0.8
 [3.0.7]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.6...3.0.7
