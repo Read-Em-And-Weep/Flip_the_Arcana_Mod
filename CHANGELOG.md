@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added a nil check to prevent crashes when Regret (Epimetheus) or Good Fortune (Tysche) drew The Boatman (Charon)
+
 ## [3.0.11] - 2026-08-26
 
 - The Tides (Triton) should no longer cause a constant audio loop of 'raining sounds', instead using the Thanatos bell chime to indicate damage increase

@@ -2792,6 +2792,13 @@ function mod.FlipArcanaIncreaseAccumulatedDamageBonus(traitData, args)
     UpdateTraitNumber(traitData)
 end
 
+modutil.mod.Path.Wrap("GrantMetaUpgradeCurrency", function(base,traitName, args)
+	if not CurrentRun or not CurrentRun.CurrentRoom then
+		return
+	end
+	return base(traitName,args)
+end)
+
 function mod.UpgradeIncreaseAccumulatedDamageBonus(oldTrait, newTrait)
 	if not HeroHasTrait("ReversedPerfectClearBoostMetaUpgrade") then return end
 		local newTraitData = GetHeroTrait("ReversedPerfectClearBoostMetaUpgrade")
