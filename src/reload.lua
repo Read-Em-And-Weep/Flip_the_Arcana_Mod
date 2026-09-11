@@ -574,6 +574,16 @@ modutil.mod.Path.Wrap("CloseMetaUpgradeCardScreen", function(base, screen, args)
 		return base(screen, args)
 	else
 	args = args or {}
+	if screen.RevealingCards > 0  then
+		return
+	end
+	if screen.SwappingLayoutArtIndex ~= nil then
+		MetaUpgradeCardScreenLayoutSetSwapClose( screen )
+		return
+	end
+	killTaggedThreads( "SelectButtonPulse" )
+	local exitCanceled = false
+	local closeDelay = 0
 	CheckAutoEquipCards(screen)
 	CheckAutoEquipCards(screen)
     if not args.UpgradeTransition then
@@ -1691,34 +1701,34 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 		if victim and not victim.FliptheArcanaHasBeenHit then
 			victim.FliptheArcanaHasBeenHit = true
 			local firstHitTrait = GetHeroTrait("ReversedSprintShieldMetaUpgrade")
-			originalDamageMultiplier = originalDamageMultiplier + (1+firstHitTrait.FirstHitMultiplier)
+			addDamageMultiplier({Additive = true}, 1 + firstHitTrait.FirstHitMultiplier)
 		end
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedMagicCritMetaUpgrade") and victim and GameState.SpentShrinePointsCache then
 		local fearMultipliedTrait = GetHeroTrait("ReversedMagicCritMetaUpgrade")
-		originalDamageMultiplier = originalDamageMultiplier + (fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
+		addDamageMultiplier({Additive = true}, 1 + fearMultipliedTrait.FearMultipliedMultiplier * GameState.SpentShrinePointsCache/10000)
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedStatusVulnerabilityMetaUpgrade") and victim then
 		local noStatusDamageTrait = GetHeroTrait("ReversedStatusVulnerabilityMetaUpgrade")
 		if TableLength( victim.VulnerabilityEffects ) == nil or TableLength( victim.VulnerabilityEffects ) < 1 then
-			originalDamageMultiplier = originalDamageMultiplier + noStatusDamageTrait.NoStatusBonusDamage
+			addDamageMultiplier({Additive= true}, 1+noStatusDamageTrait.NoStatusBonusDamage)
 		elseif TableLength( victim.VulnerabilityEffects ) == 1 then
-			originalDamageMultiplier = originalDamageMultiplier + 0.5*noStatusDamageTrait.NoStatusBonusDamage
+			addDamageMultiplier({Additive= true}, 1+0.5*noStatusDamageTrait.NoStatusBonusDamage)
 		end
 	end
 	if MapState and MapState.FlipTheArcanaCrowdCharmedEnemy and MapState.FlipTheArcanaCrowdCharmedEnemy.ObjectId and attacker == MapState.FlipTheArcanaCrowdCharmedEnemy.ObjectId and victim ~= CurrentRun.Hero and HeroHasTrait("ReversedCharmedEnemyMetaUpgrade") then
 		local trait =GetHeroTrait("ReversedCharmedEnemyMetaUpgrade")
-		originalDamageMultiplier = originalDamageMultiplier + trait.CharmedEnemyMultiplier
+		addDamageMultiplier({Additive= true}, 1+trait.CharmedEnemyMultiplier)
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedCrowdDamageMetaUpgrade") and weaponData and IsExWeapon(weaponData.Name, { Combat = true }, triggerArgs) then
 		local trait = GetHeroTrait("ReversedCrowdDamageMetaUpgrade")
 		if mod.GetNumberofEnemies() >= trait.FlipTheArcanaCrowdThreshold then
-		originalDamageMultiplier = originalDamageMultiplier + trait.FlipTheArcanaCrowdDamage
+		addDamageMultiplier({Additive= true}, 1+trait.FlipTheArcanaCrowdDamage)
 		end
 	end
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedFullDefianceMetaUpgrade") and mod.AtFullDefiance() then
 		local trait = GetHeroTrait("ReversedFullDefianceMetaUpgrade")
-		originalDamageMultiplier = originalDamageMultiplier + trait.FlipTheArcanaFullLastStandDamageMultiplier
+		addDamageMultiplier({Additive= true}, 1+trait.FlipTheArcanaFullLastStandDamageMultiplier)
 	end
 end
 

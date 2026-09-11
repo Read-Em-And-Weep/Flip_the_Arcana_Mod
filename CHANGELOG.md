@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed an issue preventing you from closing the arcana screen after cancelling it the first time
+- Damage multipliers are now applied correctly
+
 ## [3.0.12] - 2026-08-29
 
 - Added a nil check to prevent crashes when Regret (Epimetheus) or Good Fortune (Tysche) drew The Boatman (Charon)
