@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.13] - 2026-09-11
+
 - Fixed an issue preventing you from closing the arcana screen after cancelling it the first time
 - Damage multipliers are now applied correctly
 
@@ -352,7 +354,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.12...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.13...HEAD
+[3.0.13]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.12...3.0.13
 [3.0.12]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.11...3.0.12
 [3.0.11]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.9...3.0.11
 [3.0.9]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.8...3.0.9
