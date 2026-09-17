@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.14] - 2026-09-17
+
 - Decrease critical hit chance on The Beasts (Monsters)
 - Corrected an issue with damage multipliers (thanks @zerp)
 
@@ -357,7 +359,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.13...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.14...HEAD
+[3.0.14]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.13...3.0.14
 [3.0.13]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.12...3.0.13
 [3.0.12]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.11...3.0.12
 [3.0.11]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.9...3.0.11
