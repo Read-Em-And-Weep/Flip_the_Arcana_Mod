@@ -2281,19 +2281,19 @@ NewMetaUpgradeTraitData = {
 		{
 			Common =
 			{
-				Multiplier = 1,
+				Multiplier = 0.5,
 			},
 			Rare =
 			{
-				Multiplier = 1.5,
+				Multiplier = 1,
 			},
 			Epic = 
 			{
-				Multiplier =2,
+				Multiplier =1.5,
 			},
 			Heroic = 
 			{
-				Multiplier = 2.5,
+				Multiplier = 2,
 			}
 		},
 		CapMaxHealth = 30,

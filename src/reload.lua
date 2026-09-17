@@ -1732,7 +1732,7 @@ modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, vict
 	end
 end
 
-	return originalDamageMultiplier
+	return game.damageMultipliers * game.damageReductionMultipliers
 end)
 
 --[[modutil.mod.Path.Wrap("CalculateCritChance", function(base, attacker, victim, weaponData, triggerArgs) 

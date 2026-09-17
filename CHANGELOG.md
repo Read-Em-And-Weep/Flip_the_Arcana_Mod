@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Decrease critical hit chance on The Beasts (Monsters)
+- Corrected an issue with damage multipliers (thanks @zerp)
+
 ## [3.0.13] - 2026-09-11
 
 - Fixed an issue preventing you from closing the arcana screen after cancelling it the first time
