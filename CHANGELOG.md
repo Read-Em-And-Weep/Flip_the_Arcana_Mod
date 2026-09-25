@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed an issue causing crashes when hit with god trial weapons as the first hit in a room
+- Fixed an issue causing some crashes when run with Zagreus Journey
+- Hopefully fixed an issue causing Duty (Iris) to occasionally cause crashes in Ephyra
+
 ## [3.0.14] - 2026-09-17
 
 - Decrease critical hit chance on The Beasts (Monsters)

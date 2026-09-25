@@ -1696,6 +1696,8 @@ end
 
 modutil.mod.Path.Wrap("CalculateDamageMultipliers", function(base,attacker, victim, weaponData, triggerArgs) 
 	local originalDamageMultiplier = base(attacker,victim,weaponData, triggerArgs)
+	game.damageMultipliers = game.damageMultipliers or 1
+	game.damageReductionMultipliers = game.damageReductionMultipliers or 1
 	if attacker then
 	if attacker == CurrentRun.Hero and HeroHasTrait("ReversedSprintShieldMetaUpgrade") then
 		if victim and not victim.FliptheArcanaHasBeenHit then
@@ -3334,7 +3336,7 @@ modutil.mod.Path.Wrap("CreateRoom", function(base, roomData, args)
 	local trait = GetHeroTrait("ReversedExtraFeaturesMetaUpgrade")
 	local challengeBaseIds = GetIdsByType({ Name = "ChallengeSwitchBase" })
 
-	if RandomChance(trait.FlipTheArcanaExtraFeatureChance) and challengeBaseIds and not (room.ChallengeChanceSuccess or room.WellShopChanceSuccess or room.SurfaceShopChanceSuccess) then
+	if RandomChance(trait.FlipTheArcanaExtraFeatureChance) and not IsEmpty( challengeBaseIds ) and not (room.ChallengeChanceSuccess or room.WellShopChanceSuccess or room.SurfaceShopChanceSuccess) then
 		local options = {}
 		
 		local requirements = roomData.ChallengeSpawnRequirements or RoomData.BaseRoom.ChallengeSpawnRequirements

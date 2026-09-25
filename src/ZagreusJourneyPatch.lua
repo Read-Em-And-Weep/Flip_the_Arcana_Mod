@@ -3890,5 +3890,7 @@ end
 --game.OverwriteTableKeys(game.MetaUpgradeCardData, NewMetaUpgradeCardData)
 local autoEquipCards = {"SorceryRegenUpgrade", "MaxHealthPerRoom", "BonusRarity", "TradeOff", "EpicRarityBoost", "CardDraw"}
 for i, cardName in ipairs(autoEquipCards) do
-	game.MetaUpgradeCardData[cardName].AutoEquipRequirements.MetaUpgradeName = cardName
+	if game.MetaUpgradeCardData[cardName] and game.MetaUpgradeCardData[cardName].AutoEquipRequirements then
+		game.MetaUpgradeCardData[cardName].AutoEquipRequirements.MetaUpgradeName = cardName
+	end
 end
