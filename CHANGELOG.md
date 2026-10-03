@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.16] - 2026-10-03
+
 - Fixed Hatred (Styx) text
 - Revised some flavor text
 
@@ -368,7 +370,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.15...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.16...HEAD
+[3.0.16]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.15...3.0.16
 [3.0.15]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.14...3.0.15
 [3.0.14]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.13...3.0.14
 [3.0.13]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.12...3.0.13
