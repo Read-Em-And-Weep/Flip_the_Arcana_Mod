@@ -14,7 +14,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedChanneledCast_FlavorText01",
-        DisplayName = "Bathed in his enemies' blood, he guided mortals to great victories and losses."
+        DisplayName = "While some may call him the least loved child of Zeus, no mortal has yet refused his fury to temper their spears."
     },
     {
         Id = "ReversedChanneledCastMetaUpgrade",
@@ -40,7 +40,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedLowManaDamageBonus_FlavorText01",
-        DisplayName = "Under the shining Sun, he cultivated moving skills in the arts through talent and practice."
+        DisplayName = "Music, archery, and the healing arts — why should he settle for mastering just one when he could have them all?"
     },
     {
         Id = "ReversedLowManaDamageBonusMetaUpgrade",
@@ -80,7 +80,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedSorceryRegenMetaUpgrade_FlavorText01",
-        DisplayName = "His loyalty to the House of Hades is unmatched, as are the tales of his ferocity."
+        DisplayName = "To him, balls, sticks, bones and shades are indistinguishable, so best to take care while you play with him."
     },
     {
         Id = "ReversedSorceryRegenMetaUpgrade",
@@ -106,7 +106,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedBonusHealth_FlavorText01",
-        DisplayName = "Gods and mortals oft go to battle, comforted in knowing the hearth shines on for them to return."
+        DisplayName = "Gods and mortals oft go to battle, comforted in knowing the hearth shines on for them to return, the one thing that never leaves."
     },
     {
         Id = "ReversedBonusHealthMetaUpgrade",
@@ -119,7 +119,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedBonusDodge_FlavorText01",
-        DisplayName = "Despite all the gods' incredible might, they would be powerless without his tools."
+        DisplayName = "Despite all the gods' incredible might, and how they cast him out twice, they would be powerless without his tools."
     },
     {
         Id = "ReversedBonusDodgeMetaUpgrade",
@@ -132,7 +132,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedManaOverTime_FlavorText01",
-        DisplayName = "As mortals know well, the sea gives and the sea takes away in turn."
+        DisplayName = "As mortals know well, the sea destroys and shakes all, though perhaps tonight it will grant you its treasures."
     },
     {
         Id = "ReversedManaOverTimeMetaUpgrade",
@@ -145,7 +145,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedMagicCrit_FlavorText01",
-        DisplayName = "Wielding a force strong enough to tear down civilisations, she carefully measures and executes the will of the scales."
+        DisplayName = "Wielding a force strong enough to tear down egos and civilisations, she carefully measures and executes the will of the scales."
     },
     {
         Id = "ReversedMagicCritMetaUpgrade",
@@ -158,7 +158,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedSprintShield_FlavorText01",
-        DisplayName = "Without sight, one must rely on their other senses and learn to be utterly ruthless in battle."
+        DisplayName = "A single strike, and excessive wits, brought him down. Perhaps if his subduer were more ruthless, you would need not to deal with him now."
     },
     {
         Id = "ReversedSprintShieldMetaUpgrade",
@@ -171,7 +171,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedLastStand_FlavorText01",
-        DisplayName = "Despite his easy-going exterior, it is said the gods fear him, for what is unending sleep to a god but death."
+        DisplayName = "Despite his easy-going exterior, it is said the gods fear him, for what is unending sleep to a god but death?"
     },
     {
         Id = "ReversedLastStandMetaUpgrade",
@@ -184,7 +184,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedMaxHealthPerRoom_FlavorText01",
-        DisplayName = "The journey is always harder than the destination; one must, however, persist regardless."
+        DisplayName = "Ten years lost at sea, and not once did he mistake 'lost' for 'finished'."
     },
     {
         Id = "ReversedMaxHealthPerRoomMetaUpgrade",
@@ -240,7 +240,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedStartingGold_FlavorText01",
-        DisplayName = "As punishment for her hubris - whether deserved or not - she weaves for all eternity."
+        DisplayName = "Cursed to weave forever for a crime she still commits — at least her webs do more than just catch flies."
     },
     {
         Id = "ReversedStartingGoldMetaUpgrade",
@@ -279,7 +279,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedBonusRarity_FlavorText01",
-        DisplayName = "It is the greatest gift of all that we do not need to face our struggles alone."
+        DisplayName = "It is the greatest gift of all that those you love do not let you face your struggles alone."
     },
     {
         Id = "ReversedBonusRarityMetaUpgrade",
@@ -305,7 +305,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedScreenReroll_FlavorText01",
-        DisplayName = "Even in the darkest of moments, there is joy to be found in good company."
+        DisplayName = "Even in the darkest of moments, there is joy to be found in good company. Good wine and ecstatic madness too."
     },
     {
         Id = "ReversedScreenRerollMetaUpgrade",
@@ -327,7 +327,7 @@ local newMetaUpgradeCardData = {
     {
       Id = "ReversedLowHealthBonusMetaUpgrade_Tray",
       DisplayName = "Futility",
-      Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to both deal and take {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you gave.",
+      Description = "Have {#UpgradeFormat} {$TooltipData.StatDisplay1} {#Prev} chance to both deal and take {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage for each empty {!Icons.ExtraChanceMisc} you have.",
     },
     {
         Id = "ReversedEpicRarityBoost",
@@ -350,22 +350,22 @@ local newMetaUpgradeCardData = {
     {
       Id = "CompanionshipCritFamiliar",
       DisplayName = "Vision Bond",
-      Description = "{#BoldFormat}Raki {#Prev} is you with tonight in spirit, giving you {#BoldFormat} increased {#Prev} chance for any damage you deal to be {$Keywords.Crit}.",
+      Description = "{#BoldFormat}Raki {#Prev} is with you tonight in spirit, giving you {#BoldFormat} increased {#Prev} chance for any damage you deal to be {$Keywords.Crit}.",
     },
     {
       Id = "CompanionshipDigFamiliar",
       DisplayName = "Spirit Bond",
-      Description = "{#BoldFormat}Hecuba {#Prev} is you with tonight in spirit, giving you {#BoldFormat} increased{#Prev}{!Icons.ManaUp}.",
+      Description = "{#BoldFormat}Hecuba {#Prev} is with you tonight in spirit, giving you {#BoldFormat} increased{#Prev}{!Icons.ManaUp}.",
     },
     {
       Id = "CompanionshipDodgeFamiliar",
       DisplayName = "Veil Bond",
-      Description = "{#BoldFormat}Gale {#Prev} is you with tonight in spirit, giving you {#BoldFormat} increased {#Prev} {$Keywords.Dodge} and move speed.",
+      Description = "{#BoldFormat}Gale {#Prev} is with you tonight in spirit, giving you {#BoldFormat} increased {#Prev} {$Keywords.Dodge} and move speed.",
     },
     {
       Id = "CompanionshipLastStandFamiliar",
       DisplayName = "Heart Bond",
-      Description = "{#BoldFormat}Toula {#Prev} is you with tonight in spirit, giving you a {$Keywords.ExtraChanceCat}.",
+      Description = "{#BoldFormat}Toula {#Prev} is with you tonight in spirit, giving you a {$Keywords.ExtraChanceCat}.",
     },    
     {
         Id = "ReversedCardDraw",
@@ -374,7 +374,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedCardDraw_FlavorText01",
-        DisplayName = "Hatred and Destruction Incarnate reigns terror on the world, however the daughter of Hades knows it can be vanquished."
+        DisplayName = "Father to every monster that's ever been tamed, he seems impregnable, however the daughter of Hades knows the beast can be vanquished."
     },
     {
         Id = "ReversedCardDrawMetaUpgrade",
@@ -397,7 +397,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedEncounterHeal_FlavorText01",
-        DisplayName = "They fight endlessly, against gods and mortals alike, for love is truly the most human thing of all."
+        DisplayName = "She fought endlessly, against gods and mortals alike, to regain her lost love, and is that not truly the most human thing of all?"
     },
     {
         Id = "ReversedEncounterHealMetaUpgrade",
@@ -410,7 +410,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedPerfectClearBoost_FlavorText01",
-        DisplayName = "It is said that after his loss, the seas raged harder than every before, then stood completely still."
+        DisplayName = "It is said that after his loss, the seas raged harder than ever before, then stood completely still."
     },
     {
         Id = "ReversedPerfectClearBoostMetaUpgrade",
@@ -441,7 +441,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedManaPerRoomCard_FlavorText01",
-        DisplayName = "Though you know not who this card refers to, something within you treasures and loves them none-the-less."
+        DisplayName = "Though you know not who this card refers to, something within you treasures and loves them nonetheless."
     },
     {
         Id = "ReversedManaPerRoomMetaUpgrade",
@@ -454,7 +454,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedLowHealthCrit_FlavorText01",
-        DisplayName = "It is only when we struggle against the world that we may truly excell."
+        DisplayName = "Do you think, when the hunter becomes the hunted, that the souls of their once-prey drag them down?"
     },
     {
         Id = "ReversedLowHealthCritMetaUpgrade",
@@ -467,7 +467,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedSturdyChannel_FlavorText01",
-        DisplayName = "Though you know the tyrant has long been felled, you sometimes imagine eyes staring down at you."
+        DisplayName = "Though you know the tyrant has long been felled, you sometimes imagine eyes glaring down at you and judging."
     },
     {
         Id = "ReversedSturdyChannelMetaUpgrade",
@@ -480,7 +480,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedCharmedEnemy_FlavorText01",
-        DisplayName = "Perhaps the greatest mistakes are the ones which inadvertently inflict curses on others."
+        DisplayName = "Perhaps the greatest mistakes are the ones that inadvertently inflict curses on others."
     },
     {
         Id = "ReversedCharmedEnemyMetaUpgrade",
@@ -493,7 +493,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedCrowdDamage_FlavorText01",
-        DisplayName = "Though their music is not to your taste, you can admit that at least Jetty has style."
+        DisplayName = "Though their music and eating habits are not to your taste, you can admit that at least Jetty has style."
     },
     {
         Id = "ReversedCrowdDamageMetaUpgrade",
@@ -532,7 +532,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedExtraPurchase_FlavorText01",
-        DisplayName = "The loyalty of the many shades of the Underworld to the House must be commended and rewarded."
+        DisplayName = "Even in death, some still work the counter. One supposes there's something to be said here about death, commerce and taxes."
     },
     {
         Id = "ReversedExtraPurchaseMetaUpgrade",
@@ -584,7 +584,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedArmorPerRoom_FlavorText01",
-        DisplayName = "In her opinion, being underestimated is the most powerful position there is."
+        DisplayName = "In her opinion, being underestimated is the most powerful position there is, so long as you're willing to nurture it."
     },
     {
         Id = "ReversedArmorPerRoomMetaUpgrade",
@@ -610,7 +610,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedHeroicRarity_FlavorText01",
-        DisplayName = "Escaping from those who harm often requires more bravery than to face an unconquerable maze."
+        DisplayName = "Escaping from those who harm you often requires more bravery than to face an unconquerable maze, even if the act is only a thread."
     },
     {
         Id = "ReversedHeroicRarityMetaUpgrade",
@@ -623,7 +623,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedSacrificeForLevels_FlavorText01",
-        DisplayName = "Is there anything more tragic than knowningly walking to your doom to save the ones you love?"
+        DisplayName = "Is there anything more tragic than knowingly walking to your doom to save the ones you love?"
     },
     {
         Id = "ReversedSacrificeForLevelsMetaUpgrade",
@@ -641,7 +641,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedGatherRarity_FlavorText01",
-        DisplayName = "For a being that provides so many bounties to life, she is overwhelmingly cruel and capricious."
+        DisplayName = "She raised Titans to end one tyranny, then gods and monsters to end the next. Are you the next toppler, or the next to be toppled?"
     },
     {
         Id = "ReversedGatherRarityMetaUpgrade",
@@ -654,7 +654,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedUnFatedReward_FlavorText01",
-        DisplayName = "Knowing what comes next is a curse on its own, but the inability to share you experiences is torture."
+        DisplayName = "Knowing what comes next is a curse on its own, but the inability to share your experiences is torture."
     },
     {
         Id = "ReversedUnFatedRewardMetaUpgrade",
@@ -667,7 +667,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedRandomBonusLevels_FlavorText01",
-        DisplayName = "His power lies in the dreams and desire of others, and he loves to wield it lavishly."
+        DisplayName = "Immortality, a god's ear, a seat at the Olympian table — he knew exactly what he wanted, exactly who would give it to him, and now lives lavishly."
     },
     {
         Id = "ReversedRandomBonusLevelsMetaUpgrade",
@@ -680,7 +680,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedKeepsakeReAdd_FlavorText01",
-        DisplayName = "Despite bearing the burden of losing his family, his love, and cursing his beloved creations, he none-the-less endeavours to improve."
+        DisplayName = "Despite bearing the burden of losing his love and cursing his beloved creations, he none-the-less promises to never make the same mistakes."
     },
     {
         Id = "ReversedKeepsakeReAddMetaUpgrade",
@@ -693,7 +693,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedExtraFeatures_FlavorText01",
-        DisplayName = "No matter how much they try to hide it, gods are just as multifaceted as the mortals that worship them."
+        DisplayName = "She regularly takes journeys as hard as yours, just to ferry oath-water or messages, and yet always tracks beauty behind her."
     },
     {
         Id = "ReversedExtraFeaturesMetaUpgrade",
@@ -706,7 +706,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedPerfectPower_FlavorText01",
-        DisplayName = "May winged victory favour you on your endeavours, but if not, you know it is sweeter when you pry it from her claws."
+        DisplayName = "May winged victory favour you on your endeavours, but if she is fickle, know it is sweeter when you pry it from her claws."
     },
     {
         Id = "ReversedPerfectPowerMetaUpgrade_Tray",
@@ -724,7 +724,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedFullDefiance_FlavorText01",
-        DisplayName = "Hold those you love close, for you never know when you will lose the chance to."
+        DisplayName = "Hold those you love close, for you never know when they will be clawed from your gentle grasp and marked for suffering."
     },
     {
         Id = "ReversedFullDefianceMetaUpgrade",
@@ -737,7 +737,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedCheaperChannel_FlavorText01",
-        DisplayName = "Though he may be blind, even the gods bow down to the wisdom he sees."
+        DisplayName = "Though he may be blind, even the gods settle their arguments with the wisdom he 'sees'."
     },
     {
         Id = "ReversedCheaperChannelMetaUpgrade",
@@ -750,7 +750,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedArtemisKeepsake_FlavorText01",
-        DisplayName = "Perhaps it is telling that the gods bring out the ugliest parts of humanity, but that is something you try not to dwell on."
+        DisplayName = "Strip away the names, transformations and legends, and every monster is just another thing trying to survive the night — same as you."
     },
     {
         Id = "ReversedArtemisKeepsakeMetaUpgrade",
@@ -763,7 +763,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedBackstab_FlavorText01",
-        DisplayName = "Striking first, and often, is the best way to display that you are more than equal in weight."
+        DisplayName = "Striking first, and often, is the best way to display that you are more than 'equal in weight'."
     },
     {
         Id = "ReversedBackstabMetaUpgrade",
@@ -772,11 +772,11 @@ local newMetaUpgradeCardData = {
     {
         Id = "ReversedPotentDefiance",
         DisplayName = "Hatred",
-        Description = "Your {$Keywords.ExtraChance} effects heal {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Health} when used.",
+        Description = "Your {$Keywords.ExtraChanceMisc} effects heal {#UpgradeFormat}{$TooltipData.StatDisplay1}{#Prev}{!Icons.Health} when used.",
     },
     {
         Id = "ReversedPotentDefiance_FlavorText01",
-        DisplayName = "Though you never saw it in your prime, and it never embraced you as it did your brother, you know its love for the children of Hades."
+        DisplayName = "Though you never saw it in its prime, and it never embraced you as it did your brother, you know its love for the children of Hades."
     },
     {
         Id = "ReversedPotentDefianceMetaUpgrade",
@@ -815,7 +815,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedProjectileSlow_FlavorText01",
-        DisplayName = "They bring both beautiful breezes and destructive gales, and are as versatile as the seasons. Perhaps you could learn something from them."
+        DisplayName = "They bring both beautiful breezes and destructive gales, and are as versatile as the seasons. Would that you could bundle up their power into a bag."
     },
     {
         Id = "ReversedProjectileSlowMetaUpgrade",
@@ -828,7 +828,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedDashRecovery_FlavorText01",
-        DisplayName = "The ability to defy gravity, to be unlimited, where nothing brings you down... is that not what being a witch is all about?"
+        DisplayName = "To you, the ability to defy gravity, to be unlimited, where nothing brings you down... that is the core of your magick freedom."
     },
     {
         Id = "ReversedDashRecoveryMetaUpgrade",
@@ -841,7 +841,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedElementRoom_FlavorText01",
-        DisplayName = "Having so much time on your own leads you to developing mastery of the skills you possess."
+        DisplayName = "Seven years she kept him, offering all of herself in exchange for company. Loneliness makes for a gilded cage."
     },
     {
         Id = "ReversedElementRoomMetaUpgrade",
@@ -854,7 +854,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedRandomCards_FlavorText01",
-        DisplayName = "For all its beauty and idleness, nature can so easy flip to evoking panic and horror. May it never die."
+        DisplayName = "For all its beauty and idleness, nature can so easily flip to evoking panic and horror. May it never be that the Great God of the Wild is dead."
     },
     {
         Id = "ReversedRandomCardsMetaUpgrade",
@@ -919,7 +919,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedUniqueGod_FlavorText01",
-        DisplayName = "To produce art is to be alive, so it is no wonder its patrons are so ever-present and beloved."
+        DisplayName = "To produce art is to be alive, so it is no wonder its patrons are so multitudinous, ever-present and beloved."
     },
     {
         Id = "ReversedUniqueGodMetaUpgrade_Tray",
@@ -937,7 +937,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedRiposteKill_FlavorText01",
-        DisplayName = "To survive in this world, one must be strong and independent, but also willing to rely on others."
+        DisplayName = "An army with no need of men to lead it, and none to answer to but each other. Now that's something you can get behind."
     },
     {
         Id = "ReversedRiposteKillMetaUpgrade",
@@ -950,7 +950,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedDDRefillBiomeStart_FlavorText01",
-        DisplayName = "A doctor's goal is to improve the health of their patients, but the best have the ability to thwart Death itself."
+        DisplayName = "A doctor's goal is to improve the health of their patients, but the best have the ability to thwart Death itself, even at high costs."
     },
     {
         Id = "ReversedDDRefillBiomeStartMetaUpgrade",
@@ -1007,7 +1007,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedFountainGold_FlavorText01",
-        DisplayName = "Sometimes making tough choices means being hated, but when you rule, you must consider the needs of the many."
+        DisplayName = "If you think slaying your kin and earning their hatred is not worth it for power, perhaps you are not cut out for kinghood."
     },
     {
         Id = "ReversedFountainGoldMetaUpgrade",
@@ -1046,7 +1046,7 @@ local newMetaUpgradeCardData = {
     },
     {
         Id = "ReversedRandomBuild_FlavorText01",
-        DisplayName = "The way the dice fall is one of the things you cannot truly control, no matter how you try."
+        DisplayName = "The wheel of luck is one that spins outside of your control or merit, and cities fall on her whims."
     },
     {
         Id = "ReversedRandomBuildMetaUpgrade",

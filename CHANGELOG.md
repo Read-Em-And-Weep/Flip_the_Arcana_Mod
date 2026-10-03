@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Fixed Hatred (Styx) text
+- Revised some flavor text
+
 ## [3.0.15] - 2026-09-25
 
 - Fixed an issue causing crashes when hit with god trial weapons as the first hit in a room
