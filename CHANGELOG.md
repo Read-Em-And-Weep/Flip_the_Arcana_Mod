@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.17] - 2026-10-11
+
 - The Beasts (Monsters) is now a low-priority draw for random Arcana pulls, and should not be drawn at all, except in some very specific circumstances where you have exhausted the pool of other potential cards to draw
 - Added art for The Hearth (Hestia) and Futility (Sisyphus). Thanks @cloveroforleans!
 - Nerfed the Ruse (Trojan Horse) slightly
@@ -375,7 +377,8 @@ Minor Changes
 
 - First version of the mod!
 
-[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.16...HEAD
+[unreleased]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.17...HEAD
+[3.0.17]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.16...3.0.17
 [3.0.16]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.15...3.0.16
 [3.0.15]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.14...3.0.15
 [3.0.14]: https://github.com/Read-Em-And-Weep/Flip_the_Arcana_Mod/compare/3.0.13...3.0.14
