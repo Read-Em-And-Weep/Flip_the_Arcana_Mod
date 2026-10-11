@@ -42,7 +42,7 @@ If you find you are getting stuck often after using Monstrosity (doors won't ope
 
 @PunishedMat for the amazing art on Bounty!
 
-@cloveroforleans for the fantastic art on The Cyclops, Revelry, and Famine!
+@cloveroforleans for the fantastic art on The Cyclops, Revelry, The Hearth, Futility and Famine!
 
 # IMPORTANT INFORMATION :)
 If you find any bugs, please let me know on the Hades Modding Discord (under requests, in Reversed Arcana of Ashes).

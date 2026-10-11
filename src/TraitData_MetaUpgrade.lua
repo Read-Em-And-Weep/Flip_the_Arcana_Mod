@@ -1664,7 +1664,7 @@ NewMetaUpgradeTraitData = {
         {
 			Common =
 			{
-				Multiplier = 1
+				Multiplier = 2
 			},
 			Rare =
 			{
@@ -1672,11 +1672,11 @@ NewMetaUpgradeTraitData = {
 			},
 			Epic =
 			{
-				Multiplier = 5
+				Multiplier = 4
 			},
 			Heroic =
 			{
-				Multiplier = 7
+				Multiplier = 5
 			},
         },
         RoomsPerUpgrade = {
@@ -3192,19 +3192,19 @@ NewMetaUpgradeTraitData = {
 
 			Common =
 			{
-				Multiplier = 0.2/0.1,
+				Multiplier = 0.1/0.1,
 			},
 			Rare =
 			{
-				Multiplier = 0.3/0.1,
+				Multiplier = 0.2/0.1,
 			},
 			Epic =
 			{
-				Multiplier = 0.4/0.1,
+				Multiplier = 0.3/0.1,
 			},
 			Heroic = 
 			{
-				Multiplier = 0.5/0.1,
+				Multiplier = 0.4/0.1,
 			}
 		},
 		AddIncomingDamageModifiers =

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- The Beasts (Monsters) is now a low-priority draw for random Arcana pulls, and should not be drawn at all, except in some very specific circumstances where you have exhausted the pool of other potential cards to draw
+- Added art for The Hearth (Hestia) and Futility (Sisyphus). Thanks @cloveroforleans!
+- Nerfed the Ruse (Trojan Horse) slightly
+- Nerfed the Beloved Child (Macaria) slightly
+
 ## [3.0.16] - 2026-10-03
 
 - Fixed Hatred (Styx) text

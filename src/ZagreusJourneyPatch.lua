@@ -3589,6 +3589,9 @@ mod.NewMetaUpgradeCardData =
         Column = 1,
         Row = 5,
 
+		RandomDrawChance = 0,
+
+
 		Cost = 0,
 		Image = "FlippedCardArt_Beasts",
 		ResourceCost = 
